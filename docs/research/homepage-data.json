@@ -1,0 +1,2078 @@
+{
+  "title": "Digital Marketing Agency No.1 Indonesia - GoSocial",
+  "metaDesc": "GoSocial lebih dari sekadar digital marketing agency, kami hadir sebagai mitra digital terpercaya untuk bisnis dan organisasi di berbagai bidang sejak 2020.",
+  "fonts": [
+    "sans-serif",
+    "\"Open Sans\", sans-serif",
+    "\"Font Awesome 5 Free\""
+  ],
+  "colors": {
+    "bg": "rgb(255, 255, 255)",
+    "text": "rgb(103, 119, 136)",
+    "primary": "rgb(247, 250, 255)"
+  },
+  "images": [
+    {
+      "src": "https://gosocial.co.id/assets/img/logos/gosocial-logo-2025.webp",
+      "alt": "Logo GoSocial",
+      "w": 320,
+      "h": 114
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/grow1.webp",
+      "alt": "Digital Growth - Icon",
+      "w": 230,
+      "h": 180
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/verified.webp",
+      "alt": "GoSocial Verified",
+      "w": 168,
+      "h": 168
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/bullseye.webp",
+      "alt": "GoSocial Bullseye",
+      "w": 160,
+      "h": 160
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/links.webp",
+      "alt": "GoSocial Links",
+      "w": 160,
+      "h": 160
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/handshake.webp",
+      "alt": "GoSocial Handshake",
+      "w": 160,
+      "h": 160
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/palette.webp",
+      "alt": "GoSocial Palette",
+      "w": 160,
+      "h": 160
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/header/enterprise.png",
+      "alt": "Solusi Digital Marketing untuk Enterprise atau Brand",
+      "w": 64,
+      "h": 64
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/header/education.png",
+      "alt": "Solusi Digital Marketing untuk Education / Pendidikan",
+      "w": 64,
+      "h": 64
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/header/food.png",
+      "alt": "Solusi Digital Marketing untuk F&B",
+      "w": 64,
+      "h": 64
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/header/health.png",
+      "alt": "Solusi Digital untuk Healthcare Rumah Sakit maupun Klinik",
+      "w": 64,
+      "h": 64
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/header/organization.png",
+      "alt": "Solusi Digital Marketing untuk Pemerintah atau Organisasi",
+      "w": 64,
+      "h": 64
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/header/retail.png",
+      "alt": "Solusi Digital Marketing untuk Bisnis Retail maupun Toko Online",
+      "w": 64,
+      "h": 64
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/partner-new.webp",
+      "alt": "GoSocial - The only, digital growth partner you'll ever need",
+      "w": 380,
+      "h": 229
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/contact.webp",
+      "alt": "Phone Contact",
+      "w": 168,
+      "h": 161
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/floating-button/whatsapp-icon.webp",
+      "alt": "WhatsApp",
+      "w": 146,
+      "h": 147
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/grow1.webp",
+      "alt": "GoSocial - Growth Icon",
+      "w": 230,
+      "h": 180
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/kompas-dark.webp",
+      "alt": "Kompas News",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/kompas.webp",
+      "alt": "Kompas News",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/detik-dark.webp",
+      "alt": "Detik News",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/detik.webp",
+      "alt": "Detik News",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/idntimes-dark.webp",
+      "alt": "IDN Times Dark",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/idntimes.webp",
+      "alt": "IDN Times ",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/tempo-dark.webp",
+      "alt": "Sindo News",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/tempo.webp",
+      "alt": "Sindo News",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/hero-homepage.webp",
+      "alt": "GoSocial - Digital Marketing Agency",
+      "w": 720,
+      "h": 647
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/illustrations/calendar.svg",
+      "alt": "Social Media Agency",
+      "w": 152,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/home/sosmed2.svg",
+      "alt": "Social Media Marketing",
+      "w": 152,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/illustrations/communication.svg",
+      "alt": "Set & Achive Goal Together",
+      "w": 152,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/logos/logo-about.webp",
+      "alt": "Keunggulan GoSocial",
+      "w": 480,
+      "h": 171
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Instax Fujifilm Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Komdigi Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Triv Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Universitas Terbuka Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - OCBC Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Labore Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Depok Single Window Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Dusdukduk",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Flecto Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Aza Wear Clothing Indonesia",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Andalusia Property",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Instax Fujifilm Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Komdigi Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Triv Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Universitas Terbuka Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - OCBC Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Labore Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Depok Single Window Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Dusdukduk",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Flecto Dark",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Aza Wear Clothing Indonesia",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Andalusia Property",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Gappu",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Nav Karaoke",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Bunda Medic Hospital",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Sands Bosum Indonesia",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - EBright Skin",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Bromen",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Essenza Indonesia Skincare Beauty",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Draisal",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Iplaco Granite",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Syuvera",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Indo Makmur Food",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Kementrian Pertanian",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Gappu",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Nav Karaoke",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Bunda Medic Hospital",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Sands Bosum Indonesia",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - EBright Skin",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Bromen",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Essenza Indonesia Skincare Beauty",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Draisal",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Iplaco Granite",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Syuvera",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Indo Makmur Food",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Kementrian Pertanian",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Summarecon",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Alfa One",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Binus Graduate Program",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Ibu Women Children Care",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - RS Happy Land Jogja",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - SNA Medika",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - RS Tjandra Medika Hospital",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - National Battery",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Binus School",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - RS Onkology Surabaya",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Universitas Inaba",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Plaza Mini Indonesia",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Summarecon",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Alfa One",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Binus Graduate Program",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Ibu Women Children Care",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - RS Happy Land Jogja",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - SNA Medika",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - RS Tjandra Medika Hospital",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - National Battery",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Binus School",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - RS Onkology Surabaya",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Universitas Inaba",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='425' height='114'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Client - Plaza Mini Indonesia",
+      "w": 425,
+      "h": 114
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Triv Indonesia - Social Media",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Binus School - Social Media",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Nav Karaoke - Social Media",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bosum Indonesia - Website Development",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "KCC Indonesia - Website Development",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Summarecon Mutiara Makassar - Website Development",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Iplaco - Google Ads",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Astareka Printing - Google Ads",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Public Speaking Academy - Google Ads",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "ICT Travel - Social Media",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Gappu - Social Media",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "SIP Atomic - Social Media",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Iplaco - Website Development",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sekolah Indonesia Singapura - Website Development",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "PT Surabaya Isolasitama - Website Development",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "SIP Atomic - Google Ads",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "BizWork Space - Visual Branding",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Happy Land - Visual Branding",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Aliyonics - Visual Branding",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "PT Arangco Bhumi - Visual Branding",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "PT Bangun Era Sejahtera - Visual Branding",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Glow Merald - Visual Branding",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Empat Kali - Video Animasi",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Medify - Video Animasi",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Triv - Video Social Media",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Azawear - Foto Product",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bara Caffe - Foto Product",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='435'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Mosclo - Foto Product",
+      "w": 600,
+      "h": 435
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Foto Komersial - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Pembuatan Aplikasi - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa SEO - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - 360 Digital Marketing - GoSocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Social Media Management - GoSocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Pembuatan Website - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Digital Ads - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Branding - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Kol & Affiliate Marketing - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Foto Produk - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Pembuatan Video - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Desain Logo - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Foto Komersial - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Pembuatan Aplikasi - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa SEO - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - 360 Digital Marketing - GoSocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Social Media Management - GoSocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Pembuatan Website - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Digital Ads - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Branding - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Kol & Affiliate Marketing - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Foto Produk - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Pembuatan Video - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Desain Logo - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Foto Komersial - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa Pembuatan Aplikasi - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='320'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Thumbnail - Jasa SEO - Gosocial",
+      "w": 480,
+      "h": 320
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='270'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Tentang GoSocial 1",
+      "w": 480,
+      "h": 270
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='270'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Tentang GoSocial 2",
+      "w": 480,
+      "h": 270
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='270'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Tentang GoSocial 3",
+      "w": 480,
+      "h": 270
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "B2B Marketing PT Essenza Natural",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Image Description",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sales Manager PT. Caleb Technology",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Project Manager PT. Digerati Atomic",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "CEO Triv Indonesia",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Owner Zenmen Barber & ShoesCare",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "B2B Marketing PT Essenza Natural",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Image Description",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sales Manager PT. Caleb Technology",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Project Manager PT. Digerati Atomic",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "CEO Triv Indonesia",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Owner Zenmen Barber & ShoesCare",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "B2B Marketing PT Essenza Natural",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Image Description",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sales Manager PT. Caleb Technology",
+      "w": 50,
+      "h": 50
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Denso",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Auto200",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "9Dots Consulting",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sekolah Indonesia Singapura",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Surabaya Isolasitama",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Air Minum Bersujud",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Alfa One",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bangun Era Sejahtera",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bromen",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Dus Duk Duk",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Indo Makmur Food",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Karawang Food Lestari",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "National Battery",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Raja Beli",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Cita Sehat",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Universitas Inaba",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Summarecon",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Universitas Terbuka",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Latis Education",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sands Bosum",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Binus School",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Triv",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Instax Fujifilm",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Ditjen Aptika Kominfo",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "NAV Karaoke",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bank OCBC",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bank BRI",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Aregon",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Azawear",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Labore",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sands Bosum Indonesia",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Depok Single Window",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Binus Graduate Program",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Universitas Terbuka",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Gappu",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "SIP Atomic",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "RS Onkology Surabaya",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "RS Tjandra Medika",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Perawatku",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Essenza",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Pertamina",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Denso",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Auto200",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "9Dots Consulting",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sekolah Indonesia Singapura",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Surabaya Isolasitama",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Air Minum Bersujud",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Alfa One",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bangun Era Sejahtera",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bromen",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Dus Duk Duk",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Indo Makmur Food",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Karawang Food Lestari",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "National Battery",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Raja Beli",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Cita Sehat",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Universitas Inaba",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Summarecon",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Universitas Terbuka",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Latis Education",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sands Bosum",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Binus School",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Triv",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Instax Fujifilm",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Ditjen Aptika Kominfo",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "NAV Karaoke",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bank OCBC",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Bank BRI",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Aregon",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Azawear",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Labore",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Sands Bosum Indonesia",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Depok Single Window",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Binus Graduate Program",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Universitas Terbuka",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Gappu",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "SIP Atomic",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "RS Onkology Surabaya",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "RS Tjandra Medika",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Perawatku",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Essenza",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Pertamina",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='219' height='74'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Denso",
+      "w": 219,
+      "h": 74
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/foto-profil.webp",
+      "alt": "Foto Profil GoSocial",
+      "w": 176,
+      "h": 176
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3ELoading...%3C/text%3E%3C/svg%3E",
+      "alt": "Customized & Tailored Strategy",
+      "w": 600,
+      "h": 400
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3ELoading...%3C/text%3E%3C/svg%3E",
+      "alt": "Digital Activation",
+      "w": 600,
+      "h": 400
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3ELoading...%3C/text%3E%3C/svg%3E",
+      "alt": "Data Driven Marketing",
+      "w": 600,
+      "h": 400
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/service/web/portofolio/large/port-1.webp",
+      "alt": "Portofolio Preview",
+      "w": 900,
+      "h": 889
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Down Trend",
+      "w": 32,
+      "h": 32
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/kompas-dark.webp",
+      "alt": "Kompas",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/kompas.webp",
+      "alt": "Kompas",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/detik-dark.webp",
+      "alt": "Detik",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/detik.webp",
+      "alt": "Detik",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/idntimes-dark.webp",
+      "alt": "IDN Times Dark - GoSocial",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/idntimes.webp",
+      "alt": "IDN Times - GoSocial",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/tempo-dark.webp",
+      "alt": "Tempo",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/tempo.webp",
+      "alt": "Tempo",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/sindonews-dark.webp",
+      "alt": "Sindonews",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/media/sindonews.webp",
+      "alt": "Sindonews",
+      "w": 838,
+      "h": 265
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='30'%3E%3Crect width='100%25' height='30%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Tiktok Affiliate Partner",
+      "w": 100,
+      "h": 30
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='30'%3E%3Crect width='50%25' height='30%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Google Ads Certified",
+      "w": 100,
+      "h": 30
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='30'%3E%3Crect width='50%25' height='30%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Digital Marketing Associate Meta Certified",
+      "w": 100,
+      "h": 30
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect width='100%25' height='30%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "PSE GoSocial Indonesia",
+      "w": 30,
+      "h": 30
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect width='100%25' height='30%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "PSE GoSocial Indonesia QR Code",
+      "w": 30,
+      "h": 30
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect width='100%25' height='30%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "WhatsApp GoSocial",
+      "w": 30,
+      "h": 30
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Indonesia Flag",
+      "w": 30,
+      "h": 30
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Indonesia Flag",
+      "w": 30,
+      "h": 30
+    },
+    {
+      "src": "https://gosocial.co.id/assets/vendor/flag-icon-css/flags/4x3/us.svg",
+      "alt": "United States Flag",
+      "w": 200,
+      "h": 150
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30'%3E%3Crect width='100%25' height='100%25' fill='%23ccc'/%3E%3Ctext x='50%25' y='50%25' font-size='20' text-anchor='middle' fill='%23333'%3E%3C/text%3E%3C/svg%3E",
+      "alt": "Verified",
+      "w": 30,
+      "h": 30
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/brands/google.svg",
+      "alt": "Image Description",
+      "w": 147,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/brands/google.svg",
+      "alt": "Image Description",
+      "w": 147,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/brands/gitlab-gray.svg",
+      "alt": "Image Description",
+      "w": 300,
+      "h": 100
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/brands/fitbit-gray.svg",
+      "alt": "Image Description",
+      "w": 300,
+      "h": 100
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/brands/flow-xo-gray.svg",
+      "alt": "Image Description",
+      "w": 300,
+      "h": 100
+    },
+    {
+      "src": "https://gosocial.co.id/assets/svg/brands/layar-gray.svg",
+      "alt": "Image Description",
+      "w": 300,
+      "h": 100
+    },
+    {
+      "src": "https://gosocial.co.id/dashboard/assets/img/modal/success.webp",
+      "alt": "Error",
+      "w": 512,
+      "h": 512
+    },
+    {
+      "src": "https://gosocial.co.id/dashboard/assets/img/modal/error.webp",
+      "alt": "Error",
+      "w": 512,
+      "h": 512
+    },
+    {
+      "src": "https://gosocial.co.id/dashboard/assets/img/modal/warning.webp",
+      "alt": "Warning",
+      "w": 512,
+      "h": 512
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/notification/online-meet.webp",
+      "alt": "Card image cap",
+      "w": 439,
+      "h": 230
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/notification/online-chat.webp",
+      "alt": "Card image cap",
+      "w": 439,
+      "h": 230
+    },
+    {
+      "src": "https://gosocial.co.id/dashboard/assets/img/modal/sending.svg",
+      "alt": "Error",
+      "w": 265,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/dashboard/assets/img/modal/sending.svg",
+      "alt": "Error",
+      "w": 265,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/dashboard/assets/img/modal/sending.svg",
+      "alt": "Error",
+      "w": 265,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/dashboard/assets/img/modal/sending.svg",
+      "alt": "Error",
+      "w": 265,
+      "h": 150
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/whatsapp.webp",
+      "alt": "Card image",
+      "w": 1371,
+      "h": 600
+    },
+    {
+      "src": "https://gosocial.co.id/assets/img/home/whatsapp-success.webp",
+      "alt": "Card image",
+      "w": 1000,
+      "h": 478
+    }
+  ],
+  "links": [
+    "https://gosocial.co.id/blog/bahaya-penipuan-berkedok-pt-nusa-digital-media",
+    "https://gosocial.co.id/",
+    "https://gosocial.co.id/how-it-works",
+    "https://gosocial.co.id/service/jasa-digital-marketing-360",
+    "https://gosocial.co.id/service/social-media-management",
+    "https://gosocial.co.id/service/digital-campaign",
+    "https://gosocial.co.id/service/jasa-seo",
+    "https://gosocial.co.id/service/affiliate-marketing",
+    "https://gosocial.co.id/service/jasa-pembuatan-website",
+    "https://gosocial.co.id/service/apps-development",
+    "https://gosocial.co.id/service/branding",
+    "https://gosocial.co.id/service/branding/jasa-desain",
+    "https://gosocial.co.id/service/branding/jasa-desain/logo",
+    "https://gosocial.co.id/service/branding/jasa-desain/banner-brosur",
+    "https://gosocial.co.id/service/commercial-photography",
+    "https://gosocial.co.id/service/jasa-foto-produk",
+    "https://gosocial.co.id/service/video-production",
+    "https://gosocial.co.id/solution/enterprise",
+    "https://gosocial.co.id/solution/education",
+    "https://gosocial.co.id/solution/fnb",
+    "https://gosocial.co.id/solution/healthcare",
+    "https://gosocial.co.id/solution/organization",
+    "https://gosocial.co.id/solution/retail",
+    "https://gosocial.co.id/contact",
+    "https://gosocial.co.id/about",
+    "https://gosocial.co.id/our-client",
+    "https://gosocial.co.id/partnership",
+    "https://gosocial.co.id/portfolio",
+    "https://gosocial.co.id/career",
+    "https://gosocial.co.id/blog",
+    "https://gosocial.co.id/kompasnews",
+    "https://gosocial.co.id/detiknews",
+    "https://gosocial.co.id/idntimes",
+    "https://gosocial.co.id/tempo",
+    "https://gosocial.co.id/#",
+    "https://gosocial.co.id/service/website/jasa-seo",
+    "https://gosocial.co.id/sindonews",
+    "mailto:hello@gosocial.co.id",
+    "https://gosocial.co.id/login",
+    "https://gosocial.co.id/sitemap",
+    "https://gosocial.co.id/terms",
+    "https://gosocial.co.id/#coming-soon",
+    "https://gosocial.co.id/merek",
+    "https://api.whatsapp.com/send?phone=6281234566636&text=Halo%20GoSocial!%20Saya%20baru%20saja%20dari%20website%20www.gosocial.co.id%20dan%20tertarik%20dengan%20layanan%20yang%20ditawarkan."
+  ],
+  "navLinks": [
+    {
+      "text": "Services",
+      "href": "javascript:;"
+    },
+    {
+      "text": "How it Works",
+      "href": "https://gosocial.co.id/how-it-works"
+    },
+    {
+      "text": "All 360 Digital Marketing",
+      "href": "https://gosocial.co.id/service/jasa-digital-marketing-360"
+    },
+    {
+      "text": "Social Media Management",
+      "href": "https://gosocial.co.id/service/social-media-management"
+    },
+    {
+      "text": "Digital Campaign / Ads",
+      "href": "https://gosocial.co.id/service/digital-campaign"
+    },
+    {
+      "text": "SEO & Local SEO",
+      "href": "https://gosocial.co.id/service/jasa-seo"
+    },
+    {
+      "text": "Affiliate & KOL Marketing",
+      "href": "https://gosocial.co.id/service/affiliate-marketing"
+    },
+    {
+      "text": "Website Development",
+      "href": "https://gosocial.co.id/service/jasa-pembuatan-website"
+    },
+    {
+      "text": "Apps Development",
+      "href": "https://gosocial.co.id/service/apps-development"
+    },
+    {
+      "text": "Branding",
+      "href": "https://gosocial.co.id/service/branding"
+    },
+    {
+      "text": "Graphic Design",
+      "href": "https://gosocial.co.id/service/branding/jasa-desain"
+    },
+    {
+      "text": "Desain Logo",
+      "href": "https://gosocial.co.id/service/branding/jasa-desain/logo"
+    },
+    {
+      "text": "Desain Brosur / Banner",
+      "href": "https://gosocial.co.id/service/branding/jasa-desain/banner-brosur"
+    },
+    {
+      "text": "Commercial Photography",
+      "href": "https://gosocial.co.id/service/commercial-photography"
+    },
+    {
+      "text": "Foto Produk",
+      "href": "https://gosocial.co.id/service/jasa-foto-produk"
+    },
+    {
+      "text": "Video Production",
+      "href": "https://gosocial.co.id/service/video-production"
+    },
+    {
+      "text": "Solution",
+      "href": "javascript:;"
+    },
+    {
+      "text": "Enterprise\n                                                            Perusahaan, B2B, dan manufaktur.",
+      "href": "https://gosocial.co.id/solution/enterprise"
+    },
+    {
+      "text": "Education\n                                                            Sekolah hingga Universitas.",
+      "href": "https://gosocial.co.id/solution/education"
+    },
+    {
+      "text": "Food & Beverages\n                                                            Resto maupun kafe.",
+      "href": "https://gosocial.co.id/solution/fnb"
+    },
+    {
+      "text": "Healthcare\n                                                            Klinik hingga Rumah Sakit.",
+      "href": "https://gosocial.co.id/solution/healthcare"
+    },
+    {
+      "text": "Organization\n                                                            Lembaga, Komunitas, dan Instansi.",
+      "href": "https://gosocial.co.id/solution/organization"
+    },
+    {
+      "text": "Retail / Brand\n                                                            Toko, B2C, dan Brand lokal.",
+      "href": "https://gosocial.co.id/solution/retail"
+    },
+    {
+      "text": "Dapatkan solusi terbaik untuk bisnis / organisasi. Konsultasi",
+      "href": "https://gosocial.co.id/contact"
+    },
+    {
+      "text": "Company",
+      "href": "javascript:;"
+    },
+    {
+      "text": "Tentang Perusahaan",
+      "href": "https://gosocial.co.id/about"
+    },
+    {
+      "text": "How it Works",
+      "href": "https://gosocial.co.id/how-it-works"
+    },
+    {
+      "text": "Our Clients",
+      "href": "https://gosocial.co.id/our-client"
+    },
+    {
+      "text": "Partnership",
+      "href": "https://gosocial.co.id/partnership"
+    },
+    {
+      "text": "Portfolio Update",
+      "href": "https://gosocial.co.id/portfolio"
+    },
+    {
+      "text": "Careers",
+      "href": "https://gosocial.co.id/career"
+    },
+    {
+      "text": "Blog Insight",
+      "href": "https://gosocial.co.id/blog"
+    },
+    {
+      "text": "Contact Us",
+      "href": "https://gosocial.co.id/contact"
+    },
+    {
+      "text": "Get In Touch",
+      "href": "https://gosocial.co.id/contact"
+    }
+  ],
+  "headings": [
+    {
+      "tag": "H1",
+      "text": "Digital Marketing Agency"
+    },
+    {
+      "tag": "H2",
+      "text": "#1 Digital Agency Indonesia"
+    },
+    {
+      "tag": "H2",
+      "text": "Customized Strategy"
+    },
+    {
+      "tag": "H2",
+      "text": "Digital Activation"
+    },
+    {
+      "tag": "H2",
+      "text": "Data-Driven Optimization"
+    },
+    {
+      "tag": "H2",
+      "text": "GoSocial. Lebih dari Sekadar Agency Digital ✨"
+    },
+    {
+      "tag": "H2",
+      "text": "Our Works"
+    },
+    {
+      "tag": "H2",
+      "text": "Our Services"
+    },
+    {
+      "tag": "H2",
+      "text": "Konsultan Digital No.1 di Indonesia 🇮🇩"
+    },
+    {
+      "tag": "H2",
+      "text": "Bagaimana pendapat klien kami?"
+    },
+    {
+      "tag": "H3",
+      "text": "Customized Strategy"
+    },
+    {
+      "tag": "H3",
+      "text": "Digital Activation"
+    },
+    {
+      "tag": "H3",
+      "text": "Data-Driven Marketing"
+    },
+    {
+      "tag": "H2",
+      "text": "Don't get left behind.."
+    },
+    {
+      "tag": "H2",
+      "text": ""
+    },
+    {
+      "tag": "H3",
+      "text": "Pilihan Metode Konsultasi"
+    },
+    {
+      "tag": "H3",
+      "text": "Terhubung via WhatsApp"
+    },
+    {
+      "tag": "H3",
+      "text": "Terima Kasih! 🎉"
+    }
+  ],
+  "sections": [
+    {
+      "classes": "header-section",
+      "text": "Services\n\n                            \n                            \n                                \n                                    \n                                        \n                     "
+    }
+  ],
+  "cssVars": {
+    "--primary": "#377dff",
+    "--secondary": "#71869d"
+  }
+}
