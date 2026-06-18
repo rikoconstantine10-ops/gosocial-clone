@@ -17,7 +17,7 @@ const footerServices = [
   { label: "Foto Produk", href: "/service/jasa-foto-produk" },
   { label: "Video Production", href: "/service/video-production" },
   { label: "Apps Development", href: "/service/apps-development" },
-  { label: "🤖 AI Automation", href: "/service/ai-automation" },
+  { label: "AI Automation", href: "/service/ai-automation" },
 ];
 
 const footerSolutions = [

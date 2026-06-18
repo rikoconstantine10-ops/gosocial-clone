@@ -32,7 +32,7 @@ const navServices = [
   { label: "Foto Produk", href: "/service/jasa-foto-produk" },
   { label: "Video Production", href: "/service/video-production" },
   { label: "Apps Development", href: "/service/apps-development" },
-  { label: "🤖 AI Automation", href: "/service/ai-automation" },
+  { label: "AI Automation", href: "/service/ai-automation" },
 ];
 const navSolutions = [
   { label: "Enterprise / Brand", href: "/solution/enterprise" },
@@ -68,29 +68,52 @@ function DropdownMenu({ label, items, open, onToggle, onClose }: {
         {label} <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
       {open && (
-        <div className="absolute top-full left-0 mt-2 w-64 glass rounded-2xl shadow-xl border overflow-hidden z-50"
-          style={{ borderColor: "var(--color-border)" }}>
-          {items.map((item) => (
-            <div key={item.href} className="relative group"
+        <div className="absolute top-full left-0 mt-2 w-72 rounded-2xl shadow-2xl overflow-hidden z-50"
+          style={{
+            background: "oklch(1 0 0 / 0.95)",
+            backdropFilter: "blur(24px) saturate(180%)",
+            border: "1px solid var(--color-border)",
+            boxShadow: "0 20px 60px -10px oklch(0.5 0.1 265 / 0.2), 0 0 0 1px oklch(0.88 0.02 265 / 0.5)",
+          }}>
+          <div className="p-2">
+          {items.map((item, idx) => (
+            <div key={item.href} className="relative"
               onMouseEnter={() => item.sub ? setHoveredSub(item.href) : setHoveredSub(null)}>
               <Link href={item.href} onClick={onClose}
-                className="flex items-center justify-between px-4 py-2.5 text-sm hover:bg-black/5 transition-colors">
-                <span>{item.label}</span>
-                {item.sub && <ChevronDown className="w-3 h-3 -rotate-90 opacity-50" />}
+                className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 group"
+                style={{ color: "var(--color-foreground)" }}
+                onMouseEnter={e => (e.currentTarget.style.background = "var(--color-secondary)")}
+                onMouseLeave={e => (e.currentTarget.style.background = "")}>
+                <span className="group-hover:text-primary transition-colors">{item.label}</span>
+                {item.sub && <ChevronDown className="w-3.5 h-3.5 -rotate-90 opacity-40" />}
               </Link>
               {item.sub && hoveredSub === item.href && (
-                <div className="absolute left-full top-0 ml-1 w-56 glass rounded-2xl shadow-xl border overflow-hidden z-50"
-                  style={{ borderColor: "var(--color-border)" }}>
-                  {item.sub.map((s) => (
-                    <Link key={s.href} href={s.href} onClick={onClose}
-                      className="block px-4 py-2.5 text-sm hover:bg-black/5 transition-colors">
-                      {s.label}
-                    </Link>
-                  ))}
+                <div className="absolute left-full top-0 ml-2 w-60 rounded-2xl shadow-2xl overflow-hidden z-50"
+                  style={{
+                    background: "oklch(1 0 0 / 0.95)",
+                    backdropFilter: "blur(24px)",
+                    border: "1px solid var(--color-border)",
+                    boxShadow: "0 20px 60px -10px oklch(0.5 0.1 265 / 0.2)",
+                  }}>
+                  <div className="p-2">
+                    <p className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: "var(--color-muted-foreground)" }}>
+                      Platform
+                    </p>
+                    {item.sub.map((s) => (
+                      <Link key={s.href} href={s.href} onClick={onClose}
+                        className="block px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150"
+                        style={{ color: "var(--color-foreground)" }}
+                        onMouseEnter={e => (e.currentTarget.style.background = "var(--color-secondary)")}
+                        onMouseLeave={e => (e.currentTarget.style.background = "")}>
+                        {s.label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
           ))}
+          </div>
         </div>
       )}
     </div>

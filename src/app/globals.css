@@ -112,13 +112,7 @@
   will-change: transform; transform: translateZ(0);
 }
 
-.shimmer-card { position: relative; overflow: hidden; }
-.shimmer-card::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(105deg, transparent 40%, oklch(1 0 0 / 0.4) 50%, transparent 60%);
-  background-size: 200% 100%; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
-}
-.shimmer-card:hover::after { opacity: 1; animation: sweep 0.65s ease forwards; }
+
 
 @keyframes float-slow { 0%, 100% { transform: translate3d(0,0,0); } 50% { transform: translate3d(18px,-25px,0); } }
 @keyframes orb-1 { 0%,100% { transform: translate3d(0,0,0) scale(1); } 33% { transform: translate3d(35px,-50px,0) scale(1.08); } 66% { transform: translate3d(-25px,35px,0) scale(0.96); } }
@@ -176,3 +170,36 @@
 
 /* ============ Number ticker ============ */
 @keyframes count-up { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+/* ============ Layout Utilities ============ */
+.section-padding { padding: 5rem 0; }
+@media (max-width: 768px) { .section-padding { padding: 3.5rem 0; } }
+
+.container-custom {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ============ Card Base ============ */
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+  background: oklch(1 0 0 / 0.72);
+  border: 1px solid oklch(0.88 0.02 265 / 0.7);
+  box-shadow: var(--shadow-card);
+}
+.shimmer-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 40%, oklch(1 0 0 / 0.4) 50%, transparent 60%);
+  background-size: 200% 100%; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+}
+.shimmer-card:hover::after { opacity: 1; animation: sweep 0.65s ease forwards; }
