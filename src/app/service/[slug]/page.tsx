@@ -21,7 +21,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <Nav />
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20">
         <div className="orb orb-primary w-[500px] h-[500px] -top-40 -right-20 animate-orb" />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <Link href="/" className="inline-flex items-center gap-2 text-sm mb-8 hover:text-[color:var(--color-primary)] transition" style={{color:"var(--color-muted-foreground)"}}>
             <ArrowLeft className="w-4 h-4" /> Kembali ke Beranda
           </Link>
@@ -51,7 +51,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </section>
 
       <section className="relative py-16">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="grid md:grid-cols-3 gap-5">
             {service.features.map((f, i) => (
               <div key={f.title} className="glass shimmer-card rounded-2xl p-6 animate-fade-up" style={{animationDelay:`${i*0.1}s`}}>
@@ -67,7 +67,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </section>
 
       <section className="relative py-16" style={{background:"oklch(0.97 0.005 265)"}}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gradient" style={{fontFamily:"var(--font-display)"}}>Bagaimana kami bekerja</h2>
           </div>
@@ -84,7 +84,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </section>
 
       <section className="relative py-16">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="glass-strong rounded-3xl p-10 lg:p-14 text-center relative overflow-hidden">
             <div className="orb orb-primary w-[300px] h-[300px] -top-20 -left-20 animate-orb" />
             <div className="relative">
@@ -102,7 +102,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       </section>
 
       <section className="relative py-16">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="glass-strong rounded-3xl p-12 lg:p-16 text-center relative overflow-hidden">
             <div className="orb orb-violet w-[400px] h-[400px] -top-32 -right-32 animate-orb" />
             <div className="relative">

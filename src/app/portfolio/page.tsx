@@ -33,8 +33,8 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="relative py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      <section className="section-padding relative">
+        <div className="container-custom">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((p, i) => (
               <AnimateOnScroll key={i} delay={i * 80}>
@@ -57,7 +57,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
+      <section className="section-padding relative overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
         <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
           <AnimateOnScroll>

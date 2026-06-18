@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
@@ -12,9 +13,9 @@ const clients = [
 ];
 
 const testimonials = [
-  { name: "Rizky Pratama", role: "CEO, TechStartup Indonesia", text: "GoSocial berhasil meningkatkan traffic organik website kami sebesar 400% dalam 6 bulan. Tim mereka sangat profesional dan data-driven.", rating: 5 },
-  { name: "Dewi Sartika", role: "Marketing Manager, F&B Brand", text: "Social media kami tumbuh dari 10K ke 500K followers dalam setahun. Konten mereka selalu kreatif dan on-brand.", rating: 5 },
-  { name: "Budi Santoso", role: "Founder, E-commerce Fashion", text: "ROI dari kampanye digital marketing GoSocial mencapai 8x. Mereka benar-benar memahami bisnis kami dan deliver results.", rating: 5 },
+  { name: "Rizky Pratama", role: "CEO, TechStartup Indonesia", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80", text: "GoSocial berhasil meningkatkan traffic organik website kami sebesar 400% dalam 6 bulan. Tim mereka sangat profesional dan data-driven.", rating: 5 },
+  { name: "Dewi Sartika", role: "Marketing Manager, F&B Brand", avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b5fd?w=80&q=80", text: "Social media kami tumbuh dari 10K ke 500K followers dalam setahun. Konten mereka selalu kreatif dan on-brand.", rating: 5 },
+  { name: "Budi Santoso", role: "Founder, E-commerce Fashion", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80", text: "ROI dari kampanye digital marketing GoSocial mencapai 8x. Mereka benar-benar memahami bisnis kami dan deliver results.", rating: 5 },
 ];
 
 export default function OurClientPage() {
@@ -36,8 +37,8 @@ export default function OurClientPage() {
         </div>
       </section>
 
-      <section className="relative py-20" style={{background:"oklch(0.98 0.003 265)"}}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      <section className="section-padding relative" style={{background:"oklch(0.98 0.003 265)"}}>
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Brand yang Mempercayai Kami</h2>
@@ -55,8 +56,8 @@ export default function OurClientPage() {
         </div>
       </section>
 
-      <section className="relative py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      <section className="section-padding relative">
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kata Mereka</h2>
@@ -73,9 +74,16 @@ export default function OurClientPage() {
                     ))}
                   </div>
                   <p className="leading-relaxed mb-6 italic" style={{color:"var(--color-muted-foreground)"}}>&ldquo;{t.text}&rdquo;</p>
-                  <div>
-                    <p className="font-bold">{t.name}</p>
-                    <p className="text-sm" style={{color:"var(--color-muted-foreground)"}}>{t.role}</p>
+                  <div className="flex items-center gap-3">
+                    {(t as any).avatar && (
+                      <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                        <Image src={(t as any).avatar} alt={t.name} width={40} height={40} className="object-cover w-full h-full" />
+                      </div>
+                    )}
+                    <div>
+                      <p className="font-bold text-sm">{t.name}</p>
+                      <p className="text-xs" style={{color:"var(--color-muted-foreground)"}}>{t.role}</p>
+                    </div>
                   </div>
                 </div>
               </AnimateOnScroll>
@@ -84,7 +92,7 @@ export default function OurClientPage() {
         </div>
       </section>
 
-      <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
+      <section className="section-padding relative overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
         <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
           <AnimateOnScroll>

@@ -58,7 +58,7 @@ export default function HomePage() {
       <section className="relative pt-36 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
         <div className="orb orb-violet w-[500px] h-[500px] -top-20 right-0 animate-orb" style={{animationDelay:"-4s"}} />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 relative">
+        <div className="container-custom relative">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6 animate-slide-up" style={{color:"var(--color-primary)"}}>
@@ -136,7 +136,7 @@ export default function HomePage() {
 
       {/* Stats */}
       <section className="relative py-16" style={{background:"oklch(0.97 0.005 265)"}}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {stats.map((stat, i) => (
               <AnimateOnScroll key={i} delay={i * 80}>
@@ -166,7 +166,7 @@ export default function HomePage() {
       {/* Services */}
       <section className="relative py-20 lg:py-28">
         <div className="orb orb-cyan w-[400px] h-[400px] top-1/2 -right-32 animate-orb" style={{animationDelay:"-6s"}} />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs uppercase tracking-widest mb-4" style={{color:"var(--color-primary)"}}>Layanan Kami</span>
@@ -207,7 +207,7 @@ export default function HomePage() {
       {/* Solutions - Premium photo cards */}
       <section className="relative py-20 lg:py-28 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-violet w-[500px] h-[500px] -bottom-32 -left-32 animate-orb" />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs uppercase tracking-widest mb-4" style={{color:"var(--color-primary)"}}>Solusi</span>
@@ -252,7 +252,7 @@ export default function HomePage() {
 
       {/* Why GoSocial */}
       <section className="relative py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimateOnScroll>
               <div>
@@ -328,7 +328,7 @@ export default function HomePage() {
 
       {/* Testimonials */}
       <section className="relative py-20 lg:py-28" style={{background:"oklch(0.97 0.005 265)"}}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs uppercase tracking-widest mb-4" style={{color:"var(--color-primary)"}}>Testimonial</span>
@@ -359,7 +359,7 @@ export default function HomePage() {
 
       {/* As Seen On */}
       <section className="relative py-16 border-y" style={{background:"oklch(0.99 0.002 265)", borderColor:"var(--color-border)"}}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <AnimateOnScroll>
             <p className="text-center text-sm font-medium uppercase tracking-widest mb-8" style={{color:"var(--color-muted-foreground)"}}>Diliput oleh media terkemuka</p>
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">

@@ -28,7 +28,7 @@ export default function PartnershipPage() {
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
         <div className="orb orb-violet w-[400px] h-[400px] top-20 -right-20 animate-orb" style={{animationDelay:"-5s"}} />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimateOnScroll>
               <div>
@@ -53,8 +53,8 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section id="benefits" className="relative py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      <section id="benefits" className="section-padding relative">
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Keuntungan Menjadi Mitra</h2>
@@ -77,8 +77,8 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section className="relative py-20" style={{background:"oklch(0.98 0.003 265)"}}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+      <section className="section-padding relative" style={{background:"oklch(0.98 0.003 265)"}}>
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Cara Menjadi Mitra</h2>
@@ -98,7 +98,7 @@ export default function PartnershipPage() {
         </div>
       </section>
 
-      <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
+      <section className="section-padding relative overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
         <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
           <AnimateOnScroll>

@@ -41,7 +41,7 @@ export default function CareerPage() {
         </div>
       </section>
       <section className="relative py-16" style={{background:"oklch(0.97 0.005 265)"}}>
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {perks.map((perk) => (
               <div key={perk.title} className="glass rounded-3xl p-6 space-y-3">
@@ -59,7 +59,7 @@ export default function CareerPage() {
         </div>
       </section>
       <section id="openings" className="relative py-20 lg:py-28">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="text-center mb-12">
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs uppercase tracking-widest mb-4" style={{color:"var(--color-primary)"}}>Posisi Terbuka</span>
             <h2 className="text-3xl md:text-4xl font-bold" style={{fontFamily:"var(--font-display)"}}>Temukan peran <span className="text-gradient">yang tepat</span> untukmu</h2>

@@ -31,7 +31,7 @@ export default function ContactPage() {
       </section>
 
       <section className="relative py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12">
             <AnimateOnScroll>
               <div className="glass shimmer-card rounded-2xl p-8">

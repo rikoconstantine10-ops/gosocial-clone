@@ -12,7 +12,7 @@ export default function Page() {
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
         <div className="orb orb-violet w-[400px] h-[400px] top-20 -right-20 animate-orb" style={{animationDelay:"-5s"}} />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimateOnScroll>
               <div>
@@ -43,7 +43,7 @@ export default function Page() {
         </div>
       </section>
       <section className="relative py-20">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Solusi Retail GoSocial</h2>

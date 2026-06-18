@@ -19,7 +19,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       <Nav />
       <section className="relative pt-36 pb-20 lg:pt-48">
         <div className="orb orb-cyan w-[500px] h-[500px] -top-40 -right-20 animate-orb" />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Solusi Industri</span>
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
             <span className="text-gradient">{solution.hero}</span>
@@ -33,7 +33,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
       </section>
       {solution.clients.length > 0 && (
         <section className="relative py-16" style={{background:"oklch(0.97 0.005 265)"}}>
-          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="container-custom">
             <h2 className="text-2xl font-bold mb-8 text-gradient" style={{fontFamily:"var(--font-display)"}}>Klien di industri ini</h2>
             <div className="flex flex-wrap gap-3">
               {solution.clients.map(c=>(
@@ -44,7 +44,7 @@ export default async function SolutionPage({ params }: { params: Promise<{ slug:
         </section>
       )}
       <section className="relative py-16">
-        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div className="container-custom">
           <div className="glass-strong rounded-3xl p-12 text-center relative overflow-hidden">
             <div className="orb orb-primary w-[400px] h-[400px] -top-32 -left-32 animate-orb" />
             <div className="relative">
