@@ -5,6 +5,8 @@ import { ArrowRight, Bot, Zap, BrainCircuit, Workflow, BarChart3, MessageSquareC
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
 
 const features = [
   {
@@ -112,6 +114,7 @@ const pricingTiers = [
 export default function AIAutomationPage() {
   return (
     <main>
+      <Nav />
       {/* Hero */}
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -right-40 animate-orb" />
@@ -363,6 +366,7 @@ export default function AIAutomationPage() {
           </AnimateOnScroll>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
