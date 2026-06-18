@@ -27,40 +27,6 @@ export default function VideoProductionPage() {
   return (
     <main className="min-h-screen">
       <Nav />
-            <PricingSection
-        title="Paket Video Production"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
-        tiers={[
-          {
-            name: "Basic",
-            price: "Rp 5.000.000",
-            period: "/project",
-            desc: "Video pendek profesional untuk konten media sosial.",
-            features: ["1 video (max 60 detik)", "Shooting 1 hari", "Basic editing", "Musik background", "1 revisi"],
-            cta: "Pesan Basic",
-            highlight: false,
-          },
-          {
-            name: "Professional",
-            price: "Rp 12.000.000",
-            period: "/project",
-            desc: "Video berkualitas broadcast untuk iklan & presentasi.",
-            features: ["1 video (max 3 menit)", "Shooting 2 hari", "Color grading", "Motion graphics", "Voice over", "3 revisi"],
-            cta: "Pilih Professional",
-            highlight: true,
-            badge: "Terpopuler",
-          },
-          {
-            name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Produksi video cinematic untuk brand & TVC.",
-            features: ["Multi-video package", "Full production team", "Drone & sinematic", "Animasi 3D/2D", "Revisi tak terbatas", "Hak cipta penuh"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
-          },
-        ]}
-      />
 
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
@@ -141,6 +107,42 @@ export default function VideoProductionPage() {
           </div>
         </div>
       </section>
+
+
+            <PricingSection
+        title="Paket Video Production"
+        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        tiers={[
+          {
+            name: "Basic",
+            price: "Rp 5.000.000",
+            period: "/project",
+            desc: "Video pendek profesional untuk konten media sosial.",
+            features: ["1 video (max 60 detik)", "Shooting 1 hari", "Basic editing", "Musik background", "1 revisi"],
+            cta: "Pesan Basic",
+            highlight: false,
+          },
+          {
+            name: "Professional",
+            price: "Rp 12.000.000",
+            period: "/project",
+            desc: "Video berkualitas broadcast untuk iklan & presentasi.",
+            features: ["1 video (max 3 menit)", "Shooting 2 hari", "Color grading", "Motion graphics", "Voice over", "3 revisi"],
+            cta: "Pilih Professional",
+            highlight: true,
+            badge: "Terpopuler",
+          },
+          {
+            name: "Enterprise",
+            price: "Custom",
+            period: "hubungi kami",
+            desc: "Produksi video cinematic untuk brand & TVC.",
+            features: ["Multi-video package", "Full production team", "Drone & sinematic", "Animasi 3D/2D", "Revisi tak terbatas", "Hak cipta penuh"],
+            cta: "Konsultasi Gratis",
+            highlight: false,
+          },
+        ]}
+      />
 
                   <RelatedServices
         items={[

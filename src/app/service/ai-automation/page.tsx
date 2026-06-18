@@ -321,11 +321,7 @@ export default function AIAutomationPage() {
       </section>
 
       {/* Pricing */}
-      <PricingSection
-        title="Paket AI Automation"
-        subtitle="Mulai dari satu proses otomasi hingga ekosistem AI enterprise penuh — kami siap mendampingi setiap tahap transformasi digital Anda."
-        tiers={pricingTiers}
-      />
+      
 
       {/* Related */}
       <RelatedServices
@@ -338,6 +334,13 @@ export default function AIAutomationPage() {
       />
 
       {/* CTA */}
+      
+      <PricingSection
+        title="Paket AI Automation"
+        subtitle="Mulai dari satu proses otomasi hingga ekosistem AI enterprise penuh — kami siap mendampingi setiap tahap transformasi digital Anda."
+        tiers={pricingTiers}
+      />
+
       <section className="relative py-24 overflow-hidden">
         <div className="orb orb-primary w-[500px] h-[500px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
         <div className="container-custom relative text-center max-w-3xl mx-auto">

@@ -27,40 +27,6 @@ export default function Marketing360Page() {
   return (
     <main className="min-h-screen">
       <Nav />
-            <PricingSection
-        title="Paket 360° Digital Marketing"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
-        tiers={[
-          {
-            name: "Essential",
-            price: "Rp 10.000.000",
-            period: "/bulan",
-            desc: "Strategi digital marketing terpadu untuk bisnis berkembang.",
-            features: ["Social media management 1 platform", "SEO dasar", "Google Ads setup", "Konten blog 2x/bulan", "Laporan bulanan"],
-            cta: "Mulai Essential",
-            highlight: false,
-          },
-          {
-            name: "Complete",
-            price: "Rp 20.000.000",
-            period: "/bulan",
-            desc: "Paket lengkap semua channel digital untuk pertumbuhan cepat.",
-            features: ["Social media 3 platform", "SEO lanjutan", "Ads multi-platform", "Konten blog 6x/bulan", "Email marketing", "Laporan mingguan + KPI dashboard"],
-            cta: "Pilih Complete",
-            highlight: true,
-            badge: "Terpopuler",
-          },
-          {
-            name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Ekosistem digital marketing penuh untuk korporat.",
-            features: ["Semua channel digital", "Brand strategy", "Influencer marketing", "PR digital", "Dedicated tim 5+ orang", "SLA & real-time reporting"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
-          },
-        ]}
-      />
 
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
@@ -141,6 +107,42 @@ export default function Marketing360Page() {
           </div>
         </div>
       </section>
+
+
+            <PricingSection
+        title="Paket 360° Digital Marketing"
+        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        tiers={[
+          {
+            name: "Essential",
+            price: "Rp 10.000.000",
+            period: "/bulan",
+            desc: "Strategi digital marketing terpadu untuk bisnis berkembang.",
+            features: ["Social media management 1 platform", "SEO dasar", "Google Ads setup", "Konten blog 2x/bulan", "Laporan bulanan"],
+            cta: "Mulai Essential",
+            highlight: false,
+          },
+          {
+            name: "Complete",
+            price: "Rp 20.000.000",
+            period: "/bulan",
+            desc: "Paket lengkap semua channel digital untuk pertumbuhan cepat.",
+            features: ["Social media 3 platform", "SEO lanjutan", "Ads multi-platform", "Konten blog 6x/bulan", "Email marketing", "Laporan mingguan + KPI dashboard"],
+            cta: "Pilih Complete",
+            highlight: true,
+            badge: "Terpopuler",
+          },
+          {
+            name: "Enterprise",
+            price: "Custom",
+            period: "hubungi kami",
+            desc: "Ekosistem digital marketing penuh untuk korporat.",
+            features: ["Semua channel digital", "Brand strategy", "Influencer marketing", "PR digital", "Dedicated tim 5+ orang", "SLA & real-time reporting"],
+            cta: "Konsultasi Gratis",
+            highlight: false,
+          },
+        ]}
+      />
 
                   <RelatedServices
         items={[

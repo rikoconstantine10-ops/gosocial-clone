@@ -27,40 +27,7 @@ export default function SocialMediaManagementPage() {
   return (
     <main className="min-h-screen">
       <Nav />
-            <PricingSection
-        title="Paket Social Media"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
-        tiers={[
-          {
-            name: "Basic",
-            price: "Rp 5.000.000",
-            period: "/bulan",
-            desc: "Kelola 1 platform media sosial secara profesional.",
-            features: ["1 platform (IG/FB/TikTok)", "12 konten/bulan", "Caption copywriting", "Jadwal posting", "Laporan bulanan"],
-            cta: "Mulai Basic",
-            highlight: false,
-          },
-          {
-            name: "Professional",
-            price: "Rp 10.000.000",
-            period: "/bulan",
-            desc: "Kelola 3 platform + strategi konten terintegrasi.",
-            features: ["3 platform media sosial", "30 konten/bulan", "Desain konten profesional", "Story & Reels", "Community management", "Laporan analitik mingguan"],
-            cta: "Pilih Professional",
-            highlight: true,
-            badge: "Terpopuler",
-          },
-          {
-            name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Manajemen penuh semua platform untuk brand besar.",
-            features: ["Semua platform", "Konten tak terbatas", "Influencer outreach", "Paid ads integration", "Dedicated account manager", "Brand monitoring 24/7"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
-          },
-        ]}
-      />
+            
 
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
@@ -148,6 +115,42 @@ export default function SocialMediaManagementPage() {
         { label: "360° Digital Marketing", href: "/service/jasa-digital-marketing-360", desc: "Paket pemasaran digital lengkap" },
         { label: "Branding & Design", href: "/service/branding", desc: "Identitas brand yang kuat" },
         { label: "Commercial Photography", href: "/service/commercial-photography", desc: "Foto profesional untuk konten" }
+        ]}
+      />
+
+      
+      <PricingSection
+        title="Paket Social Media"
+        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        tiers={[
+          {
+            name: "Basic",
+            price: "Rp 5.000.000",
+            period: "/bulan",
+            desc: "Kelola 1 platform media sosial secara profesional.",
+            features: ["1 platform (IG/FB/TikTok)", "12 konten/bulan", "Caption copywriting", "Jadwal posting", "Laporan bulanan"],
+            cta: "Mulai Basic",
+            highlight: false,
+          },
+          {
+            name: "Professional",
+            price: "Rp 10.000.000",
+            period: "/bulan",
+            desc: "Kelola 3 platform + strategi konten terintegrasi.",
+            features: ["3 platform media sosial", "30 konten/bulan", "Desain konten profesional", "Story & Reels", "Community management", "Laporan analitik mingguan"],
+            cta: "Pilih Professional",
+            highlight: true,
+            badge: "Terpopuler",
+          },
+          {
+            name: "Enterprise",
+            price: "Custom",
+            period: "hubungi kami",
+            desc: "Manajemen penuh semua platform untuk brand besar.",
+            features: ["Semua platform", "Konten tak terbatas", "Influencer outreach", "Paid ads integration", "Dedicated account manager", "Brand monitoring 24/7"],
+            cta: "Konsultasi Gratis",
+            highlight: false,
+          },
         ]}
       />
 

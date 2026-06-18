@@ -27,40 +27,6 @@ export default function CommercialPhotographyPage() {
   return (
     <main className="min-h-screen">
       <Nav />
-            <PricingSection
-        title="Paket Commercial Photography"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
-        tiers={[
-          {
-            name: "Basic",
-            price: "Rp 3.000.000",
-            period: "/sesi",
-            desc: "Foto profesional untuk kebutuhan media sosial.",
-            features: ["Sesi 2 jam", "10 foto editing", "1 konsep foto", "File resolusi tinggi", "Hak pakai digital"],
-            cta: "Pesan Basic",
-            highlight: false,
-          },
-          {
-            name: "Premium",
-            price: "Rp 7.000.000",
-            period: "/sesi",
-            desc: "Foto editorial berkualitas untuk katalog & iklan.",
-            features: ["Sesi full day", "30 foto editing", "3 konsep foto", "Stylist & props", "File print & digital", "2 revisi"],
-            cta: "Pilih Premium",
-            highlight: true,
-            badge: "Terpopuler",
-          },
-          {
-            name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Sesi foto skala besar untuk kampanye nasional.",
-            features: ["Multi-day shooting", "Foto tak terbatas", "Lokasi multiple", "Tim kreatif lengkap", "Retouching premium", "Hak cipta penuh"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
-          },
-        ]}
-      />
 
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
@@ -141,6 +107,42 @@ export default function CommercialPhotographyPage() {
           </div>
         </div>
       </section>
+
+
+            <PricingSection
+        title="Paket Commercial Photography"
+        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        tiers={[
+          {
+            name: "Basic",
+            price: "Rp 3.000.000",
+            period: "/sesi",
+            desc: "Foto profesional untuk kebutuhan media sosial.",
+            features: ["Sesi 2 jam", "10 foto editing", "1 konsep foto", "File resolusi tinggi", "Hak pakai digital"],
+            cta: "Pesan Basic",
+            highlight: false,
+          },
+          {
+            name: "Premium",
+            price: "Rp 7.000.000",
+            period: "/sesi",
+            desc: "Foto editorial berkualitas untuk katalog & iklan.",
+            features: ["Sesi full day", "30 foto editing", "3 konsep foto", "Stylist & props", "File print & digital", "2 revisi"],
+            cta: "Pilih Premium",
+            highlight: true,
+            badge: "Terpopuler",
+          },
+          {
+            name: "Enterprise",
+            price: "Custom",
+            period: "hubungi kami",
+            desc: "Sesi foto skala besar untuk kampanye nasional.",
+            features: ["Multi-day shooting", "Foto tak terbatas", "Lokasi multiple", "Tim kreatif lengkap", "Retouching premium", "Hak cipta penuh"],
+            cta: "Konsultasi Gratis",
+            highlight: false,
+          },
+        ]}
+      />
 
                   <RelatedServices
         items={[

@@ -163,7 +163,38 @@ export default function Page() {
       </section>
 
       {/* Why us */}
-            <PricingSection
+            
+
+                  
+
+      <section className="relative py-20">
+        <div className="container-custom">
+          <AnimateOnScroll>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih GoSocial?</h2>
+            </div>
+          </AnimateOnScroll>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: "🎯", title: "Certified Partner", desc: "Tim kami adalah certified partner resmi dengan badge verifikasi platform." },
+              { icon: "📊", title: "Data-Driven", desc: "Setiap keputusan berbasis data analytics real-time, bukan asumsi." },
+              { icon: "🚀", title: "Proven Results", desc: "Rata-rata ROAS 4.8x untuk klien e-commerce dan 60% lebih murah CPL." },
+            ].map((item, i) => (
+              <AnimateOnScroll key={i} delay={i * 100}>
+                <div className="glass shimmer-card rounded-2xl p-8 text-center hover:-translate-y-1 transition-all duration-300">
+                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <h3 className="font-bold text-xl mb-3" style={{fontFamily:"var(--font-display)"}}>{item.title}</h3>
+                  <p style={{color:"var(--color-muted-foreground)"}}>{item.desc}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      
+      <PricingSection
         title="Paket Google Ads"
         subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
         tiers={[
@@ -198,7 +229,7 @@ export default function Page() {
         ]}
       />
 
-                  <RelatedServices
+      <RelatedServices
         items={[
         { label: "Jasa SEO", href: "/service/jasa-seo", desc: "Optimasi organik jangka panjang" },
         { label: "Meta Ads", href: "/service/digital-campaign/meta-ads", desc: "Iklan di Facebook & Instagram" },
@@ -207,32 +238,6 @@ export default function Page() {
         ]}
       />
 
-      <section className="relative py-20">
-        <div className="container-custom">
-          <AnimateOnScroll>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih GoSocial?</h2>
-            </div>
-          </AnimateOnScroll>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { icon: "🎯", title: "Certified Partner", desc: "Tim kami adalah certified partner resmi dengan badge verifikasi platform." },
-              { icon: "📊", title: "Data-Driven", desc: "Setiap keputusan berbasis data analytics real-time, bukan asumsi." },
-              { icon: "🚀", title: "Proven Results", desc: "Rata-rata ROAS 4.8x untuk klien e-commerce dan 60% lebih murah CPL." },
-            ].map((item, i) => (
-              <AnimateOnScroll key={i} delay={i * 100}>
-                <div className="glass shimmer-card rounded-2xl p-8 text-center hover:-translate-y-1 transition-all duration-300">
-                  <div className="text-5xl mb-4">{item.icon}</div>
-                  <h3 className="font-bold text-xl mb-3" style={{fontFamily:"var(--font-display)"}}>{item.title}</h3>
-                  <p style={{color:"var(--color-muted-foreground)"}}>{item.desc}</p>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
       <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
         <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
