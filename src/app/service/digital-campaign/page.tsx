@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -141,30 +142,14 @@ export default function DigitalCampaignPage() {
         ]}
       />
 
-            <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
-          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Link href="/service/digital-campaign/meta-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Meta Ads (FB+IG)</div>
-            <div className="text-xs text-muted-foreground">Iklan di Facebook dan Instagram</div>
-          </Link>
-          <Link href="/service/digital-campaign/tiktok-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">TikTok Ads</div>
-            <div className="text-xs text-muted-foreground">Raih audiens Gen Z di TikTok</div>
-          </Link>
-          <Link href="/service/digital-campaign/google-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Google Ads</div>
-            <div className="text-xs text-muted-foreground">Tampil di halaman pertama Google</div>
-          </Link>
-          <Link href="/service/digital-campaign/youtube-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">YouTube Ads</div>
-            <div className="text-xs text-muted-foreground">Iklan video di platform terbesar</div>
-          </Link>
-          </div>
-        </div>
-      </section>
+                  <RelatedServices
+        items={[
+        { label: "Meta Ads (FB+IG)", href: "/service/digital-campaign/meta-ads", desc: "Iklan di Facebook dan Instagram" },
+        { label: "TikTok Ads", href: "/service/digital-campaign/tiktok-ads", desc: "Raih audiens Gen Z di TikTok" },
+        { label: "Google Ads", href: "/service/digital-campaign/google-ads", desc: "Tampil di halaman pertama Google" },
+        { label: "YouTube Ads", href: "/service/digital-campaign/youtube-ads", desc: "Iklan video di platform terbesar" }
+        ]}
+      />
 
       <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />

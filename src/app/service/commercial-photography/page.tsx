@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -141,30 +142,14 @@ export default function CommercialPhotographyPage() {
         </div>
       </section>
 
-            <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
-          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <a href="/service/jasa-foto-produk" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Foto Produk</div>
-            <div className="text-xs text-muted-foreground">Khusus foto produk e-commerce</div>
-          </a>
-          <a href="/service/video-production" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Video Production</div>
-            <div className="text-xs text-muted-foreground">Produksi video profesional</div>
-          </a>
-          <a href="/service/branding" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Branding & Design</div>
-            <div className="text-xs text-muted-foreground">Bangun identitas visual brand</div>
-          </a>
-          <a href="/service/social-media-management" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Social Media Management</div>
-            <div className="text-xs text-muted-foreground">Gunakan foto untuk konten sosmed</div>
-          </a>
-          </div>
-        </div>
-      </section>
+                  <RelatedServices
+        items={[
+        { label: "Foto Produk", href: "/service/jasa-foto-produk", desc: "Khusus foto produk e-commerce" },
+        { label: "Video Production", href: "/service/video-production", desc: "Produksi video profesional" },
+        { label: "Branding & Design", href: "/service/branding", desc: "Bangun identitas visual brand" },
+        { label: "Social Media Management", href: "/service/social-media-management", desc: "Gunakan foto untuk konten sosmed" }
+        ]}
+      />
 
       <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />

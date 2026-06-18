@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -141,30 +142,14 @@ export default function AppsDevelopmentPage() {
         ]}
       />
 
-            <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
-          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Link href="/service/jasa-pembuatan-website" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Pembuatan Website</div>
-            <div className="text-xs text-muted-foreground">Website profesional untuk bisnis</div>
-          </Link>
-          <Link href="/service/jasa-seo" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Jasa SEO</div>
-            <div className="text-xs text-muted-foreground">Tingkatkan visibilitas online</div>
-          </Link>
-          <Link href="/service/jasa-digital-marketing-360" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">360° Digital Marketing</div>
-            <div className="text-xs text-muted-foreground">Promosikan aplikasi Anda</div>
-          </Link>
-          <Link href="/service/branding" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Branding & Design</div>
-            <div className="text-xs text-muted-foreground">Identitas brand yang konsisten</div>
-          </Link>
-          </div>
-        </div>
-      </section>
+                  <RelatedServices
+        items={[
+        { label: "Pembuatan Website", href: "/service/jasa-pembuatan-website", desc: "Website profesional untuk bisnis" },
+        { label: "AI Automation", href: "/service/ai-automation", desc: "Otomasi bisnis dengan kecerdasan buatan" },
+        { label: "360° Digital Marketing", href: "/service/jasa-digital-marketing-360", desc: "Promosikan aplikasi Anda" },
+        { label: "Branding & Design", href: "/service/branding", desc: "Identitas brand yang konsisten" }
+        ]}
+      />
 
       <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />

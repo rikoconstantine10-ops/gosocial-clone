@@ -32,6 +32,7 @@ const navServices = [
   { label: "Foto Produk", href: "/service/jasa-foto-produk" },
   { label: "Video Production", href: "/service/video-production" },
   { label: "Apps Development", href: "/service/apps-development" },
+  { label: "🤖 AI Automation", href: "/service/ai-automation" },
 ];
 const navSolutions = [
   { label: "Enterprise / Brand", href: "/solution/enterprise" },

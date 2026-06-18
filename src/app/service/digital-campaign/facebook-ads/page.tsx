@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -197,30 +198,14 @@ export default function Page() {
         ]}
       />
 
-            <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
-          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Link href="/service/digital-campaign/meta-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Meta Ads (FB+IG)</div>
-            <div className="text-xs text-muted-foreground">Facebook + Instagram dalam satu paket</div>
-          </Link>
-          <Link href="/service/digital-campaign/instagram-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Instagram Ads</div>
-            <div className="text-xs text-muted-foreground">Iklan khusus Instagram</div>
-          </Link>
-          <Link href="/service/digital-campaign/google-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Google Ads</div>
-            <div className="text-xs text-muted-foreground">Iklan di mesin pencari Google</div>
-          </Link>
-          <Link href="/service/social-media-management" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Social Media Management</div>
-            <div className="text-xs text-muted-foreground">Kelola Facebook secara organik</div>
-          </Link>
-          </div>
-        </div>
-      </section>
+                  <RelatedServices
+        items={[
+        { label: "Meta Ads (FB+IG)", href: "/service/digital-campaign/meta-ads", desc: "Facebook + Instagram satu paket" },
+        { label: "Instagram Ads", href: "/service/digital-campaign/instagram-ads", desc: "Iklan khusus Instagram" },
+        { label: "Google Ads", href: "/service/digital-campaign/google-ads", desc: "Iklan di mesin pencari Google" },
+        { label: "Social Media Management", href: "/service/social-media-management", desc: "Kelola Facebook organik" }
+        ]}
+      />
 
       <section className="relative py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">

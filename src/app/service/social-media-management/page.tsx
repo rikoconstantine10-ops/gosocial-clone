@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -141,30 +142,14 @@ export default function SocialMediaManagementPage() {
         </div>
       </section>
 
-            <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
-          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <a href="/service/digital-campaign" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Digital Campaign / Ads</div>
-            <div className="text-xs text-muted-foreground">Iklan berbayar di semua platform</div>
-          </a>
-          <a href="/service/jasa-digital-marketing-360" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">360° Digital Marketing</div>
-            <div className="text-xs text-muted-foreground">Paket pemasaran digital lengkap</div>
-          </a>
-          <a href="/service/branding" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Branding & Design</div>
-            <div className="text-xs text-muted-foreground">Identitas brand yang kuat</div>
-          </a>
-          <a href="/service/commercial-photography" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Commercial Photography</div>
-            <div className="text-xs text-muted-foreground">Foto profesional untuk konten</div>
-          </a>
-          </div>
-        </div>
-      </section>
+                  <RelatedServices
+        items={[
+        { label: "Digital Campaign / Ads", href: "/service/digital-campaign", desc: "Iklan berbayar di semua platform" },
+        { label: "360° Digital Marketing", href: "/service/jasa-digital-marketing-360", desc: "Paket pemasaran digital lengkap" },
+        { label: "Branding & Design", href: "/service/branding", desc: "Identitas brand yang kuat" },
+        { label: "Commercial Photography", href: "/service/commercial-photography", desc: "Foto profesional untuk konten" }
+        ]}
+      />
 
       <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />

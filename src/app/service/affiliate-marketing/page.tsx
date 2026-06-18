@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -141,30 +142,14 @@ export default function AffiliatePage() {
         ]}
       />
 
-            <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
-          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Link href="/service/jasa-digital-marketing-360" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">360° Digital Marketing</div>
-            <div className="text-xs text-muted-foreground">Strategi marketing menyeluruh</div>
-          </Link>
-          <Link href="/service/social-media-management" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Social Media Management</div>
-            <div className="text-xs text-muted-foreground">Kelola media sosial brand</div>
-          </Link>
-          <Link href="/service/digital-campaign" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Digital Campaign / Ads</div>
-            <div className="text-xs text-muted-foreground">Paid ads multi-platform</div>
-          </Link>
-          <Link href="/service/jasa-seo" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Jasa SEO</div>
-            <div className="text-xs text-muted-foreground">Traffic organik jangka panjang</div>
-          </Link>
-          </div>
-        </div>
-      </section>
+                  <RelatedServices
+        items={[
+        { label: "360° Digital Marketing", href: "/service/jasa-digital-marketing-360", desc: "Strategi marketing menyeluruh" },
+        { label: "Social Media Management", href: "/service/social-media-management", desc: "Kelola media sosial brand" },
+        { label: "Digital Campaign / Ads", href: "/service/digital-campaign", desc: "Paid ads multi-platform" },
+        { label: "Jasa SEO", href: "/service/jasa-seo", desc: "Traffic organik jangka panjang" }
+        ]}
+      />
 
       <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
         <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />

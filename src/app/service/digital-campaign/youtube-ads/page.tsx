@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
@@ -197,30 +198,14 @@ export default function Page() {
         ]}
       />
 
-            <section className="section-padding bg-muted/30">
-        <div className="container-custom">
-          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
-          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Link href="/service/video-production" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Video Production</div>
-            <div className="text-xs text-muted-foreground">Produksi video iklan profesional</div>
-          </Link>
-          <Link href="/service/digital-campaign/tiktok-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">TikTok Ads</div>
-            <div className="text-xs text-muted-foreground">Short-form video ads</div>
-          </Link>
-          <Link href="/service/digital-campaign/google-ads" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Google Ads</div>
-            <div className="text-xs text-muted-foreground">Search & Display di Google</div>
-          </Link>
-          <Link href="/service/jasa-digital-marketing-360" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
-            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">360° Digital Marketing</div>
-            <div className="text-xs text-muted-foreground">Strategi multi-channel</div>
-          </Link>
-          </div>
-        </div>
-      </section>
+                  <RelatedServices
+        items={[
+        { label: "Video Production", href: "/service/video-production", desc: "Produksi video iklan profesional" },
+        { label: "TikTok Ads", href: "/service/digital-campaign/tiktok-ads", desc: "Short-form video ads" },
+        { label: "Google Ads", href: "/service/digital-campaign/google-ads", desc: "Search & Display di Google" },
+        { label: "360° Digital Marketing", href: "/service/jasa-digital-marketing-360", desc: "Strategi multi-channel" }
+        ]}
+      />
 
       <section className="relative py-20">
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
