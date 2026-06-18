@@ -1,0 +1,182 @@
+import Image from "next/image";
+import Link from "next/link";
+import { PricingSection } from "@/components/ui/PricingSection";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { ArrowRight, PenTool, Users, BarChart, Megaphone, Star, Globe } from "lucide-react";
+
+const features = [
+  { Icon: PenTool, title: "Content Creation", desc: "Konten kreatif harian — foto, video, copywriting, dan grafis yang sesuai brand identity." },
+  { Icon: Users, title: "Community Management", desc: "Manajemen komentar, DM, dan interaksi dengan followers untuk membangun loyalitas." },
+  { Icon: BarChart, title: "Analytics & Reporting", desc: "Laporan performa bulanan dengan insight mendalam tentang reach, engagement, dan konversi." },
+  { Icon: Megaphone, title: "Paid Social", desc: "Iklan berbayar di Instagram, Facebook, TikTok, dan LinkedIn yang teroptimasi untuk ROI." },
+  { Icon: Star, title: "Influencer Marketing", desc: "Kolaborasi dengan KOL dan micro-influencer yang relevan dengan target audience bisnis Anda." },
+  { Icon: Globe, title: "Platform Management", desc: "Pengelolaan Instagram, TikTok, Facebook, Twitter, LinkedIn, dan YouTube secara profesional." },
+];
+
+const steps = [
+  { num: "01", title: "Audit & Strategi", desc: "Audit akun existing, analisis kompetitor, dan penyusunan strategi konten 3 bulan." },
+  { num: "02", title: "Content Planning", desc: "Content calendar bulanan dengan tema, format, dan jadwal posting yang optimal." },
+  { num: "03", title: "Eksekusi & Posting", desc: "Produksi konten harian dan posting di waktu yang paling efektif untuk engagement." },
+  { num: "04", title: "Monitor & Optimasi", desc: "Pemantauan performa real-time dan optimasi strategi berdasarkan data analytics." },
+];
+
+export default function SocialMediaManagementPage() {
+  return (
+    <main className="min-h-screen">
+      <Nav />
+            <PricingSection
+        title="Paket Social Media"
+        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        tiers={[
+          {
+            name: "Basic",
+            price: "Rp 5.000.000",
+            period: "/bulan",
+            desc: "Kelola 1 platform media sosial secara profesional.",
+            features: ["1 platform (IG/FB/TikTok)", "12 konten/bulan", "Caption copywriting", "Jadwal posting", "Laporan bulanan"],
+            cta: "Mulai Basic",
+            highlight: false,
+          },
+          {
+            name: "Professional",
+            price: "Rp 10.000.000",
+            period: "/bulan",
+            desc: "Kelola 3 platform + strategi konten terintegrasi.",
+            features: ["3 platform media sosial", "30 konten/bulan", "Desain konten profesional", "Story & Reels", "Community management", "Laporan analitik mingguan"],
+            cta: "Pilih Professional",
+            highlight: true,
+            badge: "Terpopuler",
+          },
+          {
+            name: "Enterprise",
+            price: "Custom",
+            period: "hubungi kami",
+            desc: "Manajemen penuh semua platform untuk brand besar.",
+            features: ["Semua platform", "Konten tak terbatas", "Influencer outreach", "Paid ads integration", "Dedicated account manager", "Brand monitoring 24/7"],
+            cta: "Konsultasi Gratis",
+            highlight: false,
+          },
+        ]}
+      />
+
+      <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
+        <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
+        <div className="orb orb-violet w-[400px] h-[400px] top-20 -right-20 animate-orb" style={{animationDelay:"-5s"}} />
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <AnimateOnScroll>
+              <div>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Social Media Management</span>
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
+                  <span className="text-gradient">Dominasi Social Media</span><br />
+                  <span className="text-gradient">Bisnis Anda</span>
+                </h1>
+                <p className="text-base md:text-lg leading-relaxed mb-8" style={{color:"var(--color-muted-foreground)"}}>Kelola semua platform social media secara profesional dengan strategi konten terukur, community building, dan paid social yang menghasilkan leads.</p>
+                <div className="flex flex-wrap gap-3">
+                  <Link href="/contact" className="btn-primary">Konsultasi Gratis <ArrowRight className="w-4 h-4" /></Link>
+                  <Link href="/portfolio" className="btn-ghost">Lihat Portfolio</Link>
+                </div>
+              </div>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={200}>
+              <div className="relative">
+                <div className="rounded-3xl overflow-hidden shadow-2xl" style={{boxShadow:"var(--shadow-glow)"}}>
+                  <Image src="/images/services2/social-media.webp" alt="Social Media Management" width={600} height={450} className="object-cover w-full" />
+                </div>
+                <div className="glass rounded-2xl p-4 absolute -bottom-4 -left-6 shadow-xl animate-float">
+                  <p className="text-xs text-gray-500">Akun Dikelola</p>
+                  <p className="text-xl font-bold text-gradient">1.500+</p>
+                </div>
+              </div>
+            </AnimateOnScroll>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <AnimateOnScroll>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Layanan Social Media Kami</h2>
+              <p style={{color:"var(--color-muted-foreground)"}}>Pengelolaan sosial media end-to-end untuk membangun presence yang kuat dan mengkonversi followers menjadi customers.</p>
+            </div>
+          </AnimateOnScroll>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((f, i) => (
+              <AnimateOnScroll key={i} delay={i * 80}>
+                <div className="glass shimmer-card rounded-2xl p-6 h-full hover:-translate-y-1 transition-all duration-300" style={{boxShadow:"var(--shadow-card)"}}>
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style={{background:"var(--gradient-primary)"}}>
+                    <f.Icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-bold text-lg mb-2" style={{fontFamily:"var(--font-display)"}}>{f.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{color:"var(--color-muted-foreground)"}}>{f.desc}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20" style={{background:"oklch(0.98 0.003 265)"}}>
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <AnimateOnScroll>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Cara Kerja Kami</h2>
+              <p style={{color:"var(--color-muted-foreground)"}}>Pendekatan sistematis untuk memastikan social media Anda tumbuh konsisten dan menghasilkan bisnis.</p>
+            </div>
+          </AnimateOnScroll>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {steps.map((s, i) => (
+              <AnimateOnScroll key={i} delay={i * 100}>
+                <div className="glass rounded-2xl p-6 text-center hover:-translate-y-1 transition-all duration-300">
+                  <div className="text-4xl font-black text-gradient mb-3" style={{fontFamily:"var(--font-display)"}}>{s.num}</div>
+                  <h3 className="font-bold text-lg mb-2" style={{fontFamily:"var(--font-display)"}}>{s.title}</h3>
+                  <p className="text-sm leading-relaxed" style={{color:"var(--color-muted-foreground)"}}>{s.desc}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+            <section className="section-padding bg-muted/30">
+        <div className="container-custom">
+          <h2 className="text-2xl font-bold mb-2">Layanan Terkait</h2>
+          <p className="text-muted-foreground mb-8">Eksplorasi layanan lain yang dapat melengkapi strategi digital Anda</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <a href="/service/digital-campaign" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
+            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Digital Campaign / Ads</div>
+            <div className="text-xs text-muted-foreground">Iklan berbayar di semua platform</div>
+          </a>
+          <a href="/service/jasa-digital-marketing-360" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
+            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">360° Digital Marketing</div>
+            <div className="text-xs text-muted-foreground">Paket pemasaran digital lengkap</div>
+          </a>
+          <a href="/service/branding" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
+            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Branding & Design</div>
+            <div className="text-xs text-muted-foreground">Identitas brand yang kuat</div>
+          </a>
+          <a href="/service/commercial-photography" className="glass p-5 rounded-2xl hover:scale-105 transition-transform duration-300 group block">
+            <div className="font-semibold text-sm mb-1 group-hover:text-primary transition-colors">Commercial Photography</div>
+            <div className="text-xs text-muted-foreground">Foto profesional untuk konten</div>
+          </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
+        <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
+        <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
+          <AnimateOnScroll>
+            <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>Siap Viral?</h2>
+            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Serahkan social media bisnis Anda kepada tim ahli kami dan fokus pada core bisnis Anda.</p>
+            <Link href="/contact" className="btn-primary text-lg px-8 py-4">Konsultasi Gratis <ArrowRight className="w-5 h-5" /></Link>
+          </AnimateOnScroll>
+        </div>
+      </section>
+      <Footer />
+    </main>
+  );
+}

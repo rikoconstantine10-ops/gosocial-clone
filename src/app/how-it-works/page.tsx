@@ -1,65 +1,114 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { ArrowRight, MessageCircle, BarChart, Target, Zap, TrendingUp, CheckCircle } from "lucide-react";
 
 const steps = [
-  { num: "01", title: "Konsultasi & Discovery", desc: "Kami mulai dengan memahami bisnis, tujuan, dan tantangan Anda secara mendalam. Sesi discovery ini gratis dan tanpa komitmen.", detail: ["Analisis brand dan positioning saat ini","Identifikasi target audiens dan pasar","Benchmark kompetitor dan peluang"] },
-  { num: "02", title: "Audit & Strategi", desc: "Tim strategist kami menyusun blueprint kampanye berbasis data.", detail: ["Audit kanal digital eksisting","Penyusunan content pillar dan media plan","KPI dan milestone yang terukur"] },
-  { num: "03", title: "Produksi & Eksekusi", desc: "Eksekusi end-to-end oleh tim multidisiplin in-house.", detail: ["Produksi konten visual dan copy","Setup iklan dan tracking","Posting terjadwal sesuai content calendar"] },
-  { num: "04", title: "Monitor & Optimasi", desc: "Performa dipantau setiap hari dan dioptimasi secara berkelanjutan.", detail: ["Dashboard real-time performa","Review mingguan dan optimasi","A/B testing dan scaling"] },
-  { num: "05", title: "Laporan & Iterasi", desc: "Laporan bulanan yang jelas dengan insight dan rencana bulan berikutnya.", detail: ["Laporan bulanan komprehensif","Insight actionable berbasis data","Rencana pengembangan berikutnya"] },
+  { num: "01", icon: MessageCircle, title: "Konsultasi Gratis", desc: "Ceritakan bisnis dan tantangan Anda kepada tim kami. Konsultasi 30 menit tanpa biaya dan tanpa komitmen." },
+  { num: "02", icon: BarChart, title: "Audit & Analisis", desc: "Kami mengaudit digital presence Anda secara menyeluruh — website, social media, SEO, dan kompetitor." },
+  { num: "03", icon: Target, title: "Strategi Custom", desc: "Tim ahli kami merancang strategi digital marketing yang sesuai dengan tujuan bisnis dan budget Anda." },
+  { num: "04", icon: Zap, title: "Eksekusi Cepat", desc: "Implementasi kampanye dengan timeline yang jelas. Anda mendapat update progress mingguan." },
+  { num: "05", icon: TrendingUp, title: "Laporan & Optimasi", desc: "Laporan performa bulanan dengan data nyata. Kami terus mengoptimasi untuk hasil yang semakin baik." },
+];
+
+const benefits = [
+  { icon: CheckCircle, title: "Transparan", desc: "Semua aktivitas dan pengeluaran terdokumentasi dengan baik. Tidak ada biaya tersembunyi." },
+  { icon: BarChart, title: "Terukur", desc: "Setiap kampanye dilengkapi dengan KPI yang jelas dan dashboard real-time." },
+  { icon: Target, title: "Terpercaya", desc: "Lebih dari 500 klien telah mempercayakan pertumbuhan digital mereka kepada kami." },
 ];
 
 export default function HowItWorksPage() {
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      <div className="fixed inset-0 -z-10 bg-aurora opacity-50" />
-      <div className="fixed inset-0 -z-10 bg-grid" />
+    <main className="min-h-screen">
       <Nav />
-      <section className="relative pt-36 pb-16 lg:pt-48 text-center">
-        <div className="orb orb-violet w-[500px] h-[500px] -top-40 -right-20 animate-orb" />
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Cara Kami Bekerja</span>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
-            <span className="text-gradient">Proses yang terbukti berhasil</span>
-          </h1>
-          <p className="text-lg max-w-2xl mx-auto" style={{color:"var(--color-muted-foreground)"}}>Dari konsultasi pertama hingga laporan akhir, setiap langkah dirancang untuk memastikan hasil maksimal.</p>
-        </div>
-      </section>
-      <section className="relative py-16">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8 space-y-6">
-          {steps.map((step, i) => (
-            <div key={step.num} className="glass shimmer-card rounded-2xl p-8 flex gap-6 items-start animate-fade-up" style={{animationDelay:`${i*0.1}s`}}>
-              <div className="text-3xl font-bold shrink-0 text-gradient" style={{fontFamily:"var(--font-display)",minWidth:"3rem"}}>{step.num}</div>
-              <div className="flex-1">
-                <h3 className="font-bold text-xl mb-2" style={{fontFamily:"var(--font-display)"}}>{step.title}</h3>
-                <p className="text-sm mb-4" style={{color:"var(--color-muted-foreground)"}}>{step.desc}</p>
-                <div className="space-y-1">
-                  {step.detail.map(d=>(
-                    <div key={d} className="flex items-center gap-2 text-sm" style={{color:"var(--color-muted-foreground)"}}>
-                      <CheckCircle className="w-3.5 h-3.5 shrink-0" style={{color:"var(--color-primary)"}} /> {d}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="relative py-16">
+      <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
+        <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
+        <div className="orb orb-violet w-[400px] h-[400px] top-20 -right-20 animate-orb" style={{animationDelay:"-5s"}} />
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="glass-strong rounded-3xl p-12 text-center relative overflow-hidden">
-            <div className="orb orb-primary w-[400px] h-[400px] -top-32 -left-32 animate-orb" />
-            <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Siap memulai perjalanan digital?</h2>
-              <p className="mb-8" style={{color:"var(--color-muted-foreground)"}}>Konsultasi pertama gratis. Kami bantu mapping strategi terbaik dalam 30 menit.</p>
-              <Link href="/contact" className="btn-primary">Jadwalkan Konsultasi <ArrowRight className="w-4 h-4" /></Link>
-            </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <AnimateOnScroll>
+              <div>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Cara Kerja Kami</span>
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
+                  <span className="text-gradient">Proses Sederhana,</span><br />
+                  <span className="text-gradient">Hasil Luar Biasa</span>
+                </h1>
+                <p className="text-base md:text-lg leading-relaxed mb-8" style={{color:"var(--color-muted-foreground)"}}>Kami percaya proses yang terstruktur adalah kunci kesuksesan. Dari konsultasi pertama hingga laporan bulanan, setiap langkah dirancang untuk hasil optimal.</p>
+                <Link href="/contact" className="btn-primary">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
+              </div>
+            </AnimateOnScroll>
+            <AnimateOnScroll delay={200}>
+              <div className="rounded-3xl overflow-hidden shadow-2xl" style={{boxShadow:"var(--shadow-glow)"}}>
+                <Image src="/images/grow1.webp" alt="Cara Kerja GoSocial" width={600} height={500} className="object-cover w-full" />
+              </div>
+            </AnimateOnScroll>
           </div>
         </div>
       </section>
+
+      <section className="relative py-20">
+        <div className="mx-auto max-w-4xl px-4 lg:px-8">
+          <AnimateOnScroll>
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>5 Langkah Menuju Sukses</h2>
+              <p style={{color:"var(--color-muted-foreground)"}}>Framework terbukti yang telah menghasilkan pertumbuhan bisnis untuk ratusan klien kami.</p>
+            </div>
+          </AnimateOnScroll>
+          <div className="space-y-6">
+            {steps.map((s, i) => (
+              <AnimateOnScroll key={i} delay={i * 80}>
+                <div className="glass shimmer-card rounded-2xl p-6 flex gap-6 items-start hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style={{background:"var(--gradient-primary)"}}>
+                    <s.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-gradient mb-1">{s.num}</div>
+                    <h3 className="font-bold text-xl mb-2" style={{fontFamily:"var(--font-display)"}}>{s.title}</h3>
+                    <p style={{color:"var(--color-muted-foreground)"}}>{s.desc}</p>
+                  </div>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20" style={{background:"oklch(0.98 0.003 265)"}}>
+        <div className="mx-auto max-w-7xl px-4 lg:px-8">
+          <AnimateOnScroll>
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa GoSocial?</h2>
+            </div>
+          </AnimateOnScroll>
+          <div className="grid md:grid-cols-3 gap-6">
+            {benefits.map((b, i) => (
+              <AnimateOnScroll key={i} delay={i * 100}>
+                <div className="glass rounded-2xl p-8 text-center hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{background:"var(--gradient-primary)"}}>
+                    <b.icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-bold text-xl mb-3" style={{fontFamily:"var(--font-display)"}}>{b.title}</h3>
+                  <p style={{color:"var(--color-muted-foreground)"}}>{b.desc}</p>
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
+        <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
+        <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
+          <AnimateOnScroll>
+            <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>Siap Memulai?</h2>
+            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Konsultasi gratis 30 menit dengan digital marketing expert kami.</p>
+            <Link href="/contact" className="btn-primary text-lg px-8 py-4">Jadwalkan Konsultasi <ArrowRight className="w-5 h-5" /></Link>
+          </AnimateOnScroll>
+        </div>
+      </section>
       <Footer />
-    </div>
+    </main>
   );
 }
