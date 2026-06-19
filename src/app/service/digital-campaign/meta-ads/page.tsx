@@ -171,7 +171,7 @@ export default function Page() {
         <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih GoSocial?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih Nuswa Lab?</h2>
             </div>
           </AnimateOnScroll>
           <div className="grid md:grid-cols-3 gap-6">
@@ -196,35 +196,33 @@ export default function Page() {
       
       <PricingSection
         title="Paket Meta Ads"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        subtitle="Jangkau target audience di Facebook & Instagram dengan iklan yang tepat sasaran"
         tiers={[
           {
             name: "Starter",
-            price: "Rp 3.000.000",
+            price: "Rp 2.000.000",
             period: "/bulan",
-            desc: "Iklan di Meta (Facebook + Instagram) untuk UMKM.",
-            features: ["Setup Meta Business Manager", "2 campaign aktif", "Desain 4 banner/bulan", "Targeting dasar", "Laporan bulanan"],
+            desc: "Mulai beriklan di Facebook & Instagram untuk bisnis Anda.",
+            features: ["2 campaign aktif", "Audience research", "Setup pixel", "Laporan bulanan"],
             cta: "Mulai Starter",
-            highlight: false,
           },
           {
-            name: "Growth",
-            price: "Rp 7.500.000",
+            name: "Pro",
+            price: "Rp 4.000.000",
             period: "/bulan",
-            desc: "Skala iklan Meta dengan strategi retargeting.",
-            features: ["5 campaign aktif", "Custom Audience & Lookalike", "Desain 10 creative/bulan", "Pixel tracking", "Retargeting funnel", "Laporan mingguan"],
-            cta: "Pilih Growth",
+            desc: "Kampanye lengkap dengan retargeting dan optimasi audiens lanjutan.",
+            features: ["Unlimited campaign", "Retargeting", "Lookalike audience", "A/B testing", "Laporan performa mingguan"],
+            cta: "Mulai Pro",
             highlight: true,
-            badge: "Terpopuler",
+            badge: "Terlaris",
           },
           {
             name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Meta Ads skala penuh untuk brand nasional.",
-            features: ["Campaign tak terbatas", "Catalog & Dynamic Ads", "Video production", "A/B testing lanjutan", "Dedicated specialist", "Daily monitoring"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
+            price: "Rp 7.500.000",
+            period: "/bulan",
+            desc: "Full funnel Meta Ads dengan optimasi ROAS maksimal.",
+            features: ["Full funnel campaign", "Creative testing", "Dedicated media buyer", "ROAS optimization", "Custom dashboard reporting"],
+            cta: "Hubungi Kami",
           },
         ]}
       />

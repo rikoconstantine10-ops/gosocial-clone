@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Target, Search, Video, BarChart, Zap, TrendingUp } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Target, title: "Meta Ads", desc: "Facebook dan Instagram ads yang presisi dengan targeting audiens yang tepat." },
@@ -26,6 +28,7 @@ const steps = [
 export default function DigitalCampaignPage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Digital Campaign" serviceUrl="https://nuswalab.com/service/digital-campaign" />
       <Nav />
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />

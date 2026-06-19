@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Users, Target, TrendingUp, BarChart, Star, Zap } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Users, title: "KOL Selection", desc: "Seleksi ketat influencer berdasarkan engagement rate, demografi audiens, dan kesesuaian brand." },
@@ -26,6 +28,7 @@ const steps = [
 export default function AffiliatePage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Affiliate Marketing" serviceUrl="https://nuswalab.com/service/affiliate-marketing" />
       <Nav />
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />

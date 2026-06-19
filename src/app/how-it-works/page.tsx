@@ -1,114 +1,137 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Nav } from "@/components/layout/Nav";
-import { Footer } from "@/components/layout/Footer";
-import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import { ArrowRight, MessageCircle, BarChart, Target, Zap, TrendingUp, CheckCircle } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Cara Kerja Nuswa Lab | Proses Digital Marketing Kami",
+  description:
+    "Pelajari proses kerja Nuswa Lab dari konsultasi gratis hingga laporan performa. 5 langkah sistematis untuk hasil digital marketing yang maksimal.",
+  alternates: { canonical: "https://nuswalab.com/how-it-works" },
+};
 
 const steps = [
-  { num: "01", icon: MessageCircle, title: "Konsultasi Gratis", desc: "Ceritakan bisnis dan tantangan Anda kepada tim kami. Konsultasi 30 menit tanpa biaya dan tanpa komitmen." },
-  { num: "02", icon: BarChart, title: "Audit & Analisis", desc: "Kami mengaudit digital presence Anda secara menyeluruh — website, social media, SEO, dan kompetitor." },
-  { num: "03", icon: Target, title: "Strategi Custom", desc: "Tim ahli kami merancang strategi digital marketing yang sesuai dengan tujuan bisnis dan budget Anda." },
-  { num: "04", icon: Zap, title: "Eksekusi Cepat", desc: "Implementasi kampanye dengan timeline yang jelas. Anda mendapat update progress mingguan." },
-  { num: "05", icon: TrendingUp, title: "Laporan & Optimasi", desc: "Laporan performa bulanan dengan data nyata. Kami terus mengoptimasi untuk hasil yang semakin baik." },
+  {
+    num: "01",
+    title: "Konsultasi Gratis",
+    desc: "Ceritakan bisnis dan tantangan Anda kepada tim kami. Kami akan mendengarkan, memahami tujuan bisnis, dan memberikan rekomendasi awal tanpa biaya apapun.",
+  },
+  {
+    num: "02",
+    title: "Audit & Analisis",
+    desc: "Kami mengaudit digital presence Anda secara menyeluruh — website, SEO, social media, kompetitor — untuk menemukan peluang dan gap yang perlu dioptimalkan.",
+  },
+  {
+    num: "03",
+    title: "Strategi Custom",
+    desc: "Tim ahli kami merancang strategi digital marketing yang disesuaikan dengan industri, target audiens, dan anggaran Anda. Bukan template — murni custom.",
+  },
+  {
+    num: "04",
+    title: "Eksekusi Cepat",
+    desc: "Implementasi kampanye dengan timeline yang jelas dan terukur. Anda selalu update dengan progress harian/mingguan via dashboard atau laporan langsung.",
+  },
+  {
+    num: "05",
+    title: "Laporan & Optimasi",
+    desc: "Laporan performa bulanan dengan insight mendalam. Kami terus mengoptimalkan strategi berdasarkan data real untuk memastikan ROI terus meningkat.",
+  },
 ];
 
-const benefits = [
-  { icon: CheckCircle, title: "Transparan", desc: "Semua aktivitas dan pengeluaran terdokumentasi dengan baik. Tidak ada biaya tersembunyi." },
-  { icon: BarChart, title: "Terukur", desc: "Setiap kampanye dilengkapi dengan KPI yang jelas dan dashboard real-time." },
-  { icon: Target, title: "Terpercaya", desc: "Lebih dari 500 klien telah mempercayakan pertumbuhan digital mereka kepada kami." },
-];
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Cara Kerja Nuswa Lab: Proses Digital Marketing",
+  description:
+    "5 langkah sistematis Nuswa Lab dari konsultasi gratis hingga laporan & optimasi performa digital marketing Anda.",
+  totalTime: "P2M",
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "IDR",
+    value: "0",
+  },
+  supply: [
+    { "@type": "HowToSupply", name: "Data bisnis dan target pasar Anda" },
+    { "@type": "HowToSupply", name: "Akses ke akun digital existing (opsional)" },
+  ],
+  tool: [
+    { "@type": "HowToTool", name: "Tim Digital Marketing Berpengalaman Nuswa Lab" },
+    { "@type": "HowToTool", name: "Tools analitik dan riset kompetitor" },
+  ],
+  step: steps.map((s) => ({
+    "@type": "HowToStep",
+    name: s.title,
+    text: s.desc,
+    url: `https://nuswalab.com/how-it-works#step-${s.num}`,
+    image: "https://nuswalab.com/images/nuswalab-logo.svg",
+  })),
+};
 
 export default function HowItWorksPage() {
   return (
-    <main className="min-h-screen">
-      <Nav />
-      <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
-        <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
-        <div className="orb orb-violet w-[400px] h-[400px] top-20 -right-20 animate-orb" style={{animationDelay:"-5s"}} />
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <AnimateOnScroll>
-              <div>
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Cara Kerja Kami</span>
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
-                  <span className="text-gradient">Proses Sederhana,</span><br />
-                  <span className="text-gradient">Hasil Luar Biasa</span>
-                </h1>
-                <p className="text-base md:text-lg leading-relaxed mb-8" style={{color:"var(--color-muted-foreground)"}}>Kami percaya proses yang terstruktur adalah kunci kesuksesan. Dari konsultasi pertama hingga laporan bulanan, setiap langkah dirancang untuk hasil optimal.</p>
-                <Link href="/contact" className="btn-primary">Mulai Konsultasi <ArrowRight className="w-4 h-4" /></Link>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <main className="min-h-screen bg-white">
+        <section className="bg-gradient-to-br from-[#1a2e1a] to-[#2d4a2d] text-white py-20 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-[#9ab89a] text-sm font-semibold uppercase tracking-widest mb-4">
+              Proses Kami
+            </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Cara Kerja Nuswa Lab
+            </h1>
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+              Proses sistematis 5 langkah kami memastikan setiap rupiah yang
+              Anda investasikan menghasilkan hasil yang terukur dan nyata.
+            </p>
+          </div>
+        </section>
+
+        <section className="py-20 px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="relative">
+              <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-[#e8f0e8] hidden md:block" />
+              <div className="space-y-12">
+                {steps.map((step, idx) => (
+                  <div key={step.num} id={`step-${step.num}`} className="flex gap-8 items-start group">
+                    <div className="relative flex-shrink-0">
+                      <div className="w-16 h-16 rounded-full bg-[#5C7A5A] text-white flex items-center justify-center text-xl font-bold shadow-lg group-hover:bg-[#4A6A48] transition-colors z-10 relative">
+                        {step.num}
+                      </div>
+                    </div>
+                    <div className="flex-1 pb-4">
+                      <div className="bg-gray-50 rounded-2xl p-6 hover:shadow-md transition-shadow border border-gray-100">
+                        <h2 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h2>
+                        <p className="text-gray-600 leading-relaxed">{step.desc}</p>
+                        {idx < steps.length - 1 && (
+                          <div className="mt-4 flex items-center gap-2 text-[#5C7A5A] text-sm font-medium">
+                            <span>Lanjut ke langkah berikutnya</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </AnimateOnScroll>
-            <AnimateOnScroll delay={200}>
-              <div className="rounded-3xl overflow-hidden shadow-2xl" style={{boxShadow:"var(--shadow-glow)"}}>
-                <Image src="/images/grow1.webp" alt="Cara Kerja GoSocial" width={600} height={500} className="object-cover w-full" />
-              </div>
-            </AnimateOnScroll>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding relative">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <AnimateOnScroll>
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>5 Langkah Menuju Sukses</h2>
-              <p style={{color:"var(--color-muted-foreground)"}}>Framework terbukti yang telah menghasilkan pertumbuhan bisnis untuk ratusan klien kami.</p>
             </div>
-          </AnimateOnScroll>
-          <div className="space-y-6">
-            {steps.map((s, i) => (
-              <AnimateOnScroll key={i} delay={i * 80}>
-                <div className="glass shimmer-card rounded-2xl p-6 flex gap-6 items-start hover:-translate-y-1 transition-all duration-300">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0" style={{background:"var(--gradient-primary)"}}>
-                    <s.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-gradient mb-1">{s.num}</div>
-                    <h3 className="font-bold text-xl mb-2" style={{fontFamily:"var(--font-display)"}}>{s.title}</h3>
-                    <p style={{color:"var(--color-muted-foreground)"}}>{s.desc}</p>
-                  </div>
-                </div>
-              </AnimateOnScroll>
-            ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="section-padding relative" style={{background:"oklch(0.98 0.003 265)"}}>
-        <div className="container-custom">
-          <AnimateOnScroll>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa GoSocial?</h2>
-            </div>
-          </AnimateOnScroll>
-          <div className="grid md:grid-cols-3 gap-6">
-            {benefits.map((b, i) => (
-              <AnimateOnScroll key={i} delay={i * 100}>
-                <div className="glass rounded-2xl p-8 text-center hover:-translate-y-1 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{background:"var(--gradient-primary)"}}>
-                    <b.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <h3 className="font-bold text-xl mb-3" style={{fontFamily:"var(--font-display)"}}>{b.title}</h3>
-                  <p style={{color:"var(--color-muted-foreground)"}}>{b.desc}</p>
-                </div>
-              </AnimateOnScroll>
-            ))}
+        <section className="bg-[#f0f5f0] py-16 px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Siap Mulai Langkah Pertama?</h2>
+            <p className="text-gray-600 mb-8">
+              Konsultasi gratis, tanpa komitmen. Tim kami siap mendengarkan bisnis Anda.
+            </p>
+            <a
+              href="/contact"
+              className="inline-block bg-[#5C7A5A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#4A6A48] transition-colors shadow-lg"
+            >
+              Mulai Konsultasi Gratis
+            </a>
           </div>
-        </div>
-      </section>
-
-      <section className="section-padding relative overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
-        <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
-        <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
-          <AnimateOnScroll>
-            <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>Siap Memulai?</h2>
-            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Konsultasi gratis 30 menit dengan digital marketing expert kami.</p>
-            <Link href="/contact" className="btn-primary text-lg px-8 py-4">Jadwalkan Konsultasi <ArrowRight className="w-5 h-5" /></Link>
-          </AnimateOnScroll>
-        </div>
-      </section>
-      <Footer />
-    </main>
+        </section>
+      </main>
+    </>
   );
 }

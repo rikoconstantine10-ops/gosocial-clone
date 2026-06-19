@@ -46,16 +46,16 @@ export function Footer() {
         <div className="grid lg:grid-cols-12 gap-12">
           {/* Brand */}
           <div className="lg:col-span-3 space-y-5">
-            <img src="/images/gosocial-logo-2025.webp" alt="GoSocial" className="h-10 w-auto" />
+            <img src="/images/nuswalab-logo.svg" alt="Nuswa Lab" className="h-10 w-auto" />
             <p className="text-sm leading-relaxed" style={{color:"var(--color-muted-foreground)"}}>
-              PT. Nusa Digital Media — mendampingi bisnis bertumbuh secara digital sejak 2020.
+              Nuswa Lab — mendampingi bisnis bertumbuh secara digital sejak 2020.
             </p>
             <div className="flex flex-wrap gap-2">
-              <a href="https://wa.me/6281234566636" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/6285181301622" target="_blank" rel="noopener noreferrer"
                 className="btn-ghost !py-1.5 !px-3 !text-xs gap-1.5">
                 <MessageCircle className="w-3.5 h-3.5" /> WhatsApp
               </a>
-              <a href="mailto:hello@gosocial.co.id" className="btn-ghost !py-1.5 !px-3 !text-xs gap-1.5">
+              <a href="mailto:hello@nuswalab.com" className="btn-ghost !py-1.5 !px-3 !text-xs gap-1.5">
                 <Mail className="w-3.5 h-3.5" /> Email
               </a>
             </div>
@@ -116,7 +116,7 @@ export function Footer() {
                 <MessageCircle className="w-4 h-4 mt-0.5 flex-shrink-0" style={{color:"var(--color-primary)"}} />
                 <div>
                   <p className="text-sm font-medium">WhatsApp</p>
-                  <a href="https://wa.me/6281234566636" target="_blank" rel="noopener noreferrer"
+                  <a href="https://wa.me/6285181301622" target="_blank" rel="noopener noreferrer"
                     className="text-sm hover:opacity-80 transition-opacity" style={{color:"var(--color-muted-foreground)"}}>+62 812-3456-6636</a>
                 </div>
               </div>
@@ -124,13 +124,13 @@ export function Footer() {
                 <Mail className="w-4 h-4 mt-0.5 flex-shrink-0" style={{color:"var(--color-primary)"}} />
                 <div>
                   <p className="text-sm font-medium">Email</p>
-                  <a href="mailto:hello@gosocial.co.id"
-                    className="text-sm hover:opacity-80 transition-opacity" style={{color:"var(--color-muted-foreground)"}}>hello@gosocial.co.id</a>
+                  <a href="mailto:hello@nuswalab.com"
+                    className="text-sm hover:opacity-80 transition-opacity" style={{color:"var(--color-muted-foreground)"}}>hello@nuswalab.com</a>
                 </div>
               </div>
               <div className="flex gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{color:"var(--color-primary)"}} />
-                <p className="text-sm" style={{color:"var(--color-muted-foreground)"}}>Jl. Sudirman No. 123, Jakarta Selatan 12190</p>
+                <p className="text-sm" style={{color:"var(--color-muted-foreground)"}}>Jl. Sudirman No. 123, Solo, Jawa Tengah 12190</p>
               </div>
             </div>
             <div className="mt-6 p-4 glass rounded-2xl">
@@ -144,7 +144,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t flex flex-col md:flex-row items-center justify-between gap-4"
           style={{borderColor:"var(--color-border)"}}>
           <p className="text-xs" style={{color:"var(--color-muted-foreground)"}}>
-            © 2025 PT. Nusa Digital Media. Semua hak cipta dilindungi.
+            © 2025 Nuswa Lab. Semua hak cipta dilindungi.
           </p>
           <div className="flex gap-4">
             <Link href="/contact" className="text-xs hover:opacity-80 transition-opacity" style={{color:"var(--color-muted-foreground)"}}>Privacy Policy</Link>

@@ -3,10 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Bot, Zap, BrainCircuit, Workflow, BarChart3, MessageSquareCode, ShieldCheck, Clock, TrendingUp, Cpu, Network } from "lucide-react";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { RelatedServices } from "@/components/ui/RelatedServices";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   {
@@ -114,6 +116,7 @@ const pricingTiers = [
 export default function AIAutomationPage() {
   return (
     <main>
+      <ReviewSchema serviceName="AI Automation" serviceUrl="https://nuswalab.com/service/ai-automation" />
       <Nav />
       {/* Hero */}
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
@@ -338,7 +341,48 @@ export default function AIAutomationPage() {
 
       {/* CTA */}
       
-      <PricingSection
+      <FAQSection
+        title="Pertanyaan Umum"
+        faqs={[
+        { q: "Apa itu AI Automation dan manfaatnya untuk bisnis?", a: "AI Automation mengotomatiskan proses bisnis berulang seperti customer service, laporan, dan follow-up leads. Menghemat hingga 40 jam kerja per minggu." },
+        { q: "Bisnis apa yang cocok untuk AI Automation?", a: "Semua bisnis dengan proses berulang: e-commerce, healthcare, pendidikan, F&B, hingga startup yang ingin scale tanpa tambah banyak SDM." },
+        { q: "Apakah perlu keahlian teknis untuk menggunakannya?", a: "Tidak. Kami merancang sistem user-friendly dan memberikan pelatihan. Tim Anda cukup menggunakan dashboard yang sudah kami siapkan." },
+        { q: "Berapa lama implementasi AI Automation?", a: "Mulai dari 2 minggu untuk automation sederhana hingga 2-3 bulan untuk sistem agentic AI yang kompleks." }
+        ]}
+      />
+
+        {/* Sub-Layanan */}
+        <section className="py-20" style={{ background: "oklch(0.98 0.003 265)" }}>
+          <div className="container-custom">
+            <AnimateOnScroll>
+              <div className="text-center max-w-2xl mx-auto mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{ fontFamily: "var(--font-display)" }}>Pilih Solusi AI Sesuai Kebutuhan</h2>
+                <p style={{ color: "var(--color-muted-foreground)" }}>6 sub-layanan spesifik untuk setiap kebutuhan otomasi bisnis Anda.</p>
+              </div>
+            </AnimateOnScroll>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { title: "Chatbot WhatsApp AI", href: "/service/ai-automation/chatbot-whatsapp", desc: "Layani pelanggan otomatis 24/7 via WhatsApp", harga: "Mulai Rp 2.500.000/bln" },
+                { title: "AI Customer Service", href: "/service/ai-automation/ai-customer-service", desc: "Omnichannel support WA + IG + web", harga: "Mulai Rp 3.000.000/bln" },
+                { title: "Workflow Automation", href: "/service/ai-automation/workflow-automation", desc: "Otomasi proses & integrasi sistem", harga: "Mulai Rp 5.000.000 setup" },
+                { title: "AI CRM & Lead Nurturing", href: "/service/ai-automation/crm-automation", desc: "Auto follow-up & konversi leads lebih banyak", harga: "Mulai Rp 3.500.000/bln" },
+                { title: "AI Content Automation", href: "/service/ai-automation/ai-content", desc: "Generate konten sosmed & artikel 10x lebih cepat", harga: "Mulai Rp 2.000.000/bln" },
+                { title: "AI Agent", href: "/service/ai-automation/ai-agent", desc: "Agentic AI yang bekerja mandiri", harga: "Mulai Rp 8.000.000 setup" },
+              ].map((l, i) => (
+                <Link key={i} href={l.href} className="glass rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300 group flex flex-col" style={{ boxShadow: "var(--shadow-card)" }}>
+                  <h3 className="font-bold text-lg mb-2 group-hover:text-gradient transition-all" style={{ fontFamily: "var(--font-display)" }}>{l.title}</h3>
+                  <p className="text-sm leading-relaxed flex-1 mb-3" style={{ color: "var(--color-muted-foreground)" }}>{l.desc}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold" style={{ color: "var(--color-primary)" }}>{l.harga}</span>
+                    <ArrowRight className="w-4 h-4" style={{ color: "var(--color-primary)" }} />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+              <PricingSection
         title="Paket AI Automation"
         subtitle="Mulai dari satu proses otomasi hingga ekosistem AI enterprise penuh — kami siap mendampingi setiap tahap transformasi digital Anda."
         tiers={pricingTiers}

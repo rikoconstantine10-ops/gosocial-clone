@@ -169,7 +169,7 @@ export function Nav() {
           style={{ boxShadow: "var(--shadow-glass)" }}
         >
           <Link href="/" onClick={close} className="flex items-center gap-2 flex-shrink-0">
-            <img src="/images/gosocial-logo-2025.webp" alt="GoSocial" className="h-8 w-auto" />
+            <img src="/images/nuswalab-logo.svg" alt="Nuswa Lab" className="h-10 w-auto" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">

@@ -21,7 +21,7 @@ export const solutions = [
 ];
 
 export const testimonials = [
-  { name: "Andre Wijaya", role: "Founder, Aliyonics", quote: "Tim GoSocial sangat strategis. Brand identity kami benar-benar terangkat dan terstruktur." },
+  { name: "Andre Wijaya", role: "Founder, Aliyonics", quote: "Tim Nuswa Lab sangat strategis. Brand identity kami benar-benar terangkat dan terstruktur." },
   { name: "Dr. Sinta Hapsari", role: "Direktur, RS Happy Land", quote: "Awareness rumah sakit kami meningkat signifikan. Pendekatan konten mereka empatik dan profesional." },
   { name: "Riko Pranata", role: "Marketing Lead, TRIV", quote: "Konten crypto yang accessible. Komunitas kami tumbuh sehat dengan engagement berkualitas." },
 ];

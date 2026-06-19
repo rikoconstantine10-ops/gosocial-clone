@@ -17,8 +17,8 @@ const benefits = [
 const steps = [
   { num: "01", title: "Daftar Online", desc: "Isi formulir pendaftaran mitra dan lampirkan profil bisnis Anda." },
   { num: "02", title: "Review & Seleksi", desc: "Tim kami akan mereview aplikasi dan menghubungi Anda dalam 3 hari kerja." },
-  { num: "03", title: "Onboarding", desc: "Ikuti program onboarding dan training untuk mulai memasarkan layanan GoSocial." },
-  { num: "04", title: "Earn Commission", desc: "Referensikan klien, dapatkan komisi, dan kembangkan bisnis bersama GoSocial." },
+  { num: "03", title: "Onboarding", desc: "Ikuti program onboarding dan training untuk mulai memasarkan layanan Nuswa Lab." },
+  { num: "04", title: "Earn Commission", desc: "Referensikan klien, dapatkan komisi, dan kembangkan bisnis bersama Nuswa Lab." },
 ];
 
 export default function PartnershipPage() {
@@ -35,9 +35,9 @@ export default function PartnershipPage() {
                 <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Program Kemitraan</span>
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
                   <span className="text-gradient">Tumbuh Bersama</span><br />
-                  <span className="text-gradient">GoSocial</span>
+                  <span className="text-gradient">Nuswa Lab</span>
                 </h1>
-                <p className="text-base md:text-lg leading-relaxed mb-8" style={{color:"var(--color-muted-foreground)"}}>Jadilah mitra resmi GoSocial dan bangun stream pendapatan baru dengan mereferensikan layanan digital marketing terbaik kepada network bisnis Anda.</p>
+                <p className="text-base md:text-lg leading-relaxed mb-8" style={{color:"var(--color-muted-foreground)"}}>Jadilah mitra resmi Nuswa Lab dan bangun stream pendapatan baru dengan mereferensikan layanan digital marketing terbaik kepada network bisnis Anda.</p>
                 <div className="flex flex-wrap gap-3">
                   <Link href="/contact" className="btn-primary">Daftar Jadi Mitra <ArrowRight className="w-4 h-4" /></Link>
                   <Link href="#benefits" className="btn-ghost">Lihat Manfaat</Link>
@@ -46,7 +46,7 @@ export default function PartnershipPage() {
             </AnimateOnScroll>
             <AnimateOnScroll delay={200}>
               <div className="rounded-3xl overflow-hidden shadow-2xl" style={{boxShadow:"var(--shadow-glow)"}}>
-                <Image src="/images/partner-new.webp" alt="GoSocial Partnership" width={600} height={500} className="object-cover w-full" />
+                <Image src="/images/partner-new.webp" alt="Nuswa Lab Partnership" width={600} height={500} className="object-cover w-full" />
               </div>
             </AnimateOnScroll>
           </div>
@@ -103,7 +103,7 @@ export default function PartnershipPage() {
         <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
           <AnimateOnScroll>
             <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>Daftar Jadi Mitra Sekarang</h2>
-            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Mulai perjalanan kemitraan Anda bersama GoSocial dan raih pendapatan tanpa batas.</p>
+            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Mulai perjalanan kemitraan Anda bersama Nuswa Lab dan raih pendapatan tanpa batas.</p>
             <Link href="/contact" className="btn-primary text-lg px-8 py-4">Daftar Sekarang <ArrowRight className="w-5 h-5" /></Link>
           </AnimateOnScroll>
         </div>

@@ -13,9 +13,9 @@ const clients = [
 ];
 
 const testimonials = [
-  { name: "Rizky Pratama", role: "CEO, TechStartup Indonesia", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80", text: "GoSocial berhasil meningkatkan traffic organik website kami sebesar 400% dalam 6 bulan. Tim mereka sangat profesional dan data-driven.", rating: 5 },
+  { name: "Rizky Pratama", role: "CEO, TechStartup Indonesia", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80", text: "Nuswa Lab berhasil meningkatkan traffic organik website kami sebesar 400% dalam 6 bulan. Tim mereka sangat profesional dan data-driven.", rating: 5 },
   { name: "Dewi Sartika", role: "Marketing Manager, F&B Brand", avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b5fd?w=80&q=80", text: "Social media kami tumbuh dari 10K ke 500K followers dalam setahun. Konten mereka selalu kreatif dan on-brand.", rating: 5 },
-  { name: "Budi Santoso", role: "Founder, E-commerce Fashion", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80", text: "ROI dari kampanye digital marketing GoSocial mencapai 8x. Mereka benar-benar memahami bisnis kami dan deliver results.", rating: 5 },
+  { name: "Budi Santoso", role: "Founder, E-commerce Fashion", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80", text: "ROI dari kampanye digital marketing Nuswa Lab mencapai 8x. Mereka benar-benar memahami bisnis kami dan deliver results.", rating: 5 },
 ];
 
 export default function OurClientPage() {
@@ -61,7 +61,7 @@ export default function OurClientPage() {
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kata Mereka</h2>
-              <p style={{color:"var(--color-muted-foreground)"}}>Testimonial nyata dari klien yang telah merasakan manfaat bekerja sama dengan GoSocial.</p>
+              <p style={{color:"var(--color-muted-foreground)"}}>Testimonial nyata dari klien yang telah merasakan manfaat bekerja sama dengan Nuswa Lab.</p>
             </div>
           </AnimateOnScroll>
           <div className="grid md:grid-cols-3 gap-6">
@@ -97,7 +97,7 @@ export default function OurClientPage() {
         <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
           <AnimateOnScroll>
             <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>Bergabung Menjadi Klien Kami</h2>
-            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Jadikan bisnis Anda bagian dari keluarga besar GoSocial yang terus bertumbuh.</p>
+            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Jadikan bisnis Anda bagian dari keluarga besar Nuswa Lab yang terus bertumbuh.</p>
             <Link href="/contact" className="btn-primary text-lg px-8 py-4">Konsultasi Gratis <ArrowRight className="w-5 h-5" /></Link>
           </AnimateOnScroll>
         </div>

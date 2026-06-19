@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Search, FileText, Link as LinkIcon, MapPin, BarChart, Zap } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Search, title: "Keyword Research", desc: "Riset kata kunci mendalam untuk menemukan peluang terbaik di niche Anda." },
@@ -26,6 +28,7 @@ const steps = [
 export default function JasaSEOPage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Jasa SEO" serviceUrl="https://nuswalab.com/service/jasa-seo" />
       <Nav />
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
@@ -108,36 +111,34 @@ export default function JasaSEOPage() {
       </section>
 
             <PricingSection
-        title="Paket SEO"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
-        tiers={[
+            title="Paket SEO"
+            subtitle="Tingkatkan peringkat Google bisnis Anda dengan paket SEO yang tepat"
+            tiers={[
           {
             name: "Starter",
-            price: "Rp 3.000.000",
+            price: "Rp 3.500.000",
             period: "/bulan",
-            desc: "Cocok untuk bisnis baru yang ingin mulai terindeks Google.",
-            features: ["Riset 20 keyword", "Optimasi On-Page 10 halaman", "2 artikel blog/bulan", "Laporan bulanan", "Google Search Console setup"],
+            desc: "Optimalkan website Anda untuk kata kunci utama bisnis.",
+            features: ["10 keyword target", "On-page SEO", "Google Search Console setup", "Laporan bulanan"],
             cta: "Mulai Starter",
-            highlight: false,
           },
           {
-            name: "Growth",
-            price: "Rp 7.000.000",
+            name: "Pro",
+            price: "Rp 7.500.000",
             period: "/bulan",
-            desc: "Ideal untuk bisnis yang ingin tumbuh agresif di hasil pencarian.",
-            features: ["Riset 50 keyword", "Optimasi On-Page 25 halaman", "6 artikel blog/bulan", "Link building 10/bulan", "Laporan mingguan", "Competitor analysis"],
-            cta: "Pilih Growth",
+            desc: "Strategi SEO komprehensif untuk pertumbuhan organik yang signifikan.",
+            features: ["30 keyword target", "On-page + off-page SEO", "Pembuatan konten SEO", "Backlink building", "Laporan analitik detail"],
+            cta: "Mulai Pro",
             highlight: true,
-            badge: "Terpopuler",
+            badge: "Populer",
           },
           {
             name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Solusi SEO skala besar untuk perusahaan dengan kebutuhan khusus.",
-            features: ["Keyword tak terbatas", "Audit teknis mendalam", "Konten tak terbatas", "Link building premium", "Dedicated SEO specialist", "SLA & report real-time"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
+            price: "Rp 15.000.000",
+            period: "/bulan",
+            desc: "Dominasi halaman pertama Google untuk industri Anda.",
+            features: ["Unlimited keyword", "Authority building", "Link building premium", "Dedicated SEO specialist", "Laporan real-time"],
+            cta: "Hubungi Kami",
           },
         ]}
       />

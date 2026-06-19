@@ -46,7 +46,7 @@ export default function Page() {
         <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Solusi Healthcare GoSocial</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Solusi Healthcare Nuswa Lab</h2>
               <p style={{color:"var(--color-muted-foreground)"}}>Platform digital untuk klinik, rumah sakit, dan fasilitas kesehatan yang meningkatkan kualitas layanan pasien.</p>
             </div>
           </AnimateOnScroll>

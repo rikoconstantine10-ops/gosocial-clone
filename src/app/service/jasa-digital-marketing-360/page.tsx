@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Target, BarChart, Globe, Megaphone, TrendingUp, LineChart } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Target, title: "Strategy & Planning", desc: "Strategi marketing terintegrasi berdasarkan riset pasar dan analisis kompetitor mendalam." },
@@ -26,6 +28,7 @@ const steps = [
 export default function Marketing360Page() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Digital Marketing 360°" serviceUrl="https://nuswalab.com/service/jasa-digital-marketing-360" />
       <Nav />
 
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
@@ -158,7 +161,7 @@ export default function Marketing360Page() {
         <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
           <AnimateOnScroll>
             <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>Siap Grow Bersama?</h2>
-            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Mulai perjalanan digital marketing 360° Anda bersama tim ahli GoSocial.</p>
+            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Mulai perjalanan digital marketing 360° Anda bersama tim ahli Nuswa Lab.</p>
             <Link href="/contact" className="btn-primary text-lg px-8 py-4">Konsultasi Gratis <ArrowRight className="w-5 h-5" /></Link>
           </AnimateOnScroll>
         </div>

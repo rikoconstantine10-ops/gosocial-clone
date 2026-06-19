@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Monitor, Smartphone, Zap, Shield, Search, TrendingUp } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Monitor, title: "Custom Design", desc: "Desain unik yang mencerminkan brand identity dan menarik target audiens Anda." },
@@ -26,6 +28,7 @@ const steps = [
 export default function WebsitePage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Jasa Pembuatan Website" serviceUrl="https://nuswalab.com/service/jasa-pembuatan-website" />
       <Nav />
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
@@ -108,36 +111,34 @@ export default function WebsitePage() {
       </section>
 
             <PricingSection
-        title="Paket Pembuatan Website"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
-        tiers={[
+            title="Paket Pembuatan Website"
+            subtitle="Website profesional yang mengkonversi pengunjung menjadi pelanggan"
+            tiers={[
           {
             name: "Landing Page",
             price: "Rp 5.000.000",
             period: "sekali bayar",
-            desc: "Landing page profesional untuk konversi maksimal.",
-            features: ["1 halaman landing page", "Desain responsif", "Formulir kontak", "SEO dasar", "SSL & hosting 1 tahun"],
+            desc: "Website 1 halaman yang fokus pada konversi dan lead generation.",
+            features: ["1 halaman responsif", "Contact form terintegrasi", "SEO basic", "Mobile-friendly", "1 revisi"],
             cta: "Pesan Sekarang",
-            highlight: false,
           },
           {
             name: "Company Profile",
             price: "Rp 12.000.000",
             period: "sekali bayar",
-            desc: "Website company profile modern & profesional.",
-            features: ["5-10 halaman", "Desain custom", "CMS mudah dikelola", "Optimasi SEO", "Hosting + domain 1 tahun", "Integrasi WhatsApp"],
-            cta: "Pilih Company Profile",
+            desc: "Website company profile profesional yang meningkatkan kredibilitas bisnis.",
+            features: ["5-7 halaman", "CMS (Content Management)", "SEO optimized", "3 revisi", "Training penggunaan CMS", "1 tahun hosting & domain"],
+            cta: "Pesan Sekarang",
             highlight: true,
-            badge: "Terpopuler",
+            badge: "Paling Diminati",
           },
           {
             name: "E-Commerce",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Toko online lengkap dengan sistem manajemen produk.",
-            features: ["Halaman tak terbatas", "Sistem cart & checkout", "Payment gateway", "Manajemen produk", "Laporan penjualan", "Support 1 tahun"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
+            price: "Rp 25.000.000",
+            period: "sekali bayar",
+            desc: "Toko online lengkap siap berjualan dengan semua fitur e-commerce.",
+            features: ["Full online store", "Payment gateway", "Product management", "Order management", "Training & dokumentasi", "Support 3 bulan"],
+            cta: "Hubungi Kami",
           },
         ]}
       />

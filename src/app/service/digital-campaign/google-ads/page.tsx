@@ -171,7 +171,7 @@ export default function Page() {
         <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih GoSocial?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih Nuswa Lab?</h2>
             </div>
           </AnimateOnScroll>
           <div className="grid md:grid-cols-3 gap-6">
@@ -196,35 +196,33 @@ export default function Page() {
       
       <PricingSection
         title="Paket Google Ads"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        subtitle="Maksimalkan ROI iklan Google Anda dengan paket yang sesuai anggaran"
         tiers={[
           {
             name: "Starter",
-            price: "Rp 4.000.000",
+            price: "Rp 2.000.000",
             period: "/bulan",
-            desc: "Tampil di halaman 1 Google saat pelanggan mencari.",
-            features: ["Setup Google Ads", "Search campaign", "10 keyword target", "Ad copywriting", "Laporan bulanan"],
+            desc: "Mulai beriklan di Google dengan budget terkontrol.",
+            features: ["Ad spend s/d Rp 5 juta", "Search campaign", "Keyword research", "Laporan mingguan"],
             cta: "Mulai Starter",
-            highlight: false,
           },
           {
-            name: "Growth",
-            price: "Rp 9.000.000",
+            name: "Pro",
+            price: "Rp 4.500.000",
             period: "/bulan",
-            desc: "Dominasi Google dengan Search + Display + Remarketing.",
-            features: ["Search + Display campaign", "30 keyword target", "Google Shopping (jika ada produk)", "Remarketing list", "Conversion tracking", "Laporan mingguan"],
-            cta: "Pilih Growth",
+            desc: "Kampanye multi-format untuk jangkauan dan konversi lebih luas.",
+            features: ["Ad spend s/d Rp 20 juta", "Search + Display + Shopping", "A/B testing iklan", "Retargeting", "Laporan performa detail"],
+            cta: "Mulai Pro",
             highlight: true,
-            badge: "Terpopuler",
+            badge: "Best Value",
           },
           {
             name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Full Google Ads ecosystem untuk bisnis besar.",
-            features: ["Semua tipe campaign", "Smart bidding AI", "Performance Max", "YouTube Ads integration", "Dedicated specialist", "Real-time dashboard"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
+            price: "Rp 8.000.000",
+            period: "/bulan",
+            desc: "Full funnel campaign untuk bisnis skala besar.",
+            features: ["Ad spend unlimited", "Full funnel campaign", "Dedicated ads specialist", "Custom reporting", "CRO optimization"],
+            cta: "Hubungi Kami",
           },
         ]}
       />

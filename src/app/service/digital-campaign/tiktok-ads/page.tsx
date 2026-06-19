@@ -171,7 +171,7 @@ export default function Page() {
         <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih GoSocial?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kenapa Pilih Nuswa Lab?</h2>
             </div>
           </AnimateOnScroll>
           <div className="grid md:grid-cols-3 gap-6">
@@ -196,35 +196,33 @@ export default function Page() {
       
       <PricingSection
         title="Paket TikTok Ads"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
+        subtitle="Viral di TikTok dengan strategi iklan yang tepat dan kreatif"
         tiers={[
           {
             name: "Starter",
-            price: "Rp 3.500.000",
+            price: "Rp 2.500.000",
             period: "/bulan",
-            desc: "Mulai viral di TikTok dengan iklan yang engaging.",
-            features: ["Setup TikTok Ads Manager", "2 campaign aktif", "2 video creative/bulan", "Targeting audiens muda", "Laporan bulanan"],
+            desc: "Mulai beriklan di TikTok untuk menjangkau audiens muda.",
+            features: ["2 campaign aktif", "Spark Ads", "Audience targeting", "Laporan bulanan"],
             cta: "Mulai Starter",
-            highlight: false,
           },
           {
-            name: "Growth",
-            price: "Rp 8.000.000",
+            name: "Pro",
+            price: "Rp 4.500.000",
             period: "/bulan",
-            desc: "Skalakan reach TikTok dengan konten kreatif.",
-            features: ["5 campaign aktif", "5 video creative/bulan", "Spark Ads integration", "Hashtag challenge strategy", "TopView & In-Feed Ads", "Laporan mingguan"],
-            cta: "Pilih Growth",
+            desc: "Kampanye TikTok komprehensif dengan format iklan premium.",
+            features: ["Unlimited campaign", "In-Feed + TopView Ads", "Creative optimization", "Retargeting", "Laporan performa detail"],
+            cta: "Mulai Pro",
             highlight: true,
-            badge: "Terpopuler",
+            badge: "Populer",
           },
           {
             name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "TikTok Ads skala besar untuk brand nasional.",
-            features: ["Campaign tak terbatas", "Brand Takeover", "Full video production", "Influencer TikTok", "Dedicated specialist", "Live campaign monitoring"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
+            price: "Rp 7.000.000",
+            period: "/bulan",
+            desc: "Full funnel TikTok Ads untuk brand awareness dan konversi maksimal.",
+            features: ["Full funnel campaign", "Branded hashtag challenge", "Dedicated media buyer", "TikTok Shop integration", "Custom analytics"],
+            cta: "Hubungi Kami",
           },
         ]}
       />

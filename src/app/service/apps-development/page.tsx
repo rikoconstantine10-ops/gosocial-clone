@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Smartphone, Monitor, Database, Shield, Zap, Users } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Smartphone, title: "Mobile App (iOS & Android)", desc: "Aplikasi native dan cross-platform dengan React Native atau Flutter." },
@@ -26,6 +28,7 @@ const steps = [
 export default function AppsDevelopmentPage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Apps Development" serviceUrl="https://nuswalab.com/service/apps-development" />
       <Nav />
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />

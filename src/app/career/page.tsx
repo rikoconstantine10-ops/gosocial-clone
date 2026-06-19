@@ -9,7 +9,7 @@ const openings = [
   { title: "Frontend Developer", type: "Full Time", dept: "Tech", loc: "Remote", desc: "Bangun website dan aplikasi modern, fast, dan SEO-friendly dengan Next.js & Tailwind." },
   { title: "Content Creator / Copywriter", type: "Full Time", dept: "Creative", loc: "Surabaya / Remote", desc: "Ciptakan konten kreatif dan copy yang compelling untuk berbagai brand." },
   { title: "SEO Specialist", type: "Full Time", dept: "SEO", loc: "Surabaya / Remote", desc: "Tingkatkan ranking organik klien dengan strategi SEO on-page, off-page, dan technical." },
-  { title: "Account Manager", type: "Full Time", dept: "Client Success", loc: "Surabaya", desc: "Menjadi jembatan antara klien dan tim internal GoSocial untuk kepuasan dan hasil terbaik." },
+  { title: "Account Manager", type: "Full Time", dept: "Client Success", loc: "Surabaya", desc: "Menjadi jembatan antara klien dan tim internal Nuswa Lab untuk kepuasan dan hasil terbaik." },
 ];
 
 const perks = [
@@ -28,12 +28,12 @@ export default function CareerPage() {
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20">
         <div className="orb orb-primary w-[500px] h-[500px] -top-40 -left-20 animate-orb" />
         <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center relative">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Karier di GoSocial</span>
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Karier di Nuswa Lab</span>
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
             Bergabung dan <span className="text-gradient">tumbuh bersama</span><br />kami
           </h1>
           <p className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8" style={{color:"var(--color-muted-foreground)"}}>
-            GoSocial adalah tempat bagi talent terbaik Indonesia untuk berkreasi, berinovasi, dan menciptakan dampak nyata bagi ratusan brand.
+            Nuswa Lab adalah tempat bagi talent terbaik Indonesia untuk berkreasi, berinovasi, dan menciptakan dampak nyata bagi ratusan brand.
           </p>
           <Link href="#openings" className="btn-primary">
             Lihat Posisi Terbuka <ArrowRight className="w-4 h-4" />

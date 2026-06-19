@@ -42,9 +42,9 @@ const clients = [
 ];
 
 const testimonials = [
-  { name: "Andi Pratama", role: "CEO, TechStartup Indonesia", text: "GoSocial benar-benar mengubah cara kami berkomunikasi dengan pelanggan. Engagement meningkat 300% dalam 3 bulan pertama!", rating: 5 },
-  { name: "Sari Dewi", role: "Marketing Manager, Fashion Brand", text: "Tim GoSocial sangat profesional dan responsif. Mereka memahami industri kami dengan sangat baik dan hasilnya luar biasa.", rating: 5 },
-  { name: "Budi Santoso", role: "Owner, Kuliner Nusantara", text: "Berkat GoSocial, restoran kami selalu ramai! Strategi konten mereka benar-benar on-point dan membawa pelanggan baru setiap hari.", rating: 5 },
+  { name: "Andi Pratama", role: "CEO, TechStartup Indonesia", text: "Nuswa Lab benar-benar mengubah cara kami berkomunikasi dengan pelanggan. Engagement meningkat 300% dalam 3 bulan pertama!", rating: 5 },
+  { name: "Sari Dewi", role: "Marketing Manager, Fashion Brand", text: "Tim Nuswa Lab sangat profesional dan responsif. Mereka memahami industri kami dengan sangat baik dan hasilnya luar biasa.", rating: 5 },
+  { name: "Budi Santoso", role: "Owner, Kuliner Nusantara", text: "Berkat Nuswa Lab, restoran kami selalu ramai! Strategi konten mereka benar-benar on-point dan membawa pelanggan baru setiap hari.", rating: 5 },
 ];
 
 export default function HomePage() {
@@ -62,7 +62,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6 animate-slide-up" style={{color:"var(--color-primary)"}}>
-                <Sparkles className="w-3.5 h-3.5" /> More Than Digital Marketing Agency
+                <Sparkles className="w-3.5 h-3.5" /> Your Story, Our Strategy
               </div>
               <h1 className="text-5xl md:text-7xl font-bold leading-[1.02] mb-6 animate-slide-up delay-100" style={{fontFamily:"var(--font-display)"}}>
                 <span className="text-gradient">Digital Marketing</span>
@@ -70,7 +70,7 @@ export default function HomePage() {
                 <br /><span style={{color:"var(--color-foreground)"}}>Indonesia</span>
               </h1>
               <p className="text-lg md:text-xl mb-8 max-w-xl leading-relaxed animate-slide-up delay-200" style={{color:"var(--color-muted-foreground)"}}>
-                GoSocial mendampingi bisnis dan organisasi dalam Branding, Marketing, dan Aktivasi Teknologi Digital. Dipercaya ribuan klien dari beragam industri sejak 2020.
+                Nuswa Lab mendampingi bisnis Anda dalam Branding, Marketing, dan Aktivasi Teknologi Digital. Dipercaya ribuan klien dari beragam industri sejak 2020.
               </p>
               <div className="flex flex-wrap gap-3 animate-slide-up delay-300">
                 <Link href="/contact" className="btn-primary">Konsultasi Gratis <ArrowRight className="w-4 h-4" /></Link>
@@ -94,7 +94,7 @@ export default function HomePage() {
             </div>
             <div className="relative hidden lg:flex items-center justify-center h-[540px] animate-slide-up delay-200">
               <div className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-2xl" style={{boxShadow:"var(--shadow-glow)"}}>
-                <Image src="/images/grow1.webp" alt="GoSocial Growth" fill className="object-cover" />
+                <Image src="/images/grow1.webp" alt="Nuswa Lab Growth" fill className="object-cover" />
                 <div className="absolute inset-0" style={{background:"linear-gradient(135deg, oklch(0.52 0.22 265 / 0.15) 0%, transparent 60%)"}} />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{background:"oklch(0.52 0.22 265 / 0.4)", backdropFilter:"blur(8px)", border:"2px solid oklch(0.52 0.22 265 / 0.5)"}}>
@@ -250,13 +250,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why GoSocial */}
+      {/* Why Nuswa Lab */}
       <section className="relative py-20 lg:py-28">
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <AnimateOnScroll>
               <div>
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Mengapa GoSocial</span>
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Mengapa Nuswa Lab</span>
                 <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-8" style={{fontFamily:"var(--font-display)"}}>Bukan Sekadar Agency</h2>
                 <div className="space-y-4">
                   {[
@@ -388,7 +388,7 @@ export default function HomePage() {
               Siap Membawa Bisnis ke Level Berikutnya?
             </h2>
             <p className="text-lg mb-10 max-w-2xl mx-auto" style={{color:"var(--color-muted-foreground)"}}>
-              Bergabunglah dengan 1.000+ brand yang telah mempercayai GoSocial sebagai mitra pertumbuhan digital mereka.
+              Bergabunglah dengan 1.000+ brand yang telah mempercayai Nuswa Lab sebagai mitra pertumbuhan digital mereka.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact" className="btn-primary text-lg px-8 py-4">Konsultasi Gratis <ArrowRight className="w-5 h-5" /></Link>

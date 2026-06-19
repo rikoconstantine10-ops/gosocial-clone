@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Camera, Package, Users, Star, Image as ImageIcon, Zap } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Package, title: "Product Photography", desc: "Foto produk profesional dengan pencahayaan studio untuk e-commerce, katalog, dan iklan." },
@@ -26,6 +28,7 @@ const steps = [
 export default function CommercialPhotographyPage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Commercial Photography" serviceUrl="https://nuswalab.com/service/commercial-photography" />
       <Nav />
 
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">

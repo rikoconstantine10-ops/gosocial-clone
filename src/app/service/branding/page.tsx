@@ -1,15 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Target, PenTool, FileText, Star, Megaphone, Package } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 export default function Page() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Jasa Branding" serviceUrl="https://nuswalab.com/service/branding" />
       <Nav />
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
         <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
@@ -111,36 +114,34 @@ export default function Page() {
         </div>
       </section>
             <PricingSection
-        title="Paket Branding"
-        subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
-        tiers={[
+            title="Paket Branding"
+            subtitle="Bangun identitas brand yang kuat dan berkesan di benak pelanggan"
+            tiers={[
           {
-            name: "Brand Starter",
-            price: "Rp 5.000.000",
+            name: "Brand Identity Basic",
+            price: "Rp 4.000.000",
             period: "sekali bayar",
-            desc: "Paket branding dasar untuk bisnis baru.",
-            features: ["Logo design (3 konsep)", "Color palette", "Typography guide", "Business card design", "File source lengkap"],
-            cta: "Mulai Branding",
-            highlight: false,
+            desc: "Identitas brand dasar yang profesional untuk bisnis baru.",
+            features: ["Logo design", "Brand guideline basic", "3 konsep desain", "2 revisi", "File siap cetak"],
+            cta: "Pesan Sekarang",
           },
           {
-            name: "Brand Complete",
-            price: "Rp 12.000.000",
+            name: "Brand Identity Pro",
+            price: "Rp 10.000.000",
             period: "sekali bayar",
-            desc: "Identitas brand yang kuat dan konsisten di semua media.",
-            features: ["Logo + variant", "Brand guideline (20+ halaman)", "Stationery design", "Social media kit", "Packaging mockup", "Revisi tak terbatas"],
-            cta: "Pilih Complete",
+            desc: "Brand identity lengkap dengan panduan visual komprehensif.",
+            features: ["Logo + full brand guideline", "Brand kit lengkap", "5 konsep desain", "Unlimited revisi", "Semua format file", "Brand color & typography system"],
+            cta: "Pesan Sekarang",
             highlight: true,
             badge: "Terpopuler",
           },
           {
-            name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Rebranding dan strategi brand untuk perusahaan.",
-            features: ["Brand audit", "Brand strategy", "Full visual identity", "Signage & environmental design", "Brand activation plan", "Dedicated brand consultant"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
+            name: "Full Branding",
+            price: "Rp 20.000.000",
+            period: "sekali bayar",
+            desc: "Rebranding komprehensif untuk transformasi brand Anda.",
+            features: ["Rebranding komprehensif", "Brand strategy", "Brand voice & messaging", "Semua aset visual", "Brand presentation deck", "Konsultasi branding ongoing"],
+            cta: "Hubungi Kami",
           },
         ]}
       />

@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, Video, Film, Play, Camera, Zap, Star } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: Video, title: "Video Komersial", desc: "Produksi video iklan TVC dan digital untuk meningkatkan brand awareness dan penjualan." },
@@ -26,6 +28,7 @@ const steps = [
 export default function VideoProductionPage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Video Production" serviceUrl="https://nuswalab.com/service/video-production" />
       <Nav />
 
       <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">

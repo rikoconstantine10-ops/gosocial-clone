@@ -46,7 +46,7 @@ export default function Page() {
         <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Solusi Retail GoSocial</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Solusi Retail Nuswa Lab</h2>
               <p style={{color:"var(--color-muted-foreground)"}}>Platform retail terintegrasi yang menghubungkan toko fisik dan online untuk pengalaman belanja yang seamless.</p>
             </div>
           </AnimateOnScroll>

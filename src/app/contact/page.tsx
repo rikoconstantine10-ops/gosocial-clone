@@ -56,7 +56,7 @@ export default function ContactPage() {
                     <input type="tel" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})}
                       className="w-full px-4 py-3 rounded-xl border outline-none focus:ring-2 transition-all"
                       style={{background:"var(--color-background)", borderColor:"var(--color-border)"}}
-                      placeholder="+62 812 3456 7890" />
+                      placeholder="+62 851 8130 1622" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium mb-2">Ceritakan Kebutuhan Anda</label>
@@ -75,9 +75,9 @@ export default function ContactPage() {
             <AnimateOnScroll delay={200}>
               <div className="space-y-6">
                 {[
-                  { Icon: MessageCircle, title: "WhatsApp", desc: "+62 812 3456 7890", sub: "Respon dalam 1 jam" },
-                  { Icon: Mail, title: "Email", desc: "hello@gosocial.co.id", sub: "Respon dalam 24 jam" },
-                  { Icon: MapPin, title: "Kantor", desc: "Jl. Sudirman No. 123, Jakarta Selatan", sub: "DKI Jakarta 12190" },
+                  { Icon: MessageCircle, title: "WhatsApp", desc: "+62 851 8130 1622", sub: "Respon dalam 1 jam" },
+                  { Icon: Mail, title: "Email", desc: "hello@nuswalab.com", sub: "Respon dalam 24 jam" },
+                  { Icon: MapPin, title: "Kantor", desc: "Solo, Jawa Tengah, Indonesia", sub: "Indonesia" },
                   { Icon: Clock, title: "Jam Operasional", desc: "Senin - Jumat: 09.00 - 18.00", sub: "Sabtu: 09.00 - 14.00" },
                 ].map((item, i) => (
                   <div key={i} className="glass rounded-2xl p-6 flex gap-4 items-start hover:-translate-y-1 transition-all duration-300">

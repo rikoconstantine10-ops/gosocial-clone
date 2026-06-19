@@ -1,17 +1,57 @@
 import { MetadataRoute } from "next";
+import Database from "better-sqlite3";
+
+const BASE = "https://nuswalab.com";
+const DB_PATH = "/home/ubuntu/articel generator/data.db";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "http://43.134.31.226";
   const now = new Date();
-  const routes = [
-    "/", "/about", "/contact", "/portfolio", "/blog", "/how-it-works", "/our-client", "/partnership",
-    "/service/jasa-digital-marketing-360", "/service/social-media-management", "/service/digital-campaign",
-    "/service/jasa-seo", "/service/affiliate-marketing", "/service/jasa-pembuatan-website",
-    "/service/apps-development", "/service/commercial-photography", "/service/jasa-foto-produk",
-    "/service/video-production", "/service/branding/jasa-desain", "/service/branding/jasa-desain/logo",
-    "/service/branding/jasa-desain/banner-brosur",
-    "/solution/enterprise", "/solution/fnb", "/solution/organization",
-    "/solution/education", "/solution/healthcare", "/solution/retail",
+
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: BASE, lastModified: now, changeFrequency: "daily", priority: 1.0 },
+    { url: `${BASE}/blog`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/portfolio`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE}/how-it-works`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${BASE}/service/jasa-digital-marketing-360`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/service/social-media-management`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/service/digital-campaign`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/service/jasa-seo`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/service/jasa-pembuatan-website`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/service/branding`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/service/ai-automation`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE}/service/affiliate-marketing`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/service/video-production`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/service/commercial-photography`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/service/jasa-foto-produk`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/service/apps-development`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE}/solution/enterprise`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/solution/healthcare`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/solution/education`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/solution/fnb`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/solution/retail`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/solution/organization`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
   ];
-  return routes.map(r => ({ url: base + r, lastModified: now, changeFrequency: "weekly" as const, priority: r === "/" ? 1 : 0.8 }));
+
+  // Dynamically add blog articles
+  let articleRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const db = new Database(DB_PATH, { readonly: true });
+    const articles = db.prepare(`
+      SELECT slug, id, updated_at, created_at FROM articles
+      WHERE status IN ('draft','published') AND content_html IS NOT NULL AND content_html != ''
+      ORDER BY id DESC LIMIT 500
+    `).all() as any[];
+    db.close();
+
+    articleRoutes = articles.map(a => ({
+      url: `${BASE}/blog/${a.slug || a.id}`,
+      lastModified: new Date(a.updated_at || a.created_at || now),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+  } catch { /* DB not available during static build */ }
+
+  return [...staticRoutes, ...articleRoutes];
 }

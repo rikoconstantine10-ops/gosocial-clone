@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { RelatedServices } from "@/components/ui/RelatedServices";
+import { FAQSection } from "@/components/ui/FAQSection";
 import { PricingSection } from "@/components/ui/PricingSection";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
 import { ArrowRight, PenTool, Users, BarChart, Megaphone, Star, Globe } from "lucide-react";
+import { ReviewSchema } from "@/components/ui/ReviewSchema";
 
 const features = [
   { Icon: PenTool, title: "Content Creation", desc: "Konten kreatif harian — foto, video, copywriting, dan grafis yang sesuai brand identity." },
@@ -26,6 +28,7 @@ const steps = [
 export default function SocialMediaManagementPage() {
   return (
     <main className="min-h-screen">
+      <ReviewSchema serviceName="Social Media Management" serviceUrl="https://nuswalab.com/service/social-media-management" />
       <Nav />
             
 
@@ -119,37 +122,45 @@ export default function SocialMediaManagementPage() {
       />
 
       
+      <FAQSection
+        title="Pertanyaan Umum"
+        faqs={[
+        { q: "Platform apa saja yang dikelola?", a: "Kami mengelola Instagram, TikTok, Facebook, LinkedIn, Twitter/X, dan YouTube sesuai kebutuhan bisnis Anda." },
+        { q: "Berapa konten yang dibuat per bulan?", a: "Mulai dari 12 konten per bulan (basic) hingga 30+ konten per bulan (premium) termasuk feed, story, reels, dan caption." },
+        { q: "Apakah tim Nuswa Lab yang buat kontennya?", a: "Ya, tim kreatif kami handle semuanya mulai dari ide, desain, copywriting, hingga penjadwalan posting. Anda tinggal approve." },
+        { q: "Bagaimana cara mengukur hasil social media management?", a: "Kami memberikan laporan bulanan berisi growth followers, engagement rate, reach, impressions, dan perbandingan bulan sebelumnya." }
+        ]}
+      />
+
       <PricingSection
-        title="Paket Social Media"
+        title="Paket Social Media Management"
         subtitle="Pilih paket yang sesuai dengan kebutuhan dan anggaran bisnis Anda"
         tiers={[
           {
-            name: "Basic",
-            price: "Rp 5.000.000",
+            name: "Starter",
+            price: "Rp 2.500.000",
             period: "/bulan",
-            desc: "Kelola 1 platform media sosial secara profesional.",
-            features: ["1 platform (IG/FB/TikTok)", "12 konten/bulan", "Caption copywriting", "Jadwal posting", "Laporan bulanan"],
-            cta: "Mulai Basic",
-            highlight: false,
+            desc: "Solusi terjangkau untuk bisnis yang baru membangun kehadiran di media sosial.",
+            features: ["4 platform media sosial", "12 post/bulan", "Copywriting konten", "Basic report bulanan"],
+            cta: "Mulai Starter",
           },
           {
-            name: "Professional",
-            price: "Rp 10.000.000",
+            name: "Pro",
+            price: "Rp 5.000.000",
             period: "/bulan",
-            desc: "Kelola 3 platform + strategi konten terintegrasi.",
-            features: ["3 platform media sosial", "30 konten/bulan", "Desain konten profesional", "Story & Reels", "Community management", "Laporan analitik mingguan"],
-            cta: "Pilih Professional",
+            desc: "Kelola media sosial secara profesional dengan strategi konten terintegrasi.",
+            features: ["6 platform media sosial", "20 post + story/bulan", "Strategi konten", "Monthly report analitik", "Community management"],
+            cta: "Mulai Pro",
             highlight: true,
-            badge: "Terpopuler",
+            badge: "Terlaris",
           },
           {
             name: "Enterprise",
-            price: "Custom",
-            period: "hubungi kami",
-            desc: "Manajemen penuh semua platform untuk brand besar.",
-            features: ["Semua platform", "Konten tak terbatas", "Influencer outreach", "Paid ads integration", "Dedicated account manager", "Brand monitoring 24/7"],
-            cta: "Konsultasi Gratis",
-            highlight: false,
+            price: "Rp 9.000.000",
+            period: "/bulan",
+            desc: "Solusi lengkap untuk brand besar dengan kebutuhan konten tinggi.",
+            features: ["Unlimited platform", "Konten video profesional", "Dedicated account manager", "Weekly report & analitik", "Influencer coordination"],
+            cta: "Hubungi Kami",
           },
         ]}
       />
