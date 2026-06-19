@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="flex flex-wrap gap-3 text-sm text-gray-300">
               <span>{formatDate(post.publishedAt)}</span>
               <span>·</span><span>{post.readTime} mnt baca</span>
-              <span>·</span><span>{post.wordCount.toLocaleString()} kata</span>
+              <span>·</span><span>{(post.wordCount || 0).toLocaleString()} kata</span>
 
             </div>
           </div>
