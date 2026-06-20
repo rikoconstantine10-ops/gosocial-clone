@@ -1,0 +1,3537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edurep Article Generator</title>
+<style>
+:root {
+  --bg:#F4F6FA;--surface:#FFF;--surface2:#F0F2F7;--surface3:#E5E8F0;
+  --border:#DDE1EC;--border2:#C8CEDF;
+  --text:#1A1D2E;--text2:#4A5068;--text3:#8891AA;
+  --accent:#4F46E5;--accent2:#6D64F0;--accent-dim:rgba(79,70,229,.10);
+  --green:#16A34A;--green-dim:rgba(22,163,74,.10);
+  --yellow:#B45309;--yellow-dim:rgba(180,83,9,.10);
+  --red:#DC2626;--red-dim:rgba(220,38,38,.10);
+  --orange:#C2410C;--orange-dim:rgba(194,65,12,.10);
+  --blue:#1D4ED8;--blue-dim:rgba(29,78,216,.10);
+  --purple:#7C3AED;--purple-dim:rgba(124,58,237,.10);
+  --r:10px;--rs:6px;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.04);
+  --sh-md:0 4px 12px rgba(0,0,0,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.6}
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* ── Sidebar ── */
+.sidebar{width:224px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow-y:auto}
+.sidebar-logo{padding:18px 16px 14px;border-bottom:1px solid var(--border);flex-shrink:0}
+.logo-mark{display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--accent) 0%,#7C3AED 100%);display:flex;align-items:center;justify-content:center;font-size:17px}
+.logo-text{font-size:13px;font-weight:700;color:var(--text)}
+.logo-sub{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px}
+.sidebar-nav{padding:10px 8px;flex:1}
+.nav-section{margin-bottom:18px}
+.nav-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;padding:0 10px;margin-bottom:3px;display:flex;align-items:center;gap:5px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:var(--rs);cursor:pointer;color:var(--text2);font-size:13px;transition:background .12s,color .12s;user-select:none;border:none;background:none;width:100%;text-align:left;font-family:inherit}
+.nav-item:hover{background:var(--surface2);color:var(--text)}
+.nav-item.active{background:var(--accent-dim);color:var(--accent);font-weight:600}
+.nav-item .icon{font-size:15px;width:20px;text-align:center;flex-shrink:0}
+.nav-badge{margin-left:auto;font-size:10px;font-weight:600;background:var(--accent-dim);color:var(--accent);padding:1px 7px;border-radius:10px;flex-shrink:0}
+.nav-badge.red{background:var(--red-dim);color:var(--red)}
+.nav-badge.green{background:var(--green-dim);color:var(--green)}
+.sidebar-footer{padding:12px 14px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);flex-shrink:0}
+.api-status{display:flex;align-items:center;gap:6px;margin-top:4px}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--text3)}
+.status-dot.ok{background:var(--green)}
+.status-dot.err{background:var(--red)}
+
+/* ── Main ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.topbar{padding:13px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;background:var(--surface);flex-shrink:0;box-shadow:var(--sh)}
+.topbar-title{font-size:15px;font-weight:600;flex:1;color:var(--text)}
+.topbar-actions{display:flex;gap:8px}
+.content{flex:1;overflow-y:auto;padding:24px}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rs);font-size:13px;font-weight:500;cursor:pointer;border:1px solid transparent;transition:all .12s;white-space:nowrap;font-family:inherit;line-height:1}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 1px 3px rgba(79,70,229,.25)}
+.btn-primary:hover{background:var(--accent2)}
+.btn-ghost{background:var(--surface);color:var(--text2);border-color:var(--border2);box-shadow:var(--sh)}
+.btn-ghost:hover{background:var(--surface2);color:var(--text)}
+.btn-danger{background:var(--red-dim);color:var(--red)}
+.btn-danger:hover{background:var(--red);color:#fff}
+.btn-success{background:var(--green-dim);color:var(--green)}
+.btn-success:hover{background:var(--green);color:#fff}
+.btn-warning{background:var(--yellow-dim);color:var(--yellow)}
+.btn-warning:hover{background:var(--yellow);color:#fff}
+.btn-sm{padding:4px 10px;font-size:12px}
+.btn:disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
+
+/* ── Cards ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+
+/* ── Stats ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-bottom:22px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;cursor:pointer;transition:all .12s;box-shadow:var(--sh)}
+.stat-card:hover{border-color:var(--accent);box-shadow:var(--sh-md);transform:translateY(-1px)}
+.stat-value{font-size:26px;font-weight:700;line-height:1;margin-bottom:4px}
+.stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+
+/* ── Badges ── */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500}
+.badge-queued{background:var(--surface3);color:var(--text2)}
+.badge-generating{background:var(--blue-dim);color:var(--blue)}
+.badge-draft{background:var(--yellow-dim);color:var(--yellow)}
+.badge-scheduled{background:var(--orange-dim);color:var(--orange)}
+.badge-published{background:var(--green-dim);color:var(--green)}
+.badge-rejected{background:var(--red-dim);color:var(--red)}
+.badge-error{background:var(--red-dim);color:var(--red)}
+
+/* ── Table ── */
+.table-wrap{overflow-x:auto;border-radius:var(--r);border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse}
+thead{background:var(--surface2)}
+th{padding:9px 14px;text-align:left;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;border-bottom:1px solid var(--border)}
+td{padding:10px 14px;border-top:1px solid var(--border);vertical-align:middle}
+tr:hover td{background:var(--surface2)}
+.td-title{max-width:260px}
+.td-title-text{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);display:block}
+.td-sub{color:var(--text3);font-size:11px;display:block}
+.td-actions{display:flex;gap:4px;white-space:nowrap}
+
+/* ── Forms ── */
+.form-group{margin-bottom:14px}
+label{display:block;font-size:12px;color:var(--text2);margin-bottom:5px;font-weight:500}
+input,textarea,select{width:100%;padding:8px 12px;background:var(--surface);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color .12s,box-shadow .12s;box-shadow:var(--sh)}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
+textarea{resize:vertical;min-height:100px}
+input[type=checkbox]{width:auto}
+
+/* ── Modal ── */
+.modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(15,15,30,.4);display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(2px)}
+.modal-overlay.hidden{display:none}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:var(--sh-md)}
+.modal-title{font-size:15px;font-weight:700;margin-bottom:18px;color:var(--text)}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)}
+
+/* ── Filter bar ── */
+.filter-bar{display:flex;gap:8px;margin-bottom:14px;align-items:center;flex-wrap:wrap}
+.filter-bar input{max-width:200px;flex:1;min-width:120px}
+.filter-bar select{width:auto;min-width:130px}
+
+/* ── Empty state ── */
+.empty{text-align:center;padding:56px 24px;color:var(--text3)}
+.empty-icon{font-size:34px;margin-bottom:10px}
+.empty-text{font-size:14px;margin-bottom:4px;color:var(--text2)}
+
+/* ── QC Score ── */
+.qc-score{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600}
+.qc-high{color:var(--green)}.qc-mid{color:var(--yellow)}.qc-low{color:var(--red)}
+
+/* ── KB / Guideline textarea ── */
+.kb-textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Fira Code','JetBrains Mono',monospace;font-size:12px;line-height:1.65;padding:14px;resize:vertical;box-shadow:inset 0 1px 3px rgba(0,0,0,.04)}
+.kb-textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-dim)}
+
+/* ── Uni grid ── */
+.uni-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.uni-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh);transition:all .12s;cursor:pointer}
+.uni-card:hover{border-color:var(--accent);box-shadow:var(--sh-md);transform:translateY(-1px)}
+.uni-card-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.uni-card-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.uni-card-footer{margin-top:8px;display:flex;justify-content:space-between;align-items:center}
+
+/* ── Calendar ── */
+.calendar-header{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.calendar-month{font-size:15px;font-weight:600}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-day-label{text-align:center;font-size:11px;color:var(--text3);text-transform:uppercase;padding:5px 0}
+.cal-day{min-height:72px;background:var(--surface);border-radius:var(--rs);padding:5px;border:1px solid var(--border)}
+.cal-day.other-month{opacity:.4}
+.cal-day.today{border-color:var(--accent);background:var(--accent-dim)}
+.cal-date{font-size:11px;color:var(--text3);margin-bottom:3px}
+.cal-event{font-size:10px;padding:2px 5px;border-radius:4px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.cal-event.draft{background:var(--yellow-dim);color:var(--yellow)}
+.cal-event.published{background:var(--green-dim);color:var(--green)}
+.cal-event.error{background:var(--red-dim);color:var(--red)}
+.cal-event.queued{background:var(--surface3);color:var(--text2)}
+.cal-event.generating{background:var(--blue-dim);color:var(--blue)}
+
+/* ── Log ── */
+.log-entry{padding:5px 0;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:flex-start}
+.log-time{font-size:11px;color:var(--text3);white-space:nowrap;flex-shrink:0}
+.log-level{font-size:10px;font-weight:700;text-transform:uppercase;width:40px;flex-shrink:0}
+.log-level.info{color:var(--blue)}.log-level.warn{color:var(--yellow)}.log-level.error{color:var(--red)}
+.log-msg{font-size:12px;color:var(--text2);word-break:break-all}
+
+/* ── Toast ── */
+#toast{position:fixed;bottom:20px;right:20px;z-index:9999;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 16px;border-radius:var(--rs);font-size:13px;display:none;max-width:320px;box-shadow:var(--sh-md)}
+#toast.show{display:block;animation:slideUp .18s ease}
+#toast.toast-ok{border-left:3px solid var(--green)}
+#toast.toast-err{border-left:3px solid var(--red)}
+@keyframes slideUp{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* ── Batch rows ── */
+.batch-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.batch-row input{flex:1}
+.add-more{display:flex;align-items:center;gap:5px;color:var(--accent);cursor:pointer;font-size:13px;margin-top:4px}
+.add-more:hover{color:var(--accent2)}
+
+/* ── Tabs ── */
+.tab-bar{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid var(--border)}
+.tab-btn{padding:6px 16px;font-size:12px;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;color:var(--text3);cursor:pointer;font-weight:400;font-family:inherit;transition:color .12s}
+.tab-btn.active{border-bottom-color:var(--accent);color:var(--accent);font-weight:600}
+
+/* ── SEO ── */
+.seo-scan-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;box-shadow:var(--sh);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.seo-scan-info{flex:1;min-width:180px}
+.seo-scan-title{font-size:13px;font-weight:600;margin-bottom:3px}
+.seo-scan-meta{font-size:11px;color:var(--text3)}
+.seo-result-chip{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.chip-ok{background:var(--green-dim);color:var(--green)}
+.chip-warn{background:var(--yellow-dim);color:var(--yellow)}
+.chip-err{background:var(--red-dim);color:var(--red)}
+.chip-gray{background:var(--surface3);color:var(--text2)}
+
+/* ── GSC ── */
+.gsc-stat{text-align:center;padding:12px}
+.gsc-stat-val{font-size:22px;font-weight:700;color:var(--accent)}
+.gsc-stat-lbl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+/* ── Data section ── */
+.data-section{background:var(--surface2);border-radius:var(--rs);padding:12px;margin-bottom:10px;border:1px solid var(--border)}
+.data-section-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.data-item{font-size:12px;color:var(--text2);margin-bottom:4px;display:flex;gap:8px}
+.data-key{color:var(--text3);min-width:90px;flex-shrink:0}
+
+/* ── New badge ── */
+.new-badge{font-size:9px;background:var(--accent-dim);color:var(--accent);padding:1px 5px;border-radius:8px;font-weight:700}
+
+/* ── Misc ── */
+.hidden{display:none!important}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent2);text-decoration:underline}
+code{background:var(--surface2);border:1px solid var(--border);padding:1px 6px;border-radius:4px;font-size:12px;font-family:monospace;color:var(--accent2)}
+.divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px}
+.section-header h2{font-size:14px;font-weight:600;color:var(--text)}
+.flex-gap{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.spin{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+/* Article edit mode */
+#article-preview-content[contenteditable="true"] { outline: 2px solid #3b82f6; cursor: text; }
+#article-preview-content[contenteditable="true"] img { cursor: pointer; transition: outline 0.15s; }
+#article-preview-content[contenteditable="true"] img:hover { outline: 3px solid #f59e0b; }
+#img-picker-panel {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 560px; max-width: 95vw; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.4); z-index: 9999; padding: 20px; display: none;
+}
+#img-picker-panel.open { display: block; }
+#img-picker-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 9998; display: none; }
+#img-picker-overlay.open { display: block; }
+.img-picker-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; max-height: 320px; overflow-y: auto; margin-top: 12px; }
+.img-picker-grid img { width: 100%; height: 100px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.15s; }
+.img-picker-grid img:hover { border-color: #3b82f6; }
+
+/* Upload spinner */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { width:18px; height:18px; border:2px solid var(--border); border-top-color:#3b82f6; border-radius:50%; animation: spin .6s linear infinite; flex-shrink:0; }
+#img-upload-status { align-items:center; gap:8px; font-size:12px; padding:6px 0; }
+
+/* Rich text editor toolbar */
+#editor-toolbar { flex-wrap:wrap; gap:3px; padding:6px 8px; background:var(--surface); border:1px solid var(--border); border-radius:8px; margin-bottom:8px; position:sticky; top:0; z-index:10; }
+.tb-btn { padding:3px 8px; border:1px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text); cursor:pointer; font-size:12px; line-height:1.5; transition:background .1s; }
+.tb-btn:hover, .tb-btn.active { background:var(--border); }
+.tb-sep { width:1px; background:var(--border); margin:2px 4px; flex-shrink:0; align-self:stretch; }
+.tb-sel { padding:3px 6px; border:1px solid var(--border); border-radius:4px; background:var(--surface); color:var(--text); cursor:pointer; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">
+        <div class="logo-icon">✍️</div>
+        <div>
+          <div class="logo-text">Edurep AG</div>
+          <div class="logo-sub">Article Generator</div>
+        </div>
+      </div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <div class="nav-label">Workspace</div>
+        <button class="nav-item active" data-page="dashboard" id="nav-dashboard">
+          <span class="icon">📊</span>Dashboard
+        </button>
+        <button class="nav-item" data-page="articles" id="nav-articles">
+          <span class="icon">📋</span>Articles
+          <span class="nav-badge" id="badge-draft">0</span>
+        </button>
+        <button class="nav-item" data-page="calendar" id="nav-calendar">
+          <span class="icon">📅</span>Calendar
+        </button>
+        <button class="nav-item" data-page="queue" id="nav-queue">
+          <span class="icon">⏳</span>Queue
+          <span class="nav-badge red" id="badge-queue">0</span>
+        </button>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Management</div>
+        <button class="nav-item" data-page="published" id="nav-published">
+          <span class="icon">✅</span>Published
+          <span class="nav-badge green" id="badge-published">0</span>
+        </button>
+        <button class="nav-item" data-page="rejected" id="nav-rejected">
+          <span class="icon">❌</span>Rejected
+        </button>
+        <button class="nav-item" data-page="archive" id="nav-archive">
+          <span class="icon">🗄️</span>Archive
+          <span class="nav-badge" id="badge-archive">0</span>
+        </button>
+        <a class="nav-item" href="http://43.134.15.212:3006" target="_blank" style="text-decoration:none;color:inherit">
+          <span class="icon">🏫</span>PDM Dashboard
+        </a>
+        <button class="nav-item" data-page="knowledge" id="nav-knowledge">
+          <span class="icon">📖</span>Knowledge Base
+        </button>
+        <button class="nav-item" data-page="settings" id="nav-settings">
+          <span class="icon">⚙️</span>Settings
+        </button>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">Content Tools <span class="new-badge">NEW</span></div>
+        <button class="nav-item" data-page="trending" id="nav-trending">
+          <span class="icon">🔥</span>Trending Topics
+        </button>
+        <button class="nav-item" data-page="schedule" id="nav-schedule">
+          <span class="icon">🗓️</span>Article Schedule
+        </button>
+      </div>
+      <div class="nav-section">
+        <div class="nav-label">SEO Suite</div>
+        <button class="nav-item" data-page="gsc" id="nav-gsc">
+          <span class="icon">📈</span>GSC Performance
+        </button>
+        <button class="nav-item" data-page="seo-health" id="nav-seo-health">
+          <span class="icon">🩺</span>Site Health
+        </button>
+        <button class="nav-item" data-page="seo-broken" id="nav-seo-broken">
+          <span class="icon">🔗</span>Broken Links
+          <span class="nav-badge red" id="badge-broken"></span>
+        </button>
+        <button class="nav-item" data-page="seo-spam" id="nav-seo-spam">
+          <span class="icon">🛡️</span>Spam Check
+          <span class="nav-badge red" id="badge-spam"></span>
+        </button>
+        <button class="nav-item" data-page="seo-competitor" id="nav-seo-competitor">
+          <span class="icon">🏆</span>Competitor
+        </button>
+        <button class="nav-item" data-page="seo-keyword" id="nav-seo-keyword">
+          <span class="icon">🔍</span>Keyword Research
+        </button>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div style="font-weight:600;color:var(--text2);margin-bottom:5px">System Status</div>
+      <div class="api-status">
+        <div class="status-dot" id="dot-api"></div>
+        <span id="status-api">Checking...</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main class="main">
+    <header class="topbar">
+      <div class="topbar-title" id="page-title">Dashboard</div>
+      <div class="topbar-actions">
+        <button class="btn btn-ghost btn-sm" id="btn-refresh">↻ Refresh</button>
+        <button class="btn btn-primary btn-sm" id="btn-new-article">+ New Article</button>
+      </div>
+    </header>
+    <div class="content" id="content">
+      <div class="empty"><div class="empty-icon">⏳</div><div class="empty-text">Loading...</div></div>
+    </div>
+  </main>
+</div>
+
+<!-- ══ MODAL: New Article ══ -->
+<div class="modal-overlay hidden" id="modal-add">
+  <div class="modal">
+    <div class="modal-title">New Article(s)</div>
+    <div id="batch-rows"></div>
+    <div class="add-more" id="btn-add-row">＋ Add another title</div>
+    <div class="form-group" style="margin-top:14px">
+      <label>Scheduled Date (optional)</label>
+      <input type="datetime-local" id="modal-scheduled">
+    </div>
+    <div class="form-group">
+      <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+        <input type="checkbox" id="run-now"> Run pipeline immediately
+      </label>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="modal-add">Cancel</button>
+      <button class="btn btn-primary" id="btn-submit-articles">Add Articles</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: Article Detail ══ -->
+<div class="modal-overlay hidden" id="modal-detail">
+  <div class="modal" style="max-width:900px;width:95vw">
+    <div class="modal-title" id="detail-title">Article Detail</div>
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="info" id="tab-btn-info">Info</button>
+      <button class="tab-btn" data-tab="preview" id="tab-btn-preview">Preview Artikel</button>
+      <button class="tab-btn" data-tab="logs" id="tab-btn-logs">Logs</button>
+    </div>
+    <div id="tab-panel-info"></div>
+    <div id="tab-panel-preview" class="hidden"></div>
+    <div id="tab-panel-logs" class="hidden"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="modal-detail">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: University Detail ══ -->
+<div class="modal-overlay hidden" id="modal-uni">
+  <div class="modal" style="max-width:720px;width:95vw">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div class="modal-title" style="margin-bottom:0" id="uni-modal-title">University Detail</div>
+      <button class="btn btn-ghost btn-sm" id="btn-uni-edit-toggle">✏️ Edit</button>
+    </div>
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="uni-info">Info</button>
+      <button class="tab-btn" data-tab="uni-data">📊 Data Kampus</button>
+      <button class="tab-btn" data-tab="uni-articles">Articles</button>
+    </div>
+    <div id="tab-panel-uni-info"></div>
+    <div id="tab-panel-uni-data" class="hidden"></div>
+    <div id="tab-panel-uni-articles" class="hidden"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="modal-uni">Tutup</button>
+      <button class="btn btn-primary hidden" id="btn-uni-save">💾 Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: Confirm ══ -->
+<div class="modal-overlay hidden" id="modal-confirm">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-title" id="confirm-title">Konfirmasi</div>
+    <p id="confirm-msg" style="font-size:13px;color:var(--text2);margin-bottom:4px"></p>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="modal-confirm">Batal</button>
+      <button class="btn btn-danger" id="btn-confirm-ok">Ya, lanjutkan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div id="toast"></div>
+
+<script>
+'use strict';
+// ═══════════════════════════════════════════════════════════
+//  CONFIG
+// ═══════════════════════════════════════════════════════════
+const API = {
+  h: () => ({ 'Content-Type':'application/json', 'x-api-key': 'claude2026' }),
+  get:  (url)       => fetch(url, { headers: API.h() }).then(r=>r.json()),
+  post: (url, data) => fetch(url, { method:'POST',  headers: API.h(), body: JSON.stringify(data||{}) }).then(r=>r.json()),
+  patch:(url, data) => fetch(url, { method:'PATCH', headers: API.h(), body: JSON.stringify(data||{}) }).then(r=>r.json()),
+  del:  (url)       => fetch(url, { method:'DELETE',headers: API.h() }).then(r=>r.json()),
+};
+
+// ═══════════════════════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════════════════════
+const state = {
+  page: 'dashboard',
+  stats: {},
+  articles: { data:[], total:0, offset:0, limit:25, status:'all', search:'' },
+  archive: { total:0, offset:0, limit:25, search:'', source:'all', dateFrom:'', dateTo:'' },
+  calMonth: new Date(),
+  currentArticle: null,
+  currentUni: null,
+  confirmCb: null,
+  detailTab: 'info',
+  uniTab: 'uni-info',
+  uniEditMode: false,
+};
+
+// ═══════════════════════════════════════════════════════════
+//  TOAST
+// ═══════════════════════════════════════════════════════════
+let _toastTimer;
+function toast(msg, type='ok') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = `show toast-${type}`;
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => { el.className=''; }, 3000);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  MODAL HELPERS
+// ═══════════════════════════════════════════════════════════
+function openModal(id)  { document.getElementById(id).classList.remove('hidden'); }
+function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
+
+function confirm(title, msg, cb) {
+  document.getElementById('confirm-title').textContent = title;
+  document.getElementById('confirm-msg').textContent   = msg;
+  state.confirmCb = cb;
+  openModal('modal-confirm');
+}
+
+document.getElementById('btn-confirm-ok').onclick = () => {
+  closeModal('modal-confirm');
+  if (state.confirmCb) state.confirmCb();
+};
+
+// Close modals via data-close buttons
+document.querySelectorAll('[data-close]').forEach(btn => {
+  btn.addEventListener('click', () => closeModal(btn.dataset.close));
+});
+
+// Close modal on overlay click
+['modal-add','modal-detail','modal-uni','modal-confirm'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target === this) closeModal(id);
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════════════════════════════
+const PAGE_TITLES = {
+  dashboard:'Dashboard', articles:'Articles', calendar:'Calendar',
+  queue:'Queue', published:'Published', rejected:'Rejected',
+  universities:'Universities', knowledge:'Knowledge Base', settings:'Settings', archive:'Archive (Semua Artikel)',
+  trending:'Trending Topics', schedule:'Article Schedule',
+  gsc:'GSC Performance', 'seo-health':'Site Health', 'seo-broken':'Broken Links',
+  'seo-spam':'Spam Check', 'seo-competitor':'Competitor Analysis', 'seo-keyword':'Keyword Research'
+};
+
+function navigateFiltered(page, filter) {
+  navigate(page);
+  if (filter) {
+    // After page renders, set the status dropdown and re-fetch
+    setTimeout(() => {
+      const sel = document.getElementById('art-status');
+      if (sel && sel.value !== filter) {
+        sel.value = filter;
+        renderArticles(filter);
+      }
+    }, 150);
+  }
+}
+
+function navigate(page) {
+  state.page = page;
+  // Update active nav
+  document.querySelectorAll('.nav-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.page === page);
+  });
+  // Update topbar title
+  document.getElementById('page-title').textContent = PAGE_TITLES[page] || page;
+  // Show/hide new article button
+  const btnNew = document.getElementById('btn-new-article');
+  btnNew.classList.toggle('hidden', !['dashboard','articles','queue'].includes(page));
+  // Render page
+  renderPage(page);
+}
+
+// Wire up all nav-item buttons
+document.querySelectorAll('.nav-item[data-page]').forEach(btn => {
+  btn.addEventListener('click', () => navigate(btn.dataset.page));
+});
+
+// Topbar buttons
+document.getElementById('btn-refresh').addEventListener('click', () => renderPage(state.page));
+document.getElementById('btn-new-article').addEventListener('click', showAddModal);
+
+// ═══════════════════════════════════════════════════════════
+//  ROUTER
+// ═══════════════════════════════════════════════════════════
+function renderPage(page) {
+  const content = document.getElementById('content');
+  content.innerHTML = `<div class="empty"><div class="empty-icon"><span class="spin" style="display:inline-block">⏳</span></div><div class="empty-text">Loading ${PAGE_TITLES[page]||page}...</div></div>`;
+  ({
+    dashboard:        renderDashboard,
+    articles:         () => renderArticles('all'),
+    queue:            () => { state.articles.status = 'queued,generating'; renderArticles('queued,generating'); },
+    published:        () => renderArticles('published'),
+    rejected:         () => renderArticles('rejected'),
+    archive:          renderArchive,
+    calendar:         renderCalendar,
+    universities:     renderUniversities,
+    knowledge:        renderKnowledge,
+    settings:         renderSettings,
+    trending:         renderTrending,
+    schedule:         renderSchedule,
+    gsc:              renderGsc,
+    'seo-health':     renderSeoHealth,
+    'seo-broken':     renderSeoBroken,
+    'seo-spam':       renderSeoSpam,
+    'seo-competitor': renderSeoCompetitor,
+    'seo-keyword':    renderSeoKeyword,
+  }[page] || renderDashboard)();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  UTILS
+// ═══════════════════════════════════════════════════════════
+function fmtDate(s) {
+  if (!s) return '—';
+  return new Date(s).toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'});
+}
+function fmtDt(s) {
+  if (!s) return '—';
+  return new Date(s).toLocaleString('id-ID',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+}
+function badge(status) {
+  return `<span class="badge badge-${status}">${status}</span>`;
+}
+function qcBadge(score) {
+  if (!score) return '<span style="color:var(--text3)">—</span>';
+  const cls = score >= 70 ? 'qc-high' : score >= 50 ? 'qc-mid' : 'qc-low';
+  return `<span class="qc-score ${cls}">★ ${score}</span>`;
+}
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function setHtml(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+function emptyState(icon, text, subtext='') {
+  return `<div class="empty"><div class="empty-icon">${icon}</div><div class="empty-text">${text}</div>${subtext?`<div style="font-size:12px;color:var(--text3);margin-top:4px">${subtext}</div>`:''}</div>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  HEALTH CHECK + BADGE REFRESH
+// ═══════════════════════════════════════════════════════════
+async function checkHealth() {
+  try {
+    const r = await fetch('/api/health');
+    const dot = document.getElementById('dot-api');
+    const lbl = document.getElementById('status-api');
+    if (r.ok) {
+      dot.className = 'status-dot ok';
+      lbl.textContent = 'API Online';
+    } else { throw new Error(); }
+  } catch {
+    document.getElementById('dot-api').className = 'status-dot err';
+    document.getElementById('status-api').textContent = 'API Offline';
+  }
+}
+
+async function refreshBadges() {
+  try {
+    const s = await API.get('/api/articles/stats');
+    state.stats = s;
+    const d = (id, val) => { const el=document.getElementById(id); if(el) el.textContent=val||''; };
+    d('badge-draft', s.draft || '');
+    d('badge-queue', (s.queued||0)+(s.generating||0) || '');
+    d('badge-published', s.published || '');
+  } catch {}
+  try {
+    const a = await API.get('/api/archive/stats');
+    const el = document.getElementById('badge-archive');
+    if (el) el.textContent = a.total || '';
+  } catch {}
+}
+
+// ═══════════════════════════════════════════════════════════
+//  DASHBOARD
+// ═══════════════════════════════════════════════════════════
+async function renderDashboard() {
+  try {
+    const [stats, queue] = await Promise.all([
+      API.get('/api/articles/stats'),
+      API.get('/api/articles/queue/status'),
+    ]);
+    state.stats = stats;
+    refreshBadges();
+
+    const statCards = [
+      { label:'Total',      value: stats.total||0,      color:'var(--text)',   page:'articles',   filter:''          },
+      { label:'Queue',      value: (stats.queued||0)+(stats.generating||0), color:'var(--blue)',   page:'queue',      filter:'queued,generating' },
+      { label:'Draft',      value: stats.draft||0,       color:'var(--yellow)', page:'articles',   filter:'draft'     },
+      { label:'Scheduled',  value: stats.scheduled||0,   color:'var(--orange)', page:'articles',   filter:'scheduled' },
+      { label:'Published',  value: stats.published||0,   color:'var(--green)',  page:'published',  filter:''          },
+      { label:'Rejected',   value: stats.rejected||0,    color:'var(--red)',    page:'rejected',   filter:''          },
+      { label:'Error',      value: stats.error||0,       color:'var(--red)',    page:'articles',   filter:'error'     },
+    ];
+
+    const queueInfo = queue.running
+      ? `<span style="color:var(--blue);font-weight:600">● Running</span> — ${queue.queued} in queue`
+      : `<span style="color:var(--text3)">● Idle</span>`;
+
+    const html = `
+      <div class="stats-grid">
+        ${statCards.map(c => `
+          <div class="stat-card" onclick="navigateFiltered('${c.page}','${c.filter||''}')">
+            <div class="stat-value" style="color:${c.color}">${c.value}</div>
+            <div class="stat-label">${c.label}</div>
+          </div>`).join('')}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card">
+          <div class="section-header"><h2>Pipeline Status</h2></div>
+          <div style="font-size:13px;margin-bottom:10px">${queueInfo}</div>
+          ${queue.running || queue.queued > 0 ? `
+            <div style="font-size:12px;color:var(--text3);margin-bottom:10px">
+              Article IDs in queue: ${queue.queue?.slice(0,8).join(', ')||'—'}${queue.queue?.length>8?' ...':''}
+            </div>` : ''}
+          <div class="flex-gap">
+            <button class="btn btn-ghost btn-sm" onclick="runAllQueued()">▶ Run All Queued</button>
+            <button class="btn btn-ghost btn-sm" onclick="syncRmScore()">↻ Sync RM Score</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header"><h2>Quick Actions</h2></div>
+          <div class="flex-gap" style="flex-direction:column;align-items:flex-start;gap:8px">
+            <button class="btn btn-primary btn-sm" onclick="showAddModal()">＋ Add Article</button>
+            <button class="btn btn-ghost btn-sm" onclick="navigate('calendar')">📅 View Calendar</button>
+            <button class="btn btn-ghost btn-sm" onclick="window.open('http://43.134.15.212:3006','_blank')">🎓 Manage Universities</button>
+            <button class="btn btn-ghost btn-sm" onclick="navigate('gsc')">📈 GSC Performance</button>
+            <button class="btn btn-ghost btn-sm" onclick="navigate('trending')">🔥 Trending Topics</button>
+            <button class="btn btn-ghost btn-sm" onclick="navigate('schedule')">🗓️ Article Schedule</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById('content').innerHTML = html;
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️', 'Gagal load dashboard', e.message);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ARTICLES LIST
+// ═══════════════════════════════════════════════════════════
+async function renderArticles(statusFilter) {
+  const s = state.articles;
+  if (statusFilter !== undefined) { s.status = statusFilter; s.offset = 0; }
+  // Support comma-separated statuses e.g. 'queued,generating'
+  try {
+    const statusVal = s.status || 'all';
+    const params = new URLSearchParams({
+      status: statusVal, limit: s.limit, offset: s.offset,
+      ...(s.search ? { search: s.search } : {})
+    });
+    const data = await API.get(`/api/articles?${params}`);
+    const { articles, total } = data;
+    const pages = Math.ceil(total / s.limit);
+    const curPage = Math.floor(s.offset / s.limit) + 1;
+
+    const filterBar = `
+      <div class="filter-bar">
+        <input id="art-search" placeholder="Cari judul / keyword..." value="${esc(s.search)}" style="max-width:220px">
+        <select id="art-status">
+          ${['all','queued,generating','queued','generating','draft','scheduled','published','rejected','error'].map(v =>
+            `<option value="${v}" ${s.status===v?'selected':''}>${v==='all'?'All Status':v==='queued,generating'?'Queue (active)':v}</option>`).join('')}
+        </select>
+        <button class="btn btn-ghost btn-sm" id="art-search-btn">Cari</button>
+        <span style="margin-left:auto;font-size:12px;color:var(--text3)">${total} artikel</span>
+      </div>`;
+
+    const rows = articles.length === 0
+      ? `<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text3)">Tidak ada artikel</td></tr>`
+      : articles.map(a => `
+        <tr>
+          <td class="td-title">
+            <span class="td-title-text">${esc(a.title)}</span>
+            <span class="td-sub">${esc(a.focus_keyword||a.keyword||'')}</span>
+          </td>
+          <td>${badge(a.status)}</td>
+          <td>${qcBadge(a.qc_score)}</td>
+          <td style="font-size:12px;color:var(--text3)">${fmtDate(a.created_at)}</td>
+          <td>${a.wp_url ? `<a href="${esc(a.wp_url)}" target="_blank" style="font-size:11px">↗ WP</a>` : '—'}</td>
+          <td class="td-actions">
+            <button class="btn btn-ghost btn-sm" onclick="openDetail(${a.id})">Detail</button>
+            ${a.status==='draft'?`<button class="btn btn-success btn-sm" onclick="approveArticle(${a.id})">✓ Approve</button>`:''}
+            ${['error','rejected','queued'].includes(a.status)?`<button class="btn btn-warning btn-sm" onclick="rerunArticle(${a.id})">↺ Run</button>`:''}
+            <button class="btn btn-danger btn-sm" onclick="deleteArticle(${a.id}, '${esc(a.title)}')">✕</button>
+          </td>
+        </tr>`).join('');
+
+    const pagination = pages > 1 ? `
+      <div class="flex-gap" style="justify-content:center;margin-top:12px">
+        <button class="btn btn-ghost btn-sm" ${curPage<=1?'disabled':''} onclick="artPage(${curPage-2})">← Prev</button>
+        <span style="font-size:12px;color:var(--text3)">Hal ${curPage} / ${pages}</span>
+        <button class="btn btn-ghost btn-sm" ${curPage>=pages?'disabled':''} onclick="artPage(${curPage})">Next →</button>
+      </div>` : '';
+
+    document.getElementById('content').innerHTML = `
+      ${filterBar}
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Judul</th><th>Status</th><th>QC</th><th>Dibuat</th><th>WP</th><th>Aksi</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${pagination}
+    `;
+
+    // Wire filter bar
+    document.getElementById('art-search-btn').onclick = () => {
+      s.search = document.getElementById('art-search').value;
+      s.status = document.getElementById('art-status').value;
+      s.offset = 0;
+      renderArticles();
+    };
+    document.getElementById('art-search').onkeydown = e => {
+      if (e.key==='Enter') document.getElementById('art-search-btn').click();
+    };
+    document.getElementById('art-status').onchange = () => {
+      document.getElementById('art-search-btn').click();
+    };
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Gagal load articles',e.message);
+  }
+}
+
+function artPage(pageIdx) {
+  state.articles.offset = pageIdx * state.articles.limit;
+  renderArticles();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ARCHIVE — Article Generator + WP Full-Site Backup (gabungan)
+// ════════════════════════════════════════════════════════════════
+async function renderArchive() {
+  const s = state.archive;
+  try {
+    const params = new URLSearchParams({
+      source: s.source, limit: s.limit, offset: s.offset,
+      ...(s.search ? { search: s.search } : {}),
+      ...(s.dateFrom ? { date_from: s.dateFrom } : {}),
+      ...(s.dateTo ? { date_to: s.dateTo } : {}),
+    });
+    const [data, allStats] = await Promise.all([
+      API.get(`/api/archive?${params}`),
+      API.get('/api/archive/stats'),
+    ]);
+    const { articles, total, sources, wp_backup_available } = data;
+    const pages = Math.ceil(total / s.limit);
+    const curPage = Math.floor(s.offset / s.limit) + 1;
+
+    const totalCard = `
+      <div class="card" style="margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+          <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px">Total Semua Artikel</div>
+          <div style="font-size:28px;font-weight:700;color:var(--text)">${allStats.total||0}</div>
+        </div>
+        <div style="display:flex;gap:18px;font-size:12px;color:var(--text2)">
+          <div><span style="color:var(--accent);font-weight:600">${allStats.generator||0}</span> dari Article Generator</div>
+          <div><span style="color:var(--purple);font-weight:600">${allStats.wp_backup||0}</span> dari WP Backup</div>
+        </div>
+      </div>`;
+
+    const filterBar = `
+      <div class="filter-bar" style="flex-wrap:wrap">
+        <input id="arc-search" placeholder="Cari judul artikel..." value="${esc(s.search)}" style="max-width:220px">
+        <select id="arc-source">
+          <option value="all" ${s.source==='all'?'selected':''}>Semua Sumber</option>
+          <option value="generator" ${s.source==='generator'?'selected':''}>Article Generator (${sources?.generator??0})</option>
+          <option value="wp_backup" ${s.source==='wp_backup'?'selected':''}>WP Backup (${sources?.wp_backup??0})</option>
+        </select>
+        <span style="font-size:11px;color:var(--text3)">📅 Dari</span>
+        <input type="date" id="arc-date-from" value="${esc(s.dateFrom)}" style="max-width:150px">
+        <span style="font-size:11px;color:var(--text3)">Sampai</span>
+        <input type="date" id="arc-date-to" value="${esc(s.dateTo)}" style="max-width:150px">
+        <button class="btn btn-ghost btn-sm" id="arc-search-btn">Cari</button>
+        ${(s.dateFrom||s.dateTo) ? `<button class="btn btn-ghost btn-sm" id="arc-date-reset">✕ Reset Tanggal</button>` : ''}
+        <span style="margin-left:auto;font-size:12px;color:var(--text3)">${total} artikel (terfilter)</span>
+      </div>
+      ${!wp_backup_available ? `<div style="font-size:12px;color:var(--red);margin-bottom:10px">⚠️ wp_articles_backup.db tidak terbaca di server</div>` : ''}`;
+
+    const sourceTag = (src) => src === 'generator'
+      ? `<span class="badge" style="background:var(--accent-dim);color:var(--accent)">Generator</span>`
+      : `<span class="badge" style="background:var(--purple-dim);color:var(--purple)">WP Backup</span>`;
+
+    const rows = articles.length === 0
+      ? `<tr><td colspan="6" style="text-align:center;padding:40px;color:var(--text3)">Tidak ada artikel</td></tr>`
+      : articles.map(a => `
+        <tr>
+          <td class="td-title">
+            <span class="td-title-text">${esc(a.title)}</span>
+            <span class="td-sub">${esc(a.keyword||'')}</span>
+          </td>
+          <td>${sourceTag(a.source)}</td>
+          <td>${badge(a.status)}</td>
+          <td style="font-size:12px;color:var(--text3)">${a.word_count||'—'}</td>
+          <td style="font-size:12px;color:var(--text3)">${fmtDate(a.published_date||a.created_at)}</td>
+          <td class="td-actions">
+            ${a.url ? `<a href="${esc(a.url)}" target="_blank" class="btn btn-ghost btn-sm">↗ Lihat</a>` : '<span style="color:var(--text3)">—</span>'}
+          </td>
+        </tr>`).join('');
+
+    const pagination = pages > 1 ? `
+      <div class="flex-gap" style="justify-content:center;margin-top:12px">
+        <button class="btn btn-ghost btn-sm" ${curPage<=1?'disabled':''} onclick="archivePage(${curPage-2})">← Prev</button>
+        <span style="font-size:12px;color:var(--text3)">Hal ${curPage} / ${pages}</span>
+        <button class="btn btn-ghost btn-sm" ${curPage>=pages?'disabled':''} onclick="archivePage(${curPage})">Next →</button>
+      </div>` : '';
+
+    document.getElementById('content').innerHTML = `
+      ${totalCard}
+      ${filterBar}
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Judul</th><th>Sumber</th><th>Status</th><th>Words</th><th>Tanggal</th><th>Link</th>
+          </tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+      ${pagination}
+    `;
+
+    document.getElementById('arc-search-btn').onclick = () => {
+      s.search = document.getElementById('arc-search').value;
+      s.source = document.getElementById('arc-source').value;
+      s.dateFrom = document.getElementById('arc-date-from').value;
+      s.dateTo = document.getElementById('arc-date-to').value;
+      s.offset = 0;
+      renderArchive();
+    };
+    document.getElementById('arc-search').onkeydown = e => {
+      if (e.key==='Enter') document.getElementById('arc-search-btn').click();
+    };
+    document.getElementById('arc-source').onchange = () => {
+      document.getElementById('arc-search-btn').click();
+    };
+    document.getElementById('arc-date-from').onchange = () => {
+      document.getElementById('arc-search-btn').click();
+    };
+    document.getElementById('arc-date-to').onchange = () => {
+      document.getElementById('arc-search-btn').click();
+    };
+    const arcDateReset = document.getElementById('arc-date-reset');
+    if (arcDateReset) arcDateReset.onclick = () => {
+      s.dateFrom = ''; s.dateTo = ''; s.offset = 0;
+      renderArchive();
+    };
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Gagal load archive', e.message);
+  }
+}
+
+function archivePage(pageIdx) {
+  state.archive.offset = pageIdx * state.archive.limit;
+  renderArchive();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ARTICLE DETAIL
+// ═══════════════════════════════════════════════════════════
+async function openDetail(id) {
+  state.detailTab = 'info';
+  openModal('modal-detail');
+  setHtml('tab-panel-info', '<div class="empty"><div class="empty-icon spin" style="display:inline-block">⏳</div></div>');
+  setHtml('tab-panel-preview', '');
+  setHtml('tab-panel-logs', '');
+  // Reset tabs
+  document.querySelectorAll('#modal-detail .tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-btn-info').classList.add('active');
+  document.getElementById('tab-panel-info').classList.remove('hidden');
+  document.getElementById('tab-panel-preview').classList.add('hidden');
+  document.getElementById('tab-panel-logs').classList.add('hidden');
+
+  try {
+    const a = await API.get(`/api/articles/${id}`);
+    state.currentArticle = a;
+    document.getElementById('detail-title').textContent = a.title || 'Article Detail';
+
+    // INFO TAB
+    const infoHtml = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+        <div class="data-section">
+          <div class="data-section-title">Identitas</div>
+          <div class="data-item"><span class="data-key">Status</span>${badge(a.status)}</div>
+          <div class="data-item"><span class="data-key">Keyword</span><span>${esc(a.focus_keyword||a.keyword||'—')}</span></div>
+          <div class="data-item"><span class="data-key">QC Score</span>${qcBadge(a.qc_score)}</div>
+          <div class="data-item"><span class="data-key">Word Count</span>${a.word_count||'—'}</div>
+          <div class="data-item"><span class="data-key">WP ID</span>${a.wp_post_id||'—'}</div>
+        </div>
+        <div class="data-section">
+          <div class="data-section-title">Timeline</div>
+          <div class="data-item"><span class="data-key">Dibuat</span>${fmtDt(a.created_at)}</div>
+          <div class="data-item"><span class="data-key">Diupdate</span>${fmtDt(a.updated_at)}</div>
+          <div class="data-item"><span class="data-key">Scheduled</span>${fmtDate(a.scheduled_date)}</div>
+          <div class="data-item"><span class="data-key">Published</span>${fmtDate(a.published_date)}</div>
+        </div>
+      </div>
+      ${a.meta_description?`<div class="data-section"><div class="data-section-title">Meta Description</div><p style="font-size:12px;color:var(--text2)">${esc(a.meta_description)}</p></div>`:''}
+      ${a.error_message?`<div class="data-section" style="border-color:var(--red)"><div class="data-section-title" style="color:var(--red)">Error</div><p style="font-size:12px;color:var(--red)">${esc(a.error_message)}</p></div>`:''}
+      ${a.wp_url?`<div class="data-section"><div class="data-section-title">WordPress URL</div><a href="${esc(a.wp_url)}" target="_blank" style="font-size:12px;word-break:break-all">${esc(a.wp_url)}</a></div>`:''}
+      <div class="flex-gap" style="margin-top:14px">
+        ${a.status==='draft'?`<button class="btn btn-success btn-sm" onclick="approveArticle(${a.id},true)">✓ Approve & Publish</button>`:''}
+        ${['error','rejected','queued'].includes(a.status)?`<button class="btn btn-warning btn-sm" onclick="rerunArticle(${a.id},true)">↺ Re-run Pipeline</button>`:''}
+        ${a.status==='draft'?`<button class="btn btn-danger btn-sm" onclick="rejectArticle(${a.id},true)">✕ Reject</button>`:''}
+        ${a.wp_post_id?`<a href="/api/articles/${a.id}/preview?token=claude2026" target="_blank" class="btn btn-ghost btn-sm">👁 Preview</a>`:''}
+      </div>`;
+    setHtml('tab-panel-info', infoHtml);
+
+    // PREVIEW TAB
+    if (a.content_html) {
+      setHtml('tab-panel-preview', `
+        <div class="data-section" style="margin-bottom:10px">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+            <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px">
+              <span><strong>Keyword:</strong> ${esc(a.focus_keyword||a.keyword||'—')}</span>
+              <span><strong>Words:</strong> ${a.word_count||0}</span>
+              <span><strong>QC:</strong> ${a.qc_score||0}/100</span>
+            </div>
+            <div style="display:flex;gap:6px">
+              <button class="btn btn-sm btn-ghost" id="btn-preview-edit" onclick="toggleArticleEdit(${a.id})">Edit</button>
+              <button class="btn btn-sm" id="btn-preview-save" onclick="saveArticleContent(${a.id})" style="display:none;background:#22c55e;color:#fff;border:none;border-radius:6px;padding:4px 12px;cursor:pointer">Simpan</button>
+              <button class="btn btn-sm btn-ghost" id="btn-preview-cancel" onclick="cancelArticleEdit()" style="display:none">Batal</button>
+            </div>
+          </div>
+        </div>
+        <div id="editor-toolbar" style="display:none">
+          <button class="tb-btn" onclick="fmt('bold')" title="Bold"><b>B</b></button>
+          <button class="tb-btn" onclick="fmt('italic')" title="Italic"><i>I</i></button>
+          <button class="tb-btn" onclick="fmt('underline')" title="Underline"><u>U</u></button>
+          <button class="tb-btn" onclick="fmt('strikeThrough')" title="Strikethrough"><s>S</s></button>
+          <span class="tb-sep"></span>
+          <select class="tb-sel" onchange="fmt('formatBlock',this.value);this.selectedIndex=0" title="Format blok">
+            <option>Format</option>
+            <option value="h2">H2</option>
+            <option value="h3">H3</option>
+            <option value="h4">H4</option>
+            <option value="p">Paragraf</option>
+            <option value="blockquote">Kutipan</option>
+          </select>
+          <span class="tb-sep"></span>
+          <button class="tb-btn" onclick="fmt('insertUnorderedList')" title="Bullet list">&#8226; List</button>
+          <button class="tb-btn" onclick="fmt('insertOrderedList')" title="Numbered list">1. List</button>
+          <span class="tb-sep"></span>
+          <button class="tb-btn" onclick="changeFontSize(1)" title="Perbesar teks">A+</button>
+          <button class="tb-btn" onclick="changeFontSize(-1)" title="Perkecil teks">A&#8722;</button>
+          <span class="tb-sep"></span>
+          <button class="tb-btn" onclick="insertImgAtCursor()" title="Sisipkan gambar di posisi kursor">&#128444; + Gambar</button>
+        </div>
+        <div id="article-preview-content" style="font-size:14px;line-height:1.75;max-height:55vh;overflow-y:auto;border:1px solid var(--border);border-radius:8px;padding:20px;background:var(--surface)">${a.content_html}</div>
+      `);
+    } else {
+      setHtml('tab-panel-preview', emptyState('📄','Belum ada konten','Jalankan pipeline dulu.'));
+    }
+
+    // LOGS TAB
+    const logs = a.logs || [];
+    setHtml('tab-panel-logs', logs.length === 0
+      ? emptyState('📋','Belum ada log')
+      : `<div style="max-height:55vh;overflow-y:auto">${logs.map(l=>`
+          <div class="log-entry">
+            <span class="log-time">${fmtDt(l.created_at)}</span>
+            <span class="log-level ${l.level||'info'}">${l.level||'INFO'}</span>
+            <span class="log-msg">${esc(l.message)}</span>
+          </div>`).join('')}</div>`);
+
+    // Wire tabs
+    document.querySelectorAll('#modal-detail .tab-btn').forEach(btn => {
+      btn.onclick = () => {
+        const tab = btn.dataset.tab;
+        document.querySelectorAll('#modal-detail .tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        ['info','preview','logs'].forEach(t => {
+          const panel = document.getElementById(`tab-panel-${t}`);
+          if (panel) panel.classList.toggle('hidden', t !== tab);
+        });
+      };
+    });
+  } catch(e) {
+    setHtml('tab-panel-info', emptyState('⚠️','Gagal load detail',e.message));
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ARTICLE ACTIONS
+// ═══════════════════════════════════════════════════════════
+async function approveArticle(id, fromModal=false) {
+  try {
+    await API.post(`/api/articles/${id}/approve`);
+    toast('Artikel di-approve dan dikirim ke WordPress ✓');
+    if (fromModal) closeModal('modal-detail');
+    refreshBadges();
+    renderPage(state.page);
+  } catch(e) { toast('Gagal approve: '+e.message,'err'); }
+}
+
+async function rerunArticle(id, fromModal=false) {
+  try {
+    await API.post(`/api/articles/${id}/run`);
+    toast('Pipeline dijadwalkan ulang ✓');
+    if (fromModal) closeModal('modal-detail');
+    refreshBadges();
+    renderPage(state.page);
+  } catch(e) { toast('Gagal re-run: '+e.message,'err'); }
+}
+
+async function rejectArticle(id, fromModal=false) {
+  confirm('Reject Artikel','Artikel akan ditandai rejected dan tidak dipublish.', async()=>{
+    try {
+      await API.post(`/api/articles/${id}/reject`,{reason:'Rejected via dashboard'});
+      toast('Artikel di-reject');
+      if (fromModal) closeModal('modal-detail');
+      refreshBadges();
+      renderPage(state.page);
+    } catch(e) { toast('Gagal reject: '+e.message,'err'); }
+  });
+}
+
+async function deleteArticle(id, title) {
+  confirm('Hapus Artikel',`"${title}" akan dihapus dari DB dan WordPress (jika ada).`, async()=>{
+    try {
+      const r = await API.del(`/api/articles/${id}`);
+      toast(`Artikel dihapus${r.wpDeleted?' (+ dari WP)':''} ✓`);
+      refreshBadges();
+      renderPage(state.page);
+    } catch(e) { toast('Gagal hapus: '+e.message,'err'); }
+  });
+}
+
+async function runAllQueued() {
+  try {
+    const r = await API.post('/api/articles/batch/run-queued');
+    toast(`${r.count} artikel diqueue ✓`);
+    refreshBadges();
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+async function syncRmScore() {
+  try {
+    await API.post('/api/articles/sync-rm-score');
+    toast('Sync Rank Math score dimulai di background...');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ADD ARTICLE MODAL
+// ═══════════════════════════════════════════════════════════
+function showAddModal() {
+  document.getElementById('batch-rows').innerHTML = '';
+  document.getElementById('modal-scheduled').value = '';
+  document.getElementById('run-now').checked = false;
+  addBatchRow();
+  openModal('modal-add');
+}
+
+function addBatchRow() {
+  const wrap = document.getElementById('batch-rows');
+  const row = document.createElement('div');
+  row.className = 'batch-row';
+  row.innerHTML = `
+    <input type="text" placeholder="Judul artikel..." class="batch-title">
+    <input type="text" placeholder="Keyword (opsional)" class="batch-keyword" style="max-width:160px">
+    <button class="btn btn-ghost btn-sm" onclick="this.parentElement.remove()" style="flex-shrink:0">✕</button>`;
+  wrap.appendChild(row);
+  row.querySelector('.batch-title').focus();
+}
+
+document.getElementById('btn-add-row').onclick = addBatchRow;
+
+document.getElementById('btn-submit-articles').onclick = async () => {
+  const titles   = [...document.querySelectorAll('.batch-title')].map(i=>i.value.trim()).filter(Boolean);
+  const keywords = [...document.querySelectorAll('.batch-keyword')].map(i=>i.value.trim());
+  if (!titles.length) { toast('Masukkan minimal 1 judul','err'); return; }
+  const articles = titles.map((t,i) => ({ title:t, keyword:keywords[i]||t }));
+  const scheduled_date = document.getElementById('modal-scheduled').value || null;
+  const run_immediately = document.getElementById('run-now').checked;
+  try {
+    const r = await API.post('/api/articles', { articles, scheduled_date, run_immediately });
+    toast(`${r.created?.length||0} artikel ditambahkan ✓`);
+    closeModal('modal-add');
+    refreshBadges();
+    if (['articles','dashboard','queue'].includes(state.page)) renderPage(state.page);
+  } catch(e) { toast('Gagal tambah: '+e.message,'err'); }
+};
+
+// ═══════════════════════════════════════════════════════════
+//  CALENDAR
+// ═══════════════════════════════════════════════════════════
+async function renderCalendar() {
+  const m = state.calMonth;
+  const monthStr = `${m.getFullYear()}-${String(m.getMonth()+1).padStart(2,'0')}`;
+  try {
+    const articles = await API.get(`/api/articles/calendar?month=${monthStr}`);
+    const byDay = {};
+    articles.forEach(a => {
+      const d = (a.scheduled_date||a.published_date||a.created_at||'').split('T')[0];
+      if (!byDay[d]) byDay[d]=[];
+      byDay[d].push(a);
+    });
+    const y = m.getFullYear(), mo = m.getMonth();
+    const firstDay = new Date(y,mo,1).getDay();
+    const daysInMonth = new Date(y,mo+1,0).getDate();
+    const today = new Date().toISOString().split('T')[0];
+
+    const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    const dayLabels = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+
+    let cells = '';
+    // Empty cells before start
+    for (let i=0;i<firstDay;i++) cells += `<div class="cal-day other-month"></div>`;
+    for (let d=1;d<=daysInMonth;d++) {
+      const ds = `${y}-${String(mo+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isToday = ds===today;
+      const evts = byDay[ds]||[];
+      cells += `<div class="cal-day${isToday?' today':''}">
+        <div class="cal-date">${d}</div>
+        ${evts.slice(0,3).map(a=>`<div class="cal-event ${a.status}" title="${esc(a.title)}" onclick="openDetail(${a.id})">${esc(a.title)}</div>`).join('')}
+        ${evts.length>3?`<div style="font-size:10px;color:var(--text3)">+${evts.length-3} lagi</div>`:''}
+      </div>`;
+    }
+
+    document.getElementById('content').innerHTML = `
+      <div class="calendar-header">
+        <button class="btn btn-ghost btn-sm" onclick="calNav(-1)">‹</button>
+        <span class="calendar-month">${monthNames[mo]} ${y}</span>
+        <button class="btn btn-ghost btn-sm" onclick="calNav(1)">›</button>
+        <button class="btn btn-ghost btn-sm" onclick="calToday()">Hari ini</button>
+        <span style="margin-left:auto;font-size:12px;color:var(--text3)">${articles.length} artikel bulan ini</span>
+      </div>
+      <div class="calendar-grid">
+        ${dayLabels.map(d=>`<div class="cal-day-label">${d}</div>`).join('')}
+        ${cells}
+      </div>`;
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Gagal load calendar',e.message);
+  }
+}
+
+function calNav(dir) {
+  const m = state.calMonth;
+  state.calMonth = new Date(m.getFullYear(), m.getMonth()+dir, 1);
+  renderCalendar();
+}
+function calToday() {
+  state.calMonth = new Date();
+  renderCalendar();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  UNIVERSITIES
+// ═══════════════════════════════════════════════════════════
+// ── Universities state ──
+const uniState = {
+  search:'', country:'all', tier:'all', status:'all',
+  view:'card', // 'card' | 'table'
+  limit:50, offset:0, total:0,
+  countries:[], syncPollers:{},
+};
+
+async function renderUniversities() {
+  // Load countries for filter
+  if (!uniState.countries.length) {
+    try { uniState.countries = await API.get('/api/universities/countries'); } catch(e) {}
+  }
+  await loadUniList();
+}
+
+async function loadUniList() {
+  const params = new URLSearchParams({
+    limit: uniState.limit, offset: uniState.offset,
+    ...(uniState.search  ? {search:  uniState.search}  : {}),
+    ...(uniState.country !== 'all' ? {country: uniState.country} : {}),
+    ...(uniState.tier    !== 'all' ? {tier:    uniState.tier}    : {}),
+    ...(uniState.status  !== 'all' ? {status:  uniState.status}  : {}),
+  });
+
+  let unis=[], total=0;
+  try {
+    const data = await API.get(`/api/universities?${params}`);
+    unis  = data.universities||[];
+    total = data.total||unis.length;
+    uniState.total = total;
+    const el = document.getElementById('badge-unis');
+    if (el) el.textContent = total||'';
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Gagal load universities',e.message);
+    return;
+  }
+
+  const pages   = Math.ceil(total / uniState.limit);
+  const curPage = Math.floor(uniState.offset / uniState.limit) + 1;
+
+  const syncStatusChip = (u) => {
+    if (u.sync_status==='running') return `<span class="seo-result-chip chip-warn" style="font-size:10px">⏳ Syncing</span>`;
+    if (u.sync_status==='done')    return `<span class="seo-result-chip chip-ok"   style="font-size:10px">✓ ${u.data_freshness_score||0}%</span>`;
+    if (u.sync_status==='error')   return `<span class="seo-result-chip chip-err"  style="font-size:10px">✗ Error</span>`;
+    return `<span class="seo-result-chip chip-gray" style="font-size:10px">No data</span>`;
+  };
+
+  const tierBadge = t => {
+    const n = parseInt(t)||0;
+    const cls = n===1?'tier-1':n===2?'tier-2':'tier-3';
+    return `<span class="badge ${cls}">T${n}</span>`;
+  };
+
+  const statusBadge = s => {
+    const map = {'Partner':'badge-published','Non Partner':'badge-queued','Prospect':'badge-draft','On Process':'badge-generating'};
+    return `<span class="badge ${map[s]||'badge-queued'}" style="font-size:10px">${esc(s||'—')}</span>`;
+  };
+
+  // ── Stat bar: load stats ──
+  let stats = {};
+  try { stats = await API.get('/api/universities/stats'); } catch(e) {}
+  const synced = stats.synced||0;
+  const syncPct = stats.total ? Math.round(synced/stats.total*100) : 0;
+
+  // ── Filter bar HTML ──
+  const countryOpts = ['all',...(uniState.countries||[])].map(c=>
+    `<option value="${c}" ${uniState.country===c?'selected':''}>${c==='all'?'All Countries':c}</option>`).join('');
+
+  const filterBar = `
+    <div class="filter-bar" style="margin-bottom:10px">
+      <input id="uni-search-inp" placeholder="🔍 Nama universitas..." value="${esc(uniState.search)}" style="max-width:200px;flex:1;min-width:140px">
+      <select id="uni-country-sel">${countryOpts}</select>
+      <select id="uni-tier-sel">
+        <option value="all" ${uniState.tier==='all'?'selected':''}>All Tier</option>
+        ${['1','2','3'].map(v=>`<option value="${v}" ${uniState.tier===v?'selected':''}>Tier ${v}</option>`).join('')}
+      </select>
+      <select id="uni-status-sel">
+        ${['all','Partner','Non Partner','Prospect','On Process'].map(v=>
+          `<option value="${v}" ${uniState.status===v?'selected':''}>${v==='all'?'All Status':v}</option>`).join('')}
+      </select>
+      <button class="btn btn-ghost btn-sm" id="uni-filter-btn">Cari</button>
+      <button class="btn btn-ghost btn-sm" id="uni-view-toggle" title="Toggle view">${uniState.view==='card'?'☰ Table':'▦ Card'}</button>
+    </div>`;
+
+  // ── Summary bar ──
+  const summaryBar = `
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:14px;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r)">
+      <span style="font-size:13px;font-weight:600">${total} universitas</span>
+      <span style="font-size:11px;color:var(--text3)">·</span>
+      <span style="font-size:12px;color:var(--text2)">Synced: <strong style="color:${syncPct>50?'var(--green)':'var(--yellow)'}">${synced} (${syncPct}%)</strong></span>
+      <span style="font-size:11px;color:var(--text3)">·</span>
+      <span style="font-size:12px;color:var(--text2)">Halaman ${curPage}/${pages||1}</span>
+      <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="showBatchSyncModal()">⚡ Batch Sync</button>
+        <button class="btn btn-ghost btn-sm" onclick="showAddUniModal()">＋ Add University</button>
+      </div>
+    </div>`;
+
+  // ── Card view ──
+  const cardView = `
+    <div class="uni-grid" id="uni-grid">
+      ${unis.length===0 ? emptyState('🎓','Tidak ada universitas ditemukan') : unis.map(u=>`
+        <div class="uni-card" id="uni-card-${u.id}" onclick="openUni(${u.id})">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:6px;margin-bottom:6px">
+            <div class="uni-card-name" style="flex:1">${esc(u.name)}</div>
+            ${syncStatusChip(u)}
+          </div>
+          <div class="uni-card-meta">
+            ${u.country?`<span class="badge" style="background:var(--surface3);color:var(--text2);font-size:10px">${esc(u.country)}</span>`:''}
+            ${u.tier?tierBadge(u.tier):''}
+            ${statusBadge(u.status)}
+          </div>
+          <div class="uni-card-footer">
+            <span style="font-size:11px;color:var(--text3)">${u.official_url?`<a href="${esc(u.official_url)}" target="_blank" onclick="event.stopPropagation()" style="font-size:10px;color:var(--accent)">↗ Website</a>`:'No URL'}</span>
+            ${u.data_last_synced?`<span style="font-size:10px;color:var(--text3)">${fmtDate(u.data_last_synced)}</span>`:''}
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+  // ── Table view ──
+  const tableView = `
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:30px"><input type="checkbox" id="uni-check-all" onchange="uniCheckAll(this)"></th>
+          <th>Nama</th><th>Negara</th><th>Tier</th><th>Status</th>
+          <th>Data</th><th>Last Sync</th><th>URL</th><th>Aksi</th>
+        </tr></thead>
+        <tbody>
+          ${unis.length===0 ? `<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--text3)">Tidak ada universitas</td></tr>` :
+          unis.map(u=>`<tr id="uni-row-${u.id}">
+            <td><input type="checkbox" class="uni-chk" value="${u.id}"></td>
+            <td class="td-title" style="cursor:pointer" onclick="openUni(${u.id})">
+              <span class="td-title-text">${esc(u.name)}</span>
+              ${u.notes?`<span class="td-sub">${esc(u.notes.substring(0,40))}</span>`:''}
+            </td>
+            <td style="font-size:12px">${esc(u.country)}</td>
+            <td>${u.tier?tierBadge(u.tier):'—'}</td>
+            <td>${statusBadge(u.status)}</td>
+            <td>${syncStatusChip(u)}</td>
+            <td style="font-size:11px;color:var(--text3);white-space:nowrap">${u.data_last_synced?fmtDate(u.data_last_synced):'—'}</td>
+            <td>${u.official_url?`<a href="${esc(u.official_url)}" target="_blank" style="font-size:11px">↗</a>`:'—'}</td>
+            <td class="td-actions">
+              <button class="btn btn-ghost btn-sm" onclick="openUni(${u.id})">Detail</button>
+              <button class="btn btn-warning btn-sm" id="sync-btn-${u.id}" onclick="syncUni(${u.id},'${esc(u.name)}')">↻ Sync</button>
+            </td>
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap">
+      <div id="uni-bulk-actions" class="hidden flex-gap">
+        <span id="uni-selected-count" style="font-size:12px;color:var(--text2)">0 dipilih</span>
+        <button class="btn btn-warning btn-sm" onclick="bulkSyncSelected()">↻ Sync Selected</button>
+      </div>
+    </div>`;
+
+  // ── Pagination ──
+  const pagination = pages > 1 ? `
+    <div class="flex-gap" style="justify-content:center;margin-top:14px">
+      <button class="btn btn-ghost btn-sm" ${curPage<=1?'disabled':''} onclick="uniPage(${curPage-2})">← Prev</button>
+      <span style="font-size:12px;color:var(--text3)">Hal ${curPage} / ${pages}</span>
+      <button class="btn btn-ghost btn-sm" ${curPage>=pages?'disabled':''} onclick="uniPage(${curPage})">Next →</button>
+    </div>` : '';
+
+  document.getElementById('content').innerHTML = filterBar + summaryBar
+    + (uniState.view==='table' ? tableView : cardView)
+    + pagination;
+
+  // ── Wire filter events ──
+  document.getElementById('uni-filter-btn').onclick = uniApplyFilter;
+  document.getElementById('uni-search-inp').onkeydown = e => { if(e.key==='Enter') uniApplyFilter(); };
+  document.getElementById('uni-country-sel').onchange = uniApplyFilter;
+  document.getElementById('uni-tier-sel').onchange    = uniApplyFilter;
+  document.getElementById('uni-status-sel').onchange  = uniApplyFilter;
+  document.getElementById('uni-view-toggle').onclick  = () => {
+    uniState.view = uniState.view==='card' ? 'table' : 'card';
+    loadUniList();
+  };
+
+  // Checkbox handler untuk table view
+  if (uniState.view==='table') {
+    document.querySelectorAll('.uni-chk').forEach(chk => {
+      chk.addEventListener('change', updateUniSelection);
+    });
+  }
+
+  // Poll running syncs
+  unis.filter(u=>u.sync_status==='running').forEach(u => pollUniSync(u.id));
+}
+
+function uniApplyFilter() {
+  uniState.search  = document.getElementById('uni-search-inp')?.value||'';
+  uniState.country = document.getElementById('uni-country-sel')?.value||'all';
+  uniState.tier    = document.getElementById('uni-tier-sel')?.value||'all';
+  uniState.status  = document.getElementById('uni-status-sel')?.value||'all';
+  uniState.offset  = 0;
+  loadUniList();
+}
+
+function uniPage(pageIdx) {
+  uniState.offset = pageIdx * uniState.limit;
+  loadUniList();
+}
+
+function uniCheckAll(cb) {
+  document.querySelectorAll('.uni-chk').forEach(c => { c.checked = cb.checked; });
+  updateUniSelection();
+}
+
+function updateUniSelection() {
+  const checked = document.querySelectorAll('.uni-chk:checked');
+  const bulk = document.getElementById('uni-bulk-actions');
+  const cnt  = document.getElementById('uni-selected-count');
+  if (bulk) bulk.classList.toggle('hidden', checked.length===0);
+  if (cnt)  cnt.textContent = `${checked.length} dipilih`;
+}
+
+async function bulkSyncSelected() {
+  const ids = [...document.querySelectorAll('.uni-chk:checked')].map(c=>parseInt(c.value));
+  if (!ids.length) return;
+  try {
+    const r = await API.post('/api/universities/sync/batch', { ids });
+    toast(`Sync dimulai untuk ${r.count} universitas`);
+    ids.forEach(id => pollUniSync(id));
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+// ── Sync satu universitas ──
+async function syncUni(id, name) {
+  const btn = document.getElementById(`sync-btn-${id}`);
+  if (btn) { btn.disabled=true; btn.textContent='⏳'; }
+  try {
+    await API.post(`/api/universities/${id}/sync`);
+    toast(`Sync ${name} dimulai...`);
+    pollUniSync(id);
+  } catch(e) { toast('Error: '+e.message,'err'); if(btn){btn.disabled=false;btn.textContent='↻ Sync';} }
+}
+
+// Polling sync status
+function pollUniSync(id) {
+  if (uniState.syncPollers[id]) return; // already polling
+  uniState.syncPollers[id] = setInterval(async () => {
+    try {
+      const s = await API.get(`/api/universities/${id}/sync/status`);
+      // Update chip di card/row
+      const chipHtml = s.sync_status==='running'
+        ? `<span class="seo-result-chip chip-warn" style="font-size:10px">⏳ Syncing</span>`
+        : s.sync_status==='done'
+          ? `<span class="seo-result-chip chip-ok" style="font-size:10px">✓ ${s.data_freshness_score||0}%</span>`
+          : `<span class="seo-result-chip chip-err" style="font-size:10px">✗ Error</span>`;
+      // Card view
+      const card = document.getElementById(`uni-card-${id}`);
+      if (card) {
+        const chip = card.querySelector('.seo-result-chip');
+        if (chip) chip.outerHTML = chipHtml;
+      }
+      // Table view
+      const row = document.getElementById(`uni-row-${id}`);
+      if (row) {
+        const chips = row.querySelectorAll('.seo-result-chip');
+        chips.forEach(c => c.outerHTML = chipHtml);
+        const btn = document.getElementById(`sync-btn-${id}`);
+        if (btn) { btn.disabled=false; btn.textContent='↻ Sync'; }
+      }
+      if (s.sync_status !== 'running') {
+        clearInterval(uniState.syncPollers[id]);
+        delete uniState.syncPollers[id];
+        if (s.sync_status==='done') toast(`✓ Sync selesai: ${s.name} (score ${s.data_freshness_score}%)`);
+        if (s.sync_status==='error') toast(`✗ Sync error: ${s.sync_error||'unknown'}`, 'err');
+      }
+    } catch(e) {
+      clearInterval(uniState.syncPollers[id]);
+      delete uniState.syncPollers[id];
+    }
+  }, 4000);
+}
+
+// ── Batch Sync Modal ──
+function showBatchSyncModal() {
+  const countries = uniState.countries||[];
+  const html = `
+    <div class="modal-title">⚡ Batch Sync Data Kampus</div>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:14px">Fetch data dari website resmi kampus (scraping + Gemini AI parsing). Pilih filter untuk menentukan mana yang di-sync.</p>
+    <div class="form-group">
+      <label>Negara (opsional)</label>
+      <select id="bs-country">
+        <option value="">Semua negara</option>
+        ${countries.map(c=>`<option value="${c}">${c}</option>`).join('')}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tier (opsional)</label>
+      <select id="bs-tier">
+        <option value="">Semua tier</option>
+        ${['1','2','3'].map(v=>`<option value="${v}">Tier ${v}</option>`).join('')}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Status (opsional)</label>
+      <select id="bs-status">
+        <option value="">Semua status</option>
+        ${['Partner','Non Partner','Prospect','On Process'].map(v=>`<option value="${v}">${v}</option>`).join('')}
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Limit (maks per batch)</label>
+      <input type="number" id="bs-limit" value="10" min="1" max="50">
+    </div>
+    <div style="background:var(--yellow-dim);border:1px solid var(--yellow);border-radius:var(--rs);padding:10px 12px;font-size:12px;color:var(--yellow);margin-bottom:14px">
+      ⚠ Proses berjalan di background. Tiap universitas ~30-60 detik. Jangan close browser.
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="modal-confirm">Batal</button>
+      <button class="btn btn-primary" id="bs-start-btn">▶ Mulai Batch Sync</button>
+    </div>`;
+  document.getElementById('confirm-title').textContent = '';
+  document.getElementById('confirm-msg').textContent = '';
+  // Reuse confirm modal body
+  document.getElementById('modal-confirm').querySelector('.modal').innerHTML = html;
+  document.getElementById('confirm-title');
+  openModal('modal-confirm');
+  document.querySelector('[data-close="modal-confirm"]').onclick = () => closeModal('modal-confirm');
+  document.getElementById('bs-start-btn').onclick = async () => {
+    const payload = {
+      country: document.getElementById('bs-country').value||undefined,
+      tier:    document.getElementById('bs-tier').value||undefined,
+      status:  document.getElementById('bs-status').value||undefined,
+      limit:   parseInt(document.getElementById('bs-limit').value)||10,
+    };
+    try {
+      const r = await API.post('/api/universities/sync/batch', payload);
+      toast(`Batch sync dimulai: ${r.count} universitas`);
+      closeModal('modal-confirm');
+      setTimeout(loadUniList, 2000);
+    } catch(e) { toast('Error: '+e.message,'err'); }
+  };
+}
+
+// ── Add University Modal ──
+function showAddUniModal() {
+  const countries = uniState.countries||[];
+  const html = `
+    <div class="modal-title">＋ Add University</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="form-group" style="grid-column:1/-1">
+        <label>Nama Universitas *</label>
+        <input id="au-name" placeholder="Contoh: University of Melbourne">
+      </div>
+      <div class="form-group">
+        <label>Negara *</label>
+        <input id="au-country" list="au-country-list" placeholder="Australia">
+        <datalist id="au-country-list">${countries.map(c=>`<option value="${c}">`).join('')}</datalist>
+      </div>
+      <div class="form-group">
+        <label>Tier</label>
+        <select id="au-tier">
+          ${['1','2','3'].map(v=>`<option value="${v}">Tier ${v}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group" style="grid-column:1/-1">
+        <label>Official Website URL</label>
+        <input id="au-url" placeholder="https://www.unimelb.edu.au">
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="au-status">
+          ${['Non Partner','Partner','Prospect','On Process'].map(v=>`<option value="${v}">${v}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Deal Type</label>
+        <select id="au-deal">
+          ${['Referral','Commission','Direct'].map(v=>`<option value="${v}">${v}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group" style="grid-column:1/-1">
+        <label>Newsletter Email (opsional)</label>
+        <input id="au-email" placeholder="info@university.edu">
+      </div>
+      <div class="form-group" style="grid-column:1/-1">
+        <label>Notes</label>
+        <textarea id="au-notes" style="min-height:60px"></textarea>
+      </div>
+      <div class="form-group" style="grid-column:1/-1">
+        <label style="display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="au-sync-now"> Langsung sync data dari website setelah ditambahkan
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" data-close="modal-confirm">Batal</button>
+      <button class="btn btn-primary" id="au-submit">Tambahkan</button>
+    </div>`;
+  document.getElementById('modal-confirm').querySelector('.modal').innerHTML = html;
+  openModal('modal-confirm');
+  document.querySelector('[data-close="modal-confirm"]').onclick = () => closeModal('modal-confirm');
+  document.getElementById('au-submit').onclick = async () => {
+    const name = document.getElementById('au-name').value.trim();
+    const country = document.getElementById('au-country').value.trim();
+    if (!name || !country) { toast('Nama dan negara wajib diisi','err'); return; }
+    const payload = {
+      name, country,
+      tier:              parseInt(document.getElementById('au-tier').value)||1,
+      official_url:      document.getElementById('au-url').value.trim(),
+      status:            document.getElementById('au-status').value,
+      deal_type:         document.getElementById('au-deal').value,
+      newsletter_email:  document.getElementById('au-email').value.trim(),
+      notes:             document.getElementById('au-notes').value.trim(),
+    };
+    try {
+      const r = await API.post('/api/universities', payload);
+      toast(`${name} ditambahkan ✓`);
+      closeModal('modal-confirm');
+      if (document.getElementById('au-sync-now')?.checked && payload.official_url) {
+        await API.post(`/api/universities/${r.id}/sync`);
+        toast('Sync data dimulai di background...');
+        pollUniSync(r.id);
+      }
+      uniState.offset = 0;
+      loadUniList();
+    } catch(e) { toast('Gagal tambah: '+e.message,'err'); }
+  };
+}
+
+// ── University Detail Modal ──
+async function openUni(id) {
+  openModal('modal-uni');
+  setHtml('tab-panel-uni-info','<div class="empty"><div class="empty-icon spin" style="display:inline-block">⏳</div></div>');
+  setHtml('tab-panel-uni-data','');
+  setHtml('tab-panel-uni-articles','');
+  document.getElementById('btn-uni-save').classList.add('hidden');
+  document.getElementById('btn-uni-edit-toggle').textContent = '✏️ Edit';
+
+  // Reset tabs
+  document.querySelectorAll('#modal-uni .tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#modal-uni .tab-btn')[0]?.classList.add('active');
+  document.getElementById('tab-panel-uni-info').classList.remove('hidden');
+  document.getElementById('tab-panel-uni-data').classList.add('hidden');
+  document.getElementById('tab-panel-uni-articles').classList.add('hidden');
+
+  try {
+    const u = await API.get(`/api/universities/${id}`);
+    state.currentUni = u;
+    document.getElementById('uni-modal-title').textContent = u.name||'University';
+
+    // ── Parse data_json ──
+    let d = {};
+    try { d = JSON.parse(u.data_json||'{}'); } catch(e) {}
+
+    const viewHtml = `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+        <div class="data-section">
+          <div class="data-section-title">Info Dasar</div>
+          <div class="data-item"><span class="data-key">Negara</span>${esc(u.country||'—')}</div>
+          <div class="data-item"><span class="data-key">Tier</span>${u.tier?`Tier ${u.tier}`:'—'}</div>
+          <div class="data-item"><span class="data-key">Status</span>${esc(u.status||'—')}</div>
+          <div class="data-item"><span class="data-key">Deal</span>${esc(u.deal_type||'—')}</div>
+          ${u.official_url?`<div class="data-item"><span class="data-key">Website</span><a href="${esc(u.official_url)}" target="_blank" style="font-size:11px;word-break:break-all">${esc(u.official_url)}</a></div>`:''}
+        </div>
+        <div class="data-section">
+          <div class="data-section-title">Sync Status</div>
+          <div class="data-item"><span class="data-key">Status</span>
+            ${u.sync_status==='running'?'<span style="color:var(--blue)">⏳ Running</span>':
+              u.sync_status==='done'   ?'<span style="color:var(--green)">✓ Done</span>':
+              u.sync_status==='error'  ?`<span style="color:var(--red)">✗ Error</span>`:'Never'}
+          </div>
+          <div class="data-item"><span class="data-key">Last Sync</span>${u.data_last_synced?fmtDt(u.data_last_synced):'—'}</div>
+          <div class="data-item"><span class="data-key">Freshness</span>
+            <span style="font-weight:600;color:${(u.data_freshness_score||0)>=60?'var(--green)':(u.data_freshness_score||0)>=30?'var(--yellow)':'var(--red)'}">${u.data_freshness_score||0}/100</span>
+          </div>
+          ${u.sync_error?`<div class="data-item" style="color:var(--red);font-size:11px">${esc(u.sync_error.substring(0,80))}</div>`:''}
+          <div style="margin-top:8px">
+            <button class="btn btn-warning btn-sm" id="modal-sync-btn" onclick="syncUniFromModal(${u.id})">↻ Sync Data Sekarang</button>
+          </div>
+        </div>
+      </div>
+      ${u.notes?`<div class="data-section"><div class="data-section-title">Notes</div><p style="font-size:12px;color:var(--text2)">${esc(u.notes)}</p></div>`:''}
+    `;
+    setHtml('tab-panel-uni-info', viewHtml);
+    setHtml('tab-panel-uni-data', renderUniDataTab(d, u));
+    // Tambah tombol Edit Data di dalam tab panel
+    const dataPanel = document.getElementById('tab-panel-uni-data');
+    if (dataPanel) {
+      const editBar = document.createElement('div');
+      editBar.id = 'data-tab-editbar';
+      editBar.style.cssText = 'display:flex;justify-content:flex-end;margin-bottom:12px;gap:8px';
+      editBar.innerHTML = `<button class="btn btn-ghost btn-sm" onclick="toggleDataEdit(${u.id})">✏️ Edit Data Manual</button>`;
+      dataPanel.prepend(editBar);
+    }
+
+    // Articles tab
+    const articles = u.articles || [];
+    const artHtml = articles.length===0
+      ? emptyState('📋','Belum ada artikel untuk universitas ini')
+      : `<div style="margin-bottom:10px;display:flex;gap:8px">
+           <button class="btn btn-primary btn-sm" onclick="createArticleForUni(${u.id},'${esc(u.name)}')">＋ Buat Artikel Baru</button>
+         </div>
+         <div class="table-wrap"><table><thead><tr><th>Judul</th><th>Status</th><th>QC</th><th>Dibuat</th><th>Aksi</th></tr></thead><tbody>
+          ${articles.map(a=>`<tr>
+            <td class="td-title"><span class="td-title-text">${esc(a.title)}</span></td>
+            <td>${badge(a.status)}</td>
+            <td>${qcBadge(a.qc_score)}</td>
+            <td style="font-size:11px;color:var(--text3)">${fmtDate(a.created_at)}</td>
+            <td><button class="btn btn-ghost btn-sm" onclick="closeModal('modal-uni');openDetail(${a.id})">Detail</button></td>
+          </tr>`).join('')}
+        </tbody></table></div>`;
+    setHtml('tab-panel-uni-articles', artHtml);
+
+    // Wire tabs
+    document.querySelectorAll('#modal-uni .tab-btn').forEach(btn=>{
+      btn.onclick=()=>{
+        const tab=btn.dataset.tab;
+        document.querySelectorAll('#modal-uni .tab-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        ['uni-info','uni-data','uni-articles'].forEach(t=>{
+          const p=document.getElementById(`tab-panel-${t}`);
+          if(p) p.classList.toggle('hidden',t!==tab);
+        });
+      };
+    });
+
+    document.getElementById('btn-uni-edit-toggle').onclick = ()=>toggleUniEdit();
+    if (u.sync_status==='running') pollUniSync(u.id);
+  } catch(e) {
+    setHtml('tab-panel-uni-info', emptyState('⚠️','Gagal load university',e.message));
+  }
+}
+
+// ── Render Tab Data Kampus (dedicated tab) ──
+function renderUniDataTab(d, u) {
+  if (!d || !Object.keys(d).length) {
+    return `<div style="text-align:center;padding:40px;color:var(--text3)">
+      <div style="font-size:28px;margin-bottom:10px">📭</div>
+      <div style="font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px">Belum ada data tersync</div>
+      <div style="font-size:12px;margin-bottom:16px">Klik tombol <strong>↻ Sync Data Sekarang</strong> di tab Info<br>untuk fetch data dari website resmi kampus.</div>
+    </div>`;
+  }
+
+  const programs  = d.programs||d.programs_mentioned||[];
+  const tuition   = d.tuition||d.tuition_updates||[];
+  const req       = d.entry_requirements||{};
+  const reqUG     = req.undergraduate||req.ug||{};
+  const reqPG     = req.postgraduate||req.pg||{};
+  const intake    = d.intake||d.intake_dates||[];
+  const scholar   = d.scholarships||d.scholarship_updates||[];
+  const ranking   = d.ranking||d.ranking_updates||[];
+  const campus    = d.campus||{};
+  const stats     = d.student_stats||{};
+  const faqs      = d.faqs||d.faq||[];
+  const deadlines = d.important_deadlines||d.deadlines||[];
+  const contact   = d.contact||{};
+  const ielts     = d.ielts_requirements||[];
+
+  const section = (icon, title, content, id='') =>
+    `<div class="data-section" style="margin-bottom:12px" ${id?`id="${id}"`:''}><div class="data-section-title">${icon} ${title}</div>${content}</div>`;
+
+  const tag = (t, color='var(--accent)', bg='var(--accent-dim)') =>
+    `<span style="display:inline-flex;padding:3px 9px;border-radius:8px;font-size:11px;font-weight:500;background:${bg};color:${color};margin:2px">${esc(String(t))}</span>`;
+
+  const noData = (msg='Belum ada data') =>
+    `<div style="color:var(--text3);font-size:12px;font-style:italic;padding:6px 0">${msg}</div>`;
+
+  // ── Quick copy box untuk article writer ──
+  const summaryBox = `<div style="background:var(--accent-dim);border:1px solid var(--accent);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;font-size:12px">
+    <div style="font-weight:700;color:var(--accent);margin-bottom:6px">📝 Quick Summary untuk Artikel</div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;color:var(--text)">
+      ${ranking.length?`<span>🏆 Ranking: <strong>${esc(String(ranking[0].rank||ranking[0].position||'?'))} ${esc(String(ranking[0].source||''))}</strong></span>`:''}
+      ${campus.city?`<span>📍 <strong>${esc(campus.city)}</strong></span>`:''}
+      ${stats.total_students?`<span>👥 <strong>${esc(String(stats.total_students))}</strong> mahasiswa</span>`:''}
+      ${stats.founded_year?`<span>🏛 Berdiri <strong>${esc(String(stats.founded_year))}</strong></span>`:''}
+      ${intake.length?`<span>📅 Intake: <strong>${intake.slice(0,2).map(i=>esc(String(i.intake||i.semester||i))).join(', ')}</strong></span>`:''}
+      ${reqUG.ielts_min?`<span>📖 IELTS UG: <strong>${esc(String(reqUG.ielts_min))}</strong></span>`:''}
+      ${reqPG.ielts_min?`<span>📖 IELTS PG: <strong>${esc(String(reqPG.ielts_min))}</strong></span>`:''}
+    </div>
+    <div style="margin-top:8px;font-size:11px;color:var(--text3)">Strategy: ${esc(d.strategy_used||'—')} · Synced: ${d.last_sync_date?fmtDate(d.last_sync_date):'—'}</div>
+  </div>`;
+
+  // ── PROGRAMS ──
+  const programsHtml = programs.length===0 ? noData() : (() => {
+    const lvlMap = {};
+    programs.forEach(p => {
+      const name = typeof p==='object'?(p.name||p.title||JSON.stringify(p)):String(p);
+      const lvl  = (typeof p==='object'&&p.level)||'General';
+      if (!lvlMap[lvl]) lvlMap[lvl]=[];
+      lvlMap[lvl].push(name);
+    });
+    return Object.entries(lvlMap).map(([lvl, progs])=>`
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:5px">${esc(lvl)} (${progs.length})</div>
+        <div>${progs.map(p=>tag(p)).join('')}</div>
+      </div>`).join('');
+  })();
+
+  // ── TUITION FEE ──
+  const tuitionHtml = tuition.length===0 ? noData() :
+    `<div class="table-wrap"><table>
+      <thead><tr><th>Program / Jenjang</th><th>Biaya</th><th>Mata Uang</th><th>Per</th><th>Catatan</th></tr></thead>
+      <tbody>${tuition.map(t=>`<tr>
+        <td>${esc(String(t.program||t.name||t.level||'—'))}</td>
+        <td style="font-weight:700;color:var(--accent)">${esc(String(t.fee_amount||t.fee||t.amount||t.tuition||'—'))}</td>
+        <td>${esc(String(t.fee_currency||t.currency||'—'))}</td>
+        <td>${esc(String(t.fee_period||t.period||t.per||t.frequency||'per year'))}</td>
+        <td style="font-size:11px;color:var(--text3)">${esc(String(t.note||t.notes||''))}</td>
+      </tr>`).join('')}</tbody>
+    </table></div>`;
+
+  // ── REQUIREMENTS ──
+  const buildReqBlock = (level, r) => {
+    if (!r||!Object.keys(r).length) return '';
+    return `<div style="margin-bottom:12px">
+      <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:8px;padding:4px 10px;background:var(--surface2);border-radius:var(--rs);display:inline-block">${esc(level)}</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">
+        ${r.ielts_min?`<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:8px 12px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:var(--accent)">${esc(String(r.ielts_min))}</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase">IELTS Min</div>
+        </div>`:''}
+        ${r.toefl_min?`<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:8px 12px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:var(--blue)">${esc(String(r.toefl_min))}</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase">TOEFL Min</div>
+        </div>`:''}
+        ${r.gpa_min?`<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:8px 12px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:var(--green)">${esc(String(r.gpa_min))}</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase">GPA Min</div>
+        </div>`:''}
+        ${r.sat_min?`<div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--rs);padding:8px 12px;text-align:center">
+          <div style="font-size:16px;font-weight:700;color:var(--purple)">${esc(String(r.sat_min))}</div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase">SAT Min</div>
+        </div>`:''}
+      </div>
+      ${r.gmat_min?`<div style="font-size:12px;color:var(--text2);margin-top:6px">GMAT min: <strong>${esc(String(r.gmat_min))}</strong></div>`:''}
+      ${r.notes||r.other?`<div style="font-size:11px;color:var(--text3);margin-top:6px;padding:6px 8px;background:var(--surface2);border-radius:4px">${esc(String(r.notes||r.other))}</div>`:''}
+    </div>`;
+  };
+
+  const hasReq = Object.keys(reqUG).length || Object.keys(reqPG).length || ielts.length;
+  const reqHtml = !hasReq ? noData() : `
+    ${buildReqBlock('Undergraduate (S1)', reqUG)}
+    ${buildReqBlock('Postgraduate (S2/S3)', reqPG)}
+    ${ielts.length?`<div style="margin-top:8px">
+      <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:5px">Syarat IELTS per Program</div>
+      <div class="table-wrap"><table><thead><tr><th>Program</th><th>IELTS Score</th></tr></thead>
+        <tbody>${ielts.map(i=>`<tr><td>${esc(String(i.program||'—'))}</td><td style="font-weight:700">${esc(String(i.score||'—'))}</td></tr>`).join('')}</tbody>
+      </table></div>
+    </div>`:''}`;
+
+  // ── RANKING ──
+  const rankingHtml = ranking.length===0 ? noData() :
+    `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px">
+      ${ranking.map(r=>`<div style="background:var(--accent-dim);border:1px solid rgba(79,70,229,.2);border-radius:var(--r);padding:12px 16px;text-align:center;min-width:100px">
+        <div style="font-size:22px;font-weight:800;color:var(--accent)">#${esc(String(r.rank||r.position||'?'))}</div>
+        <div style="font-size:11px;font-weight:600;color:var(--text2);margin-top:2px">${esc(String(r.source||r.type||'—'))}</div>
+        ${r.year?`<div style="font-size:10px;color:var(--text3)">${esc(String(r.year))}</div>`:''}
+        ${r.subject?`<div style="font-size:10px;color:var(--text3)">${esc(String(r.subject))}</div>`:''}
+      </div>`).join('')}
+    </div>`;
+
+  // ── SCHOLARSHIPS ──
+  const scholarHtml = scholar.length===0 ? noData() :
+    `<div class="table-wrap"><table>
+      <thead><tr><th>Nama Beasiswa</th><th>Nominal</th><th>Syarat</th><th>Deadline</th><th>Jenjang</th></tr></thead>
+      <tbody>${scholar.map(s=>`<tr>
+        <td style="font-weight:500">${esc(String(s.name||'—'))}</td>
+        <td style="color:var(--green);font-weight:600">${esc(String(s.amount||s.nominal||'—'))} ${esc(String(s.currency||''))}</td>
+        <td style="font-size:11px;color:var(--text2)">${esc(String(s.requirements||s.eligibility||s.syarat||'—'))}</td>
+        <td style="color:var(--orange);font-size:11px">${esc(String(s.deadline||'—'))}</td>
+        <td style="font-size:11px">${esc(String(s.level||s.jenjang||'—'))}</td>
+      </tr>`).join('')}</tbody>
+    </table></div>`;
+
+  // ── INTAKE / DEADLINES ──
+  const intakeHtml = (intake.length||deadlines.length)===0 ? noData() : `
+    ${intake.length?`<div style="margin-bottom:10px">
+      <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:6px">Intake Dates</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        ${intake.map(i=>`<div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--rs);padding:8px 14px;font-size:12px">
+          <div style="font-weight:600">${esc(String(i.intake||i.semester||i.period||'—'))}</div>
+          ${i.year?`<div style="font-size:10px;color:var(--text3)">${esc(String(i.year))}</div>`:''}
+          ${i.deadline?`<div style="font-size:11px;color:var(--orange)">Deadline: ${esc(String(i.deadline))}</div>`:''}
+          ${i.open?`<div style="font-size:10px;color:var(--blue)">Open: ${esc(String(i.open))}</div>`:''}
+        </div>`).join('')}
+      </div>
+    </div>`:''}
+    ${deadlines.length?`<div>
+      <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:6px">Important Deadlines</div>
+      ${deadlines.map(dl=>`<div style="display:flex;gap:10px;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px">
+        <span style="color:var(--orange);flex-shrink:0;min-width:90px">${esc(String(dl.date||'—'))}</span>
+        <span>${esc(String(dl.event||dl.description||'—'))}</span>
+      </div>`).join('')}
+    </div>`:''}`;
+
+  // ── CAMPUS INFO ──
+  const campusHtml = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:10px">
+      ${campus.city?`<div class="data-section" style="margin-bottom:0"><div class="data-section-title">Lokasi</div>${esc(campus.city)}${campus.country?', '+esc(campus.country):''}</div>`:''}
+      ${stats.founded_year?`<div class="data-section" style="margin-bottom:0"><div class="data-section-title">Berdiri</div>${esc(String(stats.founded_year))}</div>`:''}
+      ${stats.total_students?`<div class="data-section" style="margin-bottom:0"><div class="data-section-title">Mahasiswa</div>${esc(String(stats.total_students))}</div>`:''}
+      ${stats.international_students?`<div class="data-section" style="margin-bottom:0"><div class="data-section-title">Intl. Students</div>${esc(String(stats.international_students))}</div>`:''}
+      ${campus.type?`<div class="data-section" style="margin-bottom:0"><div class="data-section-title">Tipe</div>${esc(String(campus.type))}</div>`:''}
+      ${stats.student_staff_ratio?`<div class="data-section" style="margin-bottom:0"><div class="data-section-title">Student:Staff</div>${esc(String(stats.student_staff_ratio))}</div>`:''}
+    </div>
+    ${campus.address?`<div style="font-size:12px;color:var(--text2)">📍 ${esc(campus.address)}</div>`:''}
+    ${contact.email||contact.phone?`<div style="font-size:12px;color:var(--text2);margin-top:4px">
+      ${contact.phone?`📞 ${esc(contact.phone)}`:''}
+      ${contact.email?` · ✉ <a href="mailto:${esc(contact.email)}">${esc(contact.email)}</a>`:''}
+    </div>`:''}
+    ${campus.facilities?.length?`<div style="margin-top:8px"><div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:4px">Fasilitas</div>
+      <div>${campus.facilities.map(f=>tag(typeof f==='object'?(f.name||f):f,'var(--text2)','var(--surface3)')).join('')}</div>
+    </div>`:''}`;
+
+  const hasCampus = campus.city||stats.founded_year||stats.total_students||contact.email;
+
+  // ── FAQ ──
+  const faqHtml = faqs.length===0 ? '' :
+    `<div>${faqs.slice(0,8).map(f=>`<div style="margin-bottom:10px;padding:10px;background:var(--surface2);border-radius:var(--rs);border-left:3px solid var(--accent)">
+      <div style="font-weight:600;font-size:12px;margin-bottom:4px">❓ ${esc(String(f.question||f.q||''))}</div>
+      <div style="font-size:12px;color:var(--text2)">${esc(String(f.answer||f.a||''))}</div>
+    </div>`).join('')}</div>`;
+
+  return `
+    ${summaryBox}
+    ${section('🎓', `Program / Jurusan (${programs.length})`, programsHtml)}
+    ${section('💰', 'Biaya Kuliah (Tuition Fee)', tuitionHtml)}
+    ${section('📝', 'Syarat Masuk (Entry Requirements)', reqHtml)}
+    ${section('🏆', `Ranking (${ranking.length})`, rankingHtml)}
+    ${section('🎁', `Beasiswa (${scholar.length})`, scholarHtml)}
+    ${section('📅', 'Intake & Deadline', intakeHtml)}
+    ${hasCampus ? section('🏛', 'Info Kampus', campusHtml) : ''}
+    ${faqs.length ? section('❓', `FAQ (${faqs.length})`, faqHtml) : ''}
+  `;
+}
+
+
+// ═══════════════════════════════════════════════════════════
+//  DATA KAMPUS — EDIT MANUAL
+// ═══════════════════════════════════════════════════════════
+let _dataEditMode = false;
+
+function toggleDataEdit(uniId) {
+  _dataEditMode = !_dataEditMode;
+  const panel = document.getElementById('tab-panel-uni-data');
+  const btn   = panel?.querySelector('#data-tab-editbar button');
+  if (_dataEditMode) {
+    if (btn) btn.textContent = '✕ Batal Edit';
+    const u = state.currentUni;
+    let d = {};
+    try { d = JSON.parse(u.data_json||'{}'); } catch(e) {}
+    // Insert edit form setelah editbar, ganti konten di bawahnya
+    const editbar = document.getElementById('data-tab-editbar');
+    if (!editbar) return;
+    // Hapus semua konten setelah editbar
+    let sib = editbar.nextSibling;
+    while (sib) { const next = sib.nextSibling; sib.remove(); sib = next; }
+    // Render form
+    const form = document.createElement('div');
+    form.id = 'data-edit-form';
+    form.innerHTML = renderDataEditForm(d, u);
+    panel.appendChild(form);
+    // Wire save button
+    document.getElementById('data-edit-save-btn').onclick = () => saveDataEdit(uniId);
+  } else {
+    if (btn) btn.textContent = '✏️ Edit Data Manual';
+    // Reload tab dengan data fresh
+    const u = state.currentUni;
+    let d = {};
+    try { d = JSON.parse(u.data_json||'{}'); } catch(e) {}
+    const panel = document.getElementById('tab-panel-uni-data');
+    const editbar = document.getElementById('data-tab-editbar');
+    let sib = editbar?.nextSibling;
+    while (sib) { const next = sib.nextSibling; sib.remove(); sib = next; }
+    const view = document.createElement('div');
+    view.innerHTML = renderUniDataTab(d, u);
+    panel.appendChild(view);
+  }
+}
+
+function renderDataEditForm(d, u) {
+  const programs = d.programs||d.programs_mentioned||[];
+  const tuition  = d.tuition||d.tuition_updates||[];
+  const req      = d.entry_requirements||{};
+  const reqUG    = req.undergraduate||req.ug||{};
+  const reqPG    = req.postgraduate||req.pg||{};
+  const intake   = d.intake||d.intake_dates||[];
+  const scholar  = d.scholarships||d.scholarship_updates||[];
+  const ranking  = d.ranking||d.ranking_updates||[];
+  const campus   = d.campus||{};
+  const stats    = d.student_stats||{};
+  const contact  = d.contact||{};
+
+  // Helper: render row
+  const progRows = programs.map((p,i) => {
+    const name  = typeof p==='object'?(p.name||p.title||''):String(p);
+    const level = typeof p==='object'?(p.level||''):'' ;
+    return `<div class="batch-row" data-idx="${i}">
+      <input class="prog-name" placeholder="Nama program" value="${esc(name)}" style="flex:2">
+      <select class="prog-level" style="width:140px;flex:0">
+        ${['undergraduate','postgraduate','diploma','certificate','doctoral','short course'].map(v=>
+          `<option value="${v}" ${(level.toLowerCase()===v||(!level&&v==='undergraduate'))?'selected':''}>${v}</option>`).join('')}
+      </select>
+      <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>
+    </div>`;
+  }).join('');
+
+  const tuitionRows = tuition.map((t,i) => `
+    <div class="batch-row" style="flex-wrap:wrap;gap:6px;align-items:flex-start">
+      <input class="t-program" placeholder="Program/Jenjang" value="${esc(String(t.program||t.name||t.level||''))}" style="flex:2;min-width:150px">
+      <input class="t-fee" placeholder="Biaya" value="${esc(String(t.fee_amount||t.fee||t.amount||''))}" style="width:100px;flex:0">
+      <input class="t-currency" placeholder="USD/AUD/..." value="${esc(String(t.fee_currency||t.currency||''))}" style="width:70px;flex:0">
+      <input class="t-period" placeholder="per year..." value="${esc(String(t.fee_period||t.period||t.per||'per year'))}" style="width:90px;flex:0">
+      <input class="t-note" placeholder="Catatan" value="${esc(String(t.note||t.notes||''))}" style="flex:1;min-width:100px">
+      <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>
+    </div>`).join('');
+
+  const rankRows = ranking.map((r,i) => `
+    <div class="batch-row">
+      <input class="r-source" placeholder="Sumber (QS, THE...)" value="${esc(String(r.source||r.type||''))}" style="flex:1">
+      <input class="r-rank" placeholder="Posisi (#50)" value="${esc(String(r.rank||r.position||''))}" style="width:80px;flex:0">
+      <input class="r-year" placeholder="Tahun" value="${esc(String(r.year||''))}" style="width:70px;flex:0">
+      <input class="r-subject" placeholder="Bidang (opsional)" value="${esc(String(r.subject||''))}" style="flex:1">
+      <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>
+    </div>`).join('');
+
+  const scholarRows = scholar.map((s,i) => `
+    <div class="batch-row" style="flex-wrap:wrap;gap:6px;align-items:flex-start">
+      <input class="s-name" placeholder="Nama beasiswa" value="${esc(String(s.name||''))}" style="flex:2;min-width:160px">
+      <input class="s-amount" placeholder="Nominal" value="${esc(String(s.amount||s.nominal||''))}" style="width:100px;flex:0">
+      <input class="s-currency" placeholder="Mata uang" value="${esc(String(s.currency||''))}" style="width:60px;flex:0">
+      <input class="s-deadline" placeholder="Deadline" value="${esc(String(s.deadline||''))}" style="width:110px;flex:0">
+      <input class="s-level" placeholder="Jenjang" value="${esc(String(s.level||s.jenjang||''))}" style="width:100px;flex:0">
+      <input class="s-req" placeholder="Syarat/Eligibilitas" value="${esc(String(s.requirements||s.eligibility||s.syarat||''))}" style="flex:2;min-width:140px">
+      <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>
+    </div>`).join('');
+
+  const intakeRows = intake.map((i,idx) => `
+    <div class="batch-row">
+      <input class="i-intake" placeholder="Intake (Feb, Jul...)" value="${esc(String(i.intake||i.semester||i.period||''))}" style="flex:1">
+      <input class="i-year" placeholder="Tahun" value="${esc(String(i.year||''))}" style="width:70px;flex:0">
+      <input class="i-deadline" placeholder="Application deadline" value="${esc(String(i.deadline||''))}" style="flex:1">
+      <input class="i-open" placeholder="Open date" value="${esc(String(i.open||''))}" style="flex:1">
+      <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>
+    </div>`).join('');
+
+  const fieldGroup = (title, id, rows, addFn, addLabel='＋ Tambah Baris') => `
+    <div class="data-section" style="margin-bottom:12px">
+      <div class="data-section-title" style="display:flex;justify-content:space-between;align-items:center">
+        <span>${title}</span>
+        <button class="btn btn-ghost btn-sm" onclick="${addFn}()">＋ ${addLabel}</button>
+      </div>
+      <div id="${id}">${rows||`<div style="color:var(--text3);font-size:12px;padding:6px 0">Belum ada data — klik tombol untuk tambah</div>`}</div>
+    </div>`;
+
+  return `
+    <div style="background:var(--yellow-dim);border:1px solid var(--yellow);border-radius:var(--rs);padding:8px 12px;font-size:12px;color:var(--yellow);margin-bottom:14px">
+      ✏️ Mode Edit Manual — perubahan akan meng-override data hasil sync. Klik Simpan ketika selesai.
+    </div>
+
+    ${fieldGroup('🎓 Program / Jurusan', 'edit-programs', progRows, 'addProgRow', 'Tambah Program')}
+    ${fieldGroup('💰 Biaya Kuliah', 'edit-tuition', tuitionRows, 'addTuitionRow', 'Tambah Biaya')}
+
+    <div class="data-section" style="margin-bottom:12px">
+      <div class="data-section-title">📝 Syarat Masuk</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:8px">UNDERGRADUATE (S1)</div>
+          <div class="form-group"><label>IELTS Min</label><input id="req-ug-ielts" value="${esc(String(reqUG.ielts_min||''))}" placeholder="6.0"></div>
+          <div class="form-group"><label>TOEFL Min</label><input id="req-ug-toefl" value="${esc(String(reqUG.toefl_min||''))}" placeholder="80"></div>
+          <div class="form-group"><label>GPA Min</label><input id="req-ug-gpa" value="${esc(String(reqUG.gpa_min||''))}" placeholder="3.0"></div>
+          <div class="form-group"><label>SAT Min</label><input id="req-ug-sat" value="${esc(String(reqUG.sat_min||''))}" placeholder="opsional"></div>
+          <div class="form-group"><label>Catatan</label><textarea id="req-ug-notes" style="min-height:60px">${esc(String(reqUG.notes||''))}</textarea></div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:8px">POSTGRADUATE (S2/S3)</div>
+          <div class="form-group"><label>IELTS Min</label><input id="req-pg-ielts" value="${esc(String(reqPG.ielts_min||''))}" placeholder="6.5"></div>
+          <div class="form-group"><label>TOEFL Min</label><input id="req-pg-toefl" value="${esc(String(reqPG.toefl_min||''))}" placeholder="90"></div>
+          <div class="form-group"><label>GPA Min</label><input id="req-pg-gpa" value="${esc(String(reqPG.gpa_min||''))}" placeholder="3.0"></div>
+          <div class="form-group"><label>GMAT Min</label><input id="req-pg-gmat" value="${esc(String(reqPG.gmat_min||''))}" placeholder="opsional"></div>
+          <div class="form-group"><label>Catatan</label><textarea id="req-pg-notes" style="min-height:60px">${esc(String(reqPG.notes||''))}</textarea></div>
+        </div>
+      </div>
+    </div>
+
+    ${fieldGroup('🏆 Ranking', 'edit-ranking', rankRows, 'addRankRow', 'Tambah Ranking')}
+    ${fieldGroup('🎁 Beasiswa', 'edit-scholarships', scholarRows, 'addScholarRow', 'Tambah Beasiswa')}
+    ${fieldGroup('📅 Intake', 'edit-intake', intakeRows, 'addIntakeRow', 'Tambah Intake')}
+
+    <div class="data-section" style="margin-bottom:12px">
+      <div class="data-section-title">🏛 Info Kampus</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group"><label>Kota / Lokasi</label><input id="campus-city" value="${esc(campus.city||'')}" placeholder="Perth, Australia"></div>
+        <div class="form-group"><label>Tipe (public/private)</label><input id="campus-type" value="${esc(campus.type||'')}" placeholder="public"></div>
+        <div class="form-group"><label>Tahun Berdiri</label><input id="stats-founded" value="${esc(String(stats.founded_year||''))}" placeholder="1900"></div>
+        <div class="form-group"><label>Total Mahasiswa</label><input id="stats-students" value="${esc(String(stats.total_students||''))}" placeholder="30000"></div>
+        <div class="form-group"><label>Intl. Students</label><input id="stats-intl" value="${esc(String(stats.international_students||''))}" placeholder="5000"></div>
+        <div class="form-group"><label>Student:Staff Ratio</label><input id="stats-ratio" value="${esc(String(stats.student_staff_ratio||''))}" placeholder="15:1"></div>
+        <div class="form-group"><label>Email Kontak</label><input id="contact-email" value="${esc(contact.email||'')}" placeholder="info@uni.edu"></div>
+        <div class="form-group"><label>Phone</label><input id="contact-phone" value="${esc(contact.phone||'')}" placeholder="+61 8 ..."></div>
+        <div class="form-group" style="grid-column:1/-1"><label>Alamat Lengkap</label><input id="campus-address" value="${esc(campus.address||'')}" placeholder="Street, City, Country"></div>
+        <div class="form-group" style="grid-column:1/-1"><label>Fasilitas (pisah koma)</label><input id="campus-facilities" value="${esc((campus.facilities||[]).map(f=>typeof f==='object'?(f.name||f):f).join(', '))}" placeholder="Library, Sports Center, Dormitory"></div>
+      </div>
+    </div>
+
+    <div class="data-section" style="margin-bottom:16px">
+      <div class="data-section-title">📋 Catatan Tambahan (Raw Notes)</div>
+      <textarea id="edit-raw-notes" class="kb-textarea" style="min-height:80px">${esc(d.raw_notes||d.additional_notes||'')}</textarea>
+    </div>
+
+    <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:4px;border-top:1px solid var(--border)">
+      <button class="btn btn-ghost" onclick="toggleDataEdit(${u.id})">✕ Batal</button>
+      <button class="btn btn-primary" id="data-edit-save-btn">💾 Simpan Data</button>
+    </div>`;
+}
+
+// ── Add row helpers ──
+function addProgRow() {
+  const wrap = document.getElementById('edit-programs');
+  if (!wrap) return;
+  const div = document.createElement('div');
+  div.className = 'batch-row';
+  div.innerHTML = `
+    <input class="prog-name" placeholder="Nama program" style="flex:2">
+    <select class="prog-level" style="width:140px;flex:0">
+      ${['undergraduate','postgraduate','diploma','certificate','doctoral','short course'].map(v=>`<option value="${v}">${v}</option>`).join('')}
+    </select>
+    <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>`;
+  wrap.appendChild(div);
+  div.querySelector('.prog-name').focus();
+}
+
+function addTuitionRow() {
+  const wrap = document.getElementById('edit-tuition');
+  if (!wrap) return;
+  const div = document.createElement('div');
+  div.className = 'batch-row'; div.style.cssText='flex-wrap:wrap;gap:6px;align-items:flex-start';
+  div.innerHTML = `
+    <input class="t-program" placeholder="Program/Jenjang" style="flex:2;min-width:150px">
+    <input class="t-fee" placeholder="Biaya" style="width:100px;flex:0">
+    <input class="t-currency" placeholder="USD/AUD" style="width:70px;flex:0">
+    <input class="t-period" placeholder="per year" style="width:90px;flex:0">
+    <input class="t-note" placeholder="Catatan" style="flex:1;min-width:100px">
+    <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>`;
+  wrap.appendChild(div);
+  div.querySelector('.t-program').focus();
+}
+
+function addRankRow() {
+  const wrap = document.getElementById('edit-ranking');
+  if (!wrap) return;
+  const div = document.createElement('div');
+  div.className = 'batch-row';
+  div.innerHTML = `
+    <input class="r-source" placeholder="Sumber (QS, THE)" style="flex:1">
+    <input class="r-rank" placeholder="#50" style="width:80px;flex:0">
+    <input class="r-year" placeholder="Tahun" style="width:70px;flex:0">
+    <input class="r-subject" placeholder="Bidang" style="flex:1">
+    <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>`;
+  wrap.appendChild(div);
+  div.querySelector('.r-source').focus();
+}
+
+function addScholarRow() {
+  const wrap = document.getElementById('edit-scholarships');
+  if (!wrap) return;
+  const div = document.createElement('div');
+  div.className = 'batch-row'; div.style.cssText='flex-wrap:wrap;gap:6px;align-items:flex-start';
+  div.innerHTML = `
+    <input class="s-name" placeholder="Nama beasiswa" style="flex:2;min-width:160px">
+    <input class="s-amount" placeholder="Nominal" style="width:100px;flex:0">
+    <input class="s-currency" placeholder="Mata uang" style="width:60px;flex:0">
+    <input class="s-deadline" placeholder="Deadline" style="width:110px;flex:0">
+    <input class="s-level" placeholder="Jenjang" style="width:100px;flex:0">
+    <input class="s-req" placeholder="Syarat" style="flex:2;min-width:140px">
+    <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>`;
+  wrap.appendChild(div);
+  div.querySelector('.s-name').focus();
+}
+
+function addIntakeRow() {
+  const wrap = document.getElementById('edit-intake');
+  if (!wrap) return;
+  const div = document.createElement('div');
+  div.className = 'batch-row';
+  div.innerHTML = `
+    <input class="i-intake" placeholder="Intake (Feb, Jul)" style="flex:1">
+    <input class="i-year" placeholder="Tahun" style="width:70px;flex:0">
+    <input class="i-deadline" placeholder="Deadline" style="flex:1">
+    <input class="i-open" placeholder="Open date" style="flex:1">
+    <button class="btn btn-ghost btn-sm" onclick="this.closest('.batch-row').remove()" style="flex-shrink:0">✕</button>`;
+  wrap.appendChild(div);
+  div.querySelector('.i-intake').focus();
+}
+
+async function saveDataEdit(uniId) {
+  const btn = document.getElementById('data-edit-save-btn');
+  if (btn) { btn.disabled=true; btn.textContent='💾 Menyimpan...'; }
+  try {
+    const u = state.currentUni;
+    let existing = {};
+    try { existing = JSON.parse(u.data_json||'{}'); } catch(e) {}
+
+    // ── Collect programs ──
+    const programs = [...document.querySelectorAll('#edit-programs .batch-row')].map(row => ({
+      name:  row.querySelector('.prog-name')?.value?.trim()||'',
+      level: row.querySelector('.prog-level')?.value||'undergraduate',
+    })).filter(p=>p.name);
+
+    // ── Collect tuition ──
+    const tuition = [...document.querySelectorAll('#edit-tuition .batch-row')].map(row => ({
+      program:  row.querySelector('.t-program')?.value?.trim()||'',
+      fee:      row.querySelector('.t-fee')?.value?.trim()||'',
+      currency: row.querySelector('.t-currency')?.value?.trim()||'',
+      period:   row.querySelector('.t-period')?.value?.trim()||'per year',
+      note:     row.querySelector('.t-note')?.value?.trim()||'',
+    })).filter(t=>t.program||t.fee);
+
+    // ── Collect ranking ──
+    const ranking = [...document.querySelectorAll('#edit-ranking .batch-row')].map(row => ({
+      source:  row.querySelector('.r-source')?.value?.trim()||'',
+      rank:    row.querySelector('.r-rank')?.value?.trim()||'',
+      year:    row.querySelector('.r-year')?.value?.trim()||'',
+      subject: row.querySelector('.r-subject')?.value?.trim()||'',
+    })).filter(r=>r.source||r.rank);
+
+    // ── Collect scholarships ──
+    const scholarships = [...document.querySelectorAll('#edit-scholarships .batch-row')].map(row => ({
+      name:         row.querySelector('.s-name')?.value?.trim()||'',
+      amount:       row.querySelector('.s-amount')?.value?.trim()||'',
+      currency:     row.querySelector('.s-currency')?.value?.trim()||'',
+      deadline:     row.querySelector('.s-deadline')?.value?.trim()||'',
+      level:        row.querySelector('.s-level')?.value?.trim()||'',
+      requirements: row.querySelector('.s-req')?.value?.trim()||'',
+    })).filter(s=>s.name);
+
+    // ── Collect intake ──
+    const intake = [...document.querySelectorAll('#edit-intake .batch-row')].map(row => ({
+      intake:   row.querySelector('.i-intake')?.value?.trim()||'',
+      year:     row.querySelector('.i-year')?.value?.trim()||'',
+      deadline: row.querySelector('.i-deadline')?.value?.trim()||'',
+      open:     row.querySelector('.i-open')?.value?.trim()||'',
+    })).filter(i=>i.intake);
+
+    // ── Collect campus / stats ──
+    const campusCity     = document.getElementById('campus-city')?.value?.trim()||'';
+    const campusType     = document.getElementById('campus-type')?.value?.trim()||'';
+    const campusAddress  = document.getElementById('campus-address')?.value?.trim()||'';
+    const facilitiesRaw  = document.getElementById('campus-facilities')?.value||'';
+    const facilities     = facilitiesRaw.split(',').map(s=>s.trim()).filter(Boolean);
+    const contactEmail   = document.getElementById('contact-email')?.value?.trim()||'';
+    const contactPhone   = document.getElementById('contact-phone')?.value?.trim()||'';
+    const foundedYear    = document.getElementById('stats-founded')?.value?.trim()||'';
+    const totalStudents  = document.getElementById('stats-students')?.value?.trim()||'';
+    const intlStudents   = document.getElementById('stats-intl')?.value?.trim()||'';
+    const staffRatio     = document.getElementById('stats-ratio')?.value?.trim()||'';
+    const rawNotes       = document.getElementById('edit-raw-notes')?.value?.trim()||'';
+
+    // ── Build entry_requirements ──
+    const buildReq = (prefix) => {
+      const r = {};
+      const v = (id) => document.getElementById(`${prefix}-${id}`)?.value?.trim()||'';
+      if (v('ielts')) r.ielts_min = v('ielts');
+      if (v('toefl')) r.toefl_min = v('toefl');
+      if (v('gpa'))   r.gpa_min   = v('gpa');
+      if (v('sat'))   r.sat_min   = v('sat');
+      if (v('gmat'))  r.gmat_min  = v('gmat');
+      if (v('notes')) r.notes     = v('notes');
+      return Object.keys(r).length ? r : null;
+    };
+
+    const entry_requirements = {};
+    const ugReq = buildReq('req-ug');
+    const pgReq = buildReq('req-pg');
+    if (ugReq) entry_requirements.undergraduate = ugReq;
+    if (pgReq) entry_requirements.postgraduate  = pgReq;
+
+    // ── Merge all into data_json ──
+    const newData = {
+      ...existing,
+      ...(programs.length   ? { programs }    : {}),
+      ...(tuition.length    ? { tuition }     : {}),
+      ...(Object.keys(entry_requirements).length ? { entry_requirements } : {}),
+      ...(ranking.length    ? { ranking }     : {}),
+      ...(scholarships.length?{ scholarships }: {}),
+      ...(intake.length     ? { intake }      : {}),
+      campus: {
+        ...(existing.campus||{}),
+        ...(campusCity    ? { city: campusCity }         : {}),
+        ...(campusType    ? { type: campusType }         : {}),
+        ...(campusAddress ? { address: campusAddress }   : {}),
+        ...(facilities.length ? { facilities }           : {}),
+      },
+      student_stats: {
+        ...(existing.student_stats||{}),
+        ...(foundedYear   ? { founded_year: foundedYear }              : {}),
+        ...(totalStudents ? { total_students: totalStudents }          : {}),
+        ...(intlStudents  ? { international_students: intlStudents }   : {}),
+        ...(staffRatio    ? { student_staff_ratio: staffRatio }        : {}),
+      },
+      contact: {
+        ...(existing.contact||{}),
+        ...(contactEmail ? { email: contactEmail } : {}),
+        ...(contactPhone ? { phone: contactPhone } : {}),
+      },
+      ...(rawNotes ? { raw_notes: rawNotes } : {}),
+      manually_edited: true,
+      manual_edit_date: new Date().toISOString(),
+    };
+
+    // Hitung freshness score sederhana
+    let score = 0;
+    if (newData.programs?.length)                                     score += 15;
+    if (newData.tuition?.length)                                      score += 20;
+    if (newData.entry_requirements?.undergraduate?.ielts_min)        score += 15;
+    if (newData.intake?.length)                                       score += 15;
+    if (newData.scholarships?.length)                                 score += 10;
+    if (newData.campus?.city)                                         score += 10;
+    if (newData.ranking?.length)                                      score += 10;
+    if (newData.student_stats?.total_students||newData.student_stats?.founded_year) score += 5;
+    score = Math.min(score, 100);
+
+    await API.patch(`/api/universities/${uniId}`, {
+      data_json:             JSON.stringify(newData),
+      data_freshness_score:  score,
+      data_last_synced:      new Date().toISOString(),
+    });
+
+    toast(`Data disimpan ✓ (Freshness: ${score}/100)`);
+    _dataEditMode = false;
+
+    // Reload state + panel
+    const uFresh = await API.get(`/api/universities/${uniId}`);
+    state.currentUni = uFresh;
+    let dFresh = {};
+    try { dFresh = JSON.parse(uFresh.data_json||'{}'); } catch(e) {}
+    const panel = document.getElementById('tab-panel-uni-data');
+    const editbar = document.getElementById('data-tab-editbar');
+    if (editbar) {
+      let sib = editbar.nextSibling;
+      while (sib) { const next=sib.nextSibling; sib.remove(); sib=next; }
+      const editBtn = editbar.querySelector('button');
+      if (editBtn) editBtn.textContent = '✏️ Edit Data Manual';
+    }
+    const view = document.createElement('div');
+    view.innerHTML = renderUniDataTab(dFresh, uFresh);
+    panel?.appendChild(view);
+  } catch(e) {
+    toast('Gagal simpan: '+e.message, 'err');
+    if (btn) { btn.disabled=false; btn.textContent='💾 Simpan Data'; }
+  }
+}
+
+async function syncUniFromModal(id) {
+  const btn = document.getElementById('modal-sync-btn');
+  if (btn) { btn.disabled=true; btn.textContent='⏳ Starting...'; }
+  try {
+    await API.post(`/api/universities/${id}/sync`);
+    toast('Sync dimulai di background...');
+    if (btn) btn.textContent='⏳ Syncing...';
+    // Poll dan update modal
+    const poller = setInterval(async () => {
+      const s = await API.get(`/api/universities/${id}/sync/status`);
+      if (s.sync_status !== 'running') {
+        clearInterval(poller);
+        if (btn) { btn.disabled=false; btn.textContent='↻ Sync Data Sekarang'; }
+        if (s.sync_status==='done') {
+          toast(`✓ Sync selesai! Freshness: ${s.data_freshness_score}%`);
+          openUni(id); // reload modal
+        } else {
+          toast('Sync error: '+(s.sync_error||'unknown'),'err');
+        }
+      }
+    }, 4000);
+  } catch(e) {
+    toast('Error: '+e.message,'err');
+    if (btn) { btn.disabled=false; btn.textContent='↻ Sync Data Sekarang'; }
+  }
+}
+
+function createArticleForUni(uniId, uniName) {
+  closeModal('modal-uni');
+  showAddModal();
+  // Pre-fill title dengan nama universitas
+  setTimeout(()=>{
+    const inp = document.querySelector('.batch-title');
+    if (inp) { inp.value = uniName; inp.focus(); }
+  }, 100);
+}
+
+function toggleUniEdit() {
+  const u = state.currentUni;
+  state.uniEditMode = !state.uniEditMode;
+  const btn    = document.getElementById('btn-uni-edit-toggle');
+  const saveBtn= document.getElementById('btn-uni-save');
+  if (state.uniEditMode) {
+    btn.textContent='✕ Batal';
+    saveBtn.classList.remove('hidden');
+    setHtml('tab-panel-uni-info',`
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group" style="grid-column:1/-1"><label>Nama</label><input id="eu-name" value="${esc(u.name||'')}"></div>
+        <div class="form-group"><label>Negara</label><input id="eu-country" value="${esc(u.country||'')}"></div>
+        <div class="form-group"><label>Tier</label><select id="eu-tier">
+          ${['1','2','3'].map(v=>`<option value="${v}" ${String(u.tier)===v?'selected':''}>${v}</option>`).join('')}
+        </select></div>
+        <div class="form-group" style="grid-column:1/-1">
+          <label>Official URL</label>
+          <input id="eu-url" value="${esc(u.official_url||'')}">
+        </div>
+        <div class="form-group"><label>Status</label><select id="eu-status">
+          ${['Non Partner','Partner','Prospect','On Process'].map(v=>`<option value="${v}" ${u.status===v?'selected':''}>${v}</option>`).join('')}
+        </select></div>
+        <div class="form-group"><label>Deal Type</label><select id="eu-deal">
+          ${['Referral','Commission','Direct'].map(v=>`<option value="${v}" ${u.deal_type===v?'selected':''}>${v}</option>`).join('')}
+        </select></div>
+        <div class="form-group"><label>Newsletter Email</label><input id="eu-email" value="${esc(u.newsletter_email||'')}"></div>
+        <div class="form-group"><label style="display:flex;align-items:center;gap:8px">
+          <input type="checkbox" id="eu-subscribed" ${u.newsletter_subscribed?'checked':''}> Newsletter Subscribed
+        </label></div>
+        <div class="form-group" style="grid-column:1/-1"><label>Notes</label><textarea id="eu-notes">${esc(u.notes||'')}</textarea></div>
+      </div>`);
+    document.getElementById('btn-uni-save').onclick = saveUni;
+  } else {
+    btn.textContent='✏️ Edit';
+    saveBtn.classList.add('hidden');
+    openUni(u.id);
+  }
+}
+
+async function saveUni() {
+  const u = state.currentUni;
+  const payload = {
+    name:                 document.getElementById('eu-name')?.value,
+    country:              document.getElementById('eu-country')?.value,
+    tier:                 parseInt(document.getElementById('eu-tier')?.value)||1,
+    official_url:         document.getElementById('eu-url')?.value,
+    status:               document.getElementById('eu-status')?.value,
+    deal_type:            document.getElementById('eu-deal')?.value,
+    newsletter_email:     document.getElementById('eu-email')?.value,
+    newsletter_subscribed:document.getElementById('eu-subscribed')?.checked?1:0,
+    notes:                document.getElementById('eu-notes')?.value,
+  };
+  try {
+    await API.patch(`/api/universities/${u.id}`, payload);
+    toast('University disimpan ✓');
+    state.uniEditMode=false;
+    openUni(u.id);
+  } catch(e) { toast('Gagal simpan: '+e.message,'err'); }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  KNOWLEDGE BASE (GUIDELINE)
+// ═══════════════════════════════════════════════════════════
+async function renderKnowledge() {
+  try {
+    const data = await API.get('/api/guide');
+    document.getElementById('content').innerHTML = `
+      <div class="section-header">
+        <h2>Knowledge Base / Article Guideline</h2>
+        <div class="flex-gap">
+          <button class="btn btn-ghost btn-sm" onclick="resetGuide()">↺ Reset Default</button>
+          <button class="btn btn-primary btn-sm" onclick="saveGuide()">💾 Save</button>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="form-group" style="margin-bottom:0">
+          <label>Article Guideline (Markdown / Plain Text)</label>
+          <textarea class="kb-textarea" id="guide-text" style="min-height:400px">${esc(data.guide||'')}</textarea>
+        </div>
+      </div>
+      <div class="card">
+        <div class="form-group" style="margin-bottom:0">
+          <label>Custom System Prompt (opsional — override AI prompt)</label>
+          <textarea class="kb-textarea" id="guide-prompt" style="min-height:120px">${esc(data.custom_prompt||'')}</textarea>
+        </div>
+      </div>`;
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Gagal load guideline',e.message);
+  }
+}
+
+async function saveGuide() {
+  const guide  = document.getElementById('guide-text')?.value;
+  const custom_prompt = document.getElementById('guide-prompt')?.value;
+  try {
+    await API.post('/api/guide', { guide, custom_prompt });
+    toast('Guideline disimpan ✓');
+  } catch(e) { toast('Gagal simpan: '+e.message,'err'); }
+}
+
+async function resetGuide() {
+  confirm('Reset Guideline','Guideline akan dikembalikan ke default. Lanjutkan?', async()=>{
+    try {
+      await API.post('/api/guide/reset');
+      toast('Guideline direset ke default ✓');
+      renderKnowledge();
+    } catch(e) { toast('Gagal reset: '+e.message,'err'); }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SETTINGS
+// ═══════════════════════════════════════════════════════════
+function renderSettings() {
+  document.getElementById('content').innerHTML = `
+    <div class="card" style="max-width:480px;margin-bottom:16px">
+      <div class="modal-title" style="margin-bottom:16px">⚙️ Pengaturan Sistem</div>
+      <div class="data-section">
+        <div class="data-section-title">Info Server</div>
+        <div class="data-item"><span class="data-key">VPS</span>43.134.15.212</div>
+        <div class="data-item"><span class="data-key">Port</span>3003</div>
+        <div class="data-item"><span class="data-key">Status</span><span id="settings-status">Checking...</span></div>
+      </div>
+    </div>
+    <div class="card" style="max-width:480px;margin-bottom:16px">
+      <div class="section-header"><h2>Maintenance</h2></div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px">Rescore QC</div>
+          <p style="font-size:12px;color:var(--text2);margin-bottom:8px">Hitung ulang QC score untuk semua artikel yang sudah punya konten.</p>
+          <button class="btn btn-ghost" onclick="rescoreAll()">↻ Rescore All Articles</button>
+        </div>
+        <hr class="divider">
+        <div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px">Sync Rank Math Score</div>
+          <p style="font-size:12px;color:var(--text2);margin-bottom:8px">Update SEO score dari plugin Rank Math di WordPress.</p>
+          <button class="btn btn-ghost" onclick="syncRmScore()">↻ Sync RM Score</button>
+        </div>
+        <hr class="divider">
+        <div>
+          <div style="font-size:12px;font-weight:600;margin-bottom:4px">Run All Queued</div>
+          <p style="font-size:12px;color:var(--text2);margin-bottom:8px">Jalankan semua artikel yang masih status queued.</p>
+          <button class="btn btn-ghost" onclick="runAllQueued()">▶ Run All Queued</button>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="max-width:480px">
+      <div class="section-header"><h2>Tentang</h2></div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8">
+        <div><strong>Edurep Article Generator</strong> v2.0</div>
+        <div>AI-powered article automation untuk myeducationrepublic.com</div>
+        <div style="margin-top:8px;color:var(--text3)">Built with Node.js · SQLite · WordPress REST API · OpenAI</div>
+      </div>
+    </div>`;
+  // Load server status
+  fetch('/api/health').then(r=>r.json()).then(d=>{
+    const el = document.getElementById('settings-status');
+    if(el) el.innerHTML = '<span style="color:var(--green)">✓ Online</span>';
+  }).catch(()=>{
+    const el = document.getElementById('settings-status');
+    if(el) el.innerHTML = '<span style="color:var(--red)">✗ Offline</span>';
+  });
+}
+
+async function rescoreAll() {
+  try {
+    const r = await API.post('/api/articles/rescore-all');
+    toast(`Rescoring ${r.count} artikel di background...`);
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  GSC PERFORMANCE
+// ═══════════════════════════════════════════════════════════
+async function renderGsc() {
+  try {
+    const [status, overview, summary] = await Promise.all([
+      API.get('/api/gsc/status'),
+      API.get('/api/gsc/overview?days=30').catch(()=>null),
+      API.get('/api/gsc/summary').catch(()=>null),
+    ]);
+
+    const overviewStats = overview ? [
+      { label:'Total Clicks',       val: overview.total_clicks||0       },
+      { label:'Total Impressions',   val: overview.total_impressions||0  },
+      { label:'Avg CTR',             val: overview.avg_ctr ? (overview.avg_ctr*100).toFixed(2)+'%' : '—' },
+      { label:'Avg Position',        val: overview.avg_position ? overview.avg_position.toFixed(1) : '—' },
+    ] : [];
+
+    const posStats = summary && !summary.no_data ? [
+      { label:'Top 3',    val: summary.top3||0,    color:'var(--green)'  },
+      { label:'Page 1',   val: summary.page1||0,   color:'var(--accent)' },
+      { label:'Page 2',   val: summary.page2||0,   color:'var(--yellow)' },
+      { label:'Page 3+',  val: summary.page3plus||0,color:'var(--red)'   },
+      { label:'Low CTR',  val: summary.low_ctr_count||0, color:'var(--orange)' },
+    ] : [];
+
+    document.getElementById('content').innerHTML = `
+      <div class="section-header">
+        <h2>GSC Performance</h2>
+        <div class="flex-gap">
+          <span class="badge ${status.connected?'badge-published':'badge-error'}">${status.connected?'✓ Connected':'✗ Disconnected'}</span>
+          <button class="btn btn-ghost btn-sm" onclick="syncGsc()">↻ Sync GSC</button>
+        </div>
+      </div>
+      ${status.last_sync?`<p style="font-size:11px;color:var(--text3);margin-bottom:14px">Last sync: ${fmtDt(status.last_sync)} · ${status.urls_tracked} URLs tracked</p>`:''}
+
+      ${overviewStats.length ? `<div class="stats-grid" style="margin-bottom:16px">
+        ${overviewStats.map(s=>`<div class="stat-card"><div class="stat-value">${s.val}</div><div class="stat-label">${s.label}</div></div>`).join('')}
+      </div>` : ''}
+
+      ${posStats.length ? `<div class="card" style="margin-bottom:16px">
+        <div class="section-header"><h2>Distribusi Posisi</h2></div>
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+          ${posStats.map(s=>`<div class="gsc-stat"><div class="gsc-stat-val" style="color:${s.color}">${s.val}</div><div class="gsc-stat-lbl">${s.label}</div></div>`).join('')}
+        </div>
+      </div>` : ''}
+
+      <div class="card">
+        <div class="section-header">
+          <h2>Performance per Artikel</h2>
+          <select id="gsc-filter" onchange="loadGscPerf(this.value)">
+            <option value="">Semua</option>
+            <option value="top3">Top 3</option>
+            <option value="page1">Page 1</option>
+            <option value="low_hanging">Low Hanging (pos 11-20)</option>
+            <option value="low_ctr">Low CTR</option>
+            <option value="no_data">No Data</option>
+          </select>
+        </div>
+        <div id="gsc-perf-table">${emptyState('⏳','Loading...')}</div>
+      </div>`;
+    loadGscPerf('');
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Gagal load GSC',e.message);
+  }
+}
+
+async function loadGscPerf(filter) {
+  try {
+    const params = filter ? `?filter=${filter}` : '';
+    const data = await API.get(`/api/gsc/performance${params}`);
+    const rows = data.rows||[];
+    setHtml('gsc-perf-table', rows.length===0 ? emptyState('📊','Tidak ada data') : `
+      <div class="table-wrap" style="margin-top:8px">
+        <table>
+          <thead><tr><th>Artikel</th><th>Clicks</th><th>Impr.</th><th>CTR</th><th>Pos.</th><th>QC</th></tr></thead>
+          <tbody>${rows.map(r=>`<tr>
+            <td class="td-title">
+              <span class="td-title-text">${esc(r.title)}</span>
+              ${r.wp_url?`<a href="${esc(r.wp_url)}" target="_blank" class="td-sub">↗ ${esc(r.wp_url.replace(/https?:\/\//,'').substring(0,40))}</a>`:''}
+            </td>
+            <td style="font-weight:600;color:var(--accent)">${r.clicks??'—'}</td>
+            <td>${r.impressions??'—'}</td>
+            <td>${r.ctr!=null?((r.ctr)*100).toFixed(2)+'%':'—'}</td>
+            <td>${r.position!=null?r.position.toFixed(1):'—'}</td>
+            <td>${qcBadge(r.qc_score)}</td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>`);
+  } catch(e) { setHtml('gsc-perf-table', emptyState('⚠️','Error',e.message)); }
+}
+
+async function syncGsc() {
+  try {
+    await API.post('/api/gsc/sync');
+    toast('GSC sync dimulai di background...');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SEO HEALTH
+// ═══════════════════════════════════════════════════════════
+async function renderSeoHealth() {
+  try {
+    const [status, schedule] = await Promise.all([
+      API.get('/api/seo/status'),
+      API.get('/api/seo/scan-schedule').catch(()=>null),
+    ]);
+
+    const scanCard = (title, data, icon) => {
+      if (!data) return `<div class="seo-scan-card"><div class="seo-scan-info"><div class="seo-scan-title">${icon} ${title}</div><div class="seo-scan-meta">Belum pernah scan</div></div></div>`;
+      const s = data.summary||{};
+      const chips = {
+        broken_links: s.broken_count>0 ? `<span class="seo-result-chip chip-err">⚠ ${s.broken_count} broken</span>` : `<span class="seo-result-chip chip-ok">✓ Bersih</span>`,
+        spam_check:   s.spam_count>0   ? `<span class="seo-result-chip chip-err">⚠ ${s.spam_count} spam</span>`   : `<span class="seo-result-chip chip-ok">✓ Bersih</span>`,
+      };
+      return `<div class="seo-scan-card">
+        <div class="seo-scan-info">
+          <div class="seo-scan-title">${icon} ${title}</div>
+          <div class="seo-scan-meta">Scan terakhir: ${fmtDt(data.created_at)} · ${s.pages_scanned||0} pages</div>
+        </div>
+        <div class="flex-gap">${chips[Object.keys(chips)[0]]||''}</div>
+      </div>`;
+    };
+
+    const comps = status.competitors||[];
+    document.getElementById('content').innerHTML = `
+      <div class="section-header"><h2>SEO Site Health Overview</h2></div>
+      <div style="display:grid;gap:10px;margin-bottom:20px">
+        ${scanCard('Broken Links', status.broken_links, '🔗')}
+        ${scanCard('Spam Check',   status.spam_check,   '🛡️')}
+      </div>
+
+      ${schedule ? `<div class="card" style="margin-bottom:16px">
+        <div class="section-header"><h2>Scan Schedule</h2></div>
+        <div style="display:flex;gap:24px;font-size:12px;flex-wrap:wrap">
+          <div><strong>Broken Links:</strong> ${schedule.broken_links?.next||'—'}</div>
+          <div><strong>Spam Check:</strong>   ${schedule.spam_check?.next||'—'}</div>
+          <div style="color:var(--text3)">${schedule.schedule||''}</div>
+        </div>
+      </div>` : ''}
+
+      <div class="card">
+        <div class="section-header"><h2>Competitors (${comps.length})</h2>
+          <button class="btn btn-ghost btn-sm" onclick="navigate('seo-competitor')">Manage →</button>
+        </div>
+        ${comps.length===0 ? emptyState('🏆','Belum ada competitor') : `
+        <div class="table-wrap"><table><thead><tr><th>Domain</th><th>Label</th><th>Last Scan</th><th>Aksi</th></tr></thead>
+          <tbody>${comps.map(c=>`<tr>
+            <td><a href="https://${esc(c.domain)}" target="_blank">${esc(c.domain)}</a></td>
+            <td>${esc(c.label||'—')}</td>
+            <td style="font-size:11px;color:var(--text3)">${fmtDate(c.last_scan)}</td>
+            <td><button class="btn btn-ghost btn-sm" onclick="scanCompetitor('${esc(c.domain)}')">Scan SERP</button></td>
+          </tr>`).join('')}</tbody>
+        </table></div>`}
+      </div>`;
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Gagal load SEO Health',e.message);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SEO BROKEN LINKS
+// ═══════════════════════════════════════════════════════════
+async function renderSeoBroken() {
+  try {
+    const result = await API.get('/api/seo/scan/broken_links/result').catch(()=>({result:null}));
+    const s = result.summary||{};
+    document.getElementById('content').innerHTML = `
+      <div class="section-header">
+        <h2>Broken Links Scan</h2>
+        <button class="btn btn-primary btn-sm" onclick="startScan('broken-links')">▶ Scan Sekarang</button>
+      </div>
+      ${!result.result ? `<div class="card">${emptyState('🔗','Belum ada data scan','Klik "Scan Sekarang" untuk memulai.')}</div>` : `
+      <div class="stats-grid" style="margin-bottom:16px">
+        <div class="stat-card"><div class="stat-value" style="color:var(--blue)">${s.pages_scanned||0}</div><div class="stat-label">Pages Scanned</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:${s.broken_count>0?'var(--red)':'var(--green)'}">${s.broken_count||0}</div><div class="stat-label">Broken</div></div>
+        <div class="stat-card"><div class="stat-value">${s.external_domains||0}</div><div class="stat-label">External Domains</div></div>
+      </div>
+      ${(result.result?.broken||[]).length > 0 ? `
+        <div class="card">
+          <div class="section-header"><h2>Broken URLs (${result.result.broken.length})</h2></div>
+          <div class="table-wrap"><table><thead><tr><th>URL</th><th>Status</th><th>Found On</th></tr></thead>
+            <tbody>${result.result.broken.slice(0,50).map(b=>`<tr>
+              <td style="font-size:11px;word-break:break-all;max-width:280px">${esc(b.url)}</td>
+              <td><span class="badge badge-error">${b.status||'?'}</span></td>
+              <td style="font-size:11px;color:var(--text3);max-width:200px;overflow:hidden;text-overflow:ellipsis">${esc(b.foundOn||'')}</td>
+            </tr>`).join('')}</tbody>
+          </table></div>
+        </div>` : `<div class="card">${emptyState('✅','Tidak ada broken link ditemukan','Semua link internal berfungsi dengan baik.')}</div>`}
+      `}`;
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Error',e.message);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SEO SPAM CHECK
+// ═══════════════════════════════════════════════════════════
+async function renderSeoSpam() {
+  try {
+    const result = await API.get('/api/seo/scan/spam_check/result').catch(()=>({result:null}));
+    const s = result.summary||{};
+    document.getElementById('content').innerHTML = `
+      <div class="section-header">
+        <h2>Spam / Toxic Link Check</h2>
+        <button class="btn btn-primary btn-sm" onclick="startScan('spam-check')">▶ Scan Sekarang</button>
+      </div>
+      ${!result.result ? `<div class="card">${emptyState('🛡️','Belum ada data scan','Klik "Scan Sekarang" untuk memulai.')}</div>` : `
+      <div class="stats-grid" style="margin-bottom:16px">
+        <div class="stat-card"><div class="stat-value" style="color:var(--red)">${s.spam_count||0}</div><div class="stat-label">Spam</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--yellow)">${s.suspicious_count||0}</div><div class="stat-label">Suspicious</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--green)">${s.clean_count||0}</div><div class="stat-label">Clean</div></div>
+        <div class="stat-card"><div class="stat-value">${s.total_external_domains||0}</div><div class="stat-label">Total Domains</div></div>
+      </div>
+      ${(result.result?.spam||[]).length > 0 ? `
+        <div class="card" style="margin-bottom:12px">
+          <div class="section-header"><h2 style="color:var(--red)">⚠ Spam Links (${result.result.spam.length})</h2></div>
+          <div class="table-wrap"><table><thead><tr><th>Domain</th><th>Reason</th><th>Count</th><th>Found On</th></tr></thead>
+            <tbody>${result.result.spam.map(b=>`<tr>
+              <td style="color:var(--red);font-weight:600">${esc(b.domain)}</td>
+              <td style="font-size:11px">${esc(b.reason)}</td>
+              <td>${b.count}</td>
+              <td style="font-size:11px;color:var(--text3)">${esc(b.foundOn||'')}</td>
+            </tr>`).join('')}</tbody>
+          </table></div>
+        </div>` : ''}
+      ${(result.result?.spam||[]).length===0 ? `<div class="card">${emptyState('✅','Tidak ada spam link ditemukan')}</div>` : ''}
+      `}`;
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Error',e.message);
+  }
+}
+
+async function startScan(type) {
+  try {
+    await API.post(`/api/seo/scan/${type}`);
+    toast(`Scan ${type} dimulai di background. Kembali dalam beberapa menit.`);
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SEO COMPETITOR
+// ═══════════════════════════════════════════════════════════
+async function renderSeoCompetitor() {
+  try {
+    const comps = await API.get('/api/seo/competitors');
+    document.getElementById('content').innerHTML = `
+      <div class="section-header">
+        <h2>Competitor Analysis</h2>
+        <div class="flex-gap">
+          <button class="btn btn-ghost btn-sm" onclick="autoScanCompetitors()">↻ Auto-Scan All</button>
+          <button class="btn btn-primary btn-sm" onclick="addCompetitor()">＋ Add</button>
+        </div>
+      </div>
+      <div id="comp-list">
+        ${comps.length===0 ? emptyState('🏆','Belum ada competitor') : comps.map(c=>`
+          <div class="card" style="margin-bottom:10px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:600;margin-bottom:3px"><a href="https://${esc(c.domain)}" target="_blank">${esc(c.domain)}</a></div>
+                <div style="font-size:11px;color:var(--text3)">${esc(c.label||'—')} · Last scan: ${fmtDate(c.last_scan)}</div>
+              </div>
+              <div class="flex-gap">
+                <button class="btn btn-ghost btn-sm" onclick="scanCompetitor('${esc(c.domain)}')">▶ Scan SERP</button>
+                <button class="btn btn-ghost btn-sm" onclick="showCompResult(${c.id})">📊 Hasil</button>
+                <button class="btn btn-danger btn-sm" onclick="delCompetitor(${c.id})">✕</button>
+              </div>
+            </div>
+          </div>`).join('')}
+      </div>
+      <div id="comp-result"></div>`;
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Error',e.message);
+  }
+}
+
+async function addCompetitor() {
+  const domain = prompt('Domain competitor (contoh: ican-education.com):');
+  if (!domain) return;
+  const label  = prompt('Label (opsional):') || domain;
+  try {
+    await API.post('/api/seo/competitors', { domain, label });
+    toast('Competitor ditambahkan ✓');
+    renderSeoCompetitor();
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+async function delCompetitor(id) {
+  confirm('Hapus Competitor','Competitor akan dihapus dari daftar.',async()=>{
+    try { await API.del(`/api/seo/competitors/${id}`); toast('Dihapus ✓'); renderSeoCompetitor(); }
+    catch(e) { toast('Error: '+e.message,'err'); }
+  });
+}
+
+async function scanCompetitor(domain) {
+  toast(`Scan SERP untuk ${domain}...`);
+  try {
+    const r = await API.post('/api/seo/competitor/scan', { domain });
+    toast('Scan selesai ✓');
+    showCompResultData(r.result);
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+async function autoScanCompetitors() {
+  try {
+    await API.post('/api/seo/auto-scan-competitors');
+    toast('Auto-scan semua competitor dimulai...');
+  } catch(e) { toast('Error: '+e.message,'err'); }
+}
+
+function showCompResultData(r) {
+  if (!r) return;
+  const el = document.getElementById('comp-result');
+  if (!el) return;
+  el.innerHTML = `<div class="card" style="margin-top:16px">
+    <div class="section-header"><h2>Hasil Scan: ${esc(r.domain)}</h2><span style="font-size:11px;color:var(--text3)">${fmtDt(r.scanned_at)}</span></div>
+    <div style="font-size:12px;margin-bottom:10px;color:var(--text2)">Total indexed: <strong>${esc(String(r.total_indexed))}</strong></div>
+    ${r.related_searches?.length?`<div style="margin-bottom:10px"><strong style="font-size:12px">Related Searches:</strong><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px">${r.related_searches.map(q=>`<span class="badge badge-queued">${esc(q)}</span>`).join('')}</div></div>`:''}
+    <div class="table-wrap"><table><thead><tr><th>#</th><th>Judul</th><th>URL</th></tr></thead>
+      <tbody>${(r.pages||[]).slice(0,10).map((p,i)=>`<tr>
+        <td style="color:var(--text3)">${i+1}</td>
+        <td style="font-size:12px">${esc(p.title)}</td>
+        <td><a href="${esc(p.link)}" target="_blank" style="font-size:11px">↗</a></td>
+      </tr>`).join('')}</tbody>
+    </table></div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════
+//  SEO KEYWORD RESEARCH
+// ═══════════════════════════════════════════════════════════
+async function renderSeoKeyword() {
+  try {
+    const history = await API.get('/api/seo/keyword-research/history').catch(()=>[]);
+    document.getElementById('content').innerHTML = `
+      <div class="section-header"><h2>Keyword Research</h2></div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="form-group" style="margin-bottom:0">
+          <label>Keyword</label>
+          <div style="display:flex;gap:8px">
+            <input id="kw-input" placeholder="Contoh: University of Melbourne..." style="flex:1">
+            <button class="btn btn-primary" id="kw-btn" onclick="doKeywordResearch()">🔍 Research</button>
+          </div>
+        </div>
+      </div>
+      <div id="kw-result"></div>
+      ${history.length>0?`<div class="card">
+        <div class="section-header"><h2>History</h2></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${history.map(h=>`<span class="badge badge-queued" style="cursor:pointer" onclick="document.getElementById('kw-input').value='${esc(h.keyword)}';doKeywordResearch()">${esc(h.keyword)}</span>`).join('')}
+        </div>
+      </div>` : ''}`;
+    document.getElementById('kw-input').onkeydown = e => { if(e.key==='Enter') doKeywordResearch(); };
+  } catch(e) {
+    document.getElementById('content').innerHTML = emptyState('⚠️','Error',e.message);
+  }
+}
+
+async function doKeywordResearch() {
+  const keyword = document.getElementById('kw-input')?.value?.trim();
+  if (!keyword) return;
+  const btn = document.getElementById('kw-btn');
+  btn.disabled = true; btn.textContent = '⏳ Loading...';
+  setHtml('kw-result', `<div class="empty"><div class="empty-icon spin">⏳</div><div class="empty-text">Mencari data SERP...</div></div>`);
+  try {
+    const r = await API.post('/api/seo/keyword-research', { keyword });
+    const d = r.result;
+    setHtml('kw-result', `
+      <div class="card" style="margin-bottom:12px">
+        <div class="section-header"><h2>People Also Ask</h2></div>
+        ${(d.paa||[]).length===0?emptyState('❓','Tidak ada PAA'):
+          (d.paa||[]).map(q=>`<div style="padding:7px 0;border-bottom:1px solid var(--border);font-size:13px">❓ ${esc(q.question)}</div>`).join('')}
+      </div>
+      <div class="card" style="margin-bottom:12px">
+        <div class="section-header"><h2>Related Searches</h2></div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          ${(d.related||[]).map(q=>`<span class="badge badge-queued">${esc(q)}</span>`).join('')}
+        </div>
+      </div>
+      <div class="card">
+        <div class="section-header"><h2>Top 5 Competitors di SERP</h2></div>
+        <div class="table-wrap"><table><thead><tr><th>#</th><th>Title</th><th>Domain</th></tr></thead>
+          <tbody>${(d.topDomains||[]).map((t,i)=>`<tr>
+            <td style="color:var(--text3)">${i+1}</td>
+            <td style="font-size:12px">${esc(t.title)}</td>
+            <td><a href="${esc(t.link)}" target="_blank" style="font-size:11px">${esc(t.domain)}</a></td>
+          </tr>`).join('')}</tbody>
+        </table></div>
+      </div>`);
+  } catch(e) { setHtml('kw-result', emptyState('⚠️','Error',e.message)); }
+  finally { btn.disabled=false; btn.textContent='🔍 Research'; }
+}
+
+// ═══════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════
+(async function init() {
+  await checkHealth();
+  await refreshBadges();
+  navigate('dashboard');
+  // Auto-refresh health every 60s
+  setInterval(checkHealth, 60000);
+  setInterval(refreshBadges, 30000);
+})();
+
+
+// ═══════════════════════════════════════════════════════════════
+// TRENDING TOPICS
+// ═══════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+// TRENDING TOPICS — Mini Calendar Archive
+// ═══════════════════════════════════════════════════════════════
+const trendingState = { month: new Date(), archive: [], selected: null };
+
+async function renderTrending() {
+  const container = document.getElementById('content');
+  if (!container) return;
+  let archive = [];
+  try {
+    const r = await API.get('/api/trending?days=90');
+    archive = r.archive || [];
+    trendingState.archive = archive;
+  } catch(e) {}
+  trendingState.selected = archive.length ? archive[0].scan_date : null;
+  _renderTrendingLayout();
+  if (trendingState.selected) _loadSelectedTopics(trendingState.selected);
+}
+
+function _renderTrendingLayout() {
+  const container = document.getElementById('content');
+  if (!container) return;
+  const archive = trendingState.archive;
+  const m = trendingState.month;
+  const y = m.getFullYear(), mo = m.getMonth();
+  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const dayLabels = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+  const firstDay = new Date(y, mo, 1).getDay();
+  const daysInMonth = new Date(y, mo+1, 0).getDate();
+  const today = new Date().toISOString().split('T')[0];
+  const scanDates = {};
+  archive.forEach(function(a) { scanDates[a.scan_date] = a; });
+
+  // Build calendar cells — NO single quotes in onclick, use data attributes
+  let calCells = dayLabels.map(function(d) {
+    return '<div style="text-align:center;font-size:10px;color:var(--text3);padding:2px">' + d + '</div>';
+  }).join('');
+
+  for (let i = 0; i < firstDay; i++) calCells += '<div></div>';
+  for (let d = 1; d <= daysInMonth; d++) {
+    const ds = y + '-' + String(mo+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    const hasScan = !!scanDates[ds];
+    const isToday = ds === today;
+    const isSel = ds === trendingState.selected;
+    const bg = isSel ? 'var(--accent)' : hasScan ? 'var(--accent-dim)' : 'transparent';
+    const col = isSel ? '#fff' : hasScan ? 'var(--accent)' : isToday ? 'var(--accent)' : 'var(--text3)';
+    const fw = (hasScan || isToday) ? '700' : '400';
+    const border = (isToday && !isSel) ? '1px solid var(--accent)' : '1px solid transparent';
+    const dot = hasScan ? '<div style="width:5px;height:5px;background:' + (isSel ? '#fff' : 'var(--accent)') + ';border-radius:50%;margin:1px auto 0"></div>' : '';
+    const cursor = hasScan ? 'pointer' : 'default';
+    calCells += '<div data-tdate="' + ds + '" data-hasscan="' + hasScan + '" style="cursor:' + cursor + ';text-align:center;padding:5px 2px;border-radius:6px;font-size:12px;background:' + bg + ';color:' + col + ';font-weight:' + fw + ';border:' + border + '">' + d + dot + '</div>';
+  }
+
+  // Sidebar list
+  let recentHtml = '';
+  if (archive.length === 0) {
+    recentHtml = '<div style="color:var(--text3);font-size:12px;padding:12px">Belum ada scan</div>';
+  } else {
+    archive.slice(0, 30).forEach(function(a, i) {
+      const isSel = a.scan_date === trendingState.selected;
+      const summary = (a.summary || '').slice(0, 60);
+      recentHtml += '<div data-tdate="' + a.scan_date + '" data-hasscan="true" style="padding:8px 12px;cursor:pointer;border-radius:var(--rs);margin-bottom:2px;background:' + (isSel ? 'var(--accent-dim)' : 'transparent') + ';border-left:3px solid ' + (isSel ? 'var(--accent)' : 'transparent') + '">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center">' +
+          '<span style="font-size:12px;font-weight:' + (isSel ? 700 : 500) + ';color:' + (isSel ? 'var(--accent)' : 'var(--text)') + '">' + (i === 0 ? '🟢 ' : '📅 ') + a.scan_date + '</span>' +
+          '<span class="badge badge-queued" style="font-size:10px">' + a.total_topics + ' topic</span>' +
+        '</div>' +
+        '<div style="font-size:11px;color:var(--text3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px">' + summary + '</div>' +
+      '</div>';
+    });
+  }
+
+  container.innerHTML =
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">' +
+      '<div><h2 style="font-size:16px;font-weight:700;margin-bottom:2px">🔥 Trending Topics Archive</h2>' +
+      '<p style="font-size:12px;color:var(--text3)">' + archive.length + ' hari terscan · Klik tanggal untuk lihat detail</p></div>' +
+      '<button onclick="triggerTrendingScan()" class="btn btn-primary btn-sm" id="btn-scan-now">⟳ Scan Now</button>' +
+    '</div>' +
+    '<div style="display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:start">' +
+      '<div>' +
+        '<div class="card" style="margin-bottom:12px;padding:14px">' +
+          '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">' +
+            '<button onclick="_trendingCalNav(-1)" class="btn btn-ghost btn-sm" style="padding:3px 8px">‹</button>' +
+            '<span style="font-size:12px;font-weight:600">' + monthNames[mo] + ' ' + y + '</span>' +
+            '<button onclick="_trendingCalNav(1)" class="btn btn-ghost btn-sm" style="padding:3px 8px">›</button>' +
+          '</div>' +
+          '<div id="trending-cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">' + calCells + '</div>' +
+        '</div>' +
+        '<div class="card" style="padding:8px;max-height:420px;overflow-y:auto" id="trending-list-panel">' +
+          '<div style="font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;padding:4px 12px;margin-bottom:4px">Riwayat Scan</div>' +
+          recentHtml +
+        '</div>' +
+      '</div>' +
+      '<div id="trending-detail-panel">' +
+        (trendingState.selected
+          ? '<div class="card"><div style="text-align:center;padding:24px;color:var(--text3)"><span class="spin" style="display:inline-block;font-size:24px">⏳</span><div style="margin-top:8px;font-size:13px">Memuat topics...</div></div></div>'
+          : '<div class="card">' + emptyState('🔥','Pilih tanggal untuk lihat trending topics','Klik titik biru di kalender atau baris di riwayat scan') + '</div>') +
+      '</div>' +
+    '</div>';
+
+  // Wire click events via delegation (no inline quotes issue)
+  document.querySelectorAll('[data-tdate][data-hasscan="true"]').forEach(function(el) {
+    el.addEventListener('click', function() { _selectTrendingDate(el.dataset.tdate); });
+  });
+}
+
+function _trendingCalNav(dir) {
+  const m = trendingState.month;
+  trendingState.month = new Date(m.getFullYear(), m.getMonth() + dir, 1);
+  _renderTrendingLayout();
+  if (trendingState.selected) _loadSelectedTopics(trendingState.selected);
+}
+
+function _selectTrendingDate(date) {
+  const scan = trendingState.archive.find(function(a) { return a.scan_date === date; });
+  if (!scan) return;
+  trendingState.selected = date;
+  const d = new Date(date + 'T00:00:00');
+  trendingState.month = new Date(d.getFullYear(), d.getMonth(), 1);
+  _renderTrendingLayout();
+  _loadSelectedTopics(date);
+}
+
+async function _loadSelectedTopics(date) {
+  const panel = document.getElementById('trending-detail-panel');
+  if (!panel) return;
+  panel.innerHTML = '<div class="card"><div style="text-align:center;padding:24px;color:var(--text3)"><span class="spin" style="display:inline-block;font-size:24px">⏳</span></div></div>';
+  try {
+    const r = await API.get('/api/trending/' + date);
+    const topics = r.topics || [];
+    const scan = r.scan || {};
+    const catColor = function(c) {
+      if (c === 'scholarship') return 'var(--green)';
+      if (c === 'university') return 'var(--blue)';
+      if (c === 'visa') return 'var(--purple)';
+      if (c === 'country') return 'var(--accent)';
+      return 'var(--orange)';
+    };
+    const isToday = date === new Date().toISOString().split('T')[0];
+    let html = '<div class="card">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">' +
+        '<div>' +
+          '<div style="font-size:14px;font-weight:700">🔥 Trending Topics</div>' +
+          '<div style="font-size:11px;color:var(--text3);margin-top:2px">' + (isToday ? 'Hari ini · ' : '') + date + ' · ' + topics.length + ' topics</div>' +
+        '</div>' +
+      '</div>';
+    if (scan.summary) {
+      html += '<div style="font-size:12px;color:var(--text2);padding:10px 12px;background:var(--surface2);border-radius:var(--rs);margin-bottom:14px;line-height:1.6">' + esc(scan.summary) + '</div>';
+    }
+    if (topics.length === 0) {
+      html += emptyState('📭', 'Tidak ada topics untuk tanggal ini');
+    } else {
+      topics.forEach(function(t) {
+        html += '<div style="border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:8px">' +
+          '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px">' +
+            '<div style="font-size:13px;font-weight:600;line-height:1.4">' + esc(t.title) + '</div>' +
+            '<span style="flex-shrink:0;display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;background:' + catColor(t.category) + ';color:#fff">' + esc(t.category || 'general') + '</span>' +
+          '</div>' +
+          '<p style="font-size:12px;color:var(--text2);margin:0 0 8px;line-height:1.5">' + esc(t.description || '') + '</p>' +
+          '<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">' +
+            '<span style="font-size:11px;color:var(--text3)">🌏 ' + esc(t.country || 'global') + '</span>' +
+            '<span style="font-size:11px;color:var(--text3)">⭐ ' + t.relevance + '/10</span>' +
+            (t.keyword ? '<span style="font-size:11px;color:var(--accent);font-weight:500">🔑 ' + esc(t.keyword) + '</span>' : '') +
+            (t.article_created
+              ? '<span class="badge badge-published" style="font-size:10px">✓ Artikel dibuat</span>'
+              : '<button class="btn btn-ghost btn-sm create-topic-btn" style="font-size:11px;margin-left:auto" data-topicid="' + t.id + '" data-keyword="' + esc(t.keyword || t.title) + '">+ Buat Artikel</button>') +
+          '</div>' +
+        '</div>';
+      });
+    }
+    html += '</div>';
+    panel.innerHTML = html;
+    // Wire create article buttons
+    panel.querySelectorAll('.create-topic-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        createArticleFromTopic(btn.dataset.topicid, btn.dataset.keyword);
+      });
+    });
+  } catch(e) {
+    panel.innerHTML = '<div class="card">' + emptyState('⚠️', 'Error load topics', e.message) + '</div>';
+  }
+}
+
+async function triggerTrendingScan() {
+  const btn = document.getElementById('btn-scan-now');
+  if (btn) { btn.disabled = true; btn.textContent = '⟳ Scanning...'; }
+  try {
+    const r = await API.post('/api/trending/scan');
+    if (r.skipped) { toast('Sudah scan hari ini: ' + r.date); }
+    else { toast('Scan selesai! ' + (r.topics_count || 0) + ' topics ditemukan'); renderTrending(); }
+  } catch(e) { toast('Scan error: ' + e.message, 'err'); }
+  if (btn) { btn.disabled = false; btn.textContent = '⟳ Scan Now'; }
+}
+
+async function createArticleFromTopic(topicId, keyword) {
+  try {
+    const r = await API.post('/api/trending/' + topicId + '/create-article');
+    toast('Artikel ditambahkan ke queue ✓ (ID: ' + (r.articleId || '-') + ')');
+    // Navigate ke Articles page supaya user bisa lihat progress
+    navigate('articles');
+  } catch(e) { toast('Error: ' + e.message, 'err'); }
+}
+
+// ARTICLE SCHEDULE
+// ═══════════════════════════════════════════════════════════════
+async function renderSchedule() {
+  const container = document.getElementById('content');
+  if (!container) return;
+  container.innerHTML = `
+    <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+      <div><h1>📅 Article Schedule</h1><p style="color:var(--muted)">Jadwalkan generate & publish artikel otomatis</p></div>
+      <button onclick="showScheduleForm()" class="btn btn-primary">+ Tambah Jadwal</button>
+    </div>
+    <div id="schedule-form" style="display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:20px">
+      <h3 style="margin:0 0 16px">📝 Jadwalkan Artikel Baru</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label>Judul Artikel</label><input id="sch-title" class="input" placeholder="Judul artikel..." style="width:100%"></div>
+        <div><label>Focus Keyword</label><input id="sch-kw" class="input" placeholder="keyword utama..." style="width:100%"></div>
+        <div><label>📅 Generate Pada</label><input id="sch-gen" type="datetime-local" class="input" style="width:100%"></div>
+        <div><label>🚀 Publish Pada</label><input id="sch-pub" type="datetime-local" class="input" style="width:100%"></div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px">
+        <button onclick="saveSchedule()" class="btn btn-primary">💾 Simpan Jadwal</button>
+        <button onclick="document.getElementById('schedule-form').style.display='none'" class="btn">Batal</button>
+      </div>
+    </div>
+    <div id="schedule-list"><div class="loading">Loading jadwal...</div></div>
+  `;
+  await loadScheduleList();
+}
+
+function showScheduleForm() {
+  const f = document.getElementById('schedule-form');
+  f.style.display = f.style.display === 'none' ? 'block' : 'none';
+  // Set default generate time to tomorrow 07:00
+  const tmr = new Date(); tmr.setDate(tmr.getDate()+1); tmr.setHours(7,0,0);
+  document.getElementById('sch-gen').value = tmr.toISOString().slice(0,16);
+  const pub = new Date(tmr); pub.setHours(pub.getHours()+6);
+  document.getElementById('sch-pub').value = pub.toISOString().slice(0,16);
+}
+
+async function saveSchedule() {
+  const title = document.getElementById('sch-title').value.trim();
+  const kw    = document.getElementById('sch-kw').value.trim();
+  const gen   = document.getElementById('sch-gen').value;
+  const pub   = document.getElementById('sch-pub').value;
+  if (!title || !kw) { toast('Judul dan keyword wajib diisi','err'); return; }
+  try {
+    const r = await API.post('/api/schedule', {
+      title, keyword: kw,
+      scheduled_generate_at: gen ? new Date(gen).toISOString() : null,
+      scheduled_publish_at:  pub ? new Date(pub).toISOString() : null,
+    });
+    toast('Jadwal berhasil disimpan! ✓');
+    document.getElementById('schedule-form').style.display = 'none';
+    await loadScheduleList();
+  } catch(e) { toast(e.message,'err'); }
+}
+
+async function loadScheduleList() {
+  const el = document.getElementById('schedule-list');
+  try {
+    const r = await API.get('/api/schedule');
+    if (!r.items || r.items.length === 0) {
+      el.innerHTML = `<div class="empty-state" style="text-align:center;padding:40px;color:var(--muted)">Belum ada jadwal. Klik "+ Tambah Jadwal" untuk mulai.</div>`;
+      return;
+    }
+    const statusColors = { pending:'var(--yellow)', generating:'var(--blue)', draft:'var(--orange)', published:'var(--green)', failed:'var(--red)' };
+    el.innerHTML = `
+      <table style="width:100%;border-collapse:collapse">
+        <thead><tr style="border-bottom:2px solid var(--border)">
+          <th style="text-align:left;padding:10px">Artikel</th>
+          <th style="text-align:left;padding:10px">Generate At</th>
+          <th style="text-align:left;padding:10px">Publish At</th>
+          <th style="text-align:left;padding:10px">Status</th>
+          <th style="text-align:left;padding:10px">QC</th>
+          <th style="padding:10px">Aksi</th>
+        </tr></thead>
+        <tbody>${r.items.map(i => `
+          <tr style="border-bottom:1px solid var(--border);hover:background:var(--bg)">
+            <td style="padding:10px">
+              <div><strong>${i.title}</strong></div>
+              <div style="font-size:12px;color:var(--muted)">${i.keyword}</div>
+            </td>
+            <td style="padding:10px;font-size:13px">${i.scheduled_generate_at ? new Date(i.scheduled_generate_at).toLocaleString('id-ID') : '-'}</td>
+            <td style="padding:10px;font-size:13px">${i.scheduled_publish_at ? new Date(i.scheduled_publish_at).toLocaleString('id-ID') : '-'}</td>
+            <td style="padding:10px">
+              <span class="badge" style="background:${statusColors[i.status]||'var(--muted)'};color:#fff;padding:3px 10px;border-radius:10px">${i.status}</span>
+            </td>
+            <td style="padding:10px">${i.qc_score || '-'}</td>
+            <td style="padding:10px;text-align:center">
+              <button onclick="deleteSchedule(${i.id})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:16px" title="Hapus">🗑</button>
+            </td>
+          </tr>
+        `).join('')}</tbody>
+      </table>
+    `;
+  } catch(e) { el.innerHTML = `<div class="error">${e.message}</div>`; }
+}
+
+async function deleteSchedule(id) {
+  if (!window.confirm('Hapus jadwal ini?')) return;
+  try {
+    await API.del('/api/schedule/'+id);
+    toast('Jadwal dihapus ✓');
+    await loadScheduleList();
+  } catch(e) { toast(e.message, 'err'); }
+}
+
+
+// --- Article Edit Mode ---
+let _editOriginalHtml = null;
+let _editTargetImg = null;
+
+function toggleArticleEdit(id) {
+  const el = document.getElementById('article-preview-content');
+  if (!el) return;
+  _editOriginalHtml = el.innerHTML;
+  el.contentEditable = 'true';
+  el.focus();
+  el.querySelectorAll('img').forEach(img => {
+    img.onclick = (e) => { e.preventDefault(); _editMode='replace'; _editTargetImg=img; openImgPicker(img); };
+  });
+  const _tb = document.getElementById('editor-toolbar');
+  if (_tb) _tb.style.display = 'flex';
+  document.getElementById('btn-preview-edit').style.display = 'none';
+  document.getElementById('btn-preview-save').style.display = '';
+  document.getElementById('btn-preview-cancel').style.display = '';
+}
+
+function cancelArticleEdit() {
+  const el = document.getElementById('article-preview-content');
+  if (!el) return;
+  if (_editOriginalHtml !== null) el.innerHTML = _editOriginalHtml;
+  el.contentEditable = 'false';
+  _editOriginalHtml = null;
+  document.getElementById('btn-preview-edit').style.display = '';
+  document.getElementById('btn-previey-save').style.display = 'none';
+  document.getElementById('btn-preview-cancel').style.display = 'none';
+  const _ctb = document.getElementById('editor-toolbar');
+  if (_ctb) _ctb.style.display = 'none';
+}
+
+async function saveArticleContent(id) {
+  const el = document.getElementById('article-preview-content');
+  if (!el) return;
+  const html = el.innerHTML;
+  el.contentEditable = 'false';
+  const saveBtn = document.getElementById('btn-preview-save');
+  saveBtn.textContent = 'Menyimpan...';
+  try {
+    await API.patch('/api/articles/' + id, { content_html: html });
+    _editOriginalHtml = null;
+    document.getElementById('btn-preview-edit').style.display = '';
+    saveBtn.style.display = 'none';
+    document.getElementById('btn-preview-cancel').style.display = 'none';
+    saveBtn.textContent = 'Simpan';
+    const _stb = document.getElementById('editor-toolbar');
+    if (_stb) _stb.style.display = 'none';
+    toast('Artikel berhasil disimpan', 'success');
+    if (state.currentArticle) state.currentArticle.content_html = html;
+  } catch(e) {
+    el.contentEditable = 'true';
+    saveBtn.textContent = 'Simpan';
+    toast('Gagal menyimpan: ' + e.message, 'error');
+  }
+}
+
+function openImgPicker(imgEl) {
+  _editTargetImg = imgEl;
+  document.getElementById('img-picker-panel').classList.add('open');
+  document.getElementById('img-picker-overlay').classList.add('open');
+  const q = ((state.currentArticle && (state.currentArticle.keyword || state.currentArticle.title)) || '').split(' ').slice(0,3).join(' ');
+  document.getElementById('img-picker-query').value = q;
+  searchImgPicker();
+}
+
+function closeImgPicker() {
+  document.getElementById('img-picker-panel').classList.remove('open');
+  document.getElementById('img-picker-overlay').classList.remove('open');
+  _editTargetImg = null;
+}
+
+async function searchImgPicker() {
+  const q = document.getElementById('img-picker-query').value.trim();
+  if (!q) return;
+  const grid = document.getElementById('img-picker-grid');
+  grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;opacity:.6">Mencari...</div>';
+  try {
+    const data = await API.get('/api/articles/image-search?q=' + encodeURIComponent(q));
+    if (!data.photos || data.photos.length === 0) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;opacity:.6">Tidak ada hasil</div>';
+      return;
+    }
+    grid.innerHTML = data.photos.map(p =>
+      '<img src="' + esc(p.thumb) + '" title="' + esc(p.alt) + '" onclick="pickImg(' + "'"+encodeURIComponent(p.url)+"','"+encodeURIComponent(p.photographer)+"','"+encodeURIComponent(p.alt)+"')" + '" loading="lazy">'
+    ).join('');
+  } catch(e) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;opacity:.6">Error: ' + esc(e.message) + '</div>';
+  }
+}
+
+function pickImg(urlEnc, photographerEnc, altEnc) {
+  const url = decodeURIComponent(urlEnc);
+  const alt = decodeURIComponent(altEnc);
+  if (_editMode === 'insert' && _insertRange) {
+    const img = document.createElement('img');
+    img.src = url; img.alt = alt;
+    img.style.cssText = 'max-width:100%;height:auto;border-radius:6px;margin:8px 0;display:block;cursor:pointer';
+    img.onclick = (e) => { e.preventDefault(); _editMode='replace'; _editTargetImg=img; openImgPicker(img); };
+    _insertRange.deleteContents();
+    _insertRange.insertNode(img);
+    _insertRange = null; _editMode = 'replace';
+    closeImgPicker();
+    toast('Gambar disisipkan. Klik Simpan untuk menyimpan.', 'info');
+  } else if (_editTargetImg) {
+    _editTargetImg.src = url; _editTargetImg.alt = alt;
+    closeImgPicker();
+    toast('Gambar diganti. Klik Simpan untuk menyimpan.', 'info');
+  } else {
+    closeImgPicker();
+  }
+}
+
+
+async function uploadImgFile(file) {
+  if (!file) return;
+  if (!_editTargetImg) { toast('Klik Edit dulu, lalu klik gambar yang ingin diganti', 'error'); return; }
+  const status = document.getElementById('img-upload-status');
+  const input = document.getElementById('img-upload-input');
+  status.style.display = 'flex';
+  status.innerHTML = '<div class="spinner"></div><span>Mengupload ke WordPress...</span>';
+  try {
+    const resp = await fetch('/api/articles/upload-image', {
+      method: 'POST',
+      headers: {
+        'Content-Type': file.type || 'image/jpeg',
+        'x-api-key': 'claude2026',
+        'x-alt-text': encodeURIComponent(file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ')),
+      },
+      body: file,
+    });
+    const data = await resp.json();
+    if (!resp.ok || data.error) throw new Error(data.error || 'Upload gagal');
+    if (_editMode === 'insert' && _insertRange) {
+      const img = document.createElement('img');
+      img.src = data.url; img.alt = file.name.replace(/\.[^.]+$/, '');
+      img.style.cssText = 'max-width:100%;height:auto;border-radius:6px;margin:8px 0;display:block;cursor:pointer';
+      img.onclick = (e) => { e.preventDefault(); _editMode='replace'; _editTargetImg=img; openImgPicker(img); };
+      _insertRange.deleteContents();
+      _insertRange.insertNode(img);
+      _insertRange = null; _editMode = 'replace';
+    } else if (_editTargetImg) {
+      _editTargetImg.src = data.url;
+      _editTargetImg.alt = file.name.replace(/\.[^.]+$/, '');
+    }
+    status.style.display = 'none';
+    if (input) input.value = '';
+    closeImgPicker();
+    toast('Upload sukses! Klik Simpan untuk menyimpan perubahan.', 'success');
+  } catch(e) {
+    status.innerHTML = '<span style="color:#ef4444">&#x26A0; Gagal: ' + esc(e.message) + '</span>';
+    if (input) input.value = '';
+    toast('Upload gagal: ' + e.message, 'error');
+  }
+}
+
+
+// --- Rich Text Editor ---
+let _editMode = 'replace';
+let _insertRange = null;
+
+function fmt(cmd, val) {
+  const el = document.getElementById('article-preview-content');
+  if (el) el.focus();
+  document.execCommand('styleWithCSS', false, true);
+  document.execCommand(cmd, false, val || null);
+}
+
+function changeFontSize(delta) {
+  const sel = window.getSelection();
+  if (!sel || !sel.rangeCount || sel.isCollapsed) { toast('Pilih teks dulu untuk mengubah ukuran', 'info'); return; }
+  const el = document.getElementById('article-preview-content');
+  if (el) el.focus();
+  const range = sel.getRangeAt(0);
+  const anchor = sel.anchorNode && sel.anchorNode.nodeType === 3 ? sel.anchorNode.parentElement : sel.anchorNode;
+  const cur = anchor ? parseFloat(window.getComputedStyle(anchor).fontSize) || 14 : 14;
+  const next = Math.max(10, Math.min(40, cur + delta * 2));
+  const span = document.createElement('span');
+  span.style.fontSize = next + 'px';
+  try { range.surroundContents(span); } catch(e) {
+    document.execCommand('styleWithCSS', false, true);
+    document.execCommand('fontSize', false, delta > 0 ? '5' : '3');
+  }
+}
+
+function insertImgAtCursor() {
+  const sel = window.getSelection();
+  if (!sel || !sel.rangeCount) { toast('Letakkan kursor di posisi yang diinginkan dulu', 'info'); return; }
+  _editMode = 'insert';
+  _editTargetImg = null;
+  _insertRange = sel.getRangeAt(0).cloneRange();
+  document.getElementById('img-picker-panel').classList.add('open');
+  document.getElementById('img-picker-overlay').classList.add('open');
+  const q = ((state.currentArticle && (state.currentArticle.keyword || state.currentArticle.title)) || '').split(' ').slice(0,3).join(' ');
+  document.getElementById('img-picker-query').value = q;
+  searchImgPicker();
+}
+
+</script>
+
+<div id="img-picker-overlay" onclick="closeImgPicker()"></div>
+<div id="img-picker-panel">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <strong>Ganti Gambar</strong>
+    <button class="btn btn-ghost btn-sm" onclick="closeImgPicker()">&#x2715;</button>
+  </div>
+  <div style="display:flex;gap:8px">
+    <input id="img-picker-query" class="input" style="flex:1;padding:6px 10px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text)" placeholder="Cari gambar..." onkeydown="if(event.key==='Enter')searchImgPicker()">
+    <button onclick="searchImgPicker()" style="background:#3b82f6;color:#fff;border:none;border-radius:6px;padding:6px 14px;cursor:pointer;font-size:13px">Cari</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin:10px 0 6px">
+    <div style="flex:1;height:1px;background:var(--border)"></div>
+    <span style="font-size:11px;opacity:.5;white-space:nowrap">atau upload manual</span>
+    <div style="flex:1;height:1px;background:var(--border)"></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <input type="file" id="img-upload-input" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none" onchange="uploadImgFile(this.files[0])">
+    <button onclick="document.getElementById('img-upload-input').click()" style="width:100%;padding:8px;border:1.5px dashed var(--border);border-radius:6px;background:transparent;color:var(--text);cursor:pointer;font-size:13px;text-align:center">&#128442; Pilih Gambar dari Perangkat</button>
+  </div>
+  <div id="img-upload-status" style="display:none;margin-top:6px"></div>
+  <div id="img-picker-grid" class="img-picker-grid"></div>
+  <p style="font-size:11px;opacity:.5;margin-top:8px;text-align:right">Foto dari Pexels</p>
+</div>
+</body>
+</html>
