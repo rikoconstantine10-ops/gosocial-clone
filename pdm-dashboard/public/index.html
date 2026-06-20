@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDM Dashboard — Edurep</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{colors:{brand:{50:'#eff6ff',100:'#dbeafe',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',900:'#1e3a8a'}}}}}</script>
+<style>
+  [x-cloak]{display:none}
+  .tab-active{border-bottom:2px solid #2563eb;color:#2563eb;font-weight:600}
+  .freshness-bar{height:6px;border-radius:3px;background:#e5e7eb}
+  .freshness-fill{height:6px;border-radius:3px;transition:width .3s}
+  .status-partner{background:#dcfce7;color:#166534}
+  .status-onprocess{background:#fef9c3;color:#854d0e}
+  .status-nonpartner{background:#f3f4f6;color:#374151}
+  .sidebar-link{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:8px;cursor:pointer;transition:background .15s;font-size:14px}
+  .sidebar-link:hover,.sidebar-link.active{background:#eff6ff;color:#2563eb}
+  .sidebar-link.active{font-weight:600}
+  .card{background:white;border-radius:12px;border:1px solid #e5e7eb;padding:20px}
+  .btn{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:opacity .15s}
+  .btn:hover{opacity:.85}
+  .btn-primary{background:#2563eb;color:white}
+  .btn-secondary{background:#f3f4f6;color:#374151;border:1px solid #d1d5db}
+  .btn-danger{background:#fee2e2;color:#991b1b}
+  .btn-success{background:#dcfce7;color:#166534}
+  input,select,textarea{border:1px solid #d1d5db;border-radius:8px;padding:8px 12px;font-size:14px;width:100%;outline:none;transition:border .15s}
+  input:focus,select:focus,textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px #dbeafe}
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+  .modal-box{background:white;border-radius:16px;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;padding:28px}
+  .activity-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+  ::-webkit-scrollbar{width:6px;height:6px}
+  ::-webkit-scrollbar-track{background:#f3f4f6}
+  ::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:3px}
+</style>
+</head>
+<body class="bg-gray-50 text-gray-800" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif">
+
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="min-h-screen flex items-center justify-center" style="display:none">
+  <div class="bg-white rounded-2xl shadow-xl p-10 w-full max-w-sm">
+    <div class="text-center mb-8">
+      <div class="text-3xl font-bold text-blue-600 mb-1">PDM Dashboard</div>
+      <div class="text-sm text-gray-500">Edurep · Product Development Manager</div>
+    </div>
+    <div class="space-y-4">
+      <div>
+        <label class="text-sm font-medium text-gray-700 block mb-1">Username / Email</label>
+        <input id="loginUser" type="text" placeholder="admin" onkeydown="if(event.key==='Enter')login()">
+      </div>
+      <div>
+        <label class="text-sm font-medium text-gray-700 block mb-1">Password</label>
+        <input id="loginPass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')login()">
+      </div>
+      <div id="loginErr" class="text-red-600 text-sm hidden"></div>
+      <button onclick="login()" class="btn btn-primary w-full py-2.5 text-sm">Masuk →</button>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app" class="flex h-screen overflow-hidden">
+
+  <!-- SIDEBAR -->
+  <aside class="w-56 bg-white border-r border-gray-200 flex flex-col flex-shrink-0">
+    <div class="px-5 py-5 border-b border-gray-100">
+      <div class="text-base font-bold text-blue-600">PDM Dashboard</div>
+      <div class="text-xs text-gray-400 mt-0.5">Edurep Campus Hub</div>
+    </div>
+
+    <!-- Region Nav -->
+    <div class="px-3 pt-4 pb-2">
+      <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 mb-2">Region</div>
+      <div onclick="setRegion('all')" class="sidebar-link" id="nav-all">🌐 Global</div>
+      <div onclick="setRegion('Europe')" class="sidebar-link" id="nav-Europe">🌍 Europe</div>
+      <div onclick="setRegion('Asia')" class="sidebar-link" id="nav-Asia">🌏 Asia</div>
+      <div onclick="setRegion('North America')" class="sidebar-link" id="nav-North America">🌎 US & Canada</div>
+      <div onclick="setRegion('AuNZ')" class="sidebar-link" id="nav-AuNZ">🦘 Australia & NZ</div>
+    </div>
+
+    <div class="px-3 pt-4 pb-2 border-t border-gray-100 mt-2">
+      <div class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 mb-2">Tools</div>
+      <div onclick="showView('stats')" class="sidebar-link" id="nav-stats">📊 Analytics</div>
+      <div onclick="showView('users')" class="sidebar-link" id="nav-users" style="display:none">👥 Users</div>
+      <div onclick="showView('kb')" class="sidebar-link" id="nav-kb">📚 Knowledge Base</div>
+    </div>
+
+    <div class="mt-auto px-3 pb-4 border-t border-gray-100 pt-4">
+      <div class="text-xs text-gray-500 px-2 mb-1" id="sidebarUser"></div>
+      <div onclick="logout()" class="sidebar-link text-red-500">🚪 Logout</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-1 overflow-y-auto">
+
+    <!-- HEADER -->
+    <header class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between sticky top-0 z-10">
+      <div>
+        <h1 id="pageTitle" class="text-lg font-semibold text-gray-800">Global — All Universities</h1>
+        <p id="pageSubtitle" class="text-xs text-gray-400 mt-0.5"></p>
+      </div>
+      <div class="flex items-center gap-3">
+        <input id="searchInput" type="text" placeholder="Cari universitas..." style="width:240px" oninput="debounceSearch()">
+        <select id="filterStatus" onchange="loadUniversities()" style="width:160px">
+          <option value="">Semua Status</option>
+          <option value="Partner">Partner</option>
+          <option value="On Process">On Process</option>
+          <option value="Non Partner">Non Partner</option>
+        </select>
+        <button onclick="openAddUniModal()" class="btn btn-primary">+ Tambah</button>
+      </div>
+    </header>
+
+    <!-- STATS CARDS -->
+    <div id="statsRow" class="px-6 pt-5 grid grid-cols-5 gap-4">
+      <div class="card flex flex-col gap-1">
+        <div class="text-2xl font-bold text-gray-800" id="statTotal">—</div>
+        <div class="text-xs text-gray-500">Total Kampus</div>
+      </div>
+      <div class="card flex flex-col gap-1">
+        <div class="text-2xl font-bold text-green-600" id="statPartner">—</div>
+        <div class="text-xs text-gray-500">Partner</div>
+      </div>
+      <div class="card flex flex-col gap-1">
+        <div class="text-2xl font-bold text-yellow-600" id="statProcess">—</div>
+        <div class="text-xs text-gray-500">On Process</div>
+      </div>
+      <div class="card flex flex-col gap-1">
+        <div class="text-2xl font-bold text-gray-500" id="statNonPartner">—</div>
+        <div class="text-xs text-gray-500">Non Partner</div>
+      </div>
+      <div class="card flex flex-col gap-1">
+        <div class="text-2xl font-bold text-blue-600" id="statFreshness">—</div>
+        <div class="text-xs text-gray-500">Avg Freshness</div>
+      </div>
+    </div>
+
+    <!-- UNIVERSITY LIST VIEW -->
+    <div id="listView" class="px-6 py-4">
+      <div id="uniTableWrap">
+        <div class="text-center py-12 text-gray-400">Loading...</div>
+      </div>
+      <div id="pagination" class="flex justify-between items-center mt-4 text-sm text-gray-500"></div>
+    </div>
+
+    <!-- STATS VIEW -->
+    <div id="statsView" class="px-6 py-4 hidden">
+      <div class="grid grid-cols-2 gap-6">
+        <div class="card">
+          <h3 class="font-semibold text-gray-700 mb-4">Distribusi per Region</h3>
+          <div id="regionChart"></div>
+        </div>
+        <div class="card">
+          <h3 class="font-semibold text-gray-700 mb-4">Top Countries</h3>
+          <div id="countryChart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS VIEW -->
+    <div id="usersView" class="px-6 py-4 hidden">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="font-semibold text-gray-700">Manajemen User</h2>
+        <button onclick="openAddUserModal()" class="btn btn-primary">+ Tambah User</button>
+      </div>
+      <div id="usersList" class="card"></div>
+    </div>
+
+
+    <!-- KB VIEW -->
+    <div id="kbView" class="px-6 py-4 hidden">
+      <div class="flex justify-between items-center mb-5">
+        <div>
+          <h2 class="font-semibold text-gray-700 text-lg">Knowledge Base</h2>
+          <p class="text-xs text-gray-400 mt-1">Upload dokumen, video, atau link — AI analisis dan assign ke kampus otomatis</p>
+        </div>
+        <button onclick="showKbAddForm()" class="btn btn-primary">+ Tambah Dokumen</button>
+      </div>
+      <div id="kbAddForm" class="card mb-5 hidden">
+        <div class="font-semibold text-gray-700 mb-3 text-sm">Dokumen Baru</div>
+        <div class="space-y-3">
+          <div><label class="label-sm">Nama / Judul *</label><input id="kb-title" type="text" class="mt-1" placeholder="cth: Training SIM, Brosur SCUT 2025..."></div>
+          <div>
+            <label class="label-sm">Tipe Sumber</label>
+            <div class="flex gap-2 mt-1 flex-wrap">
+              <button onclick="setKbType('youtube')" id="kbt-youtube" class="btn btn-secondary text-xs">📺 YouTube</button>
+              <button onclick="setKbType('gdrive')" id="kbt-gdrive" class="btn btn-secondary text-xs">📂 Google Drive</button>
+              <button onclick="setKbType('website')" id="kbt-website" class="btn btn-secondary text-xs">🌐 Website</button>
+              <button onclick="setKbType('file')" id="kbt-file" class="btn btn-secondary text-xs">📎 Upload File</button>
+            </div>
+          </div>
+          <div id="kb-url-wrap"><label class="label-sm">URL</label><input id="kb-url" type="text" class="mt-1" placeholder="https://..."></div>
+          <div id="kb-file-wrap" class="hidden"><label class="label-sm">File PDF / Audio / Video (maks 100MB)</label><input id="kb-file" type="file" class="mt-1" accept=".pdf,audio/*,video/*"></div>
+          <div>
+            <label class="label-sm">Assign ke Kampus <span class="text-gray-400 font-normal">(kosongkan = AI otomatis match)</span></label>
+            <div class="relative mt-1">
+              <input id="kb-uni-search" type="text" placeholder="Cari nama kampus..." oninput="searchKbUnis()">
+              <div id="kb-uni-results" class="absolute z-10 w-full mt-1 hidden bg-white border border-gray-200 rounded-lg shadow-lg max-h-40 overflow-y-auto"></div>
+            </div>
+            <div id="kb-uni-selected" class="flex flex-wrap gap-1 mt-2"></div>
+          </div>
+        </div>
+        <div class="flex gap-2 mt-4">
+          <button onclick="submitKbDoc()" class="btn btn-primary text-sm">Simpan</button>
+          <button onclick="document.getElementById('kbAddForm').classList.add('hidden')" class="btn btn-secondary text-sm">Batal</button>
+        </div>
+      </div>
+      <div id="kbDocList"><div class="text-center py-12 text-gray-400">Loading...</div></div>
+    </div>
+  </main>
+</div>
+
+<!-- UNIVERSITY DETAIL MODAL -->
+<div id="detailModal" class="modal-overlay hidden">
+  <div class="modal-box" style="max-width:800px">
+    <div class="flex justify-between items-start mb-5">
+      <div>
+        <h2 id="detailTitle" class="text-xl font-bold text-gray-800"></h2>
+        <p id="detailMeta" class="text-sm text-gray-500 mt-1"></p>
+      </div>
+      <button onclick="closeDetail()" class="text-gray-400 hover:text-gray-600 text-2xl leading-none">×</button>
+    </div>
+
+    <!-- Status bar -->
+    <div class="flex items-center gap-3 mb-5 p-3 bg-gray-50 rounded-lg">
+      <span id="detailStatusBadge" class="px-3 py-1 rounded-full text-xs font-semibold"></span>
+      <span class="text-xs text-gray-400">|</span>
+      <span id="detailFreshnessLabel" class="text-xs text-gray-500"></span>
+      <div class="flex-1"><div class="freshness-bar"><div id="detailFreshnessBar" class="freshness-fill bg-blue-500"></div></div></div>
+      <button id="syncBtn" onclick="syncUniversity()" class="btn btn-secondary text-xs">🔄 Sync Data</button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-0 border-b border-gray-200 mb-5 text-sm" id="detailTabs" style="overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;flex-wrap:nowrap">
+      <button onclick="switchTab('overview')" class="tab-btn tab-active px-4 py-2" data-tab="overview">Overview</button>
+      <button onclick="switchTab('academic')" class="tab-btn px-4 py-2 text-gray-500" data-tab="academic">Academic</button>
+      <button onclick="switchTab('biaya')" class="tab-btn px-4 py-2 text-gray-500" data-tab="biaya">Biaya & Beasiswa</button>
+      <button onclick="switchTab('partnership')" class="tab-btn px-4 py-2 text-gray-500" data-tab="partnership">Partnership</button>
+      <button onclick="switchTab('contacts')" class="tab-btn px-4 py-2 text-gray-500" data-tab="contacts">Kontak</button>
+      <button onclick="switchTab('timeline')" class="tab-btn px-4 py-2 text-gray-500" data-tab="timeline">Timeline</button>
+      <button onclick="switchTab('articles')" class="tab-btn px-4 py-2 text-gray-500" data-tab="articles">Artikel</button>
+      <button onclick="switchTab('knowledge')" class="tab-btn px-4 py-2 text-gray-500" data-tab="knowledge">Knowledge Base</button>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="tab-overview" class="tab-content space-y-4">
+      <div class="grid grid-cols-2 gap-4">
+        <div><label class="label-sm">Nama Universitas</label><input id="d-name" type="text" class="mt-1"></div>
+        <div><label class="label-sm">Negara</label><input id="d-country" type="text" class="mt-1" readonly style="background:#f9fafb"></div>
+        <div><label class="label-sm">Website</label><input id="d-url" type="text" class="mt-1" placeholder="https://"></div>
+        <div><label class="label-sm">Tier</label>
+          <select id="d-tier" class="mt-1"><option value="1">Tier 1 (Top 50)</option><option value="2">Tier 2 (Top 100)</option><option value="3">Tier 3 (Top 200)</option><option value="4">Tier 4</option></select>
+        </div>
+        <div><label class="label-sm">Status</label>
+          <select id="d-status" class="mt-1"><option>Partner</option><option>On Process</option><option>Non Partner</option></select>
+        </div>
+        <div><label class="label-sm">Deal Type</label>
+          <select id="d-dealtype" class="mt-1"><option value="Direct">Direct</option><option value="Referral">Referral</option><option value="Agent">Agent Fee</option></select>
+        </div>
+      </div>
+      <div><label class="label-sm">Notes PDM</label><textarea id="d-notes" rows="3" class="mt-1" placeholder="Catatan internal..."></textarea></div>
+      <div id="d-aiInsights" class="hidden space-y-3 p-4 bg-blue-50 rounded-xl border border-blue-100">
+        <div class="font-semibold text-blue-800 text-sm">AI Insights <span id="d-aiInsightsBadge" class="text-xs font-normal text-blue-500"></span></div>
+        <div id="d-sellingPoints" class="hidden"><div class="text-xs font-semibold text-gray-500 uppercase mb-1">Selling Points</div><div id="d-sellingPointsList" class="text-sm text-gray-700 space-y-1"></div></div>
+        <div id="d-targetProfile" class="hidden"><div class="text-xs font-semibold text-gray-500 uppercase mb-1">Target Profile</div><div id="d-targetProfileText" class="text-sm text-gray-700"></div></div>
+        <div id="d-nextIntake" class="hidden"><div class="text-xs font-semibold text-gray-500 uppercase mb-1">Next Intake Deadline</div><div id="d-nextIntakeText" class="text-sm font-medium text-orange-600"></div></div>
+        <div id="d-agentNotes" class="hidden"><div class="text-xs font-semibold text-gray-500 uppercase mb-1">Agent Notes (AI)</div><div id="d-agentNotesList" class="text-sm text-gray-700 space-y-1"></div></div>
+      </div>
+      <div id="d-dataInfo" class="text-xs text-gray-400"></div>
+      <div class="flex gap-2 pt-2">
+        <button onclick="saveUniOverview()" class="btn btn-primary">Simpan</button>
+        <button onclick="closeDetail()" class="btn btn-secondary">Tutup</button>
+      </div>
+    </div>
+
+    <div id="tab-academic" class="tab-content hidden">
+      <div id="academicContent" class="space-y-4"></div>
+    </div>
+
+    <div id="tab-biaya" class="tab-content hidden">
+      <div id="biayaContent" class="space-y-4"></div>
+    </div>
+
+    <div id="tab-partnership" class="tab-content hidden">
+      <div class="grid grid-cols-2 gap-4">
+        <div><label class="label-sm">Commission Rate (%)</label><input id="p-rate" type="number" step="0.5" class="mt-1"></div>
+        <div><label class="label-sm">Commission Type</label>
+          <select id="p-type" class="mt-1"><option value="first_year">First Year Only</option><option value="full_program">Full Program</option><option value="flat_fee">Flat Fee</option></select>
+        </div>
+        <div><label class="label-sm">Payment Terms</label>
+          <select id="p-payment" class="mt-1"><option value="per_intake">Per Intake</option><option value="monthly">Monthly</option><option value="annual">Annual</option></select>
+        </div>
+        <div><label class="label-sm">Newsletter Email</label><input id="p-newsletter" type="email" class="mt-1"></div>
+        <div><label class="label-sm">Contract Start</label><input id="p-cstart" type="date" class="mt-1"></div>
+        <div><label class="label-sm">Contract End</label><input id="p-cend" type="date" class="mt-1"></div>
+      </div>
+      <div class="mt-3"><label class="label-sm">MOU URL</label><input id="p-mou" type="text" class="mt-1" placeholder="https://drive.google.com/..."></div>
+      <div class="mt-3"><label class="label-sm">Special Terms</label><textarea id="p-special" rows="3" class="mt-1"></textarea></div>
+      <button onclick="savePartnership()" class="btn btn-primary mt-4">Simpan Deal Terms</button>
+    </div>
+
+    <div id="tab-contacts" class="tab-content hidden">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-sm font-medium text-gray-600">Kontak Person</span>
+        <button onclick="openAddContactForm()" class="btn btn-primary text-xs">+ Tambah Kontak</button>
+      </div>
+      <div id="addContactForm" class="hidden card mb-3 space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="label-sm">Nama *</label><input id="c-name" class="mt-1" placeholder="John Smith"></div>
+          <div><label class="label-sm">Jabatan</label><input id="c-title" class="mt-1" placeholder="Regional Manager"></div>
+          <div><label class="label-sm">Email</label><input id="c-email" type="email" class="mt-1"></div>
+          <div><label class="label-sm">WhatsApp</label><input id="c-wa" class="mt-1" placeholder="+62..."></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <label class="flex items-center gap-2 text-sm cursor-pointer">
+            <input id="c-primary" type="checkbox"> Primary Contact
+          </label>
+          <button onclick="saveContact()" class="btn btn-primary text-xs">Simpan</button>
+          <button onclick="document.getElementById('addContactForm').classList.add('hidden')" class="btn btn-secondary text-xs">Batal</button>
+        </div>
+      </div>
+      <div id="contactsList" class="space-y-2"></div>
+    </div>
+
+    <div id="tab-timeline" class="tab-content hidden">
+      <div class="flex justify-between items-center mb-3">
+        <span class="text-sm font-medium text-gray-600">Activity Timeline</span>
+        <button onclick="openAddActivityForm()" class="btn btn-primary text-xs">+ Tambah Catatan</button>
+      </div>
+      <div id="addActivityForm" class="hidden card mb-3 space-y-3">
+        <div class="grid grid-cols-2 gap-3">
+          <div><label class="label-sm">Type</label>
+            <select id="act-type" class="mt-1">
+              <option value="note">📝 Note</option>
+              <option value="email">📧 Email</option>
+              <option value="call">📞 Call</option>
+              <option value="meeting">🤝 Meeting</option>
+              <option value="deal_update">💼 Deal Update</option>
+            </select>
+          </div>
+          <div><label class="label-sm">Judul *</label><input id="act-title" class="mt-1" placeholder="Judul aktivitas..."></div>
+        </div>
+        <div><label class="label-sm">Deskripsi</label><textarea id="act-desc" rows="2" class="mt-1"></textarea></div>
+        <div class="flex gap-2">
+          <button onclick="saveActivity()" class="btn btn-primary text-xs">Simpan</button>
+          <button onclick="document.getElementById('addActivityForm').classList.add('hidden')" class="btn btn-secondary text-xs">Batal</button>
+        </div>
+      </div>
+      <div id="timelineList" class="space-y-3"></div>
+    </div>
+
+    <div id="tab-articles" class="tab-content hidden">
+      <div id="articlesContent"></div>
+    </div>
+
+    <div id="tab-knowledge" class="tab-content hidden">
+      <div id="knowledgeContent"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ADD UNIVERSITY MODAL -->
+<div id="addUniModal" class="modal-overlay hidden">
+  <div class="modal-box" style="max-width:500px">
+    <div class="flex justify-between items-center mb-5">
+      <h3 class="font-bold text-gray-800">Tambah Universitas</h3>
+      <button onclick="document.getElementById('addUniModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-600 text-xl">×</button>
+    </div>
+    <div class="space-y-3">
+      <div><label class="label-sm">Nama Universitas *</label><input id="new-name" class="mt-1"></div>
+      <div class="grid grid-cols-2 gap-3">
+        <div><label class="label-sm">Negara *</label><input id="new-country" class="mt-1" placeholder="United Kingdom"></div>
+        <div><label class="label-sm">Status</label>
+          <select id="new-status" class="mt-1"><option>Non Partner</option><option>On Process</option><option>Partner</option></select>
+        </div>
+        <div><label class="label-sm">Deal Type</label>
+          <select id="new-dealtype" class="mt-1"><option value="Referral">Referral</option><option value="Direct">Direct</option><option value="Agent">Agent Fee</option></select>
+        </div>
+        <div><label class="label-sm">Tier</label>
+          <select id="new-tier" class="mt-1"><option value="1">Tier 1</option><option value="2">Tier 2</option><option value="3">Tier 3</option><option value="4">Tier 4</option></select>
+        </div>
+      </div>
+      <div><label class="label-sm">Website</label><input id="new-url" type="text" class="mt-1" placeholder="https://"></div>
+    </div>
+    <div class="flex gap-2 mt-5">
+      <button onclick="addUniversity()" class="btn btn-primary">Tambah</button>
+      <button onclick="document.getElementById('addUniModal').classList.add('hidden')" class="btn btn-secondary">Batal</button>
+    </div>
+  </div>
+</div>
+
+<style>.label-sm{font-size:12px;font-weight:500;color:#6b7280}</style>
+<script src="/assets/app.js?v=bypass11"></script>
+<script>
+function loadDataForRegion(region) {
+  var rp = (region && region !== 'all') ? '?region=' + encodeURIComponent(region) : '';
+  var ru = (region && region !== 'all') ? '&region=' + encodeURIComponent(region) : '';
+  fetch('/api/universities/stats' + rp)
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      var bs = {}; var tot = 0;
+      (d.byStatus||[]).forEach(function(s) { bs[s.status]=s.c; tot+=s.c; });
+      var el;
+      el=document.getElementById('statTotal'); if(el) el.textContent=tot;
+      el=document.getElementById('statPartner'); if(el) el.textContent=bs['Partner']||0;
+      el=document.getElementById('statProcess'); if(el) el.textContent=bs['On Process']||0;
+      el=document.getElementById('statNonPartner'); if(el) el.textContent=bs['Non Partner']||0;
+      el=document.getElementById('statFreshness'); if(el) el.textContent=Math.round((d.freshness&&d.freshness.avg)||0)+'%';
+    }).catch(function(){});
+  var wrap = document.getElementById('uniTableWrap');
+  if (wrap) wrap.innerHTML = '<div class="text-center py-6 text-gray-400">Loading...</div>';
+  fetch('/api/universities?page=1&limit=20' + ru)
+    .then(function(r) { return r.json(); })
+    .then(function(d) {
+      if (!wrap) return;
+      var unis = d.data || d.items || [];
+      if (!unis.length) { wrap.innerHTML='<div class="text-center py-8 text-gray-400">Tidak ada data</div>'; return; }
+      var rows = '';
+      unis.forEach(function(u) {
+        var sc = u.status==='Partner'?'color:#16a34a':u.status==='On Process'?'color:#d97706':'color:#9ca3af';
+        rows += '<tr style="border-bottom:1px solid #f0f0f0;cursor:pointer" onclick="openDetail('+u.id+')">';
+        rows += '<td style="padding:8px 12px;font-weight:500">'+(u.name||'')+'</td>';
+        rows += '<td style="padding:8px 12px;color:#6b7280">'+(u.country||'')+'</td>';
+        rows += '<td style="padding:8px 12px;color:#6b7280">'+(u.region||'-')+'</td>';
+        rows += '<td style="padding:8px 12px;font-weight:500;'+sc+'">'+(u.status||'-')+'</td>';
+        rows += '</tr>';
+      });
+      wrap.innerHTML = '<table style="width:100%;font-size:13px"><thead><tr style="border-bottom:2px solid #e5e7eb"><th style="text-align:left;padding:8px 12px;color:#374151">Nama</th><th style="text-align:left;padding:8px 12px;color:#374151">Negara</th><th style="text-align:left;padding:8px 12px;color:#374151">Region</th><th style="text-align:left;padding:8px 12px;color:#374151">Status</th></tr></thead><tbody>' + rows + '</tbody></table>';
+      var pt = document.getElementById('pageTotal'); if(pt) pt.textContent=d.total||unis.length;
+    }).catch(function(e) {
+      if (wrap) wrap.innerHTML='<div style="color:red;padding:16px">Error: '+e.message+'</div>';
+    });
+}
+
+window.setRegion = function(r) {
+  if (typeof currentRegion !== 'undefined') currentRegion = r;
+  if (typeof currentPage !== 'undefined') currentPage = 1;
+  document.querySelectorAll('.sidebar-link[id^="nav-"]').forEach(function(el){ el.classList.remove('active'); });
+  var navEl = document.getElementById('nav-'+r); if(navEl) navEl.classList.add('active');
+  var titles = {all:'Global -- All Universities', Europe:'Europe', Asia:'Asia', 'North America':'US & Canada', AuNZ:'Australia & NZ'};
+  var ptEl = document.getElementById('pageTitle'); if(ptEl) ptEl.textContent = titles[r]||r;
+  ['statsView','usersView','kbView'].forEach(function(id){ var e=document.getElementById(id); if(e) e.classList.add('hidden'); });
+  var lv=document.getElementById('listView'); if(lv) lv.classList.remove('hidden');
+  var sr=document.getElementById('statsRow'); if(sr) sr.style.display='';
+  loadDataForRegion(r);
+};
+
+window.showView = function(v) {
+  ['listView','statsView','usersView','kbView'].forEach(function(id){ var e=document.getElementById(id); if(e) e.classList.add('hidden'); });
+  var sr=document.getElementById('statsRow'); if(sr) sr.style.display = (v==='list') ? '' : 'none';
+  if (v==='list') { var lv=document.getElementById('listView'); if(lv) lv.classList.remove('hidden'); }
+  else if (v==='stats') { var sv=document.getElementById('statsView'); if(sv) sv.classList.remove('hidden'); if(typeof loadStatsView==='function') { try { loadStatsView(); } catch(ex) { console.error('loadStatsView error',ex); } } }
+  else if (v==='users') { var uv=document.getElementById('usersView'); if(uv) uv.classList.remove('hidden'); if(typeof loadUsers==='function') { try { loadUsers(); } catch(ex) {} } }
+  else if (v==='kb') { var kv=document.getElementById('kbView'); if(kv) kv.classList.remove('hidden'); if(typeof loadKbView==='function') { try { loadKbView(); } catch(ex) { console.error('loadKbView error',ex); } } }
+};
+
+
+window.switchTab = function(tab) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) {
+    b.classList.remove('tab-active'); b.classList.add('text-gray-500');
+  });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.add('hidden'); });
+  var btn = document.querySelector('.tab-btn[data-tab="' + tab + '"]');
+  if (btn) { btn.classList.add('tab-active'); btn.classList.remove('text-gray-500'); }
+  var tabEl = document.getElementById('tab-' + tab);
+  if (tabEl) tabEl.classList.remove('hidden');
+};
+window.openDetail = async function(id) {
+  if (typeof currentUniId !== 'undefined') currentUniId = id;
+  var modal = document.getElementById('detailModal');
+  if (!modal) return;
+  var titleEl = document.getElementById('detailTitle');
+  if (titleEl) titleEl.textContent = 'Memuat data...';
+  modal.classList.remove('hidden');
+  var resp;
+  try { resp = await fetch('/api/universities/' + id); } catch(e) { if(titleEl) titleEl.textContent = 'Error jaringan'; return; }
+  if (!resp.ok) { if(titleEl) titleEl.textContent = 'Gagal memuat data'; return; }
+  var data = await resp.json();
+  if (typeof currentUniData !== 'undefined') currentUniData = data;
+  function ss(elId, val) {
+    var e = document.getElementById(elId);
+    if (!e) return;
+    if (e.tagName==='INPUT'||e.tagName==='TEXTAREA'||e.tagName==='SELECT') e.value = (val==null?'':val);
+    else e.textContent = (val==null?'':val);
+  }
+  ss('detailTitle', data.name);
+  ss('detailMeta', (data.country||'') + (data.region ? ' · ' + data.region : '') + ' · Tier ' + (data.tier||'-'));
+  var score = data.data_freshness_score || 0;
+  var statusColors = { Partner:'status-partner','On Process':'status-onprocess','Non Partner':'status-nonpartner' };
+  var badge = document.getElementById('detailStatusBadge');
+  if (badge) { badge.textContent = data.status||''; badge.className = 'px-3 py-1 rounded-full text-xs font-semibold ' + (statusColors[data.status]||'status-nonpartner'); }
+  ss('detailFreshnessLabel', 'Freshness ' + score + '/100');
+  var bar = document.getElementById('detailFreshnessBar');
+  if (bar) { bar.style.width = score + '%'; bar.style.background = score>=80?'#16a34a':score>=60?'#ca8a04':'#dc2626'; }
+  ss('d-name', data.name);
+  ss('d-country', data.country);
+  ss('d-url', data.official_url);
+  ss('d-tier', data.tier||1);
+  ss('d-status', data.status||'Non Partner');
+  ss('d-dealtype', data.deal_type||'Referral');
+  ss('d-notes', data.notes);
+  ss('d-dataInfo', data.data_last_synced ? 'Last sync: ' + data.data_last_synced : 'Belum pernah di-sync');
+  var dt = data.dealTerms || {};
+  ss('p-rate', dt.commission_rate);
+  ss('p-type', dt.commission_type||'first_year');
+  ss('p-payment', dt.payment_terms||'per_intake');
+  ss('p-newsletter', data.newsletter_email);
+  ss('p-cstart', dt.contract_start);
+  ss('p-cend', dt.contract_end);
+  ss('p-mou', dt.mou_url);
+  ss('p-special', dt.special_terms);
+  if (typeof renderAcademic==='function') try { renderAcademic(data.data_json); } catch(ex) { console.error('renderAcademic',ex); }
+  if (typeof renderBiaya==='function') try { renderBiaya(data.data_json); } catch(ex) {}
+  if (typeof renderContacts==='function') try { renderContacts(data.contacts); } catch(ex) {}
+  if (typeof renderTimeline==='function') try { renderTimeline(data.activities); } catch(ex) {}
+  if (typeof renderArticles==='function') try { renderArticles(data.articles); } catch(ex) {}
+  if (typeof renderKnowledge==='function') try { renderKnowledge(data.id, data.data_json); } catch(ex) {}
+  if (typeof renderAiInsights==='function') try { renderAiInsights(data.data_json); } catch(ex) {}
+  if (typeof switchTab==='function') try { switchTab('overview'); } catch(ex) {}
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  var lp=document.getElementById('loginPage'); if(lp) lp.style.display='none';
+  var app=document.getElementById('app'); if(app){app.style.display='';app.classList.remove('hidden');}
+  ['statsView','usersView','kbView'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.add('hidden');});
+  var lv=document.getElementById('listView'); if(lv) lv.classList.remove('hidden');
+  var sr=document.getElementById('statsRow'); if(sr) sr.style.display='';
+  loadDataForRegion('all');
+
+  // Direct onclick overrides for nav buttons (most reliable approach)
+  function switchToView(v) {
+    ['listView','statsView','usersView','kbView'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.add('hidden');});
+    document.querySelectorAll('.sidebar-link[id^="nav-"]').forEach(function(el){el.classList.remove('active');});
+    var viewEl=document.getElementById(v+'View');
+    if(viewEl) viewEl.classList.remove('hidden');
+    var sr2=document.getElementById('statsRow'); if(sr2) sr2.style.display='none';
+    var activeBtn=document.getElementById('nav-'+v.replace('View',''));
+    if(activeBtn) activeBtn.classList.add('active');
+  }
+
+  var navStats=document.getElementById('nav-stats');
+  if(navStats) navStats.onclick=function(){
+    switchToView('stats');
+    var rc=document.getElementById('regionChart');
+    var cc=document.getElementById('countryChart');
+    if(rc) rc.innerHTML='<div style="color:#9ca3af;padding:8px">Memuat...</div>';
+    if(cc) cc.innerHTML='<div style="color:#9ca3af;padding:8px">Memuat...</div>';
+    fetch('/api/universities/stats').then(function(r){return r.json();}).then(function(data){
+      var colors=['#3b82f6','#10b981','#f59e0b','#ef4444','#8b5cf6'];
+      function bar(items,key,val){
+        if(!items||!items.length) return '<div style="color:#9ca3af;font-size:13px">Tidak ada data</div>';
+        var mx=items[0][val]||1;
+        return items.map(function(it,i){
+          return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">'
+            +'<div style="font-size:12px;color:#4b5563;width:112px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+it[key]+'</div>'
+            +'<div style="background:#e5e7eb;border-radius:4px;height:20px;flex:1">'
+            +'<div style="background:'+colors[i%5]+';border-radius:4px;height:20px;width:'+Math.round(it[val]/mx*100)+'%;min-width:24px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px">'
+            +'<span style="font-size:11px;color:white;font-weight:600">'+it[val]+'</span>'
+            +'</div></div></div>';
+        }).join('');
+      }
+      if(rc) rc.innerHTML=bar((data.byRegion||[]).filter(function(r){return r.region;}),'region','c');
+      if(cc) cc.innerHTML=bar((data.byCountry||[]).slice(0,8),'country','c');
+    }).catch(function(e){if(rc) rc.innerHTML='<div style="color:red">Error: '+e.message+'</div>';});
+  };
+
+  var navKb=document.getElementById('nav-kb');
+  if(navKb) navKb.onclick=function(){
+    switchToView('kb');
+    var list=document.getElementById('kbDocList');
+    if(!list) return;
+    list.innerHTML='<div style="color:#9ca3af;padding:16px;text-align:center">Memuat...</div>';
+    fetch('/api/kb').then(function(r){return r.json();}).then(function(data){
+      var docs=data.docs||[];
+      if(!docs.length){list.innerHTML='<div style="text-align:center;padding:32px;color:#9ca3af">Belum ada dokumen Knowledge Base.<br><small style="font-size:12px">Klik &ldquo;+ Tambah Dokumen&rdquo; untuk mulai.</small></div>';return;}
+      var typeColor=function(t){return t==='youtube'?'#ef4444':t==='gdrive'?'#f59e0b':t==='website'?'#3b82f6':'#6b7280';};
+      var typeIcon=function(t){return t==='youtube'?'YT':t==='gdrive'?'GD':t==='website'?'WEB':t==='pdf'?'PDF':t==='audio'?'AUD':'VID';};
+      var statusBadge=function(s){if(s==='done')return '<span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:999px;font-size:11px">Done</span>';if(s==='processing')return '<span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:999px;font-size:11px">Processing</span>';if(s==='error')return '<span style="background:#fee2e2;color:#991b1b;padding:2px 8px;border-radius:999px;font-size:11px">Error</span>';return '<span style="background:#f3f4f6;color:#6b7280;padding:2px 8px;border-radius:999px;font-size:11px">Pending</span>';};
+      list.innerHTML='<div style="display:flex;flex-direction:column;gap:12px">'+docs.map(function(d){
+        return '<div class="card" id="kbdoc-'+d.id+'">'
+          +'<div style="display:flex;align-items:flex-start;gap:12px">'
+          +'<span style="background:'+typeColor(d.type)+'20;color:'+typeColor(d.type)+';padding:2px 6px;border-radius:4px;font-size:10px;font-weight:700;flex-shrink:0;margin-top:2px">'+typeIcon(d.type)+'</span>'
+          +'<div style="flex:1;min-width:0">'
+          +'<div style="font-weight:600;font-size:14px;color:#1f2937">'+d.title+'</div>'
+          +(d.url?'<div style="font-size:11px;color:#3b82f6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+d.url+'</div>':'')
+          +'<div style="margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+statusBadge(d.status)+'<span style="font-size:11px;color:#9ca3af">'+(d.assignment_count||0)+' kampus</span></div>'
+          +'</div>'
+          +'<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">'
+          +'<button onclick="if(typeof processKbDoc==='function')processKbDoc('+d.id+')" class="btn btn-primary" style="font-size:11px;padding:4px 10px">Proses AI</button>'
+          +'<button onclick="if(typeof deleteKbDoc==='function')deleteKbDoc('+d.id+')" class="btn btn-danger" style="font-size:11px;padding:4px 10px">Hapus</button>'
+          +'</div></div></div>';
+      }).join('')+'</div>';
+    }).catch(function(e){if(list) list.innerHTML='<div style="color:red;padding:16px">Error: '+e.message+'</div>';});
+  };
+});
+</script>
+</body></html>
