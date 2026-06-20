@@ -745,7 +745,7 @@ async function renderKnowledge(uniId, _djIgnored) {
   cont.innerHTML = '<div class="space-y-3">' +
     '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">' +
     '<div><div style="font-size:13px;color:#6b7280">' + items.length + ' dokumen dari Knowledge Base global</div></div>' +
-    '<button onclick="showView("kb")" style="font-size:11px;color:#3b82f6;background:none;border:none;cursor:pointer">Buka KB Global →</button>' +
+    '<button onclick="showView(\'kb\')" style="font-size:11px;color:#3b82f6;background:none;border:none;cursor:pointer">Buka KB Global →</button>' +
     '</div>' +
     (items.length ? items.map(function(item) {
       return '<div class="card" style="padding:14px">' +
@@ -758,7 +758,7 @@ async function renderKnowledge(uniId, _djIgnored) {
           : '<div style="font-size:12px;color:#9ca3af;font-style:italic">Belum diproses. Klik \'Proses AI\' di Knowledge Base global.</div>'
         ) +
         '</div>';
-    }).join('') : '<div class="card" style="text-align:center;padding:32px;color:#9ca3af">Belum ada dokumen KB yang di-assign ke kampus ini.<br><button onclick="showView("kb")" style="color:#3b82f6;background:none;border:none;cursor:pointer;margin-top:8px;font-size:12px">Buka Knowledge Base Global →</button></div>') +
+    }).join('') : '<div class="card" style="text-align:center;padding:32px;color:#9ca3af">Belum ada dokumen KB yang di-assign ke kampus ini.<br><button onclick="showView(\'kb\')" style="color:#3b82f6;background:none;border:none;cursor:pointer;margin-top:8px;font-size:12px">Buka Knowledge Base Global →</button></div>') +
     '</div>';
 }
 
