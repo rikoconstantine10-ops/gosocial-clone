@@ -395,11 +395,24 @@
 </div>
 
 <style>.label-sm{font-size:12px;font-weight:500;color:#6b7280}</style>
-<script src="/assets/app.js?v=bypass12"></script>
+<script src="/assets/app.js?v=bypass13"></script>
 <script>
 function loadDataForRegion(region) {
   var rp = (region && region !== 'all') ? '?region=' + encodeURIComponent(region) : '';
   var ru = (region && region !== 'all') ? '&region=' + encodeURIComponent(region) : '';
+  // Show cached stats instantly on repeat visits
+  var cacheKey = 'pdm_stats_' + (region||'all');
+  try {
+    var cached = JSON.parse(localStorage.getItem(cacheKey)||'null');
+    if (cached) {
+      var el;
+      el=document.getElementById('statTotal'); if(el) el.textContent=cached.tot||'—';
+      el=document.getElementById('statPartner'); if(el) el.textContent=cached.partner||0;
+      el=document.getElementById('statProcess'); if(el) el.textContent=cached.process||0;
+      el=document.getElementById('statNonPartner'); if(el) el.textContent=cached.nonpartner||0;
+      el=document.getElementById('statFreshness'); if(el) el.textContent=(cached.freshness||0)+'%';
+    }
+  } catch(e) {}
   fetch('/api/universities/stats' + rp)
     .then(function(r) { return r.json(); })
     .then(function(d) {
@@ -410,7 +423,9 @@ function loadDataForRegion(region) {
       el=document.getElementById('statPartner'); if(el) el.textContent=bs['Partner']||0;
       el=document.getElementById('statProcess'); if(el) el.textContent=bs['On Process']||0;
       el=document.getElementById('statNonPartner'); if(el) el.textContent=bs['Non Partner']||0;
-      el=document.getElementById('statFreshness'); if(el) el.textContent=Math.round((d.freshness&&d.freshness.avg)||0)+'%';
+      var freshVal = Math.round((d.freshness&&d.freshness.avg)||0);
+      el=document.getElementById('statFreshness'); if(el) el.textContent=freshVal+'%';
+      try { localStorage.setItem(cacheKey, JSON.stringify({tot:tot, partner:bs['Partner']||0, process:bs['On Process']||0, nonpartner:bs['Non Partner']||0, freshness:freshVal})); } catch(e) {}
     }).catch(function(){});
   var wrap = document.getElementById('uniTableWrap');
   if (wrap) wrap.innerHTML = '<div class="text-center py-6 text-gray-400">Loading...</div>';
@@ -524,13 +539,16 @@ window.openDetail = async function(id) {
   if (typeof switchTab==='function') try { switchTab('overview'); } catch(ex) {}
 };
 
+// Start data load immediately (DOM is ready since script is at end of body)
+loadDataForRegion('all');
+
 document.addEventListener('DOMContentLoaded', function() {
   var lp=document.getElementById('loginPage'); if(lp) lp.style.display='none';
   var app=document.getElementById('app'); if(app){app.style.display='';app.classList.remove('hidden');}
   ['statsView','usersView','kbView'].forEach(function(id){var e=document.getElementById(id);if(e)e.classList.add('hidden');});
   var lv=document.getElementById('listView'); if(lv) lv.classList.remove('hidden');
   var sr=document.getElementById('statsRow'); if(sr) sr.style.display='';
-  loadDataForRegion('all');
+  // (data already loaded synchronously above DOMContentLoaded)
 
   // Direct onclick overrides for nav buttons (most reliable approach)
   function switchToView(v) {
