@@ -395,7 +395,7 @@
 </div>
 
 <style>.label-sm{font-size:12px;font-weight:500;color:#6b7280}</style>
-<script src="/assets/app.js?v=bypass13"></script>
+<script src="/assets/app.js?v=bypass14"></script>
 <script>
 function loadDataForRegion(region) {
   var rp = (region && region !== 'all') ? '?region=' + encodeURIComponent(region) : '';
@@ -609,8 +609,8 @@ document.addEventListener('DOMContentLoaded', function() {
           +'<div style="margin-top:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+statusBadge(d.status)+'<span style="font-size:11px;color:#9ca3af">'+(d.assignment_count||0)+' kampus</span></div>'
           +'</div>'
           +'<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">'
-          +'<button onclick="if(typeof processKbDoc==='function')processKbDoc('+d.id+')" class="btn btn-primary" style="font-size:11px;padding:4px 10px">Proses AI</button>'
-          +'<button onclick="if(typeof deleteKbDoc==='function')deleteKbDoc('+d.id+')" class="btn btn-danger" style="font-size:11px;padding:4px 10px">Hapus</button>'
+          +'<button onclick="window.processKbDoc&&window.processKbDoc('+d.id+')" class="btn btn-primary" style="font-size:11px;padding:4px 10px">Proses AI</button>'
+          +'<button onclick="window.deleteKbDoc&&window.deleteKbDoc('+d.id+')" class="btn btn-danger" style="font-size:11px;padding:4px 10px">Hapus</button>'
           +'</div></div></div>';
       }).join('')+'</div>';
     }).catch(function(e){if(list) list.innerHTML='<div style="color:red;padding:16px">Error: '+e.message+'</div>';});
