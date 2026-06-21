@@ -54,6 +54,43 @@
     .gradient-header { min-height: auto !important; padding: 10px 14px !important; }
     select, input[type=text] { font-size: 14px !important; }
   }
+  .mode-tab { flex:1; padding:7px 4px; font-size:11px; font-weight:600; border:1.5px solid #e5e7eb; background:white; color:#6b7280; cursor:pointer; transition:all .15s; }
+  .mode-tab:first-child { border-radius:8px 0 0 8px; border-right:0; }
+  .mode-tab:last-child { border-radius:0 8px 8px 0; }
+  .mode-tab.active { background:linear-gradient(135deg,#4f46e5,#7c3aed); color:white; border-color:#4f46e5; }
+  .btn-action { display:inline-flex; align-items:center; gap:5px; padding:6px 12px; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; border:1.5px solid #e5e7eb; background:white; color:#374151; transition:all .15s; white-space:nowrap; }
+  .btn-action:hover { background:#f9fafb; border-color:#d1d5db; }
+  .btn-action.wa { background:#25d366; color:white; border-color:#25d366; }
+  .btn-action.wa:hover { opacity:.9; }
+  .compare-cb-wrap { position:absolute; top:8px; right:8px; z-index:2; }
+  .compare-cb-label { display:flex; align-items:center; gap:4px; font-size:11px; font-weight:600; color:#4f46e5; background:white; border:1.5px solid #c4b5fd; border-radius:7px; padding:3px 8px; cursor:pointer; user-select:none; }
+  .compare-cb-label input { accent-color:#7c3aed; cursor:pointer; }
+  .saved-item { display:flex; align-items:center; justify-content:space-between; padding:7px 10px; background:#f8f7ff; border:1px solid #e9d5ff; border-radius:8px; cursor:pointer; transition:background .15s; margin-bottom:5px; }
+  .saved-item:hover { background:#ede9fe; }
+  .saved-item-name { font-size:12px; font-weight:600; color:#4f46e5; }
+  .saved-item-meta { font-size:10px; color:#9ca3af; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:160px; }
+  .saved-item-del { color:#ef4444; background:none; border:none; cursor:pointer; font-size:13px; padding:0 3px; flex-shrink:0; }
+  #compareBar { position:fixed; bottom:0; left:0; right:0; background:white; border-top:2px solid #7c3aed; padding:10px 20px; display:none; align-items:center; justify-content:space-between; z-index:50; box-shadow:0 -4px 16px rgba(79,70,229,.15); gap:10px; flex-wrap:wrap; }
+  .compare-chip { display:inline-flex; align-items:center; gap:5px; background:#f5f3ff; border:1.5px solid #c4b5fd; border-radius:20px; padding:4px 10px; font-size:12px; font-weight:600; color:#4f46e5; }
+  .compare-chip button { background:none; border:none; cursor:pointer; color:#7c3aed; font-size:14px; line-height:1; padding:0 2px; }
+  #compareModal { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:60; display:none; align-items:center; justify-content:center; padding:20px; }
+  .compare-inner { background:white; border-radius:16px; max-width:900px; width:100%; max-height:90vh; overflow:auto; }
+  .compare-head { padding:20px 24px; border-bottom:1px solid #e5e7eb; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; background:white; z-index:1; }
+  .compare-table { width:100%; border-collapse:collapse; font-size:13px; }
+  .compare-table th, .compare-table td { padding:10px 14px; text-align:left; border-bottom:1px solid #f3f4f6; vertical-align:middle; }
+  .compare-table th { background:#f8f7ff; color:#6b7280; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.3px; }
+  .row-label { color:#9ca3af; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.3px; white-space:nowrap; }
+  .tier-reach  { background:#fef2f2; color:#dc2626; border:1.5px solid #fca5a5; border-radius:999px; padding:2px 8px; font-size:11px; font-weight:700; display:inline-block; }
+  .tier-target { background:#fffbeb; color:#d97706; border:1.5px solid #fde68a; border-radius:999px; padding:2px 8px; font-size:11px; font-weight:700; display:inline-block; }
+  .tier-safe   { background:#f0fdf4; color:#16a34a; border:1.5px solid #86efac; border-radius:999px; padding:2px 8px; font-size:11px; font-weight:700; display:inline-block; }
+  .dream-match { border:2px solid #7c3aed !important; box-shadow:0 0 0 3px #f5f3ff; }
+  @media print {
+    #mainLayout > aside, #compareBar, #compareModal, .compare-cb-wrap, .btn-action { display:none !important; }
+    #mainLayout { display:block !important; height:auto !important; overflow:visible !important; }
+    #resultsPanel { overflow:visible !important; padding:10px !important; }
+    .card { break-inside:avoid; page-break-inside:avoid; }
+    .gradient-header { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
 </style>
 </head>
 <body>
@@ -78,6 +115,19 @@
 
   <!-- LEFT: FORM PANEL -->
   <aside style="width:280px;flex-shrink:0;background:white;border-right:1px solid #e5e7eb;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:12px">
+
+    <!-- Mode Tabs -->
+    <div style="display:flex;border-radius:9px;overflow:hidden">
+      <button class="mode-tab active" id="tabSmart" onclick="switchMode('smart')">🎯 Smart Match</button>
+      <button class="mode-tab" id="tabDream" onclick="switchMode('dream')">⭐ Dream Analysis</button>
+    </div>
+
+    <!-- Dream Input -->
+    <div id="dreamInputWrap" style="display:none;padding:10px;background:#f5f3ff;border-radius:10px;border:1px solid #e9d5ff">
+      <label>Universitas Impian</label>
+      <input type="text" id="f-dream" placeholder="cth: University of Melbourne">
+      <div style="font-size:10px;color:#9ca3af;margin-top:4px">AI menilai: 🔥 Reach · 🎯 Target · ✅ Safe</div>
+    </div>
 
     <!-- Form Card -->
     <div>
@@ -193,6 +243,17 @@
           🤖 Analisis AI
         </button>
       </div>
+      <div style="margin-top:6px">
+        <button class="btn-primary" id="saveBtn" onclick="saveSession()" style="background:linear-gradient(135deg,#059669,#10b981)">
+          🔖 Simpan Sesi
+        </button>
+      </div>
+    </div>
+
+    <!-- Saved Sessions -->
+    <div id="savedSessionsWrap" style="display:none">
+      <div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">📌 Sesi Tersimpan</div>
+      <div id="savedSessionsList"></div>
     </div>
 
     <!-- Divider -->
@@ -286,6 +347,14 @@
 
     <!-- RESULTS STATE -->
     <div id="stateResults" style="display:none">
+      <!-- Action Bar -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
+        <button class="btn-action" onclick="copyResults(this)">📋 Copy</button>
+        <button class="btn-action wa" onclick="shareWhatsApp()">💬 WhatsApp</button>
+        <button class="btn-action" onclick="window.print()">🖨️ PDF</button>
+        <button class="btn-action" id="btnOpenCompare" onclick="openCompare()" style="display:none;background:#f5f3ff;color:#4f46e5;border-color:#c4b5fd">📊 Bandingkan (<span id="compareCount">0</span>)</button>
+      </div>
+
       <!-- Results summary bar -->
       <div id="resultsSummary" style="background:white;border:1px solid #e5e7eb;border-radius:14px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px"></div>
 
@@ -296,11 +365,40 @@
   </main>
 </div>
 
+<!-- Compare Bar -->
+<div id="compareBar">
+  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <span style="font-size:13px;font-weight:700;color:#4f46e5">📊 Bandingkan:</span>
+    <div id="compareBarItems" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+  </div>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button class="btn-action" onclick="openCompare()" style="background:#4f46e5;color:white;border-color:#4f46e5">Lihat Perbandingan</button>
+    <button class="btn-action" onclick="clearCompare()">✕ Hapus</button>
+  </div>
+</div>
+
+<!-- Compare Modal -->
+<div id="compareModal" onclick="if(event.target===this)closeCompare()">
+  <div class="compare-inner">
+    <div class="compare-head">
+      <span style="font-size:16px;font-weight:700;color:#1f2937">📊 Perbandingan Universitas</span>
+      <button onclick="closeCompare()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#9ca3af;line-height:1">✕</button>
+    </div>
+    <div style="padding:20px;overflow-x:auto">
+      <table class="compare-table" id="compareTableEl"></table>
+    </div>
+  </div>
+</div>
+
 <style>
 @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 
 <script>
+let currentResults = [];
+let compareSelected = new Map();
+let currentMode = 'smart';
+
 const FLAGS = {
   'United Kingdom':'🇬🇧','United States':'🇺🇸','Australia':'🇦🇺','Germany':'🇩🇪',
   'Netherlands':'🇳🇱','Ireland':'🇮🇪','Canada':'🇨🇦','New Zealand':'🇳🇿','France':'🇫🇷',
@@ -388,8 +486,25 @@ function renderCard(u, idx) {
     <span style="font-size:11px;color:#9ca3af">${u.freshness}% data</span>
   </div>`;
 
+  const dreamBadge = currentMode === 'dream'
+    ? `<span class="${getDreamTierClass(u.matchScore)}" style="margin-top:6px">${getDreamTierLabel(u.matchScore)}</span>`
+    : '';
+
+  const dreamInput = document.getElementById('f-dream');
+  const dreamUniv = dreamInput ? dreamInput.value.trim().toLowerCase() : '';
+  const isDreamMatch = currentMode === 'dream' && dreamUniv && u.name.toLowerCase().includes(dreamUniv);
+  const cardExtraClass = isDreamMatch ? ' dream-match' : '';
+
+  const isCompared = compareSelected.has(u.id);
+  const compareHtml = `<div class="compare-cb-wrap">
+    <label class="compare-cb-label">
+      <input type="checkbox" data-cid="${u.id}" ${isCompared ? 'checked' : ''} onchange="toggleCompare(${u.id}, this)"> Bandingkan
+    </label>
+  </div>`;
+
   return `
-  <div class="card" style="padding:0;overflow:hidden">
+  <div class="card${cardExtraClass}" style="padding:0;overflow:hidden;position:relative">
+    ${compareHtml}
     <div style="display:flex;gap:0">
       <!-- Rank + Score Column -->
       <div style="width:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px 10px;${rClass ? 'background:linear-gradient(180deg,'+({rank_gold:'#fef9c3,#fde68a',rank_silver:'#f1f5f9,#e2e8f0',rank_bronze:'#fed7aa,#fdba74'}[rClass.replace('-','_')] || '#f9fafb,#f3f4f6')+')' : 'background:#f9fafb'};border-right:1px solid #e5e7eb">
@@ -398,6 +513,7 @@ function renderCard(u, idx) {
           <div style="font-size:20px;font-weight:800;color:${sTxt};line-height:1">${u.matchScore}</div>
           <div style="font-size:9px;font-weight:600;color:${sTxt};margin-top:1px">MATCH</div>
         </div>
+        ${dreamBadge}
         ${freshBar}
       </div>
 
@@ -466,6 +582,8 @@ async function runAnalysis() {
 
     const recs  = data.recommendations || [];
     const stats = data.stats || {};
+    currentResults = recs;
+    clearCompare();
 
     // Summary bar
     const fieldLabel  = document.getElementById('f-field').options[document.getElementById('f-field').selectedIndex].text;
@@ -557,6 +675,195 @@ function onLevelChange() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && e.target.id === 'f-name') runAnalysis();
 });
+
+// --- Mode Switch ---
+function switchMode(mode) {
+  currentMode = mode;
+  document.getElementById('tabSmart').classList.toggle('active', mode === 'smart');
+  document.getElementById('tabDream').classList.toggle('active', mode === 'dream');
+  document.getElementById('dreamInputWrap').style.display = mode === 'dream' ? 'block' : 'none';
+}
+
+// --- Dream Tier ---
+function getDreamTierClass(score) {
+  if (score >= 75) return 'tier-safe';
+  if (score >= 55) return 'tier-target';
+  return 'tier-reach';
+}
+function getDreamTierLabel(score) {
+  if (score >= 75) return '✅ Safe';
+  if (score >= 55) return '🎯 Target';
+  return '🔥 Reach';
+}
+
+// --- Format & Share ---
+function formatResults() {
+  if (!currentResults.length) return '';
+  const name = document.getElementById('f-name').value.trim();
+  const hdr = name ? `Rekomendasi untuk *${name}*` : 'Hasil Analisis AI Counsellor';
+  const lines = currentResults.slice(0, 10).map((u, i) => {
+    const tier = currentMode === 'dream' ? ` [${getDreamTierLabel(u.matchScore)}]` : '';
+    return `${i+1}. *${u.name}*${tier}\n   ${flag(u.country)} ${u.country} | Match: ${u.matchScore}%\n   ${u.status}${u.scholarships > 0 ? ` | 💰 ${u.scholarships} beasiswa` : ''}`;
+  });
+  return `${hdr}\n${'─'.repeat(30)}\n${lines.join('\n\n')}\n\n_Powered by Edurep AI Counsellor_`;
+}
+
+async function copyResults(btn) {
+  const text = formatResults();
+  if (!text) { alert('Jalankan analisis dulu.'); return; }
+  try {
+    await navigator.clipboard.writeText(text);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 1500);
+  } catch(err) {
+    prompt('Salin teks berikut:', text);
+  }
+}
+
+function shareWhatsApp() {
+  const text = formatResults();
+  if (!text) { alert('Jalankan analisis dulu.'); return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank');
+}
+
+// --- Compare ---
+function toggleCompare(id, cb) {
+  const u = currentResults.find(x => x.id === id);
+  if (!u) return;
+  if (cb.checked) {
+    if (compareSelected.size >= 3) {
+      cb.checked = false;
+      alert('Maksimal 3 universitas untuk dibandingkan.');
+      return;
+    }
+    compareSelected.set(id, u);
+  } else {
+    compareSelected.delete(id);
+  }
+  updateCompareUI();
+}
+
+function updateCompareUI() {
+  const count = compareSelected.size;
+  const bar = document.getElementById('compareBar');
+  const btnCmp = document.getElementById('btnOpenCompare');
+  if (bar) bar.style.display = count >= 2 ? 'flex' : 'none';
+  if (btnCmp) {
+    btnCmp.style.display = count >= 2 ? 'inline-flex' : 'none';
+    const countEl = document.getElementById('compareCount');
+    if (countEl) countEl.textContent = count;
+  }
+  const barItems = document.getElementById('compareBarItems');
+  if (barItems) barItems.innerHTML = [...compareSelected.values()].map(u =>
+    `<span class="compare-chip">${u.name.length > 24 ? u.name.substring(0,24)+'…' : u.name} <button onclick="removeFromCompare(${u.id})">✕</button></span>`
+  ).join('');
+  const panel = document.getElementById('resultsPanel');
+  if (panel) panel.style.paddingBottom = count >= 2 ? '76px' : '24px';
+}
+
+function removeFromCompare(id) {
+  compareSelected.delete(id);
+  document.querySelectorAll('#resultsCards input[data-cid]').forEach(cb => {
+    if (parseInt(cb.dataset.cid) === id) cb.checked = false;
+  });
+  updateCompareUI();
+}
+
+function clearCompare() {
+  compareSelected.clear();
+  document.querySelectorAll('#resultsCards input[data-cid]').forEach(cb => { cb.checked = false; });
+  updateCompareUI();
+}
+
+function openCompare() {
+  if (compareSelected.size < 2) { alert('Pilih minimal 2 universitas dulu.'); return; }
+  const unis = [...compareSelected.values()];
+  const mkRow = (label, cells) =>
+    `<tr><td class="row-label">${label}</td>${cells.map(c => `<td>${c}</td>`).join('')}</tr>`;
+  document.getElementById('compareTableEl').innerHTML = `
+    <thead><tr>
+      <th></th>
+      ${unis.map(u => `<th><div style="font-size:12px;color:#1f2937;font-weight:700;text-transform:none;letter-spacing:0">${u.name}</div><div style="font-size:11px;color:#9ca3af;font-weight:400;text-transform:none">${flag(u.country)} ${u.country}</div></th>`).join('')}
+    </tr></thead>
+    <tbody>
+      ${mkRow('Match Score', unis.map(u => `<span class="score-ring ${scoreColor(u.matchScore)}" style="width:44px;height:44px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%"><span style="font-size:16px;font-weight:800;color:${scoreTextColor(u.matchScore)};line-height:1">${u.matchScore}</span><span style="font-size:8px;color:${scoreTextColor(u.matchScore)}">MATCH</span></span>`))}
+      ${mkRow('Status', unis.map(u => u.status === 'Partner' ? '<span class="badge badge-partner">✅ Partner</span>' : '<span class="badge badge-process">🔄 On Process</span>'))}
+      ${mkRow('Region', unis.map(u => u.region||'—'))}
+      ${mkRow('Tier', unis.map(u => tierBadge(u.tier)))}
+      ${mkRow('Beasiswa', unis.map(u => u.scholarships > 0 ? `💰 ${u.scholarships}` : '—'))}
+      ${mkRow('Program', unis.map(u => `${u.totalPrograms} program`))}
+      ${currentMode === 'dream' ? mkRow('Dream Tier', unis.map(u => `<span class="${getDreamTierClass(u.matchScore)}">${getDreamTierLabel(u.matchScore)}</span>`)) : ''}
+    </tbody>`;
+  document.getElementById('compareModal').style.display = 'flex';
+}
+
+function closeCompare() {
+  document.getElementById('compareModal').style.display = 'none';
+}
+
+// --- Bookmark Sessions ---
+function saveSession() {
+  if (!currentResults.length) { alert('Jalankan analisis dulu sebelum menyimpan.'); return; }
+  const s = {
+    id: Date.now(),
+    name: document.getElementById('f-name').value.trim() || 'Student',
+    level: document.getElementById('f-level').value,
+    field: document.getElementById('f-field').value,
+    region: document.getElementById('f-region').value,
+    budget: document.getElementById('f-budget').value,
+    mode: currentMode,
+    savedAt: new Date().toLocaleDateString('id-ID', {day:'2-digit', month:'short'}),
+    resultCount: currentResults.length,
+    topMatch: currentResults[0]?.name || ''
+  };
+  const all = JSON.parse(localStorage.getItem('counsellorSessions') || '[]');
+  all.unshift(s);
+  if (all.length > 10) all.length = 10;
+  localStorage.setItem('counsellorSessions', JSON.stringify(all));
+  renderSavedSessions();
+  const btn = document.getElementById('saveBtn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✅ Tersimpan!';
+  setTimeout(() => { btn.innerHTML = orig; }, 1500);
+}
+
+function renderSavedSessions() {
+  const all = JSON.parse(localStorage.getItem('counsellorSessions') || '[]');
+  const wrap = document.getElementById('savedSessionsWrap');
+  const list = document.getElementById('savedSessionsList');
+  wrap.style.display = all.length ? 'block' : 'none';
+  list.innerHTML = all.map(s => `
+    <div class="saved-item" onclick="restoreSession(${s.id})">
+      <div style="flex:1;min-width:0">
+        <div class="saved-item-name">${s.name}</div>
+        <div class="saved-item-meta">${s.savedAt} · ${s.resultCount} hasil · ${s.topMatch ? s.topMatch.substring(0,22) : ''}</div>
+      </div>
+      <button class="saved-item-del" onclick="event.stopPropagation();deleteSession(${s.id})" title="Hapus">✕</button>
+    </div>`).join('');
+}
+
+function restoreSession(id) {
+  const all = JSON.parse(localStorage.getItem('counsellorSessions') || '[]');
+  const s = all.find(x => x.id === id);
+  if (!s) return;
+  document.getElementById('f-name').value = s.name !== 'Student' ? s.name : '';
+  document.getElementById('f-level').value = s.level;
+  document.getElementById('f-field').value = s.field;
+  document.getElementById('f-region').value = s.region;
+  document.getElementById('f-budget').value = s.budget;
+  onLevelChange();
+  if (s.mode) switchMode(s.mode);
+  runAnalysis();
+}
+
+function deleteSession(id) {
+  const all = JSON.parse(localStorage.getItem('counsellorSessions') || '[]').filter(x => x.id !== id);
+  localStorage.setItem('counsellorSessions', JSON.stringify(all));
+  renderSavedSessions();
+}
+
+renderSavedSessions();
 </script>
 </body>
 </html>
