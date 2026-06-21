@@ -87,11 +87,24 @@
 
         <div>
           <label>Jenjang Studi</label>
-          <select id="f-level">
+          <select id="f-level" onchange="onLevelChange()">
             <option value="all">Semua Jenjang</option>
-            <option value="bachelor">S1 / Bachelor</option>
-            <option value="master">S2 / Master / MBA</option>
-            <option value="phd">S3 / PhD / Doctoral</option>
+            <optgroup label="── Sekolah Menengah ──">
+              <option value="smp">SMP</option>
+              <option value="sma">SMA / SMK</option>
+            </optgroup>
+            <optgroup label="── Perguruan Tinggi ──">
+              <option value="bachelor">S1 / Bachelor</option>
+              <option value="master">S2 / Master / MBA</option>
+              <option value="phd">S3 / PhD / Doctoral</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div id="kelas-wrapper" style="display:none">
+          <label>Kelas</label>
+          <select id="f-kelas">
+            <option value="7">Kelas 7</option>
           </select>
         </div>
 
@@ -99,17 +112,51 @@
           <label>Bidang Studi</label>
           <select id="f-field">
             <option value="all">Semua Bidang</option>
-            <option value="Business">Business & Management</option>
-            <option value="Computer Science">Computer Science & IT</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Finance">Finance & Economics</option>
-            <option value="Medicine">Medicine & Health</option>
-            <option value="Law">Law</option>
-            <option value="Architecture">Architecture & Design</option>
-            <option value="Hospitality">Hospitality & Tourism</option>
-            <option value="Education">Education</option>
-            <option value="Social">Social Sciences</option>
-            <option value="Environmental">Environmental Science</option>
+            <optgroup label="── Bisnis & Ekonomi ──">
+              <option value="Business">Bisnis & Manajemen</option>
+              <option value="Accounting">Akuntansi</option>
+              <option value="Finance">Keuangan & Ekonomi</option>
+              <option value="Marketing">Pemasaran & Digital Marketing</option>
+              <option value="Hospitality">Pariwisata & Perhotelan</option>
+              <option value="Culinary">Kuliner & Food Science</option>
+            </optgroup>
+            <optgroup label="── Teknologi ──">
+              <option value="Computer Science">Ilmu Komputer & IT</option>
+              <option value="Engineering">Teknik & Rekayasa</option>
+              <option value="Data Science">Data Science & Kecerdasan Buatan</option>
+              <option value="Information System">Sistem Informasi</option>
+            </optgroup>
+            <optgroup label="── Kesehatan ──">
+              <option value="Medicine">Kedokteran (Medical Doctor)</option>
+              <option value="Nursing">Keperawatan & Kebidanan</option>
+              <option value="Pharmacy">Farmasi</option>
+              <option value="Dentistry">Kedokteran Gigi</option>
+              <option value="Public Health">Kesehatan Masyarakat & Gizi</option>
+              <option value="Psychology">Psikologi</option>
+            </optgroup>
+            <optgroup label="── Sains & Alam ──">
+              <option value="Environmental">Lingkungan & Pertanian</option>
+              <option value="Biology">Biologi & Bioteknologi</option>
+              <option value="Mathematics">Matematika & Statistik</option>
+              <option value="Chemistry">Kimia</option>
+              <option value="Physics">Fisika</option>
+            </optgroup>
+            <optgroup label="── Sosial & Humaniora ──">
+              <option value="Law">Hukum</option>
+              <option value="Social">Ilmu Sosial & Sosiologi</option>
+              <option value="Political Science">Ilmu Politik & Pemerintahan</option>
+              <option value="International Relations">Hubungan Internasional</option>
+              <option value="Communication">Komunikasi & Jurnalistik</option>
+              <option value="Education">Pendidikan & Keguruan</option>
+              <option value="Language">Bahasa & Linguistik</option>
+            </optgroup>
+            <optgroup label="── Seni & Desain ──">
+              <option value="Architecture">Arsitektur & Perencanaan Kota</option>
+              <option value="Design">Desain Grafis & Interior</option>
+              <option value="Fashion">Fashion & Tekstil</option>
+              <option value="Arts">Seni Murni & Film</option>
+              <option value="Music">Musik & Seni Pertunjukan</option>
+            </optgroup>
           </select>
         </div>
 
@@ -128,9 +175,9 @@
           <label>Budget Tahunan</label>
           <select id="f-budget">
             <option value="flexible">Fleksibel</option>
-            <option value="low">Hemat ( &lt; $15k / yr )</option>
-            <option value="medium">Menengah ( $15–30k )</option>
-            <option value="high">Premium ( &gt; $30k )</option>
+            <option value="low">Hemat ( &lt; Rp 200 juta / tahun )</option>
+            <option value="medium">Menengah ( Rp 200 – 500 juta / tahun )</option>
+            <option value="high">Premium ( &gt; Rp 500 juta / tahun )</option>
           </select>
         </div>
       </div>
@@ -395,6 +442,9 @@ async function runAnalysis() {
   const budget = document.getElementById('f-budget').value;
   const name   = document.getElementById('f-name').value.trim();
 
+  // SMP/SMA students are planning for S1 — match against bachelor programs
+  const apiLevel = (level === 'smp' || level === 'sma') ? 'bachelor' : level;
+
   btn.textContent = '⏳ Menganalisis...';
   btn.disabled = true;
   setState('loading');
@@ -403,7 +453,7 @@ async function runAnalysis() {
     const resp = await fetch('/api/counsellor/recommend', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ region, level, field: field === 'all' ? '' : field, budget })
+      body: JSON.stringify({ region, level: apiLevel, field: field === 'all' ? '' : field, budget })
     });
     const data = await resp.json();
     if (!resp.ok) throw new Error(data.error || 'Server error');
@@ -414,7 +464,12 @@ async function runAnalysis() {
     // Summary bar
     const fieldLabel  = document.getElementById('f-field').options[document.getElementById('f-field').selectedIndex].text;
     const regionLabel = document.getElementById('f-region').options[document.getElementById('f-region').selectedIndex].text;
-    const levelLabel  = document.getElementById('f-level').options[document.getElementById('f-level').selectedIndex].text;
+    const levelSel    = document.getElementById('f-level');
+    const kelasSel    = document.getElementById('f-kelas');
+    let levelLabel    = levelSel.options[levelSel.selectedIndex].text;
+    if (level === 'smp' || level === 'sma') {
+      levelLabel += ' Kelas ' + kelasSel.value;
+    }
 
     document.getElementById('resultsSummary').innerHTML = `
       <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center">
@@ -476,6 +531,21 @@ async function loadQuickStats() {
 }
 
 loadQuickStats();
+
+function onLevelChange() {
+  const level = document.getElementById('f-level').value;
+  const wrapper = document.getElementById('kelas-wrapper');
+  const kelasSelect = document.getElementById('f-kelas');
+  if (level === 'smp') {
+    wrapper.style.display = 'block';
+    kelasSelect.innerHTML = '<option value="7">Kelas 7</option><option value="8">Kelas 8</option><option value="9">Kelas 9</option>';
+  } else if (level === 'sma') {
+    wrapper.style.display = 'block';
+    kelasSelect.innerHTML = '<option value="10">Kelas 10</option><option value="11">Kelas 11</option><option value="12">Kelas 12</option>';
+  } else {
+    wrapper.style.display = 'none';
+  }
+}
 
 // Allow Enter key to trigger analysis
 document.addEventListener('keydown', function(e) {
