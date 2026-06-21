@@ -45,13 +45,14 @@
   .progress-fill { height: 100%; border-radius: 4px; transition: width .6s ease; }
   ::-webkit-scrollbar { width: 5px; }
   ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
-  @media (max-width: 768px) {
-    #mainLayout { flex-direction: column !important; height: auto !important; min-height: calc(100vh - 60px); overflow: visible !important; }
-    #mainLayout > aside { width: 100% !important; max-height: none !important; border-right: none !important; border-bottom: 1px solid #e5e7eb; padding: 14px 12px !important; gap: 10px !important; }
-    #mainLayout > main { overflow-y: visible !important; padding: 16px 12px !important; }
-    .gradient-header { min-height: 56px !important; padding: 10px 14px !important; }
-    #headerStats { gap: 10px !important; font-size: 11px !important; }
-    #headerStats > div > div:first-child { font-size: 15px !important; }
+  @media (max-width: 900px) {
+    body { overflow-x: hidden; }
+    #mainLayout { flex-direction: column !important; flex-wrap: wrap !important; height: auto !important; min-height: 0 !important; overflow: visible !important; }
+    #mainLayout > aside { width: 100% !important; flex-basis: 100% !important; flex-shrink: 0 !important; max-height: none !important; border-right: none !important; border-bottom: 1px solid #e5e7eb !important; padding: 14px 12px !important; }
+    #mainLayout > main { width: 100% !important; flex-basis: 100% !important; overflow-y: visible !important; padding: 16px 12px !important; min-height: 200px; }
+    #headerStats { display: none !important; }
+    .gradient-header { min-height: auto !important; padding: 10px 14px !important; }
+    select, input[type=text] { font-size: 14px !important; }
   }
 </style>
 </head>
