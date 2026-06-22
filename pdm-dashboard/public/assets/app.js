@@ -259,8 +259,8 @@ function switchTab(tab) {
         <h4 class="font-semibold text-sm text-gray-700">Program Tersedia (${programs.length})</h4>
         <button onclick="toggleAcademicEdit()" id="academicEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="academicViewPrograms">${programs.length ? programs.slice(0,20).map(p => '<span class="inline-block bg-blue-50 text-blue-700 text-xs px-2 py-1 rounded mr-1 mb-1">' + pLabel(p) + '</span>').join('') : '<p class="text-xs text-gray-400">Belum ada data program</p>'}${programs.length > 20 ? '<span class="text-xs text-gray-400">+' + (programs.length-20) + ' lainnya</span>' : ''}</div>
-      <div id="academicEditPrograms" class="hidden"><label class="text-xs font-medium text-gray-600 mb-1 block">Program (satu per baris &middot; format: Nama | level | faculty)</label><textarea id="edit-programs" rows="7" class="w-full text-xs border border-gray-200 rounded p-2 font-mono">${programs.map(p => typeof p === 'string' ? p : [p.name||'', p.level||'', p.faculty||''].join(' | ').replace(/\s*\|\s*\|\s*$/, '').replace(/\s*\|\s*$/, '')).join('\n')}</textarea></div>
+      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 font-semibold">Faculty</th></tr></thead><tbody>' + programs.map(p => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + '</td><td class="py-1.5 text-gray-400">' + (p.faculty||'—') + '</td></tr>').join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
+      <div id="academicEditPrograms" class="hidden"><div id="programRows">${programs.length ? programs.map(p => academicProgRowHtml(p)).join('') : academicProgRowHtml({})}</div><button onclick="addProgRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Program</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
       <div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Entry Requirements (UG)</h4><div id="req-ug-view">${renderReqView(req_ug)}</div><div id="req-ug-edit" class="hidden">${renderReqEdit(req_ug, 'ug')}</div></div>
@@ -294,6 +294,26 @@ function renderReqEdit(r, prefix) {
   return fields.map(f => '<div class="mb-2"><label class="text-xs text-gray-500 block">' + f.label + '</label><input id="req-' + prefix + '-' + f.key + '" type="' + f.type + '" ' + (f.step ? 'step="' + f.step + '"' : '') + ' value="' + (r[f.key] !== null && r[f.key] !== undefined ? r[f.key] : '') + '" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5"></div>').join('');
 }
 
+function academicProgRowHtml(p) {
+  const lvl = p.level||'';
+  const opts = ['','undergraduate','postgraduate','master','doctoral','phd','diploma'].map(v =>
+    '<option value="'+v+'"'+(lvl===v?' selected':'')+'>'+( v||'— pilih —')+'</option>'
+  ).join('');
+  return '<div class="prog-row flex gap-2 mb-2 items-end">'
+    + '<div class="flex-1"><label class="text-xs text-gray-500">Nama Program</label><input type="text" class="pr-name w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="'+(p.name||'')+'"></div>'
+    + '<div style="width:120px"><label class="text-xs text-gray-500">Level</label><select class="pr-level w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">'+opts+'</select></div>'
+    + '<div style="width:150px"><label class="text-xs text-gray-500">Faculty</label><input type="text" class="pr-faculty w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="'+(p.faculty||'')+'"></div>'
+    + '<button onclick="this.closest(\'.prog-row\').remove()" class="btn btn-danger" style="padding:4px 8px;font-size:11px;margin-bottom:1px">&#10005;</button>'
+    + '</div>';
+}
+
+function addProgRow() {
+  const c = document.getElementById('programRows');
+  const d = document.createElement('div');
+  d.innerHTML = academicProgRowHtml({});
+  c.appendChild(d.firstElementChild);
+}
+
 function toggleAcademicEdit() {
   const inEdit = !document.getElementById('academicEditPrograms').classList.contains('hidden');
   const views = ['academicViewPrograms','req-ug-view','req-pg-view','intake-view'];
@@ -306,8 +326,11 @@ function toggleAcademicEdit() {
 
 async function saveAcademic() {
   const dj = Object.assign({}, currentUniData.data_json || {});
-  const progLines = document.getElementById('edit-programs').value.split('\n').map(l => l.trim()).filter(Boolean);
-  dj.programs = progLines.map(line => { const p = line.split('|').map(s => s.trim()); return {name: p[0]||'', level: p[1]||'', faculty: p[2]||''}; });
+  dj.programs = Array.from(document.querySelectorAll('#programRows .prog-row')).map(row => ({
+    name: row.querySelector('.pr-name').value.trim(),
+    level: row.querySelector('.pr-level').value,
+    faculty: row.querySelector('.pr-faculty').value.trim()
+  })).filter(p => p.name);
   if (!dj.entry_requirements) dj.entry_requirements = {};
   const REQ_KEYS = ['ielts_min','ielts_min_band','toefl_min','pte_min','gpa_note'];
   ['undergraduate','postgraduate'].forEach((lvl, idx) => {
