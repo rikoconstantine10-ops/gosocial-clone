@@ -268,8 +268,8 @@ function switchTab(tab) {
     </div>
     <div class="card">
       <h4 class="font-semibold text-sm text-gray-700 mb-2">Intake Dates</h4>
-      <div id="intake-view" class="flex gap-2 flex-wrap">${intake.length ? intake.map(i => '<span class="bg-green-50 text-green-700 text-xs px-2 py-1 rounded">' + iLabel(i) + '</span>').join('') : '<span class="text-xs text-gray-400">-</span>'}</div>
-      <div id="intake-edit" class="hidden mt-2"><label class="text-xs font-medium text-gray-600 mb-1 block">Intake (satu per baris, contoh: February 2026)</label><textarea id="edit-intake" rows="4" class="w-full text-xs border border-gray-200 rounded p-2">${intake.map(i => iLabel(i)).filter(Boolean).join('\n')}</textarea></div>
+      <div id="intake-view">${intake.length ? intake.map(i => '<div class="flex items-center gap-3 py-1.5 border-b border-gray-50 last:border-0"><span class="text-sm font-medium text-gray-700">' + iLabel(i) + '</span>' + (i.application_deadline||i.deadline ? '<span class="text-xs text-orange-500 ml-auto">📅 Deadline: '+(i.application_deadline||i.deadline)+'</span>' : '') + '</div>').join('') : '<span class="text-xs text-gray-400">-</span>'}</div>
+      <div id="intake-edit" class="hidden mt-2"><div id="intakeRows">${intake.length ? intake.map(i => intakeRowHtml(i)).join('') : intakeRowHtml({})}</div><button onclick="addIntakeRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Intake</button></div>
     </div>
     <div id="academicSaveBtns" class="hidden flex justify-end gap-2 mt-2">
       <button onclick="toggleAcademicEdit()" class="btn btn-secondary">Batal</button>
@@ -292,6 +292,23 @@ function renderReqEdit(r, prefix) {
     {key:'gpa_note',label:'GPA / Catatan',type:'text'},
   ];
   return fields.map(f => '<div class="mb-2"><label class="text-xs text-gray-500 block">' + f.label + '</label><input id="req-' + prefix + '-' + f.key + '" type="' + f.type + '" ' + (f.step ? 'step="' + f.step + '"' : '') + ' value="' + (r[f.key] !== null && r[f.key] !== undefined ? r[f.key] : '') + '" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5"></div>').join('');
+}
+
+function intakeRowHtml(i) {
+  const period = i.period || (i.months && i.months.length ? i.months.join(', ') + (i.year ? ' ' + i.year : '') : '') || '';
+  const deadline = i.application_deadline || i.deadline || '';
+  return '<div class="intake-row flex gap-2 mb-2 items-end">'
+    + '<div class="flex-1"><label class="text-xs text-gray-500">Intake Period</label><input type="text" class="ir-period w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" placeholder="e.g. Fall 2026" value="'+period+'"></div>'
+    + '<div style="width:160px"><label class="text-xs text-gray-500">Application Deadline</label><input type="date" class="ir-deadline w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="'+deadline+'"></div>'
+    + '<button onclick="this.closest(\'.intake-row\').remove()" class="btn btn-danger" style="padding:4px 8px;font-size:11px;margin-bottom:1px">&#10005;</button>'
+    + '</div>';
+}
+
+function addIntakeRow() {
+  const c = document.getElementById('intakeRows');
+  const d = document.createElement('div');
+  d.innerHTML = intakeRowHtml({});
+  c.appendChild(d.firstElementChild);
 }
 
 function academicProgRowHtml(p) {
@@ -342,8 +359,11 @@ async function saveAcademic() {
     });
     dj.entry_requirements[lvl] = obj;
   });
-  const intakeLines = document.getElementById('edit-intake').value.split('\n').map(l => l.trim()).filter(Boolean);
-  dj.intake = intakeLines.map(l => ({period: l, months: [], application_deadline: null, year: ''}));
+  dj.intake = Array.from(document.querySelectorAll('#intakeRows .intake-row')).map(row => ({
+    period: row.querySelector('.ir-period').value.trim(),
+    application_deadline: row.querySelector('.ir-deadline').value || null,
+    months: [], year: ''
+  })).filter(i => i.period || i.application_deadline);
   const r = await req('PATCH', '/api/universities/' + currentUniId, {data_json: JSON.stringify(dj)});
   if (r && r.success) {
     currentUniData.data_json = dj;
@@ -366,13 +386,11 @@ function renderBiaya(dj) {
     <div class="card">
       <div class="flex justify-between items-center mb-3">
         <h4 class="font-semibold text-sm text-gray-700">Biaya Hidup / Cost of Living</h4>
+        ${livingCost > 0 ? `<span class="font-bold text-blue-600 text-sm">~Rp ${livingCost.toLocaleString('id-ID')}/bln</span>` : '<span class="text-xs text-gray-400">Belum diisi</span>'}
       </div>
-      <div id="livingCostView" class="flex items-center justify-between">
-        <div class="text-xs text-gray-500">Estimasi biaya hidup per bulan (USD)</div>
-        <div class="font-bold text-blue-600 text-sm">${livingCost > 0 ? '~Rp ' + livingCost.toLocaleString('id-ID') + '/bln' : '<span class="text-gray-400">Belum diisi</span>'}</div>
-      </div>
-      <div id="livingCostEdit" class="hidden flex items-center gap-3 mt-1">
-        <div class="flex-1"><label class="text-xs text-gray-500">Estimasi biaya hidup/bulan (IDR) — akomodasi, makan, transport</label><input type="number" id="living-cost-input" value="${livingCost||''}" placeholder="contoh: 15000000" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5"></div>
+      <div>
+        <label class="text-xs text-gray-500">Estimasi biaya hidup per bulan (IDR) — akomodasi, makan, transport</label>
+        <input type="number" id="living-cost-input" value="${livingCost||''}" placeholder="contoh: 15000000" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">
       </div>
     </div>
     <div class="card">
@@ -384,7 +402,7 @@ function renderBiaya(dj) {
       <div id="biayaEditTuition" class="hidden"><div id="tuitionRows">${tuition.length ? tuition.map(t => biayaTuitionRowHtml(t)).join('') : biayaTuitionRowHtml({})}</div><button onclick="addTuitionRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Baris</button></div>
     </div>
     <div class="card">
-      <div id="biayaViewScholarships"><h4 class="font-semibold text-sm text-gray-700 mb-3">Beasiswa (${scholarships.length})</h4>${scholarships.length ? scholarships.map(s => '<div class="border border-gray-100 rounded-lg p-3 mb-2"><div class="font-medium text-sm">' + (s.name||s.title||'-') + '</div><div class="text-xs text-gray-500 mt-1">' + (s.amount||s.value||'') + (s.currency ? ' ' + s.currency : '') + '</div><div class="text-xs text-gray-400 mt-1">' + (s.eligibility||s.description||s.info||'') + '</div></div>').join('') : '<p class="text-xs text-gray-400">Belum ada data beasiswa</p>'}</div>
+      <div id="biayaViewScholarships"><h4 class="font-semibold text-sm text-gray-700 mb-3">Beasiswa (${scholarships.length})</h4>${scholarships.length ? scholarships.map(s => '<div class="border border-gray-100 rounded-lg p-3 mb-2"><div class="font-medium text-sm">' + (s.name||s.title||'-') + '</div><div class="text-xs text-gray-500 mt-1">' + (s.amount||s.value||'') + (s.currency ? ' ' + s.currency : '') + '</div>' + (s.eligibility||s.description||s.info ? '<div class="text-xs text-gray-400 mt-1">' + (s.eligibility||s.description||s.info) + '</div>' : '') + (s.deadline ? '<div class="text-xs text-orange-500 mt-1">📅 Deadline: ' + s.deadline + '</div>' : '') + '</div>').join('') : '<p class="text-xs text-gray-400">Belum ada data beasiswa</p>'}</div>
       <div id="biayaEditScholarships" class="hidden"><h4 class="font-semibold text-sm text-gray-700 mb-3">Beasiswa</h4><div id="scholarshipRows">${scholarships.length ? scholarships.map(s => biayaScholarshipRowHtml(s)).join('') : biayaScholarshipRowHtml({})}</div><button onclick="addScholarshipRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Beasiswa</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
@@ -434,7 +452,12 @@ function biayaTuitionRowHtml(t) {
 }
 
 function biayaScholarshipRowHtml(s) {
-  return '<div class="scholarship-row border border-gray-100 rounded-lg p-3 mb-2"><div class="grid grid-cols-2 gap-2 mb-2"><div><label class="text-xs text-gray-500">Nama Beasiswa</label><input type="text" class="sr-name w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="' + (s.name||s.title||'') + '"></div><div><label class="text-xs text-gray-500">Jumlah</label><input type="text" class="sr-amount w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="' + (s.amount||s.value||'') + '"></div></div><div class="mb-2"><label class="text-xs text-gray-500">Eligibilitas / Deskripsi</label><input type="text" class="sr-eligibility w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="' + (s.eligibility||s.description||s.info||'') + '"></div><div class="flex justify-end"><button onclick="this.closest(\'.scholarship-row\').remove()" class="btn btn-danger" style="padding:3px 8px;font-size:11px">&#10005; Hapus</button></div></div>';
+  return '<div class="scholarship-row border border-gray-100 rounded-lg p-3 mb-2">'
+    + '<div class="grid grid-cols-2 gap-2 mb-2"><div><label class="text-xs text-gray-500">Nama Beasiswa</label><input type="text" class="sr-name w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="' + (s.name||s.title||'') + '"></div>'
+    + '<div><label class="text-xs text-gray-500">Jumlah / Nilai</label><input type="text" class="sr-amount w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="' + (s.amount||s.value||'') + '"></div></div>'
+    + '<div class="grid grid-cols-2 gap-2 mb-2"><div><label class="text-xs text-gray-500">Eligibilitas / Deskripsi</label><input type="text" class="sr-eligibility w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="' + (s.eligibility||s.description||s.info||'') + '"></div>'
+    + '<div><label class="text-xs text-gray-500">Deadline Pendaftaran</label><input type="date" class="sr-deadline w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="' + (s.deadline||'') + '"></div></div>'
+    + '<div class="flex justify-end"><button onclick="this.closest(\'.scholarship-row\').remove()" class="btn btn-danger" style="padding:3px 8px;font-size:11px">&#10005; Hapus</button></div></div>';
 }
 
 function biayaRankingRowHtml(r) {
@@ -464,8 +487,8 @@ function addRankingRow() {
 
 function toggleBiayaEdit() {
   const inEdit = !document.getElementById('biayaEditTuition').classList.contains('hidden');
-  ['biayaView','livingCostView','biayaViewScholarships','campusView','statsView','rankingView'].forEach(id => document.getElementById(id).classList.toggle('hidden', !inEdit));
-  ['biayaEditTuition','livingCostEdit','biayaEditScholarships','campusEdit','statsEdit','rankingEdit'].forEach(id => document.getElementById(id).classList.toggle('hidden', inEdit));
+  ['biayaView','biayaViewScholarships','campusView','statsView','rankingView'].forEach(id => document.getElementById(id).classList.toggle('hidden', !inEdit));
+  ['biayaEditTuition','biayaEditScholarships','campusEdit','statsEdit','rankingEdit'].forEach(id => document.getElementById(id).classList.toggle('hidden', inEdit));
   document.getElementById('biayaSaveBtns').classList.toggle('hidden', inEdit);
   document.getElementById('biayaEditBtn').innerHTML = inEdit ? '&#9998; Edit' : '&#10005; Batal';
 }
@@ -483,7 +506,8 @@ async function saveBiaya() {
     name: row.querySelector('.sr-name').value,
     amount: row.querySelector('.sr-amount').value,
     eligibility: row.querySelector('.sr-eligibility').value,
-    currency: null, deadline: null
+    deadline: row.querySelector('.sr-deadline').value || null,
+    currency: null
   })).filter(s => s.name);
   dj.campus = Object.assign({}, (currentUniData.data_json && currentUniData.data_json.campus) || {});
   dj.campus.city = document.getElementById('campus-city').value;
