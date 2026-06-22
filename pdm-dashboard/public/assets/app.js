@@ -341,10 +341,10 @@ function renderBiaya(dj) {
       </div>
       <div id="livingCostView" class="flex items-center justify-between">
         <div class="text-xs text-gray-500">Estimasi biaya hidup per bulan (USD)</div>
-        <div class="font-bold text-blue-600 text-sm">${livingCost > 0 ? '~$' + livingCost.toLocaleString() + '/bln' : '<span class="text-gray-400">Belum diisi</span>'}</div>
+        <div class="font-bold text-blue-600 text-sm">${livingCost > 0 ? '~Rp ' + livingCost.toLocaleString('id-ID') + '/bln' : '<span class="text-gray-400">Belum diisi</span>'}</div>
       </div>
       <div id="livingCostEdit" class="hidden flex items-center gap-3 mt-1">
-        <div class="flex-1"><label class="text-xs text-gray-500">Estimasi biaya hidup/bulan (USD) — akomodasi, makan, transport</label><input type="number" id="living-cost-input" value="${livingCost||''}" placeholder="contoh: 1200" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5"></div>
+        <div class="flex-1"><label class="text-xs text-gray-500">Estimasi biaya hidup/bulan (IDR) — akomodasi, makan, transport</label><input type="number" id="living-cost-input" value="${livingCost||''}" placeholder="contoh: 15000000" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5"></div>
       </div>
     </div>
     <div class="card">
