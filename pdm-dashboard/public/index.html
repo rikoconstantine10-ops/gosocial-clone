@@ -428,29 +428,7 @@ function loadDataForRegion(region) {
       el=document.getElementById('statFreshness'); if(el) el.textContent=freshVal+'%';
       try { localStorage.setItem(cacheKey, JSON.stringify({tot:tot, partner:bs['Partner']||0, process:bs['On Process']||0, nonpartner:bs['Non Partner']||0, freshness:freshVal})); } catch(e) {}
     }).catch(function(){});
-  var wrap = document.getElementById('uniTableWrap');
-  if (wrap) wrap.innerHTML = '<div class="text-center py-6 text-gray-400">Loading...</div>';
-  fetch('/api/universities?page=1&limit=20' + ru)
-    .then(function(r) { return r.json(); })
-    .then(function(d) {
-      if (!wrap) return;
-      var unis = d.data || d.items || [];
-      if (!unis.length) { wrap.innerHTML='<div class="text-center py-8 text-gray-400">Tidak ada data</div>'; return; }
-      var rows = '';
-      unis.forEach(function(u) {
-        var sc = u.status==='Partner'?'color:#16a34a':u.status==='On Process'?'color:#d97706':'color:#9ca3af';
-        rows += '<tr style="border-bottom:1px solid #f0f0f0;cursor:pointer" onclick="openDetail('+u.id+')">';
-        rows += '<td style="padding:8px 12px;font-weight:500">'+(u.name||'')+'</td>';
-        rows += '<td style="padding:8px 12px;color:#6b7280">'+(u.country||'')+'</td>';
-        rows += '<td style="padding:8px 12px;color:#6b7280">'+(u.region||'-')+'</td>';
-        rows += '<td style="padding:8px 12px;font-weight:500;'+sc+'">'+(u.status||'-')+'</td>';
-        rows += '</tr>';
-      });
-      wrap.innerHTML = '<table style="width:100%;font-size:13px"><thead><tr style="border-bottom:2px solid #e5e7eb"><th style="text-align:left;padding:8px 12px;color:#374151">Nama</th><th style="text-align:left;padding:8px 12px;color:#374151">Negara</th><th style="text-align:left;padding:8px 12px;color:#374151">Region</th><th style="text-align:left;padding:8px 12px;color:#374151">Status</th></tr></thead><tbody>' + rows + '</tbody></table>';
-      var pt = document.getElementById('pageTotal'); if(pt) pt.textContent=d.total||unis.length;
-    }).catch(function(e) {
-      if (wrap) wrap.innerHTML='<div style="color:red;padding:16px">Error: '+e.message+'</div>';
-    });
+  if (typeof loadUniversities === 'function') { currentPage = 1; loadUniversities(); }
 }
 
 window.setRegion = function(r) {
