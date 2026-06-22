@@ -117,6 +117,9 @@ async function loadUniversities() {
     const dj = (() => { try { return JSON.parse(u.data_json||'{}'); } catch(e) { return {}; } })();
     const programs = dj.programs?.length || 0;
     const scholarships = dj.scholarships?.length || 0;
+    const nextStatus = u.status === 'Partner' ? 'On Process' : u.status === 'On Process' ? 'Non Partner' : 'Partner';
+    const toggleLabel = u.status === 'Partner' ? '🔄 → On Process' : u.status === 'On Process' ? '⛔ → Non Partner' : '✅ → Partner';
+    const safeName = (u.name||'').replace(/'/g, "\\'");
     return `<tr class="hover:bg-blue-50 cursor-pointer" onclick="openDetail(${u.id})">
       <td class="px-4 py-3">
         <div class="font-medium text-gray-800 text-sm">${u.name}</div>
@@ -137,7 +140,9 @@ async function loadUniversities() {
       <td class="px-4 py-3 text-xs text-gray-400">${u.contact_count||0} kontak · ${u.activity_count||0} log</td>
       <td class="px-4 py-3">
         <div class="flex gap-1">
-          <button onclick="event.stopPropagation();syncUni(${u.id},this)" class="btn btn-secondary" style="padding:4px 8px;font-size:11px">🔄</button>
+          <button title="Sync data" onclick="event.stopPropagation();syncUni(${u.id},this)" class="btn btn-secondary" style="padding:4px 8px;font-size:11px">🔄</button>
+          <button title="Toggle status: ${toggleLabel}" onclick="event.stopPropagation();toggleUniStatus(${u.id},'${nextStatus}')" class="btn btn-secondary" style="padding:4px 8px;font-size:11px">⇄</button>
+          <button title="Hapus kampus" onclick="event.stopPropagation();deleteUni(${u.id},'${safeName}')" class="btn btn-danger" style="padding:4px 8px;font-size:11px">🗑</button>
         </div>
       </td>
     </tr>`;
@@ -568,6 +573,18 @@ async function syncUni(id, btn) {
   btn.disabled = true;
   await req('POST', '/api/universities/' + id + '/sync');
   setTimeout(() => { btn.textContent = '🔄'; btn.disabled = false; loadUniversities(); }, 15000);
+}
+
+async function toggleUniStatus(id, newStatus) {
+  await req('PATCH', '/api/universities/' + id, { status: newStatus });
+  loadUniversities();
+}
+
+async function deleteUni(id, name) {
+  if (!confirm(`Hapus "${name}" dari database?\n\nSemua kontak, aktivitas, dan data terkait akan ikut terhapus.\nTindakan ini tidak dapat dibatalkan.`)) return;
+  const r = await req('DELETE', '/api/universities/' + id);
+  if (r?.success) loadUniversities();
+  else alert('Gagal menghapus: ' + (r?.error || 'Unknown error'));
 }
 
 async function pollSyncStatus() {
