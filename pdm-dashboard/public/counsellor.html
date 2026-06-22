@@ -91,6 +91,11 @@
     .card { break-inside:avoid; page-break-inside:avoid; }
     .gradient-header { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
   }
+  /* Detail Drawer */
+  #detailModal { position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:70; display:none; justify-content:flex-end; }
+  #detailPanel { background:white; width:min(500px,100%); height:100%; overflow-y:auto; transform:translateX(100%); transition:transform .3s ease; box-shadow:-8px 0 40px rgba(0,0,0,.18); display:flex; flex-direction:column; }
+  .detail-section-title { font-size:10px; font-weight:700; color:#9ca3af; text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; }
+  .card-footer { padding:10px 16px; border-top:1px solid #f3f4f6; background:#fafafa; display:flex; justify-content:flex-end; }
 </style>
 </head>
 <body>
@@ -291,7 +296,7 @@
         <li>Pilih bidang studi spesifik untuk hasil lebih akurat</li>
         <li>Filter per region sesuai keinginan student</li>
         <li>Match Score 80+ = rekomendasi terkuat</li>
-        <li>Klik "Detail" untuk buka profil kampus</li>
+        <li>Klik "Lihat Detail" untuk profil lengkap kampus</li>
       </ul>
     </div>
   </aside>
@@ -387,6 +392,17 @@
     <div style="padding:20px;overflow-x:auto">
       <table class="compare-table" id="compareTableEl"></table>
     </div>
+  </div>
+</div>
+
+<!-- Campus Detail Drawer -->
+<div id="detailModal" onclick="if(event.target===this)closeDetail()">
+  <div id="detailPanel">
+    <div style="position:sticky;top:0;background:white;z-index:1;padding:14px 20px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <span style="font-size:14px;font-weight:700;color:#1f2937">🎓 Profil Kampus</span>
+      <button onclick="closeDetail()" style="background:none;border:none;cursor:pointer;font-size:22px;color:#9ca3af;line-height:1;padding:4px 6px">✕</button>
+    </div>
+    <div id="detailContent" style="padding:20px;flex:1"></div>
   </div>
 </div>
 
@@ -502,12 +518,15 @@ function renderCard(u, idx) {
     </label>
   </div>`;
 
+  const leftBgMap = {'rank-gold':'#fef9c3,#fde68a','rank-silver':'#f1f5f9,#e2e8f0','rank-bronze':'#fed7aa,#fdba74'};
+  const leftBg = rClass ? `linear-gradient(180deg,${leftBgMap[rClass]||'#f9fafb,#f3f4f6'})` : '#f9fafb';
+
   return `
   <div class="card${cardExtraClass}" style="padding:0;overflow:hidden;position:relative">
     ${compareHtml}
     <div style="display:flex;gap:0">
       <!-- Rank + Score Column -->
-      <div style="width:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px 10px;${rClass ? 'background:linear-gradient(180deg,'+({rank_gold:'#fef9c3,#fde68a',rank_silver:'#f1f5f9,#e2e8f0',rank_bronze:'#fed7aa,#fdba74'}[rClass.replace('-','_')] || '#f9fafb,#f3f4f6')+')' : 'background:#f9fafb'};border-right:1px solid #e5e7eb">
+      <div style="width:88px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:18px 10px;background:${leftBg};border-right:1px solid #e5e7eb">
         <div style="font-size:11px;font-weight:700;color:#9ca3af;margin-bottom:8px">#${idx+1}</div>
         <div class="score-ring ${sClass}">
           <div style="font-size:20px;font-weight:800;color:${sTxt};line-height:1">${u.matchScore}</div>
@@ -518,33 +537,33 @@ function renderCard(u, idx) {
       </div>
 
       <!-- Main Info -->
-      <div style="flex:1;padding:18px 16px;min-width:0">
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap">
-          <div>
-            <div style="font-size:16px;font-weight:700;color:#1f2937;line-height:1.3">${u.name}</div>
-            <div style="font-size:13px;color:#6b7280;margin-top:3px">${flag(u.country)} ${u.country} · ${u.region||'—'}</div>
-            <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px">
-              ${statusBadge}
-              ${tierBadge(u.tier)}
-              ${u.status === 'Partner' ? dealBadge(u.deal_type) : ''}
-              ${schBadge}
-            </div>
-          </div>
-          <div style="flex-shrink:0">
-            <button class="btn-detail" onclick="window.open('/','_self');setTimeout(()=>{if(typeof openDetail==='function')openDetail(${u.id});},800)">
-              Detail →
-            </button>
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column">
+        <div style="padding:16px 16px 14px;padding-right:110px">
+          <div style="font-size:16px;font-weight:700;color:#1f2937;line-height:1.3;margin-bottom:3px">${u.name}</div>
+          <div style="font-size:13px;color:#6b7280;margin-bottom:8px">${flag(u.country)} ${u.country} · ${u.region||'—'}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px">
+            ${statusBadge}
+            ${tierBadge(u.tier)}
+            ${u.status === 'Partner' ? dealBadge(u.deal_type) : ''}
+            ${schBadge}
           </div>
         </div>
 
-        <div style="border-top:1px solid #f3f4f6;margin:12px 0"></div>
+        <div style="padding:0 16px;border-top:1px solid #f3f4f6">
+          <div style="padding:12px 0">
+            ${reasonsHtml}
+            ${warningsHtml}
+          </div>
+        </div>
 
-        <!-- Reasons -->
-        <div>${reasonsHtml}</div>
-        ${warningsHtml}
+        <div style="padding:0 16px 14px">${progsHtml}</div>
 
-        <!-- Programs -->
-        ${progsHtml}
+        <!-- Card Footer -->
+        <div class="card-footer">
+          <button class="btn-detail" onclick="openDetail(${u.id})" style="display:inline-flex;align-items:center;gap:5px">
+            🔍 Lihat Detail Kampus →
+          </button>
+        </div>
       </div>
     </div>
   </div>`;
@@ -784,17 +803,28 @@ function openCompare() {
   document.getElementById('compareTableEl').innerHTML = `
     <thead><tr>
       <th></th>
-      ${unis.map(u => `<th><div style="font-size:12px;color:#1f2937;font-weight:700;text-transform:none;letter-spacing:0">${u.name}</div><div style="font-size:11px;color:#9ca3af;font-weight:400;text-transform:none">${flag(u.country)} ${u.country}</div></th>`).join('')}
+      ${unis.map(u => `<th>
+        <div style="font-size:12px;color:#1f2937;font-weight:700;text-transform:none;letter-spacing:0;line-height:1.3">${u.name}</div>
+        <div style="font-size:11px;color:#9ca3af;font-weight:400;text-transform:none;margin-top:3px">${flag(u.country)} ${u.country}</div>
+      </th>`).join('')}
     </tr></thead>
     <tbody>
       ${mkRow('Match Score', unis.map(u => `<span class="score-ring ${scoreColor(u.matchScore)}" style="width:44px;height:44px;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;border-radius:50%"><span style="font-size:16px;font-weight:800;color:${scoreTextColor(u.matchScore)};line-height:1">${u.matchScore}</span><span style="font-size:8px;color:${scoreTextColor(u.matchScore)}">MATCH</span></span>`))}
       ${mkRow('Status', unis.map(u => u.status === 'Partner' ? '<span class="badge badge-partner">✅ Partner</span>' : '<span class="badge badge-process">🔄 On Process</span>'))}
       ${mkRow('Region', unis.map(u => u.region||'—'))}
       ${mkRow('Tier', unis.map(u => tierBadge(u.tier)))}
-      ${mkRow('Beasiswa', unis.map(u => u.scholarships > 0 ? `💰 ${u.scholarships}` : '—'))}
-      ${mkRow('Program', unis.map(u => `${u.totalPrograms} program`))}
+      ${mkRow('Kerjasama', unis.map(u => u.status === 'Partner' ? dealBadge(u.deal_type) : '<span style="color:#9ca3af;font-size:12px">—</span>'))}
+      ${mkRow('Beasiswa', unis.map(u => u.scholarships > 0 ? `<span style="color:#7c3aed;font-weight:600">💰 ${u.scholarships} program</span>` : '<span style="color:#d1d5db">—</span>'))}
+      ${mkRow('Program', unis.map(u => `<span style="font-weight:700;color:#1f2937">${u.totalPrograms}</span> <span style="color:#9ca3af;font-size:11px">program</span>`))}
+      ${mkRow('Keunggulan Utama', unis.map(u => u.reasons.length ? `<span style="font-size:12px;color:#374151;line-height:1.4">${u.reasons[0].icon} ${u.reasons[0].text}</span>` : '<span style="color:#d1d5db">—</span>'))}
       ${currentMode === 'dream' ? mkRow('Dream Tier', unis.map(u => `<span class="${getDreamTierClass(u.matchScore)}">${getDreamTierLabel(u.matchScore)}</span>`)) : ''}
-    </tbody>`;
+    </tbody>
+    <tfoot>
+      <tr style="background:#f8f7ff">
+        <td class="row-label"></td>
+        ${unis.map(u => `<td style="padding:12px 14px"><button class="btn-detail" onclick="closeCompare();setTimeout(()=>openDetail(${u.id}),100)" style="display:inline-flex;align-items:center;gap:4px;font-size:11px;white-space:nowrap">🔍 Lihat Detail Lengkap</button></td>`).join('')}
+      </tr>
+    </tfoot>`;
   document.getElementById('compareModal').style.display = 'flex';
 }
 
@@ -864,6 +894,105 @@ function deleteSession(id) {
 }
 
 renderSavedSessions();
+
+// --- Campus Detail Drawer ---
+function openDetail(id) {
+  const u = currentResults.find(x => x.id === id);
+  if (!u) return;
+  const sClass = scoreColor(u.matchScore);
+  const sTxt   = scoreTextColor(u.matchScore);
+  const statusBadge = u.status === 'Partner'
+    ? '<span class="badge badge-partner">✅ Partner</span>'
+    : '<span class="badge badge-process">🔄 On Process</span>';
+  const schBadge = u.scholarships > 0
+    ? `<span class="badge" style="background:#f5f3ff;color:#7c3aed">💰 ${u.scholarships} Beasiswa</span>`
+    : '';
+  const progsHtml = u.topPrograms.length
+    ? u.topPrograms.map(p => `<span class="prog-chip" style="display:inline-block;margin:3px 3px 3px 0">${p.name||''}</span>`).join('')
+    : u.totalPrograms > 0
+      ? `<span style="color:#9ca3af;font-size:12px">${u.totalPrograms} program (detail belum tersedia)</span>`
+      : '<span style="color:#d1d5db;font-size:12px;font-style:italic">Data program belum tersedia</span>';
+  const extraProgCount = u.totalPrograms - u.topPrograms.length;
+  const reasonsHtml = u.reasons.map(r =>
+    `<div class="reason-row"><span style="font-size:14px;flex-shrink:0">${r.icon}</span><span>${r.text}</span></div>`
+  ).join('');
+  const warningsHtml = u.warnings.length
+    ? `<div style="margin-top:8px">${u.warnings.map(w => `<div class="warning-row"><span>⚠️</span><span>${w}</span></div>`).join('')}</div>`
+    : '';
+  const dreamBadgeHtml = currentMode === 'dream'
+    ? `<div style="margin-bottom:8px"><span class="${getDreamTierClass(u.matchScore)}">${getDreamTierLabel(u.matchScore)}</span></div>`
+    : '';
+
+  document.getElementById('detailContent').innerHTML = `
+    <div style="text-align:center;padding-bottom:20px;border-bottom:1px solid #f3f4f6;margin-bottom:20px">
+      <div class="score-ring ${sClass}" style="width:80px;height:80px;margin:0 auto 12px">
+        <div style="font-size:26px;font-weight:800;color:${sTxt};line-height:1">${u.matchScore}</div>
+        <div style="font-size:9px;font-weight:700;color:${sTxt}">MATCH</div>
+      </div>
+      ${dreamBadgeHtml}
+      <div style="font-size:18px;font-weight:700;color:#1f2937;line-height:1.3;margin-bottom:4px">${u.name}</div>
+      <div style="font-size:13px;color:#6b7280">${flag(u.country)} ${u.country} · ${u.region||'—'}</div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px">
+      ${statusBadge}
+      ${tierBadge(u.tier)}
+      ${u.status === 'Partner' ? dealBadge(u.deal_type) : ''}
+      ${schBadge}
+    </div>
+
+    <div style="background:#f9fafb;border-radius:10px;padding:12px 14px;margin-bottom:20px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span style="font-size:12px;color:#6b7280">Kelengkapan Data</span>
+        <span style="font-size:12px;font-weight:700;color:#374151">${u.freshness}%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${u.freshness}%;background:${progressColor(u.freshness)}"></div></div>
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div class="detail-section-title">Mengapa Direkomendasikan</div>
+      ${reasonsHtml}
+      ${warningsHtml}
+    </div>
+
+    <div style="margin-bottom:20px">
+      <div class="detail-section-title">Program Studi (${u.totalPrograms} tersedia)</div>
+      <div style="display:flex;flex-wrap:wrap;margin-top:4px">${progsHtml}</div>
+      ${extraProgCount > 0 && u.topPrograms.length > 0 ? `<div style="font-size:11px;color:#9ca3af;margin-top:6px">+${extraProgCount} program lainnya tersedia</div>` : ''}
+    </div>
+
+    ${u.scholarships > 0 ? `
+    <div style="background:#f5f3ff;border-radius:10px;padding:14px 16px;margin-bottom:20px;border:1px solid #e9d5ff">
+      <div style="font-size:13px;font-weight:700;color:#7c3aed;margin-bottom:4px">💰 Beasiswa Tersedia</div>
+      <div style="font-size:13px;color:#374151">${u.scholarships} program beasiswa untuk student Indonesia</div>
+    </div>` : ''}
+
+    ${u.status === 'Partner' ? `
+    <div style="background:#f0fdf4;border-radius:10px;padding:14px 16px;border:1px solid #bbf7d0">
+      <div style="font-size:13px;font-weight:700;color:#16a34a;margin-bottom:10px">✅ Status Partner Aktif</div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid #dcfce7">
+        <span style="color:#6b7280">Tipe Kerjasama</span>
+        <span style="font-weight:600;color:#1f2937">${u.deal_type||'—'}</span>
+      </div>
+      <div style="font-size:12px;color:#16a34a;margin-top:8px">
+        ${u.deal_type==='Direct'?'Komisi langsung — tanpa agen perantara':u.deal_type==='Agent'?'Melalui agen yang ditunjuk':''}
+      </div>
+    </div>` : ''}
+  `;
+
+  const modal = document.getElementById('detailModal');
+  modal.style.display = 'flex';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.getElementById('detailPanel').style.transform = 'translateX(0)';
+  }));
+}
+
+function closeDetail() {
+  const panel = document.getElementById('detailPanel');
+  if (!panel) return;
+  panel.style.transform = 'translateX(100%)';
+  setTimeout(() => { document.getElementById('detailModal').style.display = 'none'; }, 300);
+}
 </script>
 </body>
 </html>
