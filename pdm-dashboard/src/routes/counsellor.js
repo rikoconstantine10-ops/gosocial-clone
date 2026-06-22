@@ -89,7 +89,10 @@ function scoreUniversity(u, { region, level, field, budget }) {
     matchScore: Math.max(10, Math.min(99, Math.round(score))),
     reasons: reasons.slice(0, 4), warnings: warnings.slice(0, 2),
     topPrograms: matchedProgs.slice(0, 4),
+    allPrograms: programs,
+    tuition: dj.tuition || [],
     totalPrograms: programs.length, scholarships: scholarships.length,
+    living_cost_usd: u.living_cost_usd || 0,
     url: u.official_url
   };
 }
@@ -106,7 +109,7 @@ router.post('/recommend', requireAuth, (req, res) => {
 
     const unis = db.prepare(
       `SELECT id, name, country, region, tier, status, deal_type,
-              data_freshness_score, data_json, official_url
+              data_freshness_score, data_json, official_url, living_cost_usd
        FROM universities WHERE ${where.join(' AND ')}
        ORDER BY tier ASC, data_freshness_score DESC LIMIT 200`
     ).all(...params);

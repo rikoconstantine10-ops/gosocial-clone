@@ -332,8 +332,21 @@ function renderBiaya(dj) {
   const campus = dj.campus || {};
   const stats = dj.student_stats || {};
   const ranking = dj.ranking || [];
+  const livingCost = (currentUniData && currentUniData.living_cost_usd) || 0;
 
   document.getElementById('biayaContent').innerHTML = `
+    <div class="card">
+      <div class="flex justify-between items-center mb-3">
+        <h4 class="font-semibold text-sm text-gray-700">Biaya Hidup / Cost of Living</h4>
+      </div>
+      <div id="livingCostView" class="flex items-center justify-between">
+        <div class="text-xs text-gray-500">Estimasi biaya hidup per bulan (USD)</div>
+        <div class="font-bold text-blue-600 text-sm">${livingCost > 0 ? '~$' + livingCost.toLocaleString() + '/bln' : '<span class="text-gray-400">Belum diisi</span>'}</div>
+      </div>
+      <div id="livingCostEdit" class="hidden flex items-center gap-3 mt-1">
+        <div class="flex-1"><label class="text-xs text-gray-500">Estimasi biaya hidup/bulan (USD) — akomodasi, makan, transport</label><input type="number" id="living-cost-input" value="${livingCost||''}" placeholder="contoh: 1200" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5"></div>
+      </div>
+    </div>
     <div class="card">
       <div class="flex justify-between items-center mb-3">
         <h4 class="font-semibold text-sm text-gray-700">Tuition Fee (${tuition.length})</h4>
@@ -423,8 +436,8 @@ function addRankingRow() {
 
 function toggleBiayaEdit() {
   const inEdit = !document.getElementById('biayaEditTuition').classList.contains('hidden');
-  ['biayaView','biayaViewScholarships','campusView','statsView','rankingView'].forEach(id => document.getElementById(id).classList.toggle('hidden', !inEdit));
-  ['biayaEditTuition','biayaEditScholarships','campusEdit','statsEdit','rankingEdit'].forEach(id => document.getElementById(id).classList.toggle('hidden', inEdit));
+  ['biayaView','livingCostView','biayaViewScholarships','campusView','statsView','rankingView'].forEach(id => document.getElementById(id).classList.toggle('hidden', !inEdit));
+  ['biayaEditTuition','livingCostEdit','biayaEditScholarships','campusEdit','statsEdit','rankingEdit'].forEach(id => document.getElementById(id).classList.toggle('hidden', inEdit));
   document.getElementById('biayaSaveBtns').classList.toggle('hidden', inEdit);
   document.getElementById('biayaEditBtn').innerHTML = inEdit ? '&#9998; Edit' : '&#10005; Batal';
 }
@@ -459,9 +472,12 @@ async function saveBiaya() {
     rank: row.querySelector('.rr-rank').value,
     year: row.querySelector('.rr-year').value
   })).filter(r => r.source || r.rank);
-  const r = await req('PATCH', '/api/universities/' + currentUniId, {data_json: JSON.stringify(dj)});
+  const livingCostInput = document.getElementById('living-cost-input');
+  const living_cost_usd = livingCostInput ? (parseInt(livingCostInput.value) || 0) : 0;
+  const r = await req('PATCH', '/api/universities/' + currentUniId, {data_json: JSON.stringify(dj), living_cost_usd});
   if (r && r.success) {
     currentUniData.data_json = dj;
+    currentUniData.living_cost_usd = living_cost_usd;
     toggleBiayaEdit();
     renderBiaya(dj);
   } else {

@@ -907,12 +907,24 @@ function openDetail(id) {
   const schBadge = u.scholarships > 0
     ? `<span class="badge" style="background:#f5f3ff;color:#7c3aed">💰 ${u.scholarships} Beasiswa</span>`
     : '';
-  const progsHtml = u.topPrograms.length
-    ? u.topPrograms.map(p => `<span class="prog-chip" style="display:inline-block;margin:3px 3px 3px 0">${p.name||''}</span>`).join('')
-    : u.totalPrograms > 0
-      ? `<span style="color:#9ca3af;font-size:12px">${u.totalPrograms} program (detail belum tersedia)</span>`
-      : '<span style="color:#d1d5db;font-size:12px;font-style:italic">Data program belum tersedia</span>';
-  const extraProgCount = u.totalPrograms - u.topPrograms.length;
+  const progsListHtml = (u.allPrograms && u.allPrograms.length)
+    ? u.allPrograms.slice(0, 15).map(p => {
+        const tMatch = (u.tuition || []).find(t =>
+          t.program && p.name && t.program.toLowerCase().includes(p.name.substring(0, 8).toLowerCase())
+        );
+        const feeStr = tMatch && tMatch.fee_amount
+          ? `<span style="font-weight:700;color:#1d4ed8">${tMatch.fee_currency||''} ${tMatch.fee_amount}${tMatch.fee_period?'/<small style="font-weight:400;color:#6b7280">'+tMatch.fee_period+'</small>':''}</span>`
+          : '<span style="color:#d1d5db;font-size:11px">Belum diisi</span>';
+        const lvl = p.level ? `<span style="background:#e0f2fe;color:#0369a1;font-size:10px;padding:1px 6px;border-radius:4px;font-weight:600;margin-right:4px">${p.level}</span>` : '';
+        return `<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:9px 0;border-bottom:1px solid #f3f4f6">
+          <div style="flex:1;min-width:0">
+            <div style="font-size:13px;font-weight:500;color:#1f2937;margin-bottom:3px">${p.name||'—'}</div>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:2px">${lvl}${p.faculty?`<span style="color:#9ca3af;font-size:11px">${p.faculty}</span>`:''}</div>
+          </div>
+          <div style="text-align:right;flex-shrink:0;margin-left:10px;padding-top:1px">${feeStr}</div>
+        </div>`;
+      }).join('') + (u.allPrograms.length > 15 ? `<div style="padding:8px 0;text-align:center;color:#9ca3af;font-size:11px">+${u.allPrograms.length - 15} program lainnya</div>` : '')
+    : '<div style="padding:12px 0;color:#9ca3af;font-size:12px;font-style:italic">Data program belum tersedia</div>';
   const reasonsHtml = u.reasons.map(r =>
     `<div class="reason-row"><span style="font-size:14px;flex-shrink:0">${r.icon}</span><span>${r.text}</span></div>`
   ).join('');
@@ -956,10 +968,26 @@ function openDetail(id) {
     </div>
 
     <div style="margin-bottom:20px">
-      <div class="detail-section-title">Program Studi (${u.totalPrograms} tersedia)</div>
-      <div style="display:flex;flex-wrap:wrap;margin-top:4px">${progsHtml}</div>
-      ${extraProgCount > 0 && u.topPrograms.length > 0 ? `<div style="font-size:11px;color:#9ca3af;margin-top:6px">+${extraProgCount} program lainnya tersedia</div>` : ''}
+      <div class="detail-section-title" style="display:flex;justify-content:space-between;align-items:center">
+        <span>Program Studi (${u.totalPrograms} tersedia)</span>
+        <span style="font-size:10px;color:#9ca3af;text-transform:none;font-weight:400;letter-spacing:0">Tuition Fee →</span>
+      </div>
+      ${progsListHtml}
     </div>
+
+    ${u.living_cost_usd > 0 ? `
+    <div style="background:#eff6ff;border-radius:10px;padding:14px 16px;margin-bottom:20px;border:1px solid #bfdbfe">
+      <div style="font-size:13px;font-weight:700;color:#1d4ed8;margin-bottom:8px">🏘️ Biaya Hidup</div>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:13px;color:#374151">Estimasi per bulan</span>
+        <span style="font-size:20px;font-weight:800;color:#1d4ed8">~$${u.living_cost_usd.toLocaleString()}<span style="font-size:12px;font-weight:500;color:#6b7280">/bln</span></span>
+      </div>
+      <div style="font-size:11px;color:#6b7280;margin-top:4px">Termasuk akomodasi, makan & transportasi · Data PDM</div>
+    </div>` : `
+    <div style="background:#f9fafb;border-radius:10px;padding:12px 14px;margin-bottom:20px;border:1px solid #f3f4f6">
+      <div style="font-size:12px;font-weight:600;color:#9ca3af;margin-bottom:4px">🏘️ Biaya Hidup</div>
+      <div style="font-size:12px;color:#9ca3af">Belum ada data — dapat ditambahkan di PDM Dashboard</div>
+    </div>`}
 
     ${u.scholarships > 0 ? `
     <div style="background:#f5f3ff;border-radius:10px;padding:14px 16px;margin-bottom:20px;border:1px solid #e9d5ff">
