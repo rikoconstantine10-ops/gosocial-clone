@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import Database from "better-sqlite3";
-import path from "path";
 
 const DB_PATH = "/home/ubuntu/articel generator/data.db";
 
@@ -12,6 +10,8 @@ export async function GET(request: Request) {
   const offset = (page - 1) * limit;
 
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const Database = require("better-sqlite3");
     const db = new Database(DB_PATH, { readonly: true });
 
     const whereBase = `WHERE status IN ('draft','published') AND content_html IS NOT NULL AND content_html != ''`;

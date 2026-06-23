@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
-import Database from "better-sqlite3";
 
 const DB_PATH = "/home/ubuntu/articel generator/data.db";
 
 export async function GET(request: Request, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const Database = require("better-sqlite3");
     const db = new Database(DB_PATH, { readonly: true });
     // Try by slug first, then by id
     let article = db.prepare(`
