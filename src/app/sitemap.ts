@@ -1,5 +1,4 @@
 import { MetadataRoute } from "next";
-import Database from "better-sqlite3";
 
 const BASE = "https://nuswalab.com";
 const DB_PATH = "/home/ubuntu/articel generator/data.db";
@@ -37,6 +36,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Dynamically add blog articles
   let articleRoutes: MetadataRoute.Sitemap = [];
   try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const Database = require("better-sqlite3");
     const db = new Database(DB_PATH, { readonly: true });
     const articles = db.prepare(`
       SELECT slug, id, updated_at, created_at FROM articles
