@@ -1,90 +1,212 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Case Study Klien | Nuswa Lab",
+  description:
+    "Lihat bagaimana Nuswa Lab membantu pertumbuhan digital klien dari berbagai industri. Case study nyata dengan hasil terukur dari OCBC NISP, TRIV, Fujifilm, dan banyak lagi.",
+  alternates: { canonical: "https://nuswalab.com/our-client" },
+};
 
 const clients = [
-  "Tokopedia","Gojek","Traveloka","Bukalapak","OVO","Telkomsel",
-  "Bank BCA","Bank Mandiri","Astra International","Unilever Indonesia",
-  "Indofood","Kalbe Farma","Mayora","Hypermart","Alfamart","Indomaret",
-  "Pertamina","PLN","Garuda Indonesia","Lion Air","Trans7","MNC Group",
+  {
+    name: "OCBC NISP",
+    industry: "Perbankan & Keuangan",
+    desc: "OCBC NISP adalah Bank Swasta Nasional yang menyediakan layanan keuangan inovatif dan terpercaya untuk individu maupun bisnis.",
+    service: "Digital Campaign",
+    result: "+180% Digital Leads",
+    color: "#e63946",
+  },
+  {
+    name: "TRIV",
+    industry: "Kripto & FinTech",
+    desc: "TRIV adalah marketplace aset kripto yang menyediakan layanan transaksi digital terpercaya dan efisien untuk masyarakat dan investor.",
+    service: "Social Media + Content",
+    result: "+320% User Acquisition",
+    color: "#2563eb",
+  },
+  {
+    name: "Fujifilm Indonesia",
+    industry: "Teknologi & Fotografi",
+    desc: "Fujifilm Indonesia adalah brand terkemuka dalam teknologi pencitraan, kamera, dan solusi fotografi profesional di Indonesia.",
+    service: "Content Marketing + SEO",
+    result: "+250% Organic Traffic",
+    color: "#059669",
+  },
+  {
+    name: "Labore",
+    industry: "HR & Rekrutmen",
+    desc: "Labore adalah platform HR inovatif yang menghubungkan perusahaan dengan talenta berkualitas melalui solusi rekrutmen modern dan berbasis data.",
+    service: "Performance Ads",
+    result: "ROAS 5.2x",
+    color: "#7c3aed",
+  },
+  {
+    name: "Universitas Terbuka",
+    industry: "Pendidikan",
+    desc: "Universitas Terbuka adalah universitas terbuka Indonesia yang menyediakan pendidikan tinggi berkualitas dan dapat diakses oleh semua lapisan masyarakat di seluruh nusantara.",
+    service: "Google Ads + Meta Ads",
+    result: "+400% Enrollment",
+    color: "#dc2626",
+  },
+  {
+    name: "Nav Karaoke",
+    industry: "Hiburan",
+    desc: "Nav Karaoke adalah jaringan hiburan karaoke premium dengan konsep modern dan fasilitas audio-visual terbaik di seluruh Indonesia.",
+    service: "Social Media Management",
+    result: "+500% Engagement",
+    color: "#f59e0b",
+  },
+  {
+    name: "RS Onkologi Surabaya",
+    industry: "Kesehatan",
+    desc: "RS Onkologi Surabaya adalah rumah sakit khusus onkologi yang menyediakan layanan pengobatan kanker komprehensif dengan teknologi terkini dan tim penuh empati.",
+    service: "Local SEO + Google Ads",
+    result: "+285% Booking Online",
+    color: "#0891b2",
+  },
+  {
+    name: "Gappu Indonesia",
+    industry: "E-Commerce",
+    desc: "Gappu Indonesia adalah marketplace digital yang menghubungkan pengrajin lokal dan UMKM dengan pasar yang lebih luas melalui platform e-commerce terintegrasi.",
+    service: "Performance Marketing",
+    result: "ROAS 3.8x",
+    color: "#16a34a",
+  },
+  {
+    name: "DSW",
+    industry: "Retail & Fashion",
+    desc: "DSW adalah brand alas kaki dan fashion terkemuka di Indonesia yang menawarkan produk trendi berkualitas dengan harga kompetitif untuk pasar millennial dan Gen-Z.",
+    service: "TikTok Ads + Influencer",
+    result: "+220% Online Revenue",
+    color: "#ec4899",
+  },
 ];
 
-const testimonials = [
-  { name: "Rizky Pratama", role: "CEO, TechStartup Indonesia", avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80", text: "Nuswa Lab berhasil meningkatkan traffic organik website kami sebesar 400% dalam 6 bulan. Tim mereka sangat profesional dan data-driven.", rating: 5 },
-  { name: "Dewi Sartika", role: "Marketing Manager, F&B Brand", avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b5fd?w=80&q=80", text: "Social media kami tumbuh dari 10K ke 500K followers dalam setahun. Konten mereka selalu kreatif dan on-brand.", rating: 5 },
-  { name: "Budi Santoso", role: "Founder, E-commerce Fashion", avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&q=80", text: "ROI dari kampanye digital marketing Nuswa Lab mencapai 8x. Mereka benar-benar memahami bisnis kami dan deliver results.", rating: 5 },
+const stats = [
+  { value: "500+", label: "Klien Puas" },
+  { value: "6+", label: "Tahun Pengalaman" },
+  { value: "1.200+", label: "Kampanye" },
+  { value: "4.1x", label: "Avg. ROAS" },
+];
+
+const industries = [
+  "Perbankan", "FinTech", "Teknologi", "Healthcare", "Pendidikan",
+  "Hiburan", "E-Commerce", "Properti", "F&B", "Fashion", "Otomotif", "Pariwisata",
 ];
 
 export default function OurClientPage() {
   return (
     <main className="min-h-screen">
       <Nav />
-      <section className="relative pt-36 pb-16 lg:pt-48 lg:pb-20 overflow-hidden">
-        <div className="orb orb-primary w-[600px] h-[600px] -top-40 left-1/4 animate-orb" />
-        <div className="orb orb-violet w-[400px] h-[400px] top-20 right-1/4 animate-orb" style={{animationDelay:"-5s"}} />
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 text-center relative">
+
+      {/* Hero */}
+      <section
+        className="relative pt-36 pb-20 lg:pt-48 lg:pb-28 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0d1f0d 0%, #1a2e1a 50%, #0d1f0d 100%)" }}
+      >
+        <div className="orb w-[600px] h-[600px] -top-40 left-1/4 animate-orb" style={{ background: "radial-gradient(circle, #5C7A5A33 0%, transparent 70%)" }} />
+        <div className="orb w-[400px] h-[400px] top-20 right-1/4 animate-orb" style={{ background: "radial-gradient(circle, #5C7A5A22 0%, transparent 70%)", animationDelay: "-5s" }} />
+        <div className="container-custom relative text-center">
           <AnimateOnScroll>
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>Klien Kami</span>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
-              <span className="text-gradient">Dipercaya oleh</span><br />
-              <span className="text-gradient">500+ Bisnis</span>
+            <span
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs uppercase tracking-widest mb-6 font-semibold"
+              style={{ background: "rgba(92,122,90,0.2)", color: "#8fba8c", border: "1px solid rgba(92,122,90,0.4)" }}
+            >
+              Case Study
+            </span>
+            <h1
+              className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+              style={{ fontFamily: "var(--font-display)", color: "white", lineHeight: 1.1 }}
+            >
+              Case Study<br />
+              <span style={{ color: "#8fba8c" }}>Nuswa Lab</span>
             </h1>
-            <p className="text-base md:text-lg leading-relaxed max-w-2xl mx-auto" style={{color:"var(--color-muted-foreground)"}}>Dari startup hingga perusahaan Fortune 500, kami telah membantu ratusan bisnis bertumbuh secara digital.</p>
+            <p
+              className="text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
+              style={{ color: "rgba(255,255,255,0.7)" }}
+            >
+              Lihat bagaimana Nuswa Lab membantu pertumbuhan digital klien dari berbagai industri.
+            </p>
+            <div className="flex flex-wrap gap-6 justify-center">
+              {stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="text-center px-6 py-4 rounded-2xl"
+                  style={{ background: "rgba(92,122,90,0.15)", border: "1px solid rgba(92,122,90,0.3)" }}
+                >
+                  <div className="text-3xl font-bold" style={{ color: "#8fba8c" }}>{stat.value}</div>
+                  <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </AnimateOnScroll>
         </div>
       </section>
 
-      <section className="section-padding relative" style={{background:"oklch(0.98 0.003 265)"}}>
+      {/* Clients Grid */}
+      <section className="section-padding">
         <div className="container-custom">
           <AnimateOnScroll>
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Brand yang Mempercayai Kami</h2>
+              <h2
+                className="text-3xl md:text-4xl font-bold text-gradient mb-4"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                Klien Kami
+              </h2>
+              <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--color-muted-foreground)" }}>
+                Dari startup hingga korporasi, kami telah membantu ratusan bisnis bertumbuh secara digital.
+              </p>
             </div>
           </AnimateOnScroll>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {clients.map((c, i) => (
-              <AnimateOnScroll key={i} delay={i * 40}>
-                <div className="glass rounded-xl p-4 text-center hover:-translate-y-1 transition-all duration-300">
-                  <span className="font-bold text-sm" style={{color:"var(--color-muted-foreground)"}}>{c}</span>
-                </div>
-              </AnimateOnScroll>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding relative">
-        <div className="container-custom">
-          <AnimateOnScroll>
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>Kata Mereka</h2>
-              <p style={{color:"var(--color-muted-foreground)"}}>Testimonial nyata dari klien yang telah merasakan manfaat bekerja sama dengan Nuswa Lab.</p>
-            </div>
-          </AnimateOnScroll>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <AnimateOnScroll key={i} delay={i * 100}>
-                <div className="glass shimmer-card rounded-2xl p-6 h-full">
-                  <div className="flex gap-1 mb-4">
-                    {Array(t.rating).fill(0).map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="leading-relaxed mb-6 italic" style={{color:"var(--color-muted-foreground)"}}>&ldquo;{t.text}&rdquo;</p>
-                  <div className="flex items-center gap-3">
-                    {(t as any).avatar && (
-                      <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                        <Image src={(t as any).avatar} alt={t.name} width={40} height={40} className="object-cover w-full h-full" />
-                      </div>
-                    )}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {clients.map((client, i) => (
+              <AnimateOnScroll key={i} delay={i * 80}>
+                <div
+                  className="glass shimmer-card rounded-2xl p-6 h-full flex flex-col hover:-translate-y-1 transition-all duration-300"
+                  style={{ boxShadow: "var(--shadow-card)" }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg text-white flex-shrink-0"
+                      style={{ background: client.color }}
+                    >
+                      {client.name.charAt(0)}
+                    </div>
                     <div>
-                      <p className="font-bold text-sm">{t.name}</p>
-                      <p className="text-xs" style={{color:"var(--color-muted-foreground)"}}>{t.role}</p>
+                      <h3 className="font-bold text-lg" style={{ fontFamily: "var(--font-display)" }}>{client.name}</h3>
+                      <span
+                        className="text-xs px-2 py-0.5 rounded-full"
+                        style={{ background: `${client.color}15`, color: client.color }}
+                      >
+                        {client.industry}
+                      </span>
                     </div>
                   </div>
+                  <p className="text-sm leading-relaxed mb-4 flex-1" style={{ color: "var(--color-muted-foreground)" }}>
+                    {client.desc}
+                  </p>
+                  <div
+                    className="border-t pt-4 flex items-center justify-between"
+                    style={{ borderColor: "var(--color-border)" }}
+                  >
+                    <div>
+                      <p className="text-xs" style={{ color: "var(--color-muted-foreground)" }}>{client.service}</p>
+                      <p className="text-sm font-bold" style={{ color: client.color }}>{client.result}</p>
+                    </div>
+                    <Link
+                      href="/contact"
+                      className="text-xs font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+                      style={{ color: "var(--color-primary)" }}
+                    >
+                      Baca cerita <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  </div>
                 </div>
               </AnimateOnScroll>
             ))}
@@ -92,16 +214,69 @@ export default function OurClientPage() {
         </div>
       </section>
 
-      <section className="section-padding relative overflow-hidden" style={{background:"oklch(0.97 0.005 265)"}}>
-        <div className="orb orb-primary w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb" />
-        <div className="mx-auto max-w-3xl px-4 lg:px-8 relative text-center">
+      {/* Diverse Experience */}
+      <section className="section-padding" style={{ background: "oklch(0.98 0.003 265)" }}>
+        <div className="container-custom">
           <AnimateOnScroll>
-            <h2 className="text-3xl md:text-5xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>Bergabung Menjadi Klien Kami</h2>
-            <p className="text-lg mb-8" style={{color:"var(--color-muted-foreground)"}}>Jadikan bisnis Anda bagian dari keluarga besar Nuswa Lab yang terus bertumbuh.</p>
-            <Link href="/contact" className="btn-primary text-lg px-8 py-4">Konsultasi Gratis <ArrowRight className="w-5 h-5" /></Link>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{ fontFamily: "var(--font-display)" }}>
+                Pengalaman Beragam
+              </h2>
+              <p className="text-lg max-w-2xl mx-auto" style={{ color: "var(--color-muted-foreground)" }}>
+                Kami berpengalaman di berbagai industri, memberikan kami insight unik untuk memecahkan tantangan spesifik Anda.
+              </p>
+            </div>
+          </AnimateOnScroll>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {industries.map((industry, i) => (
+              <AnimateOnScroll key={i} delay={i * 40}>
+                <div
+                  className="glass rounded-xl p-4 text-center text-sm font-medium hover:-translate-y-1 transition-all duration-300"
+                  style={{ color: "var(--color-foreground)" }}
+                >
+                  {industry}
+                </div>
+              </AnimateOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section
+        className="section-padding relative overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #0d1f0d 0%, #1a2e1a 100%)" }}
+      >
+        <div
+          className="orb w-[400px] h-[400px] -top-20 left-1/2 -translate-x-1/2 animate-orb"
+          style={{ background: "radial-gradient(circle, #5C7A5A33 0%, transparent 70%)" }}
+        />
+        <div className="container-custom relative text-center">
+          <AnimateOnScroll>
+            <h2
+              className="text-3xl md:text-5xl font-bold mb-4"
+              style={{ fontFamily: "var(--font-display)", color: "white" }}
+            >
+              Mari tingkatkan<br />
+              <span style={{ color: "#8fba8c" }}>kehadiran digital Anda.</span>
+            </h2>
+            <p className="text-lg mb-8 max-w-2xl mx-auto" style={{ color: "rgba(255,255,255,0.7)" }}>
+              Jangan tertinggal. Kompetitor Anda sudah tumbuh secara digital.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-lg transition-all"
+              style={{ background: "#5C7A5A", color: "white" }}
+            >
+              Konsultasi Gratis <ArrowRight className="w-5 h-5" />
+            </Link>
+            <p className="text-sm mt-6" style={{ color: "rgba(255,255,255,0.5)" }}>
+              Konsultasi gratis · Tanpa komitmen · Respon dalam 1 jam
+            </p>
           </AnimateOnScroll>
         </div>
       </section>
+
       <Footer />
     </main>
   );
