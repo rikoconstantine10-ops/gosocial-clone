@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import { ArrowRight, Building2, User, Cpu, GraduationCap, Star, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Building2, User, Cpu, GraduationCap, Star, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Program Partnership | Nuswa Lab",
@@ -223,7 +223,7 @@ export default function PartnershipPage() {
                   <ul className="space-y-2">
                     {pt.benefits.map((benefit, j) => (
                       <li key={j} className="flex items-center gap-2 text-sm">
-                        <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: pt.color }} />
+                        <CheckCircle className="w-4 h-4 flex-shrink-0" style={{ color: pt.color }} />
                         <span>{benefit}</span>
                       </li>
                     ))}
