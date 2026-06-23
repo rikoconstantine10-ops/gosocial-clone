@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Nav } from "@/components/layout/Nav";
 import { Footer } from "@/components/layout/Footer";
 import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
-import { ArrowRight, Building2, User, Cpu, GraduationCap, Star, CheckCircle } from "lucide-react";
+import { ArrowRight, Building2, Users, Cpu, GraduationCap, Star, CheckCircle } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Program Partnership | Nuswa Lab",
@@ -27,7 +27,7 @@ const partnerTypes = [
     color: "#2563eb",
   },
   {
-    Icon: User,
+    Icon: Users,
     type: "Freelance Partner",
     target: "Freelancer & Individu",
     desc: "Untuk freelancer, content creator, digital marketer, atau konsultan independen yang ingin mendapatkan komisi referral dengan menghubungkan klien mereka dengan layanan Nuswa Lab.",
@@ -201,7 +201,9 @@ export default function PartnershipPage() {
             </div>
           </AnimateOnScroll>
           <div className="grid md:grid-cols-2 gap-6">
-            {partnerTypes.map((pt, i) => (
+            {partnerTypes.map((pt, i) => {
+              const PartnerIcon = pt.Icon;
+              return (
               <AnimateOnScroll key={i} delay={i * 100}>
                 <div
                   className="glass shimmer-card rounded-2xl p-8 h-full hover:-translate-y-1 transition-all duration-300"
@@ -212,7 +214,7 @@ export default function PartnershipPage() {
                       className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
                       style={{ background: `${pt.color}20`, border: `1px solid ${pt.color}40` }}
                     >
-                      <pt.Icon className="w-6 h-6" style={{ color: pt.color }} />
+                      <PartnerIcon className="w-6 h-6" style={{ color: pt.color }} />
                     </div>
                     <div>
                       <h3 className="font-bold text-lg" style={{ fontFamily: "var(--font-display)" }}>{pt.type}</h3>
@@ -230,7 +232,8 @@ export default function PartnershipPage() {
                   </ul>
                 </div>
               </AnimateOnScroll>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
