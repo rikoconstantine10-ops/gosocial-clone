@@ -13,9 +13,6 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "plus.unsplash.com" },
     ],
   },
-  experimental: {
-    optimizeCss: true,
-  },
   async headers() {
     return [
       {
