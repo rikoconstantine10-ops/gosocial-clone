@@ -104,36 +104,27 @@ export default function HowItWorksPage() {
       <Nav />
 
       {/* Hero */}
-      <section
-        className="relative pt-36 pb-20 lg:pt-48 lg:pb-28 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #0d1f0d 0%, #1a2e1a 50%, #0d1f0d 100%)" }}
-      >
-        <div
-          className="orb w-[600px] h-[600px] -top-40 -left-32 animate-orb"
-          style={{ background: "radial-gradient(circle, #5C7A5A33 0%, transparent 70%)" }}
-        />
-        <div
-          className="orb w-[500px] h-[500px] top-0 right-0 animate-orb"
-          style={{ background: "radial-gradient(circle, #5C7A5A22 0%, transparent 70%)", animationDelay: "-4s" }}
-        />
+      <section className="relative pt-36 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
+        <div className="orb orb-primary w-[600px] h-[600px] -top-40 -right-32 animate-orb" />
+        <div className="orb orb-violet w-[400px] h-[400px] top-20 -left-20 animate-orb" style={{ animationDelay: "-4s" }} />
         <div className="container-custom relative text-center">
           <AnimateOnScroll>
             <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs uppercase tracking-widest mb-6 font-semibold"
-              style={{ background: "rgba(92,122,90,0.2)", color: "#8fba8c", border: "1px solid rgba(92,122,90,0.4)" }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6 font-semibold"
+              style={{ color: "var(--color-primary)" }}
             >
               Proses Kami
             </span>
             <h1
               className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
-              style={{ fontFamily: "var(--font-display)", color: "white", lineHeight: 1.1 }}
+              style={{ fontFamily: "var(--font-display)", lineHeight: 1.1 }}
             >
-              Menemukan<br />
-              <span style={{ color: "#8fba8c" }}>Potensi Digital</span>
+              <span className="text-gradient">Menemukan</span><br />
+              Potensi Digital
             </h1>
             <p
               className="text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.7)" }}
+              style={{ color: "var(--color-muted-foreground)" }}
             >
               Proses sistematis 4 langkah kami memastikan setiap investasi yang Anda lakukan menghasilkan hasil nyata dan terukur.
             </p>
@@ -146,11 +137,10 @@ export default function HowItWorksPage() {
               ].map((stat) => (
                 <div
                   key={stat.label}
-                  className="text-center px-6 py-4 rounded-2xl"
-                  style={{ background: "rgba(92,122,90,0.15)", border: "1px solid rgba(92,122,90,0.3)" }}
+                  className="shimmer-card text-center px-6 py-4 rounded-2xl"
                 >
-                  <div className="text-3xl font-bold" style={{ color: "#8fba8c" }}>{stat.value}</div>
-                  <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>{stat.label}</div>
+                  <div className="text-3xl font-bold text-gradient" style={{ fontFamily: "var(--font-display)" }}>{stat.value}</div>
+                  <div className="text-sm mt-1" style={{ color: "var(--color-muted-foreground)" }}>{stat.label}</div>
                 </div>
               ))}
             </div>

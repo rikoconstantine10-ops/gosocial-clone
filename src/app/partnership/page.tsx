@@ -124,46 +124,39 @@ export default function PartnershipPage() {
       <Nav />
 
       {/* Hero */}
-      <section
-        className="relative pt-36 pb-20 lg:pt-48 lg:pb-28 overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #0d1f0d 0%, #1a2e1a 50%, #0d1f0d 100%)" }}
-      >
-        <div className="orb w-[600px] h-[600px] -top-40 -left-32 animate-orb" style={{ background: "radial-gradient(circle, #5C7A5A33 0%, transparent 70%)" }} />
-        <div className="orb w-[400px] h-[400px] top-20 -right-20 animate-orb" style={{ background: "radial-gradient(circle, #5C7A5A22 0%, transparent 70%)", animationDelay: "-5s" }} />
+      <section className="relative pt-36 pb-20 lg:pt-48 lg:pb-28 overflow-hidden">
+        <div className="orb orb-primary w-[600px] h-[600px] -top-40 -right-32 animate-orb" />
+        <div className="orb orb-violet w-[400px] h-[400px] top-20 -left-20 animate-orb" style={{ animationDelay: "-5s" }} />
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <AnimateOnScroll>
               <span
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs uppercase tracking-widest mb-6 font-semibold"
-                style={{ background: "rgba(92,122,90,0.2)", color: "#8fba8c", border: "1px solid rgba(92,122,90,0.4)" }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6 font-semibold"
+                style={{ color: "var(--color-primary)" }}
               >
                 Program Kemitraan
               </span>
               <h1
                 className="text-4xl md:text-6xl font-bold leading-tight mb-6"
-                style={{ fontFamily: "var(--font-display)", color: "white" }}
+                style={{ fontFamily: "var(--font-display)" }}
               >
-                Jalin Kemitraan<br />
-                <span style={{ color: "#8fba8c" }}>Strategis di Era Digital</span>
+                <span className="text-gradient">Jalin Kemitraan</span><br />
+                Strategis di Era Digital
               </h1>
               <p
                 className="text-base md:text-lg leading-relaxed mb-8"
-                style={{ color: "rgba(255,255,255,0.7)" }}
+                style={{ color: "var(--color-muted-foreground)" }}
               >
                 Wujudkan ide besar bersama. Saatnya berkolaborasi dengan Nuswa Lab dan membangun ekosistem digital yang lebih kuat.
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all"
-                  style={{ background: "#5C7A5A", color: "white" }}
-                >
+                <Link href="/contact" className="btn-primary gap-2">
                   Mulai Kolaborasi <ArrowRight className="w-4 h-4" />
                 </Link>
                 <a
                   href="#partnership-types"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all"
-                  style={{ background: "rgba(255,255,255,0.1)", color: "white", border: "1px solid rgba(255,255,255,0.2)" }}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold glass transition-all"
+                  style={{ color: "var(--color-foreground)" }}
                 >
                   Pelajari Lebih
                 </a>
@@ -172,13 +165,9 @@ export default function PartnershipPage() {
             <AnimateOnScroll delay={200}>
               <div className="grid grid-cols-2 gap-4">
                 {heroStats.map((stat, i) => (
-                  <div
-                    key={i}
-                    className="rounded-2xl p-6 text-center"
-                    style={{ background: "rgba(92,122,90,0.15)", border: "1px solid rgba(92,122,90,0.3)" }}
-                  >
-                    <div className="text-3xl font-bold" style={{ color: "#8fba8c" }}>{stat.value}</div>
-                    <div className="text-sm mt-1" style={{ color: "rgba(255,255,255,0.6)" }}>{stat.label}</div>
+                  <div key={i} className="shimmer-card rounded-2xl p-6 text-center">
+                    <div className="text-3xl font-bold text-gradient" style={{ fontFamily: "var(--font-display)" }}>{stat.value}</div>
+                    <div className="text-sm mt-1" style={{ color: "var(--color-muted-foreground)" }}>{stat.label}</div>
                   </div>
                 ))}
               </div>
