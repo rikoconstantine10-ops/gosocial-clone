@@ -31,6 +31,11 @@ function run() {
   addColumnIfMissing(db, 'universities', 'applyboard_slug',    'TEXT');
   addColumnIfMissing(db, 'universities', 'applyboard_synced_at', 'TEXT');
 
+  // Cost of living: separate value + currency columns (original ApplyBoard values, not converted)
+  addColumnIfMissing(db, 'universities', 'living_cost_value',    'REAL');    // e.g. 29710.0
+  addColumnIfMissing(db, 'universities', 'living_cost_currency', 'TEXT');    // e.g. 'AUD'
+  addColumnIfMissing(db, 'universities', 'living_cost_period',   'TEXT');    // 'year' | 'month'
+
   // Index for fast lookup by applyboard_id
   try {
     db.exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_universities_applyboard_id ON universities(applyboard_id) WHERE applyboard_id IS NOT NULL');

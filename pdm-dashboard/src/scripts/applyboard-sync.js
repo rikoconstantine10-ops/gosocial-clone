@@ -46,17 +46,6 @@ const MAX_RETRIES   = 3;
 // Countries to SKIP (user request: exclude Malta)
 const SKIP_COUNTRIES = new Set(['MT']);
 
-// Local-currency/year → IDR/month
-const TO_IDR_PER_MONTH = {
-  AUD: 10500 / 12,   // ~875 IDR per AUD per month
-  CAD: 11500 / 12,   // ~958 IDR per CAD per month
-  GBP: 20000 / 12,   // ~1667 IDR per GBP per month
-  USD: 16500 / 12,   // ~1375 IDR per USD per month
-  EUR: 18000 / 12,   // ~1500 IDR per EUR per month
-  NZD: 9500  / 12,
-  SGD: 12500 / 12,
-};
-
 // ── CLI args ──────────────────────────────────────────────────────────────────
 const ARGS       = process.argv.slice(2);
 const DRY_RUN    = ARGS.includes('--dry-run');
@@ -444,11 +433,6 @@ async function fetchRepresentativeRequirements(programs) {
 }
 
 // ── Map to PDM schema ──────────────────────────────────────────────────────────
-function idrPerMonth(costPerYear, currency) {
-  const rate = TO_IDR_PER_MONTH[(currency || 'USD').toUpperCase()] || TO_IDR_PER_MONTH['USD'];
-  return Math.round((costPerYear || 0) * rate);
-}
-
 function mapCountryToRegion(cc) {
   const c = (cc || '').toUpperCase();
   if (['GB','IE','DE','FR','NL','SE','DK','NO','FI','BE','AT','CH','ES','PT','IT'].includes(c)) return 'Europe';
@@ -462,8 +446,10 @@ function mapSchoolToDb(school, programs, scholarships, requirements, existingRow
   const attrs = school.data?.attributes || {};
   const cc    = (attrs.country_code || '').toUpperCase();
 
-  // Cost of living → IDR/month
-  const livingCostIdr = idrPerMonth(attrs.cost_of_living, attrs.currency);
+  // Cost of living: store original value + currency (no conversion)
+  const livingCostValue    = attrs.cost_of_living != null ? parseFloat(attrs.cost_of_living) : null;
+  const livingCostCurrency = (attrs.currency || '').toUpperCase() || null;
+  const livingCostPeriod   = 'year';
 
   // Programs
   const mappedPrograms = programs.map(p => {
@@ -556,6 +542,10 @@ function mapSchoolToDb(school, programs, scholarships, requirements, existingRow
     ab_student_count:         attrs.student_count,
     // Requirements (IELTS/TOEFL/PTE per academic background)
     ab_requirements:          requirements.length ? requirements : (existingDj.ab_requirements || []),
+    // Cost of living (original ApplyBoard values, no IDR conversion)
+    ab_living_cost_value:    livingCostValue,
+    ab_living_cost_currency: livingCostCurrency,
+    ab_living_cost_period:   livingCostPeriod,
   };
 
   const freshness = Math.max(existingRow?.data_freshness_score || 0, 85);
@@ -566,7 +556,9 @@ function mapSchoolToDb(school, programs, scholarships, requirements, existingRow
     logo_url:             attrs.logo_url || null,
     applyboard_slug:      attrs.slug || null,
     applyboard_synced_at: new Date().toISOString(),
-    living_cost_usd:      livingCostIdr,
+    living_cost_value:    livingCostValue,
+    living_cost_currency: livingCostCurrency,
+    living_cost_period:   livingCostPeriod,
     data_json:            JSON.stringify(dataJson),
     data_freshness_score: freshness,
     // For new rows
@@ -587,8 +579,9 @@ function openDb() {
   _doUpdate    = _db.prepare(`
     UPDATE universities SET
       applyboard_id = ?, institution_type = ?, logo_url = ?, applyboard_slug = ?,
-      applyboard_synced_at = ?, living_cost_usd = ?, data_json = ?,
-      data_freshness_score = ?,
+      applyboard_synced_at = ?,
+      living_cost_value = ?, living_cost_currency = ?, living_cost_period = ?,
+      data_json = ?, data_freshness_score = ?,
       region       = COALESCE(region, ?),
       official_url = COALESCE(official_url, ?)
     WHERE id = ?
@@ -597,8 +590,9 @@ function openDb() {
     INSERT INTO universities
       (name, country, region, status, tier, deal_type, official_url,
        applyboard_id, institution_type, logo_url, applyboard_slug,
-       applyboard_synced_at, living_cost_usd, data_json, data_freshness_score)
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+       applyboard_synced_at, living_cost_value, living_cost_currency, living_cost_period,
+       data_json, data_freshness_score)
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
   `);
 }
 
@@ -609,8 +603,10 @@ function upsertSchool(mapped, abId) {
   if (row) {
     _doUpdate.run(
       mapped.applyboard_id, mapped.institution_type, mapped.logo_url, mapped.applyboard_slug,
-      mapped.applyboard_synced_at, mapped.living_cost_usd, mapped.data_json,
-      mapped.data_freshness_score, mapped.region, mapped.official_url,
+      mapped.applyboard_synced_at,
+      mapped.living_cost_value, mapped.living_cost_currency, mapped.living_cost_period,
+      mapped.data_json, mapped.data_freshness_score,
+      mapped.region, mapped.official_url,
       row.id
     );
     return { action: 'update', id: row.id };
@@ -619,7 +615,8 @@ function upsertSchool(mapped, abId) {
       mapped.name, mapped.country, mapped.region,
       'Non Partner', 4, 'Referral', mapped.official_url,
       mapped.applyboard_id, mapped.institution_type, mapped.logo_url,
-      mapped.applyboard_slug, mapped.applyboard_synced_at, mapped.living_cost_usd,
+      mapped.applyboard_slug, mapped.applyboard_synced_at,
+      mapped.living_cost_value, mapped.living_cost_currency, mapped.living_cost_period,
       mapped.data_json, mapped.data_freshness_score
     );
     return { action: 'insert', id: r.lastInsertRowid };

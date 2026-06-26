@@ -408,7 +408,11 @@ function renderBiaya(dj) {
   const campus = dj.campus || {};
   const stats = dj.student_stats || {};
   const ranking = dj.ranking || [];
-  const livingCost = (currentUniData && currentUniData.living_cost_usd) || 0;
+  // Cost of living — read from data_json (ab_ = ApplyBoard sync, user may override)
+  const lcValue    = dj.living_cost_value    != null ? dj.living_cost_value    : (dj.ab_living_cost_value    != null ? dj.ab_living_cost_value    : null);
+  const lcCurrency = dj.living_cost_currency || dj.ab_living_cost_currency || 'AUD';
+  const lcPeriod   = dj.living_cost_period   || dj.ab_living_cost_period   || 'year';
+  const lcCurrencies = ['AUD','CAD','GBP','USD','EUR','NZD','SGD'];
 
   // ApplyBoard avg tuition info
   const abAvgTuition = dj.ab_avg_tuition;
@@ -447,11 +451,26 @@ function renderBiaya(dj) {
     <div class="card">
       <div class="flex justify-between items-center mb-3">
         <h4 class="font-semibold text-sm text-gray-700">Biaya Hidup / Cost of Living</h4>
-        ${livingCost > 0 ? `<span class="font-bold text-blue-600 text-sm">~Rp ${livingCost.toLocaleString('id-ID')}/bln</span>` : '<span class="text-xs text-gray-400">Belum diisi</span>'}
+        ${lcValue != null ? `<span class="font-bold text-blue-600 text-sm">${lcCurrency} ${Number(lcValue).toLocaleString('en-AU')}/${lcPeriod === 'year' ? 'tahun' : 'bulan'}</span>` : '<span class="text-xs text-gray-400">Belum diisi</span>'}
       </div>
-      <div>
-        <label class="text-xs text-gray-500">Estimasi biaya hidup per bulan (IDR) — akomodasi, makan, transport</label>
-        <input type="number" id="living-cost-input" value="${livingCost||''}" placeholder="contoh: 15000000" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">
+      <div class="grid grid-cols-3 gap-2">
+        <div class="col-span-2">
+          <label class="text-xs text-gray-500">Nilai biaya hidup</label>
+          <input type="number" id="living-cost-input" value="${lcValue != null ? lcValue : ''}" placeholder="contoh: 29710" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">
+        </div>
+        <div>
+          <label class="text-xs text-gray-500">Mata Uang</label>
+          <select id="living-cost-currency" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">
+            ${lcCurrencies.map(c => `<option value="${c}"${c === lcCurrency ? ' selected' : ''}>${c}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+      <div class="mt-1">
+        <label class="text-xs text-gray-500">Periode</label>
+        <select id="living-cost-period" class="text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">
+          <option value="year"${lcPeriod === 'year' ? ' selected' : ''}>Per tahun</option>
+          <option value="month"${lcPeriod === 'month' ? ' selected' : ''}>Per bulan</option>
+        </select>
       </div>
       ${abTuitionLine}${abAppFeeLine}
     </div>
@@ -586,12 +605,16 @@ async function saveBiaya() {
     rank: row.querySelector('.rr-rank').value,
     year: row.querySelector('.rr-year').value
   })).filter(r => r.source || r.rank);
-  const livingCostInput = document.getElementById('living-cost-input');
-  const living_cost_usd = livingCostInput ? (parseInt(livingCostInput.value) || 0) : 0;
-  const r = await req('PATCH', '/api/universities/' + currentUniId, {data_json: JSON.stringify(dj), living_cost_usd});
+  const livingCostInput    = document.getElementById('living-cost-input');
+  const livingCostCurrency = document.getElementById('living-cost-currency');
+  const livingCostPeriod   = document.getElementById('living-cost-period');
+  const lcVal = livingCostInput && livingCostInput.value !== '' ? parseFloat(livingCostInput.value) : null;
+  dj.living_cost_value    = lcVal;
+  dj.living_cost_currency = livingCostCurrency ? livingCostCurrency.value : (dj.ab_living_cost_currency || 'AUD');
+  dj.living_cost_period   = livingCostPeriod   ? livingCostPeriod.value   : (dj.ab_living_cost_period   || 'year');
+  const r = await req('PATCH', '/api/universities/' + currentUniId, {data_json: JSON.stringify(dj)});
   if (r && r.success) {
     currentUniData.data_json = dj;
-    currentUniData.living_cost_usd = living_cost_usd;
     toggleBiayaEdit();
     renderBiaya(dj);
   } else {
