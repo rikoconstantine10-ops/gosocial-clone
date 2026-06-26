@@ -122,8 +122,8 @@ async function loadUniversities() {
     const safeName = (u.name||'').replace(/'/g, "\\'");
     return `<tr class="hover:bg-blue-50 cursor-pointer" onclick="openDetail(${u.id})">
       <td class="px-4 py-3">
-        <div class="font-medium text-gray-800 text-sm">${u.name}</div>
-        <div class="text-xs text-gray-400">${u.country}</div>
+        <div class="font-medium text-gray-800 text-sm">${u.name}${u.applyboard_id ? '<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#16a34a;margin-left:4px;vertical-align:middle" title="ApplyBoard Synced"></span>' : ''}</div>
+        <div class="text-xs text-gray-400">${u.country}${u.institution_type ? ' · ' + u.institution_type : ''}</div>
       </td>
       <td class="px-4 py-3 text-xs text-gray-500">${u.region||'-'}</td>
       <td class="px-4 py-3">
@@ -229,6 +229,7 @@ async function openDetail(id) {
   renderArticles(data.articles);
   renderKnowledge(data.id, data.data_json);
   renderAiInsights(data.data_json);
+  if (typeof renderApplyboard === 'function') renderApplyboard(data);
 
   switchTab('overview');
 }
@@ -1155,6 +1156,111 @@ function renderRequirements(dj) {
   }
 
   cont.innerHTML = html;
+}
+
+// ========== APPLYBOARD TAB ==========
+function renderApplyboard(data) {
+  const el = document.getElementById('applyboardContent');
+  if (!el) return;
+  let dj = {};
+  try { dj = typeof data.data_json === 'string' ? JSON.parse(data.data_json) : (data.data_json || {}); } catch(_) {}
+
+  if (!data.applyboard_id && !dj.ab_about) {
+    el.innerHTML = '<div class="text-center py-8 text-gray-400 text-sm">Universitas ini belum tersinkronisasi dengan ApplyBoard.</div>';
+    return;
+  }
+
+  const slug = data.applyboard_slug || dj.applyboard_slug || null;
+  const abUrl = slug ? 'https://www.applyboard.com/universities/' + slug : null;
+  const syncedAt = data.applyboard_synced_at || null;
+  const programs = dj.programs || [];
+  const scholarships = dj.scholarships || [];
+  const levelCounts = dj.ab_program_level_counts || {};
+  const intakes = dj.ab_intakes || [];
+  const avgTuition = dj.ab_avg_tuition;
+  const avgTuitionCurrency = dj.ab_avg_tuition_currency || 'CAD';
+  const appFeeMin = dj.ab_application_fee_min;
+  const appFeeMax = dj.ab_application_fee_max;
+  const decisionDays = dj.ab_decision_time_days;
+  const about = dj.ab_about || '';
+  const videoLink = dj.ab_video_link || '';
+  const studentCount = dj.ab_student_count;
+  const intlPct = dj.ab_international_pct;
+  const founded = dj.ab_founded_in;
+  const livingVal = dj.ab_living_cost_value;
+  const livingCur = dj.ab_living_cost_currency || 'CAD';
+  const livingPer = dj.ab_living_cost_period || 'month';
+  const pgwp = dj.ab_pgwp_participating;
+  const coop = dj.ab_coop_participating;
+  const workStudy = dj.ab_can_work_and_study;
+  const conditional = dj.ab_conditional_acceptance;
+
+  let html = '<div class="space-y-4">';
+
+  html += '<div class="flex items-center justify-between p-3 bg-green-50 rounded-lg border border-green-100">';
+  html += '<div class="flex items-center gap-2"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#16a34a"></span><span class="font-semibold text-green-800 text-sm">ApplyBoard Data</span>';
+  if (syncedAt) html += '<span class="text-xs text-gray-400 ml-2">Sync: ' + syncedAt.slice(0,10) + '</span>';
+  html += '</div>';
+  html += abUrl ? '<a href="' + abUrl + '" target="_blank" class="btn btn-secondary text-xs" style="white-space:nowrap;text-decoration:none">&#128279; Lihat di ApplyBoard</a>' : '';
+  html += '</div>';
+
+  html += '<div class="grid grid-cols-4 gap-3">';
+  html += '<div class="card text-center"><div class="text-2xl font-bold text-blue-600">' + programs.length + '</div><div class="text-xs text-gray-500">Programs</div></div>';
+  html += '<div class="card text-center"><div class="text-2xl font-bold text-purple-600">' + scholarships.length + '</div><div class="text-xs text-gray-500">Beasiswa</div></div>';
+  html += avgTuition ? '<div class="card text-center"><div class="text-xl font-bold text-green-600">' + Number(avgTuition).toLocaleString() + '</div><div class="text-xs text-gray-500">Avg Tuition (' + avgTuitionCurrency + '/yr)</div></div>' : '<div class="card text-center"><div class="text-2xl font-bold text-gray-300">-</div><div class="text-xs text-gray-500">Avg Tuition</div></div>';
+  html += decisionDays ? '<div class="card text-center"><div class="text-2xl font-bold text-orange-500">' + decisionDays + '</div><div class="text-xs text-gray-500">Hari Decision</div></div>' : '<div class="card text-center"><div class="text-2xl font-bold text-gray-300">-</div><div class="text-xs text-gray-500">Hari Decision</div></div>';
+  html += '</div>';
+
+  html += '<div class="grid grid-cols-2 gap-4">';
+  html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Fitur</h4><div class="space-y-2 text-xs">';
+  html += '<div class="flex items-center gap-2"><span style="color:' + (pgwp?'#16a34a':'#9ca3af') + '">' + (pgwp?'✓':'✗') + '</span> PGWP Eligible</div>';
+  html += '<div class="flex items-center gap-2"><span style="color:' + (coop?'#16a34a':'#9ca3af') + '">' + (coop?'✓':'✗') + '</span> Co-op Program</div>';
+  html += '<div class="flex items-center gap-2"><span style="color:' + (workStudy?'#16a34a':'#9ca3af') + '">' + (workStudy?'✓':'✗') + '</span> Work & Study</div>';
+  html += '<div class="flex items-center gap-2"><span style="color:' + (conditional?'#16a34a':'#9ca3af') + '">' + (conditional?'✓':'✗') + '</span> Conditional Acceptance</div>';
+  html += '</div></div>';
+  html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Info</h4><div class="space-y-2 text-xs text-gray-600">';
+  if (founded) html += '<div>Didirikan: <strong>' + founded + '</strong></div>';
+  if (studentCount) html += '<div>Jumlah Mahasiswa: <strong>' + Number(studentCount).toLocaleString() + '</strong></div>';
+  if (intlPct) html += '<div>Mahasiswa Internasional: <strong>' + intlPct + '%</strong></div>';
+  if (livingVal) html += '<div>Biaya Hidup: <strong>' + Number(livingVal).toLocaleString() + ' ' + livingCur + '/' + livingPer + '</strong></div>';
+  html += '</div></div>';
+  html += '</div>';
+
+  if (avgTuition || appFeeMin != null) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Biaya (Data ApplyBoard)</h4><div class="grid grid-cols-3 gap-3">';
+    if (avgTuition) html += '<div class="text-center p-3 bg-gray-50 rounded"><div class="text-xs text-gray-500 mb-1">Rata-rata Tuition</div><div class="font-bold text-sm">' + Number(avgTuition).toLocaleString() + ' ' + avgTuitionCurrency + '/yr</div></div>';
+    if (appFeeMin != null || appFeeMax != null) {
+      const feeStr = appFeeMin === appFeeMax ? (appFeeMin + ' ' + avgTuitionCurrency) : ((appFeeMin||0) + '–' + (appFeeMax||0) + ' ' + avgTuitionCurrency);
+      html += '<div class="text-center p-3 bg-gray-50 rounded"><div class="text-xs text-gray-500 mb-1">Application Fee</div><div class="font-bold text-sm">' + feeStr + '</div></div>';
+    }
+    if (livingVal) html += '<div class="text-center p-3 bg-gray-50 rounded"><div class="text-xs text-gray-500 mb-1">Biaya Hidup</div><div class="font-bold text-sm">' + Number(livingVal).toLocaleString() + ' ' + livingCur + '/' + livingPer + '</div></div>';
+    html += '</div></div>';
+  }
+
+  if (Object.keys(levelCounts).length) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Program per Level</h4><div class="flex flex-wrap gap-2">';
+    for (const [level, count] of Object.entries(levelCounts)) {
+      html += '<span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">' + level.replace(/_/g,' ') + ': ' + count + '</span>';
+    }
+    html += '</div></div>';
+  }
+
+  if (intakes.length) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Intake Dates</h4><div class="flex flex-wrap gap-2">';
+    intakes.forEach(d => { html += '<span class="px-3 py-1 bg-orange-50 text-orange-700 rounded-full text-xs font-medium">&#128197; ' + d + '</span>'; });
+    html += '</div></div>';
+  }
+
+  if (about) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Tentang</h4><div class="text-sm text-gray-600 leading-relaxed">' + about + '</div></div>';
+  }
+
+  if (videoLink) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-2">Video</h4><a href="' + videoLink + '" target="_blank" class="text-blue-600 hover:underline text-sm">&#127916; ' + videoLink + '</a></div>';
+  }
+
+  html += '</div>';
+  el.innerHTML = html;
 }
 
 // ========== GLOBAL KB MANAGEMENT ==========
