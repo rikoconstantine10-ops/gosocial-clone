@@ -967,6 +967,57 @@ async function processKnowledgeAI(uniId) {
 }
 
 
+// ========== APPLYBOARD SYNC PANEL ==========
+let _abSyncPollTimer = null;
+
+async function runAbMigrate() {
+  const r = await req('POST', '/api/applyboard/migrate', {});
+  if (!r) return alert('Request gagal');
+  alert('Migrasi DB:\n' + (r.output || (r.ok ? 'Berhasil' : 'Error')));
+}
+
+async function startAbSync() {
+  const token = (document.getElementById('abToken')?.value || '').trim();
+  if (!token) {
+    if (!confirm('Token kosong — akan menggunakan kredensial server (APPLYBOARD_EMAIL / PASSWORD env vars). Lanjutkan?')) return;
+  }
+  const r = await req('POST', '/api/applyboard/sync', { token });
+  if (!r) return alert('Gagal memulai sync');
+  const btn = document.getElementById('abSyncBtn');
+  if (btn) { btn.textContent = '⏳ Running...'; btn.disabled = true; }
+  showAbStatus(`Sync dimulai (PID: ${r.pid})`);
+  if (_abSyncPollTimer) clearInterval(_abSyncPollTimer);
+  _abSyncPollTimer = setInterval(checkAbSync, 5000);
+  checkAbSync();
+}
+
+async function checkAbSync() {
+  const r = await req('GET', '/api/applyboard/sync/status');
+  if (!r) return;
+  const btn = document.getElementById('abSyncBtn');
+  if (!r.running) {
+    if (btn) { btn.textContent = '▶ Mulai Sync'; btn.disabled = false; }
+    if (_abSyncPollTimer) { clearInterval(_abSyncPollTimer); _abSyncPollTimer = null; }
+    showAbStatus('Sync selesai / tidak berjalan');
+  } else {
+    if (btn) { btn.textContent = '⏳ Running...'; btn.disabled = true; }
+    showAbStatus(`Sync berjalan (PID: ${r.pid})`);
+  }
+  const logEl = document.getElementById('abSyncLog');
+  if (logEl && r.log) {
+    logEl.classList.remove('hidden');
+    logEl.textContent = r.log;
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+}
+
+function showAbStatus(msg) {
+  const st = document.getElementById('abSyncStatus');
+  const tx = document.getElementById('abSyncStatusText');
+  if (st) st.classList.remove('hidden');
+  if (tx) tx.textContent = msg;
+}
+
 // ========== APPLYBOARD OVERVIEW BADGES ==========
 function renderAbOverviewBadges(data) {
   const wrap = document.getElementById('d-abBadges');

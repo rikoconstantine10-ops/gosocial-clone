@@ -150,7 +150,7 @@
 
     <!-- STATS VIEW -->
     <div id="statsView" class="px-6 py-4 hidden">
-      <div class="grid grid-cols-2 gap-6">
+      <div class="grid grid-cols-2 gap-6 mb-6">
         <div class="card">
           <h3 class="font-semibold text-gray-700 mb-4">Distribusi per Region</h3>
           <div id="regionChart"></div>
@@ -159,6 +159,28 @@
           <h3 class="font-semibold text-gray-700 mb-4">Top Countries</h3>
           <div id="countryChart"></div>
         </div>
+      </div>
+      <!-- ApplyBoard Sync Panel -->
+      <div class="card" id="abSyncPanel">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="font-semibold text-gray-700">Sync ApplyBoard</h3>
+            <p class="text-xs text-gray-400 mt-0.5">Fetch 1,438 kampus dari AU, CA, DE, GB, IE, US (Malta dikecualikan)</p>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="runAbMigrate()" class="btn btn-secondary text-xs">🔧 Jalankan Migrasi DB</button>
+            <button onclick="startAbSync()" id="abSyncBtn" class="btn btn-primary text-xs">▶ Mulai Sync</button>
+            <button onclick="checkAbSync()" class="btn btn-secondary text-xs">↻ Refresh Status</button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="text-xs text-gray-500 block mb-1">ApplyBoard Token <span class="text-gray-400 font-normal">(ambil dari browser DevTools → Network → GET /api/v2/tokens → access_token)</span></label>
+          <input id="abToken" type="password" placeholder="eyJ..." class="w-full" style="font-size:12px;font-family:monospace">
+        </div>
+        <div id="abSyncStatus" class="text-xs text-gray-500 bg-gray-50 rounded-lg p-3 hidden">
+          <div id="abSyncStatusText">–</div>
+        </div>
+        <pre id="abSyncLog" class="hidden mt-3 text-xs bg-gray-900 text-green-400 rounded-lg p-3 overflow-auto" style="max-height:300px;font-family:monospace;white-space:pre-wrap"></pre>
       </div>
     </div>
 
