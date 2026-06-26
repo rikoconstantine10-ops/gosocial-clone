@@ -218,8 +218,12 @@ async function openDetail(id) {
   document.getElementById('p-mou').value = dt.mou_url||'';
   document.getElementById('p-special').value = dt.special_terms||'';
 
+  // ApplyBoard overview badges
+  renderAbOverviewBadges(data);
+
   renderAcademic(data.data_json);
   renderBiaya(data.data_json);
+  renderRequirements(data.data_json);
   renderContacts(data.contacts);
   renderTimeline(data.activities);
   renderArticles(data.articles);
@@ -253,13 +257,37 @@ function switchTab(tab) {
     if (i.months && i.months.length) return i.months.join(', ') + (i.year ? ' ' + i.year : '');
     return i.period || i.date || JSON.stringify(i);
   };
+
+  // ApplyBoard program level summary
+  const lvCounts = dj.ab_program_level_counts || {};
+  const lvHtml = Object.keys(lvCounts).length
+    ? Object.entries(lvCounts).map(([k,v]) =>
+        `<span style="background:#eff6ff;color:#1d4ed8;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600">${k}: ${v}</span>`
+      ).join(' ')
+    : '';
+  const abLength = dj.ab_avg_program_length || {};
+  const avgLenHtml = (abLength.graduate || abLength.undergraduate)
+    ? `<div class="text-xs text-gray-500 mt-2">Rata-rata durasi: ${abLength.undergraduate ? `UG ${abLength.undergraduate} bln` : ''} ${abLength.graduate ? `· PG ${abLength.graduate} bln` : ''}</div>`
+    : '';
+
+  // ApplyBoard upcoming intakes
+  const abIntakes = dj.ab_intakes || [];
+  const abIntakeHtml = abIntakes.length
+    ? abIntakes.map(d => `<span style="background:#f0fdf4;color:#166534;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:500">${d}</span>`).join(' ')
+    : '';
+
   document.getElementById('academicContent').innerHTML = `
+    ${lvCounts && Object.keys(lvCounts).length ? `<div class="card" style="padding:14px">
+      <div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Program per Level (ApplyBoard)</div>
+      <div class="flex flex-wrap gap-2">${lvHtml}</div>${avgLenHtml}
+      ${abIntakeHtml ? `<div class="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-3 mb-1">Intake Mendatang</div><div class="flex flex-wrap gap-2">${abIntakeHtml}</div>` : ''}
+    </div>` : ''}
     <div class="card">
       <div class="flex justify-between items-center mb-3">
         <h4 class="font-semibold text-sm text-gray-700">Program Tersedia (${programs.length})</h4>
         <button onclick="toggleAcademicEdit()" id="academicEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 font-semibold">Faculty</th></tr></thead><tbody>' + programs.map(p => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + '</td><td class="py-1.5 text-gray-400">' + (p.faculty||'—') + '</td></tr>').join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
+      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 pr-2 font-semibold">Faculty</th><th class="py-1 font-semibold">Durasi</th></tr></thead><tbody>' + programs.map(p => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + '</td><td class="py-1.5 pr-2 text-gray-400">' + (p.faculty||'—') + '</td><td class="py-1.5 text-gray-400">' + (p.duration_months ? p.duration_months+' bln' : '—') + '</td></tr>').join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
       <div id="academicEditPrograms" class="hidden"><div id="programRows">${programs.length ? programs.map(p => academicProgRowHtml(p)).join('') : academicProgRowHtml({})}</div><button onclick="addProgRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Program</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
@@ -382,6 +410,39 @@ function renderBiaya(dj) {
   const ranking = dj.ranking || [];
   const livingCost = (currentUniData && currentUniData.living_cost_usd) || 0;
 
+  // ApplyBoard avg tuition info
+  const abAvgTuition = dj.ab_avg_tuition;
+  const abCurrency = dj.ab_avg_tuition_currency || '';
+  const abAppFeeMin = dj.ab_application_fee_min;
+  const abAppFeeMax = dj.ab_application_fee_max;
+
+  const abTuitionLine = abAvgTuition
+    ? `<div class="text-xs text-gray-600 mt-2">ApplyBoard avg tuition: <span class="font-semibold">${abCurrency} ${Number(abAvgTuition).toLocaleString('id-ID')}/tahun</span></div>`
+    : '';
+  const abAppFeeLine = (abAppFeeMin !== null && abAppFeeMin !== undefined)
+    ? `<div class="text-xs text-gray-500 mt-1">Application fee: ${abAppFeeMin == 0 ? '<span style="color:#16a34a;font-weight:600">Gratis</span>' : abCurrency+' '+abAppFeeMin + (abAppFeeMax && abAppFeeMax != abAppFeeMin ? ' – '+abAppFeeMax : '')}</div>`
+    : '';
+
+  const renderScholarshipView = s => {
+    const autoTag = s.automaticallyApplied ? '<span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:8px;font-size:10px;font-weight:600">Auto-Apply</span>' : '';
+    const amtDisplay = s.amount_type === 'percentage'
+      ? `${s.amount}% tuition${s.amount_to ? ' – '+s.amount_to+'%' : ''}`
+      : `${s.currency||''} ${s.amount||''} ${s.amount_to ? '– '+s.amount_to : ''}`;
+    const nats = (s.eligibleNationalities || []).length
+      ? `<div class="text-xs text-blue-600 mt-1">Nationality: ${(s.eligibleNationalities).join(', ')}</div>`
+      : '';
+    const src = s.sourceUrl ? `<a href="${s.sourceUrl}" target="_blank" class="text-xs text-blue-500 mt-1 block">Lihat syarat lengkap →</a>` : '';
+    return `<div class="border border-gray-100 rounded-lg p-3 mb-2">
+      <div class="flex items-start justify-between gap-2">
+        <div class="font-medium text-sm">${s.name||s.title||'-'} ${autoTag}</div>
+        <div class="text-sm font-bold text-blue-700 flex-shrink-0">${amtDisplay}</div>
+      </div>
+      ${s.eligibility||s.description||s.info ? `<div class="text-xs text-gray-400 mt-1 line-clamp-2">${(s.eligibility||s.description||s.info||'').slice(0,200)}</div>` : ''}
+      ${nats}${s.deadline ? `<div class="text-xs text-orange-500 mt-1">📅 Deadline: ${s.deadline}</div>` : ''}
+      ${src}
+    </div>`;
+  };
+
   document.getElementById('biayaContent').innerHTML = `
     <div class="card">
       <div class="flex justify-between items-center mb-3">
@@ -392,17 +453,18 @@ function renderBiaya(dj) {
         <label class="text-xs text-gray-500">Estimasi biaya hidup per bulan (IDR) — akomodasi, makan, transport</label>
         <input type="number" id="living-cost-input" value="${livingCost||''}" placeholder="contoh: 15000000" class="w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">
       </div>
+      ${abTuitionLine}${abAppFeeLine}
     </div>
     <div class="card">
       <div class="flex justify-between items-center mb-3">
         <h4 class="font-semibold text-sm text-gray-700">Tuition Fee (${tuition.length})</h4>
         <button onclick="toggleBiayaEdit()" id="biayaEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="biayaView">${tuition.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-2">Program</th><th>Fee</th><th>Mata Uang</th><th>Periode</th></tr></thead><tbody>' + tuition.map(t => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-2">' + (t.program||'-') + '</td><td>' + (t.fee_amount||t.amount||t.fee||'-') + '</td><td>' + (t.fee_currency||t.currency||'-') + '</td><td class="text-gray-400">' + (t.fee_period||'-') + '</td></tr>').join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data tuition</p>'}</div>
+      <div id="biayaView">${tuition.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-2">Program</th><th>Fee</th><th>Mata Uang</th><th>Periode</th></tr></thead><tbody>' + tuition.map(t => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-2">' + (t.program||'-') + '</td><td>' + (t.fee_amount||t.amount||t.fee||'-') + '</td><td>' + (t.fee_currency||t.currency||'-') + '</td><td class="text-gray-400">' + (t.fee_period||'-') + '</td></tr>').join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data tuition — lihat avg tuition di atas dari ApplyBoard</p>'}</div>
       <div id="biayaEditTuition" class="hidden"><div id="tuitionRows">${tuition.length ? tuition.map(t => biayaTuitionRowHtml(t)).join('') : biayaTuitionRowHtml({})}</div><button onclick="addTuitionRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Baris</button></div>
     </div>
     <div class="card">
-      <div id="biayaViewScholarships"><h4 class="font-semibold text-sm text-gray-700 mb-3">Beasiswa (${scholarships.length})</h4>${scholarships.length ? scholarships.map(s => '<div class="border border-gray-100 rounded-lg p-3 mb-2"><div class="font-medium text-sm">' + (s.name||s.title||'-') + '</div><div class="text-xs text-gray-500 mt-1">' + (s.amount||s.value||'') + (s.currency ? ' ' + s.currency : '') + '</div>' + (s.eligibility||s.description||s.info ? '<div class="text-xs text-gray-400 mt-1">' + (s.eligibility||s.description||s.info) + '</div>' : '') + (s.deadline ? '<div class="text-xs text-orange-500 mt-1">📅 Deadline: ' + s.deadline + '</div>' : '') + '</div>').join('') : '<p class="text-xs text-gray-400">Belum ada data beasiswa</p>'}</div>
+      <div id="biayaViewScholarships"><h4 class="font-semibold text-sm text-gray-700 mb-3">Beasiswa (${scholarships.length})</h4>${scholarships.length ? scholarships.map(renderScholarshipView).join('') : '<p class="text-xs text-gray-400">Belum ada data beasiswa</p>'}</div>
       <div id="biayaEditScholarships" class="hidden"><h4 class="font-semibold text-sm text-gray-700 mb-3">Beasiswa</h4><div id="scholarshipRows">${scholarships.length ? scholarships.map(s => biayaScholarshipRowHtml(s)).join('') : biayaScholarshipRowHtml({})}</div><button onclick="addScholarshipRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Beasiswa</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
@@ -904,6 +966,122 @@ async function processKnowledgeAI(uniId) {
   renderKnowledge(uniId, null);
 }
 
+
+// ========== APPLYBOARD OVERVIEW BADGES ==========
+function renderAbOverviewBadges(data) {
+  const wrap = document.getElementById('d-abBadges');
+  if (!wrap) return;
+  let dj = {};
+  try { dj = typeof data.data_json === 'string' ? JSON.parse(data.data_json) : (data.data_json || {}); } catch(_) {}
+
+  const instType = data.institution_type || dj.institution_type || null;
+  const slug     = data.applyboard_slug  || dj.applyboard_slug  || null;
+  const syncedAt = data.applyboard_synced_at || dj.ab_synced_at || null;
+  const abId     = data.applyboard_id    || dj.ab_id            || null;
+
+  const badges = [];
+  if (instType) {
+    const col = instType === 'Public' ? '#1d4ed8' : '#7c3aed';
+    const bg  = instType === 'Public' ? '#dbeafe'  : '#f3e8ff';
+    badges.push(`<span style="background:${bg};color:${col};padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">${instType}</span>`);
+  }
+  if (dj.ab_pgwp_participating) badges.push('<span style="background:#dcfce7;color:#166534;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">PGWP Eligible</span>');
+  if (dj.ab_coop_participating)  badges.push('<span style="background:#fef9c3;color:#854d0e;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">Co-op</span>');
+  if (dj.ab_can_work_and_study)  badges.push('<span style="background:#e0f2fe;color:#0369a1;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">Work & Study</span>');
+  if (dj.ab_conditional_acceptance) badges.push('<span style="background:#fce7f3;color:#9d174d;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">Conditional Acceptance</span>');
+  if (dj.ab_founded_in) badges.push(`<span style="background:#f3f4f6;color:#374151;padding:3px 10px;border-radius:999px;font-size:11px">Est. ${dj.ab_founded_in}</span>`);
+
+  const syncInfo = syncedAt
+    ? `<span style="font-size:10px;color:#9ca3af;margin-left:8px">ApplyBoard sync: ${syncedAt.slice(0,10)}</span>`
+    : '';
+  const abLink = slug
+    ? `<a href="https://www.applyboard.com/universities/${slug}" target="_blank" style="font-size:11px;color:#3b82f6;margin-left:8px">Lihat di ApplyBoard →</a>`
+    : '';
+
+  if (!badges.length && !syncedAt) { wrap.innerHTML = ''; wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  wrap.innerHTML = `<div class="flex flex-wrap items-center gap-2 p-3 bg-gray-50 rounded-lg border border-gray-100 mb-4">
+    ${badges.join('')}
+    ${syncInfo}${abLink}
+  </div>`;
+}
+
+// ========== REQUIREMENTS TAB ==========
+function renderRequirements(dj) {
+  const cont = document.getElementById('requirementsContent');
+  if (!cont) return;
+  let djObj = {};
+  try { djObj = typeof dj === 'string' ? JSON.parse(dj) : (dj || {}); } catch(_) {}
+
+  // ApplyBoard requirements (from per-program sync)
+  const abReqs = djObj.ab_requirements || [];
+  // Manual requirements
+  const manualUg = (djObj.entry_requirements && djObj.entry_requirements.undergraduate) || {};
+  const manualPg = (djObj.entry_requirements && djObj.entry_requirements.postgraduate) || {};
+
+  function reqRow(label, val, highlight) {
+    if (val == null || val === '') return '';
+    const cls = highlight ? 'font-bold text-blue-700' : 'font-medium text-gray-800';
+    return `<div class="flex justify-between text-xs py-1.5 border-b border-gray-50">
+      <span class="text-gray-500">${label}</span>
+      <span class="${cls}">${val}</span>
+    </div>`;
+  }
+
+  function renderReqCard(title, r) {
+    if (!r || !Object.keys(r).length) return '';
+    const rows = [
+      reqRow('IELTS (avg)',      r.min_ielts_average || r.ielts_min,       true),
+      reqRow('IELTS Reading',    r.min_ielts_reading  || r.ielts_min_band),
+      reqRow('IELTS Writing',    r.min_ielts_writing  || r.ielts_min_band),
+      reqRow('IELTS Listening',  r.min_ielts_listening),
+      reqRow('IELTS Speaking',   r.min_ielts_speaking),
+      reqRow('TOEFL Total',      r.min_toefl_total   || r.toefl_min,       true),
+      reqRow('TOEFL Reading',    r.min_toefl_reading),
+      reqRow('TOEFL Writing',    r.min_toefl_writing),
+      reqRow('TOEFL Listening',  r.min_toefl_listening),
+      reqRow('TOEFL Speaking',   r.min_toefl_speaking),
+      reqRow('PTE Overall',      r.min_pte_overall   || r.pte_min,         true),
+      reqRow('PTE Reading',      r.min_pte_reading),
+      reqRow('PTE Writing',      r.min_pte_writing),
+      reqRow('PTE Listening',    r.min_pte_listening),
+      reqRow('PTE Speaking',     r.min_pte_speaking),
+      reqRow('Duolingo',         r.min_duolingo_score),
+      reqRow('GPA Min',          r.min_gpa != null ? r.min_gpa + (r.min_gpa <= 4 ? '/4.0' : '%') : (r.gpa_note || null), true),
+      reqRow('Delayed ELP',      r.allow_delayed_proof_of_elp != null ? (r.allow_delayed_proof_of_elp ? 'Ya (boleh menyusul)' : 'Tidak') : null),
+    ].filter(Boolean).join('');
+    if (!rows) return '';
+    return `<div class="card" style="padding:14px">
+      <div class="font-semibold text-sm text-gray-700 mb-2">${title}</div>
+      ${rows}
+    </div>`;
+  }
+
+  let html = '';
+
+  // If we have AB requirements per level, show them
+  if (abReqs.length) {
+    html += `<div style="font-size:11px;color:#9ca3af;margin-bottom:12px">Data dari ApplyBoard — persyaratan per latar belakang akademik</div>`;
+    html += '<div class="grid grid-cols-2 gap-3">';
+    abReqs.forEach(r => {
+      html += renderReqCard(r.level_text || r.level, r);
+    });
+    html += '</div>';
+  } else if (Object.keys(manualUg).length || Object.keys(manualPg).length) {
+    // Fall back to manual requirements
+    html += '<div class="grid grid-cols-2 gap-3">';
+    html += renderReqCard('Undergraduate (UG)', manualUg);
+    html += renderReqCard('Postgraduate (PG)', manualPg);
+    html += '</div>';
+  } else {
+    html = `<div class="card" style="text-align:center;padding:32px;color:#9ca3af">
+      <div style="font-size:14px;margin-bottom:8px">Belum ada data persyaratan</div>
+      <div style="font-size:12px">Klik <strong>🔄 Sync Data</strong> untuk mengambil persyaratan terbaru dari ApplyBoard</div>
+    </div>`;
+  }
+
+  cont.innerHTML = html;
+}
 
 // ========== GLOBAL KB MANAGEMENT ==========
 var kbSelectedUnis = [];
