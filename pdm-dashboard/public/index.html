@@ -549,6 +549,9 @@ window.openDetail = async function(id) {
   if (typeof renderArticles==='function') try { renderArticles(data.articles); } catch(ex) {}
   if (typeof renderKnowledge==='function') try { renderKnowledge(data.id, data.data_json); } catch(ex) {}
   if (typeof renderAiInsights==='function') try { renderAiInsights(data.data_json); } catch(ex) {}
+  if (typeof renderAbOverviewBadges==='function') try { renderAbOverviewBadges(data); } catch(ex) {}
+  if (typeof renderRequirements==='function') try { renderRequirements(data.data_json); } catch(ex) {}
+  if (typeof renderApplyboard==='function') try { renderApplyboard(data); } catch(ex) {}
   if (typeof switchTab==='function') try { switchTab('overview'); } catch(ex) {}
 };
 
