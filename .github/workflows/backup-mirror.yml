@@ -1,0 +1,21 @@
+name: Mirror to Backup Repo
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Mirror to nuswalab_backup
+        run: |
+          git remote add backup https://x-access-token:${{ secrets.BACKUP_REPO_TOKEN }}@github.com/rikoconstantine10-ops/nuswalab_backup.git
+          git push backup main --force
