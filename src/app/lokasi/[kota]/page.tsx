@@ -26,6 +26,17 @@ const KOTA_DATA: Record<string, {
   batam: { nama: "Batam", provinsi: "Kepulauan Riau", deskripsi: "kawasan ekonomi khusus dengan pasar bisnis internasional", keyword: "digital marketing batam", populasi: "1.2 juta+" },
   balikpapan: { nama: "Balikpapan", provinsi: "Kalimantan Timur", deskripsi: "kota minyak dan pintu masuk IKN Nusantara", keyword: "digital marketing balikpapan", populasi: "700 ribu+" },
   pekanbaru: { nama: "Pekanbaru", provinsi: "Riau", deskripsi: "pusat bisnis Sumatera dengan pertumbuhan ekonomi tinggi", keyword: "digital marketing pekanbaru", populasi: "1 juta+" },
+  palembang: { nama: "Palembang", provinsi: "Sumatera Selatan", deskripsi: "pusat bisnis Sumatera Selatan dengan industri tekstil dan perdagangan yang berkembang", keyword: "digital marketing palembang", populasi: "1.8 juta+" },
+  depok: { nama: "Depok", provinsi: "Jawa Barat", deskripsi: "kota universitas dan hunian strategis di antara Jakarta dan Bogor", keyword: "digital marketing depok", populasi: "2.5 juta+" },
+  solo: { nama: "Solo", provinsi: "Jawa Tengah", deskripsi: "kota budaya Jawa dengan sektor batik, kuliner, dan pariwisata yang kuat", keyword: "digital marketing solo", populasi: "580 ribu+" },
+  padang: { nama: "Padang", provinsi: "Sumatera Barat", deskripsi: "pusat perdagangan Sumatera Barat dengan ekosistem UMKM yang aktif", keyword: "digital marketing padang", populasi: "950 ribu+" },
+  banjarmasin: { nama: "Banjarmasin", provinsi: "Kalimantan Selatan", deskripsi: "kota seribu sungai dan pusat perdagangan Kalimantan Selatan", keyword: "digital marketing banjarmasin", populasi: "700 ribu+" },
+  pontianak: { nama: "Pontianak", provinsi: "Kalimantan Barat", deskripsi: "kota khatulistiwa dan pusat bisnis Kalimantan Barat", keyword: "digital marketing pontianak", populasi: "660 ribu+" },
+  manado: { nama: "Manado", provinsi: "Sulawesi Utara", deskripsi: "kota pariwisata internasional dan pusat bisnis Sulawesi Utara", keyword: "digital marketing manado", populasi: "450 ribu+" },
+  cirebon: { nama: "Cirebon", provinsi: "Jawa Barat", deskripsi: "kota batik dan kuliner di pesisir utara Jawa Barat", keyword: "digital marketing cirebon", populasi: "360 ribu+" },
+  samarinda: { nama: "Samarinda", provinsi: "Kalimantan Timur", deskripsi: "ibu kota Kalimantan Timur dengan pertumbuhan bisnis pesat menjelang IKN", keyword: "digital marketing samarinda", populasi: "830 ribu+" },
+  mataram: { nama: "Mataram", provinsi: "Nusa Tenggara Barat", deskripsi: "ibu kota Lombok yang berkembang pesat dengan sektor pariwisata dan UMKM", keyword: "digital marketing mataram", populasi: "490 ribu+" },
+  bandarlampung: { nama: "Bandar Lampung", provinsi: "Lampung", deskripsi: "gateway Sumatera dengan posisi strategis dan pasar bisnis agribisnis yang besar", keyword: "digital marketing bandar lampung", populasi: "1.2 juta+" },
 };
 
 const LAYANAN = [
