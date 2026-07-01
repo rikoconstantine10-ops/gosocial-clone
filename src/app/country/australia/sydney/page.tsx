@@ -10,89 +10,89 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Digital Marketing Agency Malaysia | SEO, Google Ads & Social Media — Nuswa Lab",
-  description: "Nuswa Lab helps businesses in Malaysia grow digitally — expert SEO, Google Ads, Social Media Management, and AI Automation for Malaysian SMEs and enterprises. Free consultation.",
-  keywords: ["digital marketing agency malaysia", "seo malaysia", "google ads malaysia", "social media management malaysia", "digital marketing kuala lumpur"],
-  alternates: { canonical: "https://nuswalab.com/country/malaysia" },
+  title: "Digital Marketing Agency Sydney | SEO, Google Ads & Social Media — Nuswa Lab",
+  description: "Nuswa Lab helps businesses in Sydney grow digitally — expert SEO, Google Ads, Social Media Management, and AI Automation targeting Sydney's Indonesian community and broader market. Free consultation.",
+  keywords: ["digital marketing agency sydney", "seo sydney", "google ads sydney", "social media management sydney", "indonesian digital marketing sydney"],
+  alternates: { canonical: "https://nuswalab.com/country/australia/sydney" },
 };
 
 const SERVICES = [
   {
-    Icon: Search, title: "SEO Malaysia", slug: "jasa-seo", harga: "From RM 2,500/mo",
-    desc: "Dominate Google Page 1 for your most valuable Malaysian keywords — local SEO, national campaigns, and bilingual (English + Bahasa Melayu) content strategy.",
+    Icon: Search, title: "SEO Sydney", slug: "jasa-seo", harga: "From A$1,800/mo",
+    desc: "Dominate Google Page 1 for your most valuable Sydney keywords — local SEO for CBD, Parramatta, Haymarket, and beyond with English and Bahasa Indonesia bilingual strategy.",
     hasil: "+240% organic traffic avg. 6 months",
-    fitur: ["Local keyword research Malaysia", "Google My Business optimisation", "High-authority link building", "Weekly ranking reports"],
+    fitur: ["Local keyword research Sydney", "Google My Business optimisation", "High-authority link building", "Weekly ranking reports"],
   },
   {
-    Icon: Megaphone, title: "Google Ads Malaysia", slug: "digital-campaign", harga: "From RM 1,500/mo",
-    desc: "Precision Google Search & Display campaigns targeting Malaysian audiences across KL, Selangor, Penang, Johor Bahru, and beyond.",
-    hasil: "Average ROAS 3.8x",
+    Icon: Megaphone, title: "Google Ads Sydney", slug: "digital-campaign", harga: "From A$1,200/mo",
+    desc: "Precision Google Search & Display campaigns targeting Sydney audiences — CBD professionals, Parramatta Indonesian community, western suburbs residents, and student demographics.",
+    hasil: "Average ROAS 4.0x",
     fitur: ["Google Search & Display Ads", "Keyword research & smart bidding", "Retargeting audiences", "Daily performance reports"],
   },
   {
-    Icon: Share2, title: "Social Media Management", slug: "social-media-management", harga: "From RM 2,000/mo",
-    desc: "Full-service Instagram, TikTok, and Facebook management with bilingual content (English & Bahasa Melayu) tailored to Malaysian consumer culture.",
+    Icon: Share2, title: "Social Media Management", slug: "social-media-management", harga: "From A$1,500/mo",
+    desc: "Full-service Instagram, Facebook, and TikTok management tailored to Sydney's Indonesian diaspora community and broader multicultural market.",
     hasil: "+190% engagement rate",
-    fitur: ["Feed + Reels + Stories content", "Bilingual copywriting (EN/BM)", "Optimal posting schedule", "Monthly performance report"],
+    fitur: ["Feed + Reels + Stories content", "Bilingual copywriting (EN/Bahasa Indonesia)", "Optimal posting schedule", "Monthly performance report"],
   },
   {
-    Icon: BarChart2, title: "Meta Ads Malaysia", slug: "digital-campaign", harga: "From RM 1,500/mo",
-    desc: "Facebook & Instagram advertising with hyper-targeted audience segmentation across Peninsular Malaysia, Sabah, and Sarawak.",
+    Icon: BarChart2, title: "Meta Ads Sydney", slug: "digital-campaign", harga: "From A$1,200/mo",
+    desc: "Facebook & Instagram advertising with hyper-targeted audience segmentation across greater Sydney — targeting Indonesian diaspora in Parramatta, Haymarket, and surrounding suburbs.",
     hasil: "CPL reduced avg. 36%",
     fitur: ["Meta Ads (Instagram + Facebook)", "Lookalike & custom audiences", "A/B testing creative", "Retargeting & remarketing"],
   },
   {
-    Icon: Globe, title: "Website Development", slug: "jasa-pembuatan-website", harga: "From RM 4,000",
-    desc: "Professional, fast-loading websites for Malaysian businesses — company profiles, e-commerce, and landing pages optimised for Google and user experience.",
+    Icon: Globe, title: "Website Development", slug: "jasa-pembuatan-website", harga: "From A$3,000",
+    desc: "Professional, fast-loading websites for Sydney businesses — company profiles, e-commerce, and landing pages optimised for Google and user experience in Australian market.",
     hasil: "PageSpeed 95+, conversions up 200%",
     fitur: ["Custom design matching your brand", "Mobile responsive", "WhatsApp & maps integration", "Domain + hosting setup"],
   },
   {
-    Icon: Palette, title: "Branding Malaysia", slug: "branding", harga: "From RM 3,500",
-    desc: "Distinctive brand identity for Malaysian businesses — logo, visual guidelines, and brand storytelling that resonates with local and regional audiences.",
+    Icon: Palette, title: "Branding Sydney", slug: "branding", harga: "From A$2,500",
+    desc: "Distinctive brand identity for Sydney businesses — logo, visual guidelines, and brand storytelling that resonates with local Australian and Indonesian community audiences.",
     hasil: "Brand awareness 3x higher",
     fitur: ["Logo & brand identity", "Brand guideline document", "Social media design kit", "Marketing material templates"],
   },
   {
-    Icon: Video, title: "TikTok Ads Malaysia", slug: "digital-campaign", harga: "From RM 2,000/mo",
-    desc: "High-converting TikTok ad campaigns for Malaysian audiences. Creative-led performance marketing that turns views into customers.",
+    Icon: Video, title: "TikTok Ads Sydney", slug: "digital-campaign", harga: "From A$1,500/mo",
+    desc: "High-converting TikTok ad campaigns for Sydney audiences. Creative-led performance marketing that connects with Sydney's young Indonesian demographic.",
     hasil: "Avg. CTR 6.3%",
     fitur: ["TikTok In-Feed Ads", "Spark Ads from organic content", "Conversion & ROAS optimisation", "Daily performance reports"],
   },
   {
-    Icon: Camera, title: "Content Marketing", slug: "content-marketing", harga: "From RM 2,000/mo",
-    desc: "SEO-driven blog articles, product copywriting, and social content in English and Bahasa Melayu that attract and convert Malaysian buyers.",
+    Icon: Camera, title: "Content Marketing", slug: "content-marketing", harga: "From A$1,500/mo",
+    desc: "SEO-driven blog articles, product copywriting, and social content in English and Bahasa Indonesia that attract and convert Sydney buyers.",
     hasil: "Content traffic +280%",
     fitur: ["SEO-friendly blog articles", "Product & landing page copy", "Visual content design", "Content calendar & distribution"],
   },
   {
-    Icon: Bot, title: "AI Automation", slug: "ai-automation", harga: "From RM 1,800/mo",
-    desc: "WhatsApp AI chatbots, CRM automation, and workflow tools that help Malaysian businesses respond faster and convert more leads.",
+    Icon: Bot, title: "AI Automation", slug: "ai-automation", harga: "From A$1,200/mo",
+    desc: "WhatsApp AI chatbots, CRM automation, and workflow tools that help Sydney businesses respond faster and convert more leads from the Indonesian community and beyond.",
     hasil: "Save 42% operational time",
     fitur: ["WhatsApp AI Chatbot", "Auto-reply & lead capture", "CRM automation", "Monitoring dashboard"],
   },
 ];
 
 const FAQS = [
-  { q: "How much does digital marketing cost in Malaysia?", a: "Nuswa Lab's services in Malaysia start from RM 1,500/month for Google Ads management. Packages can be fully customised based on your goals and budget — contact us for a free audit." },
-  { q: "Can Nuswa Lab create bilingual content in English and Bahasa Melayu?", a: "Absolutely. Our team is experienced in creating bilingual digital marketing content for the Malaysian market, ensuring your brand resonates with all demographics." },
-  { q: "Do you serve businesses outside Kuala Lumpur?", a: "Yes — we work with clients across all Malaysian states including Selangor, Penang, Johor, Sabah, Sarawak, and more. All services are delivered remotely with full transparency." },
-  { q: "How long before I see SEO results in Malaysia?", a: "For local Malaysian keywords, results typically appear within 2–3 months. Less competitive niches can rank within 4–8 weeks. We provide weekly ranking reports so you're always in the loop." },
-  { q: "Which industries do you serve most in Malaysia?", a: "Our Malaysian clients are primarily in F&B, e-commerce, property, professional services, education, and healthcare. We tailor strategies to each industry's unique dynamics." },
+  { q: "How much does digital marketing cost in Sydney?", a: "Nuswa Lab's services in Sydney start from A$1,200/month for Google Ads or Meta Ads management. Packages are fully customisable based on your goals and budget — contact us for a free audit and quote." },
+  { q: "Which suburbs have the largest Indonesian community in Sydney?", a: "Sydney's Indonesian community is concentrated in Parramatta, Haymarket, Strathfield, Burwood, and the western suburbs. We tailor campaigns to reach these specific postcodes and demographic clusters." },
+  { q: "Can Nuswa Lab create bilingual content in English and Bahasa Indonesia?", a: "Absolutely. Our team creates bilingual digital marketing content designed for the Australian-Indonesian community — ensuring your brand resonates authentically in both languages." },
+  { q: "How competitive is SEO for Indonesian-niche keywords in Sydney?", a: "Keyword competition for Indonesian-specific niches in Sydney is still very low compared to generic Sydney market terms. This means faster rankings and better ROI. We typically see Page 1 results within 5–8 weeks for niche terms." },
+  { q: "Does Google or Facebook perform better for reaching Indonesians in Australia?", a: "Google dominates Australian search with 95%+ market share, making it essential for intent-based marketing. Facebook and Instagram are also strong for community building and awareness. We recommend a combined approach for maximum reach." },
 ];
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Nuswa Lab — Digital Marketing Agency Malaysia",
-  description: "Digital marketing agency serving Malaysia — SEO, Google Ads, Meta Ads, Social Media Management, Website, Branding, and AI Automation.",
-  url: "https://nuswalab.com/country/malaysia",
+  name: "Nuswa Lab — Digital Marketing Agency Sydney",
+  description: "Digital marketing agency serving Sydney — SEO, Google Ads, Meta Ads, Social Media Management, Website, Branding, and AI Automation targeting Sydney's Indonesian community and broader market.",
+  url: "https://nuswalab.com/country/australia/sydney",
   telephone: "+62-851-8130-1622",
-  address: { "@type": "PostalAddress", addressLocality: "Kuala Lumpur", addressRegion: "Wilayah Persekutuan", addressCountry: "MY" },
-  areaServed: ["Kuala Lumpur", "Selangor", "Penang", "Johor Bahru", "Sabah", "Sarawak"],
+  address: { "@type": "PostalAddress", addressLocality: "Sydney", addressRegion: "NSW", addressCountry: "AU" },
+  areaServed: ["Sydney CBD", "Parramatta", "Haymarket", "Strathfield", "Burwood", "Western Sydney"],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Digital Marketing Services Malaysia",
+    name: "Digital Marketing Services Sydney",
     itemListElement: SERVICES.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title, description: s.desc } })),
   },
 };
@@ -103,11 +103,12 @@ const breadcrumbSchema = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://nuswalab.com" },
     { "@type": "ListItem", position: 2, name: "Countries", item: "https://nuswalab.com/country" },
-    { "@type": "ListItem", position: 3, name: "Malaysia", item: "https://nuswalab.com/country/malaysia" },
+    { "@type": "ListItem", position: 3, name: "Australia", item: "https://nuswalab.com/country/australia" },
+    { "@type": "ListItem", position: 4, name: "Sydney", item: "https://nuswalab.com/country/australia/sydney" },
   ],
 };
 
-export default function MalaysiaPage() {
+export default function SydneyPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
@@ -126,18 +127,20 @@ export default function MalaysiaPage() {
                 <span>/</span>
                 <Link href="/country" className="hover:text-[var(--color-primary)] transition-colors">Countries</Link>
                 <span>/</span>
-                <span>Malaysia</span>
+                <Link href="/country/australia" className="hover:text-[var(--color-primary)] transition-colors">Australia</Link>
+                <span>/</span>
+                <span>Sydney</span>
               </nav>
               <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-medium text-[var(--color-primary)] mb-6">
                 <MapPin className="w-4 h-4" />
-                Digital Marketing Agency — Malaysia
+                Digital Marketing Agency — Sydney, Australia
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                Grow Your Business in Malaysia with{" "}
+                Grow Your Business in Sydney with{" "}
                 <span className="text-gradient">Expert Digital Marketing</span>
               </h1>
               <p className="text-lg text-[var(--color-muted-foreground)] mb-8 max-w-2xl">
-                Nuswa Lab delivers proven SEO, Google Ads, Social Media, and AI Automation strategies for Malaysian SMEs and enterprises. Bilingual expertise in English & Bahasa Melayu.
+                Nuswa Lab delivers proven SEO, Google Ads, Social Media, and AI Automation strategies for Sydney businesses targeting the Indonesian diaspora and broader Australian market. Sydney&apos;s large, affluent Indonesian community — professionals, students, and families — concentrated in the CBD and western suburbs.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
@@ -157,12 +160,12 @@ export default function MalaysiaPage() {
             <AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { num: "30+", label: "Active Clients in Malaysia" },
-                  { num: "90%", label: "Client Satisfaction Rate" },
-                  { num: "3.8x", label: "Average ROAS" },
-                  { num: "2 Yrs", label: "Experience in MY Market" },
+                  { num: "12+", label: "Active Clients in Sydney" },
+                  { num: "93%", label: "Client Satisfaction Rate" },
+                  { num: "4.0x", label: "Average ROAS" },
+                  { num: "40,000+", label: "Indonesians in Sydney" },
                 ].map((s) => (
-                  <div key={s.num}>
+                  <div key={s.label}>
                     <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">{s.num}</div>
                     <div className="text-sm text-[var(--color-muted-foreground)]">{s.label}</div>
                   </div>
@@ -178,10 +181,10 @@ export default function MalaysiaPage() {
             <AnimateOnScroll>
               <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                  Our Services in <span className="text-gradient">Malaysia</span>
+                  Our Services in <span className="text-gradient">Sydney</span>
                 </h2>
                 <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto">
-                  Full-suite digital marketing for Malaysian businesses ready to scale
+                  Full-suite digital marketing for Sydney businesses ready to scale in the Australian market
                 </p>
               </div>
             </AnimateOnScroll>
@@ -222,17 +225,17 @@ export default function MalaysiaPage() {
               <AnimateOnScroll>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
                   Why Choose Nuswa Lab for{" "}
-                  <span className="text-gradient">Your Malaysian Business?</span>
+                  <span className="text-gradient">Your Sydney Business?</span>
                 </h2>
                 <ul className="space-y-3">
                   {[
-                    "Bilingual expertise — seamless English & Bahasa Melayu content strategy",
-                    "Deep understanding of Malaysian consumer behaviour and market dynamics",
-                    "Keyword competition in Malaysia still far lower than Singapore or Australia",
-                    "Cost-effective vs. local KL agencies — same quality at better rates",
-                    "Proven track record across F&B, property, e-commerce, and professional services",
-                    "Transparent reporting — weekly updates, no lock-in contracts",
-                    "Full-stack team: SEO, Ads, Design, Content, and AI under one roof",
+                    "Sydney has the largest Indonesian diaspora in Australia — a high-value, underserved market",
+                    "Professional and student demographic with high spending power in CBD and western suburbs",
+                    "Google dominates Australian search at 95%+ market share — we maximise your visibility",
+                    "Instagram and Facebook strong for Indonesian community building and brand awareness",
+                    "Indonesian food scene growing rapidly in Haymarket and Parramatta — perfect timing to invest",
+                    "Low competition for Indonesian-niche keywords vs generic Sydney market terms",
+                    "English + Bahasa Indonesia bilingual expertise for authentic community engagement",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
@@ -244,9 +247,9 @@ export default function MalaysiaPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Ahmad Faris", bisnis: "E-commerce Founder, Kuala Lumpur", text: "Nuswa Lab's SEO strategy brought our Shopee and website traffic up by 320% in just 5 months. Their bilingual content is exactly what the Malaysian market needs." },
-                    { name: "Siti Rahimah", bisnis: "F&B Owner, Selangor", text: "Our Instagram and TikTok went from 2K to 28K followers in 4 months. The team really understands what content resonates with Malaysian audiences." },
-                    { name: "David Tan", bisnis: "Property Developer, Johor Bahru", text: "Google Ads from Nuswa Lab delivers 40+ qualified property leads per month. Their ROI is consistently 3–4x, which is exceptional for the JB market." },
+                    { name: "Budi Santosa", bisnis: "Indonesian Restaurant, Haymarket", text: "We now rank Page 1 for 'Indonesian restaurant Sydney CBD'. Nuswa Lab's SEO was faster than we expected — 7 weeks to Page 1." },
+                    { name: "Anggi Pertiwi", bisnis: "Online Batik Store, Sydney", text: "Meta Ads targeting Indonesians in Sydney delivered 3.8x ROAS in the first month. The audience targeting was incredibly precise." },
+                    { name: "Reza Hamdani", bisnis: "Migration Agent, Sydney", text: "Google Ads for Indonesian migration agent in Sydney — 25+ qualified inquiries per month. Best ROI we've ever seen from any marketing channel." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
@@ -263,44 +266,16 @@ export default function MalaysiaPage() {
           </div>
         </section>
 
-        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in Malaysia" />
-
-        {/* Cities */}
-        <section className="py-16" style={{ background: "oklch(0.98 0.003 265)" }}>
-          <div className="container-custom">
-            <AnimateOnScroll>
-              <div className="text-center mb-10">
-                <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ fontFamily: "var(--font-display)" }}>
-                  City-Specific Services in <span className="text-gradient">Malaysia</span>
-                </h2>
-                <p className="text-[var(--color-muted-foreground)]">Hyper-local digital marketing strategies for every major Malaysian city</p>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { city: "Kuala Lumpur", href: "/country/malaysia/kuala-lumpur" },
-                  { city: "Johor Bahru", href: "/country/malaysia/johor-bahru" },
-                  { city: "Penang", href: "/country/malaysia/penang" },
-                  { city: "Shah Alam", href: "/country/malaysia/shah-alam" },
-                ].map((c) => (
-                  <Link key={c.city} href={c.href} className="glass rounded-2xl p-5 text-center hover:-translate-y-1 transition-all duration-300 group" style={{ boxShadow: "var(--shadow-card)" }}>
-                    <MapPin className="w-5 h-5 text-[var(--color-primary)] mx-auto mb-2" />
-                    <div className="font-semibold group-hover:text-[var(--color-primary)] transition-colors">{c.city}</div>
-                    <div className="text-xs text-[var(--color-muted-foreground)] mt-1">View local services →</div>
-                  </Link>
-                ))}
-              </div>
-            </AnimateOnScroll>
-          </div>
-        </section>
+        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in Sydney" />
 
         <section className="py-20">
           <div className="container-custom text-center">
             <AnimateOnScroll>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                Ready to Grow Your <span className="text-gradient">Malaysian Business?</span>
+                Ready to Grow Your <span className="text-gradient">Sydney Business?</span>
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-8 max-w-xl mx-auto">
-                Get a free consultation with Nuswa Lab. We understand the Malaysian market inside-out.
+                Get a free consultation with Nuswa Lab. We understand the Sydney market and its Indonesian community inside-out.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
                 Start Free Consultation <ArrowRight className="w-4 h-4" />

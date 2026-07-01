@@ -261,6 +261,33 @@ export default function UnitedKingdomPage() {
 
         <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in the United Kingdom" />
 
+        {/* Cities */}
+        <section className="py-16" style={{ background: "oklch(0.98 0.003 265)" }}>
+          <div className="container-custom">
+            <AnimateOnScroll>
+              <div className="text-center mb-10">
+                <h2 className="text-2xl lg:text-3xl font-bold mb-3" style={{ fontFamily: "var(--font-display)" }}>
+                  City-Specific Services in the <span className="text-gradient">United Kingdom</span>
+                </h2>
+                <p className="text-[var(--color-muted-foreground)]">Hyper-local digital marketing for London, Manchester, and Birmingham</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {[
+                  { city: "London", href: "/country/united-kingdom/london" },
+                  { city: "Manchester", href: "/country/united-kingdom/manchester" },
+                  { city: "Birmingham", href: "/country/united-kingdom/birmingham" },
+                ].map((c) => (
+                  <Link key={c.city} href={c.href} className="glass rounded-2xl p-5 text-center hover:-translate-y-1 transition-all duration-300 group" style={{ boxShadow: "var(--shadow-card)" }}>
+                    <MapPin className="w-5 h-5 text-[var(--color-primary)] mx-auto mb-2" />
+                    <div className="font-semibold group-hover:text-[var(--color-primary)] transition-colors">{c.city}</div>
+                    <div className="text-xs text-[var(--color-muted-foreground)] mt-1">View local services →</div>
+                  </Link>
+                ))}
+              </div>
+            </AnimateOnScroll>
+          </div>
+        </section>
+
         <section className="py-20">
           <div className="container-custom text-center">
             <AnimateOnScroll>
