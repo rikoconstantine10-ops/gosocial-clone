@@ -46,7 +46,7 @@ function levelLabel(l) {
 }
 
 function getProgramBiaya(p, dj) {
-  const cur = (currentUniData && currentUniData.living_cost_currency) || '';
+  const cur = dj.ab_avg_tuition_currency || (currentUniData && currentUniData.living_cost_currency) || '';
   const tuitionArr = dj.tuition || [];
   if (tuitionArr.length) {
     const isPG = ['masters','phd','doctorate','postgrad'].some(l => (p.level||'').toLowerCase().includes(l));
@@ -1267,7 +1267,7 @@ function renderApplyboard(data) {
   const about = dj.ab_about || '';
   const videoLink = dj.ab_video_link || '';
   const studentStats = dj.student_stats || {};
-  const studentCount = dj.ab_student_count || studentStats.total_students || null;
+  const studentCount = dj.ab_student_count || studentStats.total_students || dj.students || null;
   const intlPct = dj.ab_international_pct || null;
   const founded = dj.ab_founded_in || studentStats.founded_year || null;
   const campus = dj.campus || {};
@@ -1308,7 +1308,7 @@ function renderApplyboard(data) {
   html += '<div class="flex items-center gap-2"><span style="color:' + (conditional?'#16a34a':'#9ca3af') + '">' + (conditional?'✓':'✗') + '</span> Conditional Acceptance</div>';
   html += '</div></div>';
   html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Info</h4><div class="space-y-2 text-xs text-gray-600">';
-  if (campusCity || campusState) html += '<div>&#128205; Lokasi: <strong>' + [campusCity, campusState].filter(Boolean).join(', ') + '</strong></div>';
+  if (campusCity || campusState) html += '<div>&#128205; Lokasi: <strong>' + [campusCity, campusState, campus.country].filter(Boolean).join(', ') + '</strong></div>';
   if (founded) html += '<div>&#127979; Didirikan: <strong>' + founded + '</strong></div>';
   if (studentCount) html += '<div>&#128101; Jumlah Mahasiswa: <strong>' + Number(studentCount).toLocaleString() + '</strong></div>';
   if (intlPct) html += '<div>&#127758; Mahasiswa Internasional: <strong>' + intlPct + '%</strong></div>';
@@ -1363,12 +1363,23 @@ function renderApplyboard(data) {
     html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-2">&#127941; Beasiswa</h4><div class="text-xs text-gray-400">' + scholarships.length + ' beasiswa terdaftar di ApplyBoard (detail belum tersedia)</div></div>';
   }
 
-  if (about) {
-    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Tentang</h4><div class="text-sm text-gray-600 leading-relaxed">' + about + '</div></div>';
+  const wikiText = dj.wiki_extract || '';
+  const aboutText = about || wikiText;
+  if (aboutText) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Tentang</h4><div class="text-sm text-gray-600 leading-relaxed">' + aboutText + '</div>';
+    if (!about && wikiText) html += '<div class="text-xs text-gray-400 mt-2">Sumber: Wikipedia</div>';
+    html += '</div>';
   }
 
   if (videoLink) {
-    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-2">Video</h4><a href="' + videoLink + '" target="_blank" class="text-blue-600 hover:underline text-sm">&#127916; ' + videoLink + '</a></div>';
+    const isEmbed = videoLink.includes('/embed/');
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">&#127916; Video Kampus</h4>';
+    if (isEmbed) {
+      html += '<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px"><iframe src="' + videoLink + '" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:8px" allowfullscreen></iframe></div>';
+    } else {
+      html += '<a href="' + videoLink + '" target="_blank" class="text-blue-600 hover:underline text-sm">&#127279; ' + videoLink + '</a>';
+    }
+    html += '</div>';
   }
 
   html += '</div>';
