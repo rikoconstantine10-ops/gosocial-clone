@@ -35,6 +35,7 @@ LIMIT          = next((int(a.split("=")[1]) for a in sys.argv if a.startswith("-
 db_lock       = threading.Lock()
 progress_lock = threading.Lock()
 print_lock    = threading.Lock()
+relogin_lock  = threading.Lock()   # serializes AB re-logins to avoid Okta rate limits
 
 def tprint(wid, msg):
     with print_lock:
@@ -80,20 +81,32 @@ class WorkerSession:
         except Exception as ex:
             raise RuntimeError(f"HTTP: {ex}") from ex
 
-    def login(self):
+    def login(self, _retry=0):
         tprint(self.wid, f"Logging in as {EMAIL}...")
         status, body, _ = self._http(
             "https://accounts.applyboard.com/api/v1/authn",
             data=json.dumps({"username": EMAIL, "password": PASSWORD}).encode(),
             extra_headers={"Content-Type": "application/json"})
-        authn = json.loads(body)
+        try:
+            authn = json.loads(body)
+        except Exception:
+            raise RuntimeError(f"Okta authn parse failed (status={status}): {body[:200]!r}")
         if authn.get("status") != "SUCCESS":
-            raise RuntimeError(f"Okta failed: {authn.get('status')} – {authn.get('errorSummary','')}")
+            err = authn.get("errorSummary", "")
+            if "rate limit" in err.lower() and _retry < 4:
+                wait = 15 * (2 ** _retry)
+                tprint(self.wid, f"Okta rate limit — wait {wait}s then retry")
+                time.sleep(wait)
+                return self.login(_retry + 1)
+            raise RuntimeError(f"Okta failed: {authn.get('status')} – {err}")
         next_url = authn["_links"]["next"]["href"]
         self._http(next_url, extra_headers={"Accept": "text/html"})
         status, body, _ = self._http("https://www.applyboard.com/api/v2/tokens",
             extra_headers={"Accept": "application/json"})
-        tok = json.loads(body)
+        try:
+            tok = json.loads(body)
+        except Exception:
+            raise RuntimeError(f"AB /tokens parse failed (status={status}): {body[:200]!r}")
         self.token = tok.get("data", {}).get("attributes", {}).get("access_token", "")
         if not self.token:
             raise RuntimeError("No access_token in /api/v2/tokens")
@@ -107,9 +120,10 @@ class WorkerSession:
                 "Accept": "application/vnd.api+json, application/json",
             })
         if status in (401, 405) and retry < 3:
-            tprint(self.wid, f"{status} → re-login")
-            self.token = ""
-            self.login()
+            tprint(self.wid, f"{status} → re-login (acquiring lock)")
+            with relogin_lock:
+                self.token = ""
+                self.login()
             return self.get(path, retry + 1)
         if status == 429:
             tprint(self.wid, "429 → sleep 30s")
