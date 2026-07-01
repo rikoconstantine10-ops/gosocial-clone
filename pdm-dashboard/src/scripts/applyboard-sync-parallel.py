@@ -106,8 +106,8 @@ class WorkerSession:
                 "Authorization": f"Bearer {self.token}",
                 "Accept": "application/vnd.api+json, application/json",
             })
-        if status == 401 and retry < 3:
-            tprint(self.wid, "401 → re-login")
+        if status in (401, 405) and retry < 3:
+            tprint(self.wid, f"{status} → re-login")
             self.token = ""
             self.login()
             return self.get(path, retry + 1)
@@ -549,8 +549,7 @@ def main():
             progress_dict[sid] = True
         print(f"[main] {len(already_in_db)} already in DB → will skip")
     elif FORCE:
-        progress_dict = {}
-        print("[main] --force: re-syncing all schools (ignoring prior progress)")
+        print(f"[main] --force: skipping DB-seed, keeping {sum(1 for v in progress_dict.values() if v)} prior progress entries")
 
     todo = [s for s in all_schools if not progress_dict.get(str(s.get("id", "")))]
     skip_count = len(all_schools) - len(todo)
