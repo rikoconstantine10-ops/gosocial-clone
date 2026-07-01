@@ -42,6 +42,29 @@ const navSolutions = [
   { label: "Organisasi & NGO", href: "/solution/organization" },
   { label: "Retail & Toko Online", href: "/solution/retail" },
 ];
+const navGlobal = [
+  { label: "All Countries", href: "/country" },
+  { label: "Malaysia", href: "/country/malaysia" },
+  { label: "Singapore", href: "/country/singapore" },
+  { label: "Australia", href: "/country/australia" },
+  { label: "Japan", href: "/country/japan" },
+  { label: "South Korea", href: "/country/south-korea" },
+  { label: "United Kingdom", href: "/country/united-kingdom" },
+  { label: "Netherlands", href: "/country/netherlands" },
+  { label: "Saudi Arabia", href: "/country/saudi-arabia" },
+  { label: "UAE", href: "/country/uae" },
+  { label: "Qatar", href: "/country/qatar" },
+  { label: "Kuwait", href: "/country/kuwait" },
+  { label: "Taiwan", href: "/country/taiwan" },
+  { label: "Hong Kong", href: "/country/hong-kong" },
+  { label: "Brunei", href: "/country/brunei" },
+  { label: "USA", href: "/country/usa" },
+  { label: "Germany", href: "/country/germany" },
+  { label: "Canada", href: "/country/canada" },
+  { label: "Italy", href: "/country/italy" },
+  { label: "New Zealand", href: "/country/new-zealand" },
+  { label: "Philippines", href: "/country/philippines" },
+];
 const navCompany = [
   { label: "Tentang Kami", href: "/about" },
   { label: "How it Works", href: "/how-it-works" },
@@ -175,6 +198,7 @@ export function Nav() {
           <div className="hidden lg:flex items-center gap-1">
             <DropdownMenu label="Layanan" items={navServices} open={openMenu === "services"} onOpen={() => open("services")} onClose={close} />
             <DropdownMenu label="Solusi" items={navSolutions} open={openMenu === "solutions"} onOpen={() => open("solutions")} onClose={close} />
+            <DropdownMenu label="Global" items={navGlobal} open={openMenu === "global"} onOpen={() => open("global")} onClose={close} />
             <DropdownMenu label="Perusahaan" items={navCompany} open={openMenu === "company"} onOpen={() => open("company")} onClose={close} />
           </div>
 
@@ -205,6 +229,7 @@ export function Nav() {
             {[
               { key: "services", label: "Layanan", items: navServices },
               { key: "solutions", label: "Solusi", items: navSolutions },
+              { key: "global", label: "Global", items: navGlobal },
               { key: "company", label: "Perusahaan", items: navCompany },
             ].map(({ key, label, items }) => (
               <div key={key} className="mb-2">
