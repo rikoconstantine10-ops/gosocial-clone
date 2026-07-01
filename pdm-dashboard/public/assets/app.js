@@ -1064,7 +1064,8 @@ function renderAbOverviewBadges(data) {
   if (dj.ab_coop_participating)  badges.push('<span style="background:#fef9c3;color:#854d0e;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">Co-op</span>');
   if (dj.ab_can_work_and_study)  badges.push('<span style="background:#e0f2fe;color:#0369a1;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">Work & Study</span>');
   if (dj.ab_conditional_acceptance) badges.push('<span style="background:#fce7f3;color:#9d174d;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600">Conditional Acceptance</span>');
-  if (dj.ab_founded_in) badges.push(`<span style="background:#f3f4f6;color:#374151;padding:3px 10px;border-radius:999px;font-size:11px">Est. ${dj.ab_founded_in}</span>`);
+  const foundedYear = dj.ab_founded_in || (dj.student_stats && dj.student_stats.founded_year) || null;
+  if (foundedYear) badges.push(`<span style="background:#f3f4f6;color:#374151;padding:3px 10px;border-radius:999px;font-size:11px">Est. ${foundedYear}</span>`);
 
   const syncInfo = syncedAt
     ? `<span style="font-size:10px;color:#9ca3af;margin-left:8px">ApplyBoard sync: ${syncedAt.slice(0,10)}</span>`
@@ -1184,9 +1185,16 @@ function renderApplyboard(data) {
   const decisionDays = dj.ab_decision_time_days;
   const about = dj.ab_about || '';
   const videoLink = dj.ab_video_link || '';
-  const studentCount = dj.ab_student_count;
-  const intlPct = dj.ab_international_pct;
-  const founded = dj.ab_founded_in;
+  const studentStats = dj.student_stats || {};
+  const studentCount = dj.ab_student_count || studentStats.total_students || null;
+  const intlPct = dj.ab_international_pct || null;
+  const founded = dj.ab_founded_in || studentStats.founded_year || null;
+  const campus = dj.campus || {};
+  const campusCity = campus.city || null;
+  const campusState = campus.state || null;
+  const avgProgLen = dj.ab_avg_program_length || {};
+  const dliNo = dj.ab_designated_institution_no || null;
+  const dliType = dj.ab_institution_no_type || null;
   const livingVal = dj.ab_living_cost_value;
   const livingCur = dj.ab_living_cost_currency || 'CAD';
   const livingPer = dj.ab_living_cost_period || 'month';
@@ -1219,10 +1227,14 @@ function renderApplyboard(data) {
   html += '<div class="flex items-center gap-2"><span style="color:' + (conditional?'#16a34a':'#9ca3af') + '">' + (conditional?'✓':'✗') + '</span> Conditional Acceptance</div>';
   html += '</div></div>';
   html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Info</h4><div class="space-y-2 text-xs text-gray-600">';
-  if (founded) html += '<div>Didirikan: <strong>' + founded + '</strong></div>';
-  if (studentCount) html += '<div>Jumlah Mahasiswa: <strong>' + Number(studentCount).toLocaleString() + '</strong></div>';
-  if (intlPct) html += '<div>Mahasiswa Internasional: <strong>' + intlPct + '%</strong></div>';
-  if (livingVal) html += '<div>Biaya Hidup: <strong>' + Number(livingVal).toLocaleString() + ' ' + livingCur + '/' + livingPer + '</strong></div>';
+  if (campusCity || campusState) html += '<div>&#128205; Lokasi: <strong>' + [campusCity, campusState].filter(Boolean).join(', ') + '</strong></div>';
+  if (founded) html += '<div>&#127979; Didirikan: <strong>' + founded + '</strong></div>';
+  if (studentCount) html += '<div>&#128101; Jumlah Mahasiswa: <strong>' + Number(studentCount).toLocaleString() + '</strong></div>';
+  if (intlPct) html += '<div>&#127758; Mahasiswa Internasional: <strong>' + intlPct + '%</strong></div>';
+  if (livingVal) html += '<div>&#127968; Biaya Hidup: <strong>' + Number(livingVal).toLocaleString() + ' ' + livingCur + '/' + livingPer + '</strong></div>';
+  if (dliNo) html += '<div>&#127981; ' + (dliType || 'No. Institusi') + ': <strong>' + dliNo + '</strong></div>';
+  if (avgProgLen.undergraduate) html += '<div>&#127891; Durasi UG avg: <strong>' + (Number(avgProgLen.undergraduate)/12).toFixed(1) + ' thn</strong></div>';
+  if (avgProgLen.graduate) html += '<div>&#127891; Durasi PG avg: <strong>' + (Number(avgProgLen.graduate)/12).toFixed(1) + ' thn</strong></div>';
   html += '</div></div>';
   html += '</div>';
 
@@ -1249,6 +1261,25 @@ function renderApplyboard(data) {
     html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">Intake Dates</h4><div class="flex flex-wrap gap-2">';
     intakes.forEach(d => { html += '<span class="px-3 py-1 bg-orange-50 text-orange-700 rounded-full text-xs font-medium">&#128197; ' + d + '</span>'; });
     html += '</div></div>';
+  }
+
+  const validScholarships = scholarships.filter(s => s.name || s.title || s.amount);
+  if (validScholarships.length) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-3">&#127941; Beasiswa (' + validScholarships.length + ')</h4><div class="space-y-2">';
+    validScholarships.slice(0, 5).forEach(s => {
+      const title = s.name || s.title || 'Beasiswa';
+      const amt = s.amount ? (s.currency || '') + ' ' + Number(s.amount).toLocaleString() + (s.amount_type === 'percentage' ? '%' : '') : '';
+      const levels = (s.eligibleLevels || []).join(', ');
+      html += '<div class="p-2 bg-purple-50 rounded text-xs"><div class="font-medium text-purple-800">' + title + '</div>';
+      if (amt) html += '<div class="text-gray-600 mt-0.5">Nilai: <strong>' + amt + '</strong></div>';
+      if (levels) html += '<div class="text-gray-500">Level: ' + levels + '</div>';
+      if (s.description) html += '<div class="text-gray-500 mt-0.5">' + s.description.slice(0,120) + (s.description.length > 120 ? '...' : '') + '</div>';
+      html += '</div>';
+    });
+    if (validScholarships.length > 5) html += '<div class="text-xs text-gray-400 text-center pt-1">+ ' + (validScholarships.length - 5) + ' beasiswa lainnya</div>';
+    html += '</div></div>';
+  } else if (scholarships.length) {
+    html += '<div class="card"><h4 class="font-semibold text-sm text-gray-700 mb-2">&#127941; Beasiswa</h4><div class="text-xs text-gray-400">' + scholarships.length + ' beasiswa terdaftar di ApplyBoard (detail belum tersedia)</div></div>';
   }
 
   if (about) {
