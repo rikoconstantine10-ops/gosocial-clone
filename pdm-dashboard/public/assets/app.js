@@ -34,7 +34,15 @@ function deliveryBadge(method) {
   if (!method) return '';
   const badges = {'in_class':'🏫','blended':'🔄','online':'💻'};
   const labels = {'in_class':'Tatap Muka','blended':'Blended','online':'Online'};
-  return badges[method] ? ' <span title="'+labels[method]+'" style="font-size:10px">'+badges[method]+'</span>' : '';
+  return badges[method] ? '<span title="'+labels[method]+'" style="font-size:9px;opacity:0.7;margin-left:2px">'+badges[method]+'</span>' : '';
+}
+
+function levelLabel(l) {
+  const map = {bachelors:'Bachelors',honours:'Honours',masters:'Masters',phd:'PhD',
+    doctorate:'Doctorate',diploma:'Diploma',advanced_diploma:'Adv. Diploma',
+    certificate:'Certificate',grade_12:'Grade 12',foundation:'Foundation',
+    english:'English Lang.',postgraduate:'Postgraduate',undergraduate:'Undergraduate'};
+  return map[(l||'').toLowerCase()] || (l ? l.replace(/_/g,' ') : '—');
 }
 
 function getProgramBiaya(p, dj) {
@@ -347,7 +355,7 @@ function switchTab(tab) {
         <h4 class="font-semibold text-sm text-gray-700">Program Tersedia (${programs.length})</h4>
         <button onclick="toggleAcademicEdit()" id="academicEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 pr-2 font-semibold">Faculty / Area</th><th class="py-1 pr-2 font-semibold">Durasi</th><th class="py-1 font-semibold text-right">Biaya</th></tr></thead><tbody>' + programs.map(p => { const fac = p.faculty || cipToFaculty(p.cip_code); const dur = p.duration_months ? (p.duration_months >= 12 ? (p.duration_months/12).toFixed(1)+' thn' : p.duration_months+' bln') : levelToDuration(p.level); const biaya = getProgramBiaya(p, dj); return '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + deliveryBadge(p.delivery_method) + '</td><td class="py-1.5 pr-2 text-gray-500">' + (fac||'<span class="text-gray-300">—</span>') + '</td><td class="py-1.5 pr-2 text-gray-500">' + (dur||'<span class="text-gray-300">—</span>') + '</td><td class="py-1.5 text-gray-500 text-right whitespace-nowrap">' + (biaya||'<span class="text-gray-300">—</span>') + '</td></tr>'; }).join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
+      <div id="academicViewPrograms">${programs.length ? '<div style="overflow-x:auto"><table class="w-full" style="font-size:11.5px;border-collapse:separate;border-spacing:0"><thead><tr style="background:#f8fafc"><th class="text-left py-2 px-3 font-semibold text-gray-400 border-b border-gray-100" style="min-width:220px">Nama Program</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Level</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100">Faculty / Area</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Durasi</th><th class="text-right py-2 px-3 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Biaya / thn</th></tr></thead><tbody>' + programs.map((p,i) => { const fac = p.faculty || cipToFaculty(p.cip_code); const dur = p.duration_months ? (p.duration_months >= 12 ? (p.duration_months/12).toFixed(1)+' thn' : p.duration_months+' bln') : levelToDuration(p.level); const biaya = getProgramBiaya(p, dj); const isEst = biaya && biaya.includes('≈'); const bg = i%2===0 ? '' : 'background:#fafafa'; return '<tr style="'+bg+'" class="hover:bg-blue-50 transition-colors"><td class="py-2 px-3 font-medium text-gray-800 border-b border-gray-50">' + (p.name||pLabel(p)||'—') + '</td><td class="py-2 px-2 border-b border-gray-50 whitespace-nowrap"><span style="background:#eff6ff;color:#3b82f6;padding:2px 7px;border-radius:10px;font-size:10.5px;font-weight:500">' + levelLabel(p.level) + '</span>' + deliveryBadge(p.delivery_method) + '</td><td class="py-2 px-2 text-gray-600 border-b border-gray-50">' + (fac||'<span style="color:#d1d5db">—</span>') + '</td><td class="py-2 px-2 text-gray-600 border-b border-gray-50 whitespace-nowrap">' + (dur||'<span style="color:#d1d5db">—</span>') + '</td><td class="py-2 px-3 text-right border-b border-gray-50 whitespace-nowrap">' + (biaya ? '<span style="color:'+(isEst?'#9ca3af':'#374151')+';font-weight:'+(isEst?'400':'500')+'">'+biaya+'</span>' : '<span style="color:#d1d5db">—</span>') + '</td></tr>'; }).join('') + '</tbody></table></div>' + (programs.some(p => getProgramBiaya(p,dj) && getProgramBiaya(p,dj).includes('≈')) ? '<p style="font-size:10.5px;color:#9ca3af;margin-top:8px">* Biaya dengan ≈ adalah estimasi rata-rata universitas dari ApplyBoard. Biaya aktual per program belum tersedia.</p>' : '') : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
       <div id="academicEditPrograms" class="hidden"><div id="programRows">${programs.length ? programs.map(p => academicProgRowHtml(p)).join('') : academicProgRowHtml({})}</div><button onclick="addProgRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Program</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
@@ -401,14 +409,20 @@ function addIntakeRow() {
 
 function academicProgRowHtml(p) {
   const lvl = p.level||'';
-  const opts = ['','undergraduate','postgraduate','master','doctoral','phd','diploma'].map(v =>
-    '<option value="'+v+'"'+(lvl===v?' selected':'')+'>'+( v||'— pilih —')+'</option>'
-  ).join('');
-  return '<div class="prog-row flex gap-2 mb-2 items-end">'
-    + '<div class="flex-1"><label class="text-xs text-gray-500">Nama Program</label><input type="text" class="pr-name w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="'+(p.name||'')+'"></div>'
-    + '<div style="width:120px"><label class="text-xs text-gray-500">Level</label><select class="pr-level w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5">'+opts+'</select></div>'
-    + '<div style="width:150px"><label class="text-xs text-gray-500">Faculty</label><input type="text" class="pr-faculty w-full text-xs border border-gray-200 rounded px-2 py-1 mt-0.5" value="'+(p.faculty||'')+'"></div>'
-    + '<button onclick="this.closest(\'.prog-row\').remove()" class="btn btn-danger" style="padding:4px 8px;font-size:11px;margin-bottom:1px">&#10005;</button>'
+  const levels = ['','bachelors','honours','masters','phd','doctorate','diploma','advanced_diploma','certificate','grade_12','foundation','english','postgraduate','undergraduate'];
+  const opts = levels.map(v => '<option value="'+v+'"'+(lvl===v?' selected':'')+'>'+( v ? levelLabel(v) : '— pilih —')+'</option>').join('');
+  return '<div class="prog-row mb-2" style="border:1px solid #e5e7eb;border-radius:8px;padding:10px 12px;background:#fafafa">'
+    + '<div class="flex gap-2 mb-2 items-start">'
+    + '<div class="flex-1"><label class="text-xs text-gray-400 font-medium">Nama Program</label><input type="text" class="pr-name w-full text-xs border border-gray-200 rounded px-2 py-1.5 mt-0.5 bg-white" value="'+(p.name||'')+'"></div>'
+    + '<button onclick="this.closest(\'.prog-row\').remove()" class="btn btn-danger mt-4" style="padding:4px 8px;font-size:11px;flex-shrink:0">✕</button>'
+    + '</div>'
+    + '<div class="flex flex-wrap gap-2">'
+    + '<div style="width:130px"><label class="text-xs text-gray-400 font-medium">Level</label><select class="pr-level w-full text-xs border border-gray-200 rounded px-2 py-1.5 mt-0.5 bg-white">'+opts+'</select></div>'
+    + '<div style="width:150px"><label class="text-xs text-gray-400 font-medium">Faculty / Area</label><input type="text" class="pr-faculty w-full text-xs border border-gray-200 rounded px-2 py-1.5 mt-0.5 bg-white" placeholder="e.g. Business" value="'+(p.faculty||'')+'"></div>'
+    + '<div style="width:90px"><label class="text-xs text-gray-400 font-medium">Durasi (bln)</label><input type="number" class="pr-duration w-full text-xs border border-gray-200 rounded px-2 py-1.5 mt-0.5 bg-white" placeholder="48" value="'+(p.duration_months||'')+'"></div>'
+    + '<div style="width:110px"><label class="text-xs text-gray-400 font-medium">Biaya / thn</label><input type="number" class="pr-tuition w-full text-xs border border-gray-200 rounded px-2 py-1.5 mt-0.5 bg-white" placeholder="25000" value="'+(p.tuition_fee||'')+'"></div>'
+    + '<div style="width:70px"><label class="text-xs text-gray-400 font-medium">Mata Uang</label><input type="text" class="pr-currency w-full text-xs border border-gray-200 rounded px-2 py-1.5 mt-0.5 bg-white" placeholder="CAD" value="'+(p.tuition_currency||'')+'"></div>'
+    + '</div>'
     + '</div>';
 }
 
@@ -431,11 +445,19 @@ function toggleAcademicEdit() {
 
 async function saveAcademic() {
   const dj = Object.assign({}, currentUniData.data_json || {});
-  dj.programs = Array.from(document.querySelectorAll('#programRows .prog-row')).map(row => ({
-    name: row.querySelector('.pr-name').value.trim(),
-    level: row.querySelector('.pr-level').value,
-    faculty: row.querySelector('.pr-faculty').value.trim()
-  })).filter(p => p.name);
+  dj.programs = Array.from(document.querySelectorAll('#programRows .prog-row')).map(row => {
+    const durEl = row.querySelector('.pr-duration');
+    const tuitEl = row.querySelector('.pr-tuition');
+    const curEl = row.querySelector('.pr-currency');
+    return {
+      name: row.querySelector('.pr-name').value.trim(),
+      level: row.querySelector('.pr-level').value,
+      faculty: row.querySelector('.pr-faculty').value.trim() || null,
+      duration_months: durEl && durEl.value ? Number(durEl.value) : null,
+      tuition_fee: tuitEl && tuitEl.value ? Number(tuitEl.value) : null,
+      tuition_currency: curEl && curEl.value.trim() ? curEl.value.trim().toUpperCase() : null,
+    };
+  }).filter(p => p.name);
   if (!dj.entry_requirements) dj.entry_requirements = {};
   const REQ_KEYS = ['ielts_min','ielts_min_band','toefl_min','pte_min','gpa_note'];
   ['undergraduate','postgraduate'].forEach((lvl, idx) => {
