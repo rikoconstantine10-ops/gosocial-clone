@@ -46,24 +46,16 @@ function levelLabel(l) {
 }
 
 function getProgramBiaya(p, dj) {
-  const cur = dj.ab_avg_tuition_currency || (currentUniData && currentUniData.living_cost_currency) || '';
-  const tuitionArr = dj.tuition || [];
-  if (tuitionArr.length) {
-    const isPG = ['masters','phd','doctorate','postgrad'].some(l => (p.level||'').toLowerCase().includes(l));
-    const match = tuitionArr.find(t => {
-      const tl = (t.level||t.program||'').toLowerCase();
-      return isPG ? (tl.includes('post')||tl.includes('grad')) : (tl.includes('under')||tl.includes('ug'));
-    }) || tuitionArr[0];
-    if (match && match.fee_amount) {
-      const amt = Number(match.fee_amount);
-      const c = match.fee_currency || cur;
-      const per = (match.fee_period||'').replace('per ','') || 'thn';
-      return isNaN(amt) ? null : c + ' ' + amt.toLocaleString() + '/' + per;
-    }
+  // Per-program tuition (from manual edit or future AB data)
+  if (p.tuition_fee) {
+    const cur = p.tuition_currency || dj.ab_avg_tuition_currency || '';
+    return (cur ? cur + ' ' : '') + Number(p.tuition_fee).toLocaleString() + '/thn';
   }
+  // University average from ApplyBoard (estimate)
   if (dj.ab_avg_tuition) {
+    const cur = dj.ab_avg_tuition_currency || '';
     const amt = Number(dj.ab_avg_tuition);
-    return isNaN(amt) ? null : cur + ' ' + amt.toLocaleString() + '/thn ≈';
+    return isNaN(amt) ? null : (cur ? cur + ' ' : '') + amt.toLocaleString() + '/thn ≈';
   }
   return null;
 }
@@ -253,7 +245,20 @@ async function openDetail(id) {
   const data = await req('GET', '/api/universities/' + id);
   if (!data) { if(_title) _title.textContent = 'Gagal memuat data'; return; }
   currentUniData = data;
-  if(_title) _title.textContent = data.name;
+  if(_title) {
+    _title.textContent = data.name;
+    const existLogo = document.getElementById('detailLogo');
+    if (existLogo) existLogo.remove();
+    if (data.logo_url) {
+      const img = document.createElement('img');
+      img.id = 'detailLogo';
+      img.src = data.logo_url;
+      img.alt = data.name;
+      img.style.cssText = 'height:44px;width:auto;max-width:140px;object-fit:contain;border-radius:6px;border:1px solid #f3f4f6;padding:4px;background:white;display:block;margin-bottom:6px';
+      img.onerror = function(){this.remove();};
+      _title.parentNode.insertBefore(img, _title);
+    }
+  }
   document.getElementById('detailMeta').textContent = data.country + (data.region ? ' · ' + data.region : '') + ' · Tier ' + (data.tier||'-');
   const score = data.data_freshness_score || 0;
   const statusColors = { Partner:'status-partner','On Process':'status-onprocess','Non Partner':'status-nonpartner' };
@@ -355,7 +360,7 @@ function switchTab(tab) {
         <h4 class="font-semibold text-sm text-gray-700">Program Tersedia (${programs.length})</h4>
         <button onclick="toggleAcademicEdit()" id="academicEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="academicViewPrograms">${programs.length ? '<div style="overflow-x:auto"><table class="w-full" style="font-size:11.5px;border-collapse:separate;border-spacing:0"><thead><tr style="background:#f8fafc"><th class="text-left py-2 px-3 font-semibold text-gray-400 border-b border-gray-100" style="min-width:220px">Nama Program</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Level</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100">Faculty / Area</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Durasi</th><th class="text-right py-2 px-3 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Biaya / thn</th></tr></thead><tbody>' + programs.map((p,i) => { const fac = p.faculty || cipToFaculty(p.cip_code); const dur = p.duration_months ? (p.duration_months >= 12 ? (p.duration_months/12).toFixed(1)+' thn' : p.duration_months+' bln') : levelToDuration(p.level); const biaya = getProgramBiaya(p, dj); const isEst = biaya && biaya.includes('≈'); const bg = i%2===0 ? '' : 'background:#fafafa'; return '<tr style="'+bg+'" class="hover:bg-blue-50 transition-colors"><td class="py-2 px-3 font-medium text-gray-800 border-b border-gray-50">' + (p.name||pLabel(p)||'—') + '</td><td class="py-2 px-2 border-b border-gray-50 whitespace-nowrap"><span style="background:#eff6ff;color:#3b82f6;padding:2px 7px;border-radius:10px;font-size:10.5px;font-weight:500">' + levelLabel(p.level) + '</span>' + deliveryBadge(p.delivery_method) + '</td><td class="py-2 px-2 text-gray-600 border-b border-gray-50">' + (fac||'<span style="color:#d1d5db">—</span>') + '</td><td class="py-2 px-2 text-gray-600 border-b border-gray-50 whitespace-nowrap">' + (dur||'<span style="color:#d1d5db">—</span>') + '</td><td class="py-2 px-3 text-right border-b border-gray-50 whitespace-nowrap">' + (biaya ? '<span style="color:'+(isEst?'#9ca3af':'#374151')+';font-weight:'+(isEst?'400':'500')+'">'+biaya+'</span>' : '<span style="color:#d1d5db">—</span>') + '</td></tr>'; }).join('') + '</tbody></table></div>' + (programs.some(p => getProgramBiaya(p,dj) && getProgramBiaya(p,dj).includes('≈')) ? '<p style="font-size:10.5px;color:#9ca3af;margin-top:8px">* Biaya dengan ≈ adalah estimasi rata-rata universitas dari ApplyBoard. Biaya aktual per program belum tersedia.</p>' : '') : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
+      <div id="academicViewPrograms">${programs.length ? '<div style="overflow-x:auto"><table class="w-full" style="font-size:11.5px;border-collapse:separate;border-spacing:0"><thead><tr style="background:#f8fafc"><th class="text-left py-2 px-3 font-semibold text-gray-400 border-b border-gray-100" style="min-width:220px">Nama Program</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Level</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100">Faculty / Area</th><th class="text-left py-2 px-2 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Durasi</th><th class="text-right py-2 px-3 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">Biaya / thn</th><th class="text-right py-2 px-2 font-semibold text-gray-400 border-b border-gray-100 whitespace-nowrap">App Fee</th></tr></thead><tbody>' + programs.map((p,i) => { const fac = p.faculty || cipToFaculty(p.cip_code); const dur = p.duration_months ? (p.duration_months >= 12 ? (p.duration_months/12).toFixed(1)+' thn' : p.duration_months+' bln') : levelToDuration(p.level); const biaya = getProgramBiaya(p, dj); const isEst = biaya && biaya.includes('≈'); const bg = i%2===0 ? '' : 'background:#fafafa'; return '<tr style="'+bg+'" class="hover:bg-blue-50 transition-colors"><td class="py-2 px-3 font-medium text-gray-800 border-b border-gray-50"' + (p.description ? ' title="'+p.description.replace(/"/g,"'")+'"' : '') + '>' + (p.name||pLabel(p)||'—') + (p.description ? ' <span style="font-size:9px;color:#9ca3af;cursor:help" title="'+p.description.replace(/"/g,"'")+'">ℹ</span>' : '') + '</td><td class="py-2 px-2 border-b border-gray-50 whitespace-nowrap"><span style="background:#eff6ff;color:#3b82f6;padding:2px 7px;border-radius:10px;font-size:10.5px;font-weight:500">' + levelLabel(p.level) + '</span>' + deliveryBadge(p.delivery_method) + '</td><td class="py-2 px-2 text-gray-600 border-b border-gray-50">' + (fac||'<span style="color:#d1d5db">—</span>') + '</td><td class="py-2 px-2 text-gray-600 border-b border-gray-50 whitespace-nowrap">' + (dur||'<span style="color:#d1d5db">—</span>') + '</td><td class="py-2 px-3 text-right border-b border-gray-50 whitespace-nowrap">' + (biaya ? '<span style="color:'+(isEst?'#9ca3af':'#374151')+';font-weight:'+(isEst?'400':'500')+'">'+biaya+'</span>' : '<span style="color:#d1d5db">—</span>') + '</td>' + '<td class="py-2 px-2 text-right border-b border-gray-50 whitespace-nowrap text-xs">' + (p.application_fee ? '<span style="color:#6b7280">'+Number(p.application_fee).toLocaleString()+'</span>' : '<span style="color:#d1d5db">—</span>') + '</td></tr>'; }).join('') + '</tbody></table></div>' + (programs.some(p => getProgramBiaya(p,dj) && getProgramBiaya(p,dj).includes('≈')) ? '<p style="font-size:10.5px;color:#9ca3af;margin-top:8px">* Biaya dengan ≈ adalah estimasi rata-rata universitas dari ApplyBoard. Biaya aktual per program belum tersedia.</p>' : '') : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
       <div id="academicEditPrograms" class="hidden"><div id="programRows">${programs.length ? programs.map(p => academicProgRowHtml(p)).join('') : academicProgRowHtml({})}</div><button onclick="addProgRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Program</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
@@ -487,6 +492,20 @@ async function saveAcademic() {
 function renderBiaya(dj) {
   const tuition = dj.tuition || [];
   const scholarships = dj.scholarships || [];
+  // Build tuition summary from per-program data (AB populates per-program tuition_fee)
+  const programsWithTuition = (dj.programs || []).filter(p => p.tuition_fee);
+  const tuitionFromPrograms = programsWithTuition.length > 0 ? (() => {
+    const byCur = {};
+    programsWithTuition.forEach(p => {
+      const c = p.tuition_currency || dj.ab_avg_tuition_currency || '?';
+      if (!byCur[c]) byCur[c] = { min: Infinity, max: -Infinity, count: 0 };
+      const f = Number(p.tuition_fee);
+      if (!isNaN(f)) { byCur[c].min = Math.min(byCur[c].min, f); byCur[c].max = Math.max(byCur[c].max, f); byCur[c].count++; }
+    });
+    return Object.entries(byCur).map(([cur, v]) =>
+      cur + ' ' + v.min.toLocaleString() + (v.min !== v.max ? ' – ' + v.max.toLocaleString() : '') + '/thn (' + v.count + ' program)'
+    ).join('; ');
+  })() : null;
   const campus = dj.campus || {};
   const stats = dj.student_stats || {};
   const ranking = dj.ranking || [];
@@ -561,7 +580,7 @@ function renderBiaya(dj) {
         <h4 class="font-semibold text-sm text-gray-700">Tuition Fee (${tuition.length})</h4>
         <button onclick="toggleBiayaEdit()" id="biayaEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="biayaView">${tuition.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-2">Program</th><th>Fee</th><th>Mata Uang</th><th>Periode</th></tr></thead><tbody>' + tuition.map(t => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-2">' + (t.program||'-') + '</td><td>' + (t.fee_amount||t.amount||t.fee||'-') + '</td><td>' + (t.fee_currency||t.currency||'-') + '</td><td class="text-gray-400">' + (t.fee_period||'-') + '</td></tr>').join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data tuition — lihat avg tuition di atas dari ApplyBoard</p>'}</div>
+      <div id="biayaView">${tuition.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-2">Program</th><th>Fee</th><th>Mata Uang</th><th>Periode</th></tr></thead><tbody>' + tuition.map(t => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-2">' + (t.program||'-') + '</td><td>' + (t.fee_amount||t.amount||t.fee||'-') + '</td><td>' + (t.fee_currency||t.currency||'-') + '</td><td class="text-gray-400">' + (t.fee_period||'-') + '</td></tr>').join('') + '</tbody></table>' : '<div class="text-xs text-gray-500">' + (tuitionFromPrograms ? '<p class="mb-1">Range tuition per program: <strong class="text-gray-700">'+tuitionFromPrograms+'</strong></p>' : '') + '<p class="text-gray-400">Data tuition per level belum diisi secara manual. ' + (dj.ab_avg_tuition ? 'Rata-rata AB: <strong class="text-blue-600">'+dj.ab_avg_tuition_currency+' '+ Number(dj.ab_avg_tuition).toLocaleString() +'</strong>/thn.' : '') + ' Lihat detail per program di tab Akademik.</p></div>'}</div>
       <div id="biayaEditTuition" class="hidden"><div id="tuitionRows">${tuition.length ? tuition.map(t => biayaTuitionRowHtml(t)).join('') : biayaTuitionRowHtml({})}</div><button onclick="addTuitionRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Baris</button></div>
     </div>
     <div class="card">
