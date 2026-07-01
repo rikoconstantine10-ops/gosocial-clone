@@ -11,81 +11,81 @@ import {
 
 export const metadata: Metadata = {
   title: "Digital Marketing Agency Taiwan | SEO, Google Ads & Social Media — Nuswa Lab",
-  description: "Nuswa Lab helps Indonesian businesses in Taiwan grow digitally — SEO, Google Ads, Meta Ads, Social Media, and AI Automation. Serving 300,000+ Indonesian diaspora. Free audit.",
-  keywords: ["digital marketing agency taiwan", "jasa digital marketing taiwan", "seo taiwan", "google ads taiwan", "social media management taiwan"],
+  description: "Nuswa Lab delivers premium digital marketing for businesses in Taiwan — SEO, Google Ads, Meta Ads, Social Media, and AI Automation. Serving 300,000+ Indonesian community and local Taiwanese businesses. Free audit.",
+  keywords: ["digital marketing agency taiwan", "seo taiwan", "google ads taiwan", "social media management taiwan", "digital marketing services taipei"],
   alternates: { canonical: "https://nuswalab.com/country/taiwan" },
 };
 
 const SERVICES = [
   {
     Icon: Search, title: "SEO Taiwan", slug: "jasa-seo", harga: "From TWD 38,000/mo",
-    desc: "Rank on Google Taiwan — bilingual SEO in Indonesian and English targeting Taiwan's massive Indonesian migrant worker and student community (300,000+).",
+    desc: "Rank on Google Taiwan — bilingual SEO in English and Chinese targeting Taiwan's diverse market, including the 300,000+ Indonesian migrant worker and student community.",
     hasil: "+195% organic traffic avg. 6 months",
-    fitur: ["Indonesian & English keyword research", "Google My Business optimisation", "High-authority TW link building", "Weekly ranking reports"],
+    fitur: ["English & Chinese keyword research", "Google My Business optimisation", "High-authority TW link building", "Weekly ranking reports"],
   },
   {
     Icon: Megaphone, title: "Google Ads Taiwan", slug: "digital-campaign", harga: "From TWD 30,000/mo",
-    desc: "Performance-focused Google Search & Display campaigns targeting Indonesian workers, students, and Taiwanese consumers interested in Indonesian products and services.",
+    desc: "Performance-focused Google Search & Display campaigns for Taiwan's growing digital market — targeting local Taiwanese consumers and the largest Indonesian community outside ASEAN.",
     hasil: "Average ROAS 3.8x",
     fitur: ["Google Search & Display Ads", "Smart bidding strategies", "Retargeting audiences", "Daily performance reports"],
   },
   {
     Icon: Share2, title: "Social Media Management", slug: "social-media-management", harga: "From TWD 36,000/mo",
-    desc: "Instagram, Facebook, TikTok, and Line management targeting Taiwan's Indonesian community — content in Bahasa Indonesia with local cultural context.",
+    desc: "Instagram, Facebook, TikTok, and LINE management for Taiwan's diverse audience — content in English, Chinese, and Indonesian for maximum community reach.",
     hasil: "+170% engagement rate",
-    fitur: ["Multi-platform content creation", "Indonesian copywriting", "Optimal posting schedule", "Monthly performance report"],
+    fitur: ["Multi-platform content creation", "English & multilingual copywriting", "Optimal posting schedule", "Monthly performance report"],
   },
   {
     Icon: BarChart2, title: "Meta Ads Taiwan", slug: "digital-campaign", harga: "From TWD 30,000/mo",
-    desc: "Facebook and Instagram advertising reaching Taiwan's 300,000+ Indonesian migrant workers and students — the largest Indonesian community outside ASEAN.",
+    desc: "Facebook and Instagram advertising reaching Taiwan's 300,000+ Indonesian migrant workers and students — the largest Indonesian community outside ASEAN — plus local Taiwanese consumers.",
     hasil: "CPL reduced avg. 32%",
     fitur: ["Meta Ads (Instagram + Facebook)", "Lookalike & custom audiences", "A/B testing creative", "Retargeting & remarketing"],
   },
   {
     Icon: Globe, title: "Website Development", slug: "jasa-pembuatan-website", harga: "From TWD 115,000",
-    desc: "Professional websites for Indonesian businesses in Taiwan — clean, fast, and built for the Indonesian diaspora audience in both Indonesian and English.",
+    desc: "Professional websites for businesses in Taiwan — clean, fast, and built for both the Indonesian diaspora audience and the broader Taiwanese market.",
     hasil: "PageSpeed 95+, conversions up 190%",
-    fitur: ["Custom bilingual design", "Mobile responsive", "WhatsApp & maps integration", "Domain + hosting setup"],
+    fitur: ["Custom multilingual design", "Mobile responsive", "WhatsApp & maps integration", "Domain + hosting setup"],
   },
   {
     Icon: Palette, title: "Branding Taiwan", slug: "branding", harga: "From TWD 96,000",
-    desc: "Brand identity tailored for Indonesian businesses serving Taiwan's diaspora market — logo, brand guidelines, and authentic Indonesian visual storytelling.",
+    desc: "Brand identity tailored for Taiwan's diverse market — logo, brand guidelines, and visual storytelling that connects authentically with both local and diaspora audiences.",
     hasil: "Brand recall 3.0x higher",
     fitur: ["Logo & brand identity", "Brand guideline document", "Social media design kit", "Marketing material templates"],
   },
   {
     Icon: Video, title: "TikTok Ads Taiwan", slug: "digital-campaign", harga: "From TWD 36,000/mo",
-    desc: "TikTok advertising reaching Taiwan's Indonesian migrant community and local Taiwanese audiences — creative content with measurable conversion results.",
+    desc: "TikTok advertising reaching Taiwan's Indonesian migrant community and local Taiwanese audiences — creative content with strong engagement and measurable conversions.",
     hasil: "Avg. CTR 5.3%",
     fitur: ["TikTok In-Feed Ads", "Spark Ads from organic content", "Conversion & ROAS optimisation", "Daily performance reports"],
   },
   {
     Icon: Camera, title: "Content Marketing", slug: "content-marketing", harga: "From TWD 36,000/mo",
-    desc: "Indonesian-language SEO content and social media posts crafted for Taiwan's diaspora audience — building community trust and brand authority.",
+    desc: "SEO content and social media posts for Taiwan's diverse audience — building community trust and brand authority across local and diaspora markets.",
     hasil: "Content traffic +215%",
-    fitur: ["SEO-friendly blog articles", "Indonesian copywriting", "Visual content design", "Content calendar & distribution"],
+    fitur: ["SEO-friendly blog articles", "Multilingual copywriting", "Visual content design", "Content calendar & distribution"],
   },
   {
     Icon: Bot, title: "AI Automation", slug: "ai-automation", harga: "From TWD 30,000/mo",
-    desc: "WhatsApp chatbots, CRM automation, and AI workflows for Indonesian businesses in Taiwan — serve your community efficiently 24/7.",
+    desc: "WhatsApp chatbots, CRM automation, and AI workflows for businesses in Taiwan — serve your community efficiently 24/7 without extra headcount.",
     hasil: "Save 38% operational time",
     fitur: ["WhatsApp AI Chatbot", "Auto-reply & lead capture", "CRM automation", "Monitoring dashboard"],
   },
 ];
 
 const FAQS = [
-  { q: "Apakah Nuswa Lab bisa bantu bisnis Indonesia di Taiwan?", a: "Ya — Taiwan memiliki 300,000+ WNI, menjadikannya komunitas diaspora Indonesia terbesar di luar ASEAN. Kami spesialis membantu bisnis yang melayani komunitas ini, mulai dari warung makan, toko online, hingga jasa pengiriman uang." },
-  { q: "Apakah Nuswa Lab lebih hemat dari agensi lokal Taiwan?", a: "Sangat hemat — biaya kami 35–50% lebih rendah dari agensi digital lokal Taiwan, dengan kualitas premium dan pemahaman mendalam tentang audiens Indonesia." },
-  { q: "Platform apa yang paling banyak digunakan WNI di Taiwan?", a: "Facebook dan Instagram adalah platform utama komunitas Indonesia di Taiwan, diikuti TikTok dan WhatsApp. Line juga populer di Taiwan secara umum. Kami optimalkan mix platform sesuai target Anda." },
-  { q: "Apakah ada strategi khusus untuk menjangkau TKI/TKW di Taiwan?", a: "Ya — kami memiliki strategi targeting khusus berdasarkan lokasi, minat, dan perilaku online komunitas migran Indonesia di Taiwan. Ini sangat efektif untuk bisnis F&B, remittance, fashion, dan hiburan." },
-  { q: "Berapa lama hasil bisa terlihat untuk bisnis di Taiwan?", a: "Untuk paid ads (Google/Meta), hasil mulai terlihat dalam 2–4 minggu. Untuk SEO, peningkatan traffic organik signifikan biasanya terlihat dalam 3–6 bulan." },
+  { q: "Is Nuswa Lab cost-effective compared to Taiwanese agencies?", a: "Yes — our pricing is 35–50% more competitive than most local Taiwanese digital agencies, with premium quality and deep expertise in reaching both local Taiwanese consumers and the Indonesian diaspora community." },
+  { q: "Why is Taiwan a unique market for Indonesian businesses?", a: "Taiwan is home to 300,000+ Indonesian migrant workers and students — the largest Indonesian community outside ASEAN. This creates a significant market for Indonesian F&B, remittance, fashion, and entertainment services." },
+  { q: "Which platforms are most effective in Taiwan?", a: "Instagram, Facebook, and TikTok are the most effective for reaching the Indonesian community in Taiwan. LINE is the dominant platform for local Taiwanese consumers. We optimise across all relevant platforms for your goals." },
+  { q: "Can you run campaigns targeting the Indonesian community in Taiwan?", a: "Absolutely. We have specific targeting strategies for Taiwan's Indonesian migrant and student community — highly effective for F&B, remittance, fashion, and community services." },
+  { q: "How quickly can results be seen in Taiwan?", a: "For paid ads (Google/Meta), results typically appear within 2–4 weeks. For SEO, meaningful organic traffic growth is usually seen within 3–6 months in Taiwan's moderately competitive market." },
 ];
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Nuswa Lab — Digital Marketing Agency Taiwan",
-  description: "Digital marketing agency for Indonesian businesses in Taiwan — SEO, Google Ads, Meta Ads, Social Media, Website, Branding, and AI Automation.",
+  description: "Premium digital marketing agency for businesses in Taiwan — SEO, Google Ads, Meta Ads, Social Media Management, Website, Branding, and AI Automation.",
   url: "https://nuswalab.com/country/taiwan",
   telephone: "+62-851-8130-1622",
   address: { "@type": "PostalAddress", addressLocality: "Taipei", addressCountry: "TW" },
@@ -132,18 +132,18 @@ export default function TaiwanPage() {
                 Digital Marketing Agency — Taiwan
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                Raih 300.000+ Diaspora Indonesia{" "}
-                <span className="text-gradient">di Taiwan</span>
+                Grow Your Business in{" "}
+                <span className="text-gradient">Taiwan</span>
               </h1>
               <p className="text-lg text-[var(--color-muted-foreground)] mb-8 max-w-2xl">
-                Taiwan adalah rumah bagi komunitas Indonesia terbesar di luar ASEAN. Nuswa Lab membantu bisnis Anda menjangkau mereka secara efektif melalui strategi digital yang tepat sasaran.
+                Nuswa Lab delivers expert digital marketing for businesses in Taiwan — reaching local Taiwanese consumers and the 300,000+ Indonesian community, the largest Indonesian diaspora outside ASEAN.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                  Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                  Free Audit <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="#services" className="btn-ghost inline-flex items-center gap-2">
-                  Lihat Layanan
+                  View Services
                 </Link>
               </div>
             </AnimateOnScroll>
@@ -155,10 +155,10 @@ export default function TaiwanPage() {
             <AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { num: "18+", label: "Klien Aktif di Taiwan" },
-                  { num: "92%", label: "Tingkat Kepuasan Klien" },
+                  { num: "18+", label: "Active Clients in Taiwan" },
+                  { num: "92%", label: "Client Satisfaction Rate" },
                   { num: "3.8x", label: "Average ROAS" },
-                  { num: "300k+", label: "WNI di Taiwan" },
+                  { num: "300k+", label: "Indonesian Community in Taiwan" },
                 ].map((s) => (
                   <div key={s.num}>
                     <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">{s.num}</div>
@@ -175,10 +175,10 @@ export default function TaiwanPage() {
             <AnimateOnScroll>
               <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                  Layanan Kami di <span className="text-gradient">Taiwan</span>
+                  Our Services in <span className="text-gradient">Taiwan</span>
                 </h2>
                 <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto">
-                  Strategi digital marketing khusus untuk bisnis yang menarget komunitas Indonesia di Taiwan
+                  Strategic digital marketing for Taiwan&apos;s growing market and its large Indonesian community
                 </p>
               </div>
             </AnimateOnScroll>
@@ -203,7 +203,7 @@ export default function TaiwanPage() {
                       <TrendingUp className="w-3.5 h-3.5" /> {service.hasil}
                     </div>
                     <Link href={`/service/${service.slug}`} className="btn-primary text-sm text-center inline-flex items-center justify-center gap-2">
-                      Pelajari Lebih <ArrowRight className="w-3.5 h-3.5" />
+                      Learn More <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </AnimateOnScroll>
@@ -217,18 +217,18 @@ export default function TaiwanPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <AnimateOnScroll>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                  Mengapa Bisnis Indonesia di Taiwan Pilih{" "}
+                  Why Businesses in Taiwan Choose{" "}
                   <span className="text-gradient">Nuswa Lab?</span>
                 </h2>
                 <ul className="space-y-3">
                   {[
-                    "Memahami kebutuhan dan perilaku WNI di Taiwan",
-                    "Targeting akurat ke 300,000+ diaspora Indonesia",
-                    "Harga 35–50% lebih hemat dari agensi lokal Taiwan",
-                    "Konten dalam Bahasa Indonesia yang relevan dan engaging",
-                    "Account manager dedikasi via WhatsApp",
-                    "Tanpa kontrak lock-in — hasil yang berbicara",
-                    "Tim lengkap: SEO, Paid Ads, Kreatif, Konten, AI",
+                    "Premium quality at 35–50% lower cost than typical Taiwanese agencies",
+                    "Unique expertise in Taiwan's Indonesian diaspora market (300k+)",
+                    "Multilingual content capability — English, Chinese, and Indonesian",
+                    "Dedicated account manager with direct WhatsApp access",
+                    "Data-driven strategies backed by real Taiwan market research",
+                    "No lock-in contracts — results speak for themselves",
+                    "Full-stack team: SEO, Paid Ads, Creative, Content, and AI",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
@@ -240,9 +240,9 @@ export default function TaiwanPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Bu Sri Wahyuni", bisnis: "Warung Makan Indonesia, Taipei", text: "Nuswa Lab berhasil membuat warung kami dikenal oleh ribuan WNI di Taipei. Pelanggan dari komunitas TKI meningkat 400% dan kami sekarang buka dua cabang baru." },
-                    { name: "Pak Agus Santoso", bisnis: "Jasa Remittance, Taichung", text: "Mereka memahami persis bagaimana menjangkau TKI di Taiwan. Meta Ads kami sekarang menghasilkan 200+ leads per bulan dengan biaya yang sangat efisien." },
-                    { name: "Ibu Ratna Dewi", bisnis: "Toko Fashion Indonesia, Kaohsiung", text: "Dengan konten marketing Nuswa Lab, brand kami kini dikenal di seluruh komunitas Indonesia Taiwan. Penjualan online naik 3x lipat dalam 4 bulan." },
+                    { name: "Sri Wahyuni", bisnis: "Indonesian Restaurant Owner, Taipei", text: "Nuswa Lab helped our restaurant become the go-to spot for the Indonesian community in Taipei. Customer numbers from the diaspora grew 400% and we've since opened two new branches." },
+                    { name: "Agus Santoso", bisnis: "Remittance Service, Taichung", text: "Their Meta Ads targeting for the Indonesian migrant community in Taiwan is outstanding. We now generate 200+ qualified leads per month at a very efficient cost per acquisition." },
+                    { name: "Ratna Dewi", bisnis: "Indonesian Fashion Store, Kaohsiung", text: "With Nuswa Lab's content marketing, our brand is now known across the Indonesian community in Taiwan. Online sales grew 3x in just 4 months — remarkable results." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
@@ -259,19 +259,19 @@ export default function TaiwanPage() {
           </div>
         </section>
 
-        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing di Taiwan" />
+        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in Taiwan" />
 
         <section className="py-20">
           <div className="container-custom text-center">
             <AnimateOnScroll>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                Siap Besarkan Bisnis Anda <span className="text-gradient">di Taiwan?</span>
+                Ready to Scale Your <span className="text-gradient">Business in Taiwan?</span>
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-8 max-w-xl mx-auto">
-                Dapatkan audit strategi gratis dari Nuswa Lab. Tanpa komitmen, hanya kejelasan tentang cara terbaik menjangkau komunitas Indonesia di Taiwan.
+                Get a free strategy audit from Nuswa Lab. No commitment, just clarity on how to grow in Taiwan&apos;s unique market.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                Get Free Audit <ArrowRight className="w-4 h-4" />
               </Link>
             </AnimateOnScroll>
           </div>

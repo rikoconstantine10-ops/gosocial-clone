@@ -74,11 +74,11 @@ const SERVICES = [
 ];
 
 const FAQS = [
-  { q: "Apakah Nuswa Lab bisa bantu bisnis Indonesia di Qatar?", a: "Ya — Qatar memiliki 250,000+ WNI yang bekerja di sektor perhotelan, konstruksi, dan domestik. Kami membantu bisnis kuliner halal, jasa pengiriman uang, fashion muslim, dan layanan lain yang melayani komunitas ini." },
-  { q: "Apakah konten marketing mematuhi nilai Islam di Qatar?", a: "Tentu. Seluruh konten yang kami buat untuk pasar Qatar memperhatikan nilai-nilai Islam dan budaya Arab Gulf. Tidak ada konten yang bertentangan dengan standar halal atau norma setempat." },
-  { q: "Platform media sosial apa yang populer di kalangan WNI di Qatar?", a: "WhatsApp adalah platform utama untuk komunikasi, diikuti Facebook, Instagram, dan TikTok. Snapchat juga populer di Qatar secara umum. Kami optimalkan mix platform sesuai target Anda." },
-  { q: "Apakah Nuswa Lab lebih hemat dari agensi lokal Qatar?", a: "Ya — harga kami 35–45% lebih kompetitif dari agensi digital lokal Qatar, dengan kualitas premium dan pemahaman mendalam tentang pasar Indonesia di Gulf." },
-  { q: "Berapa lama hasil bisa terlihat untuk bisnis di Qatar?", a: "Untuk paid ads, hasil mulai terlihat dalam 2–4 minggu. Untuk SEO di pasar Qatar yang kompetitsinya relatif lebih rendah dari Eropa, hasil signifikan bisa dicapai dalam 3–5 bulan." },
+  { q: "Can Nuswa Lab help Indonesian businesses in Qatar?", a: "Yes — Qatar has 250,000+ Indonesians working in hospitality, construction, and domestic sectors. We help halal food businesses, remittance services, Muslim fashion stores, and other businesses serving this community in Doha and across Qatar." },
+  { q: "Is all marketing content halal-compliant for Qatar?", a: "Absolutely. Every piece of content and every campaign we run for the Qatar market respects Islamic values and Gulf Arab culture. We never produce content that conflicts with halal standards or local norms." },
+  { q: "Which social media platforms are popular among Indonesians in Qatar?", a: "WhatsApp is the primary communication platform, followed by Facebook, Instagram, and TikTok. Snapchat is also widely used in Qatar generally. We optimise the platform mix based on your specific target audience." },
+  { q: "Is Nuswa Lab more affordable than local Qatar agencies?", a: "Yes — our pricing is 35–45% more competitive than local Qatari digital agencies, while delivering premium quality and deep understanding of the Indonesian community in the Gulf." },
+  { q: "How quickly can I see results for my business in Qatar?", a: "For paid ads, results typically appear within 2–4 weeks. For SEO in Qatar's market — where competition in the Indonesian niche is relatively low — significant results can be achieved within 3–5 months." },
 ];
 
 const localBusinessSchema = {
@@ -132,18 +132,18 @@ export default function QatarPage() {
                 Digital Marketing Agency — Qatar
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                Kembangkan Bisnis Indonesia{" "}
-                <span className="text-gradient">di Qatar</span>
+                Grow Your Business{" "}
+                <span className="text-gradient">in Qatar</span>
               </h1>
               <p className="text-lg text-[var(--color-muted-foreground)] mb-8 max-w-2xl">
-                Nuswa Lab membantu bisnis Indonesia menjangkau 250,000+ WNI di Qatar — strategi digital halal-compliant yang efektif untuk pasar Gulf yang terus berkembang.
+                Nuswa Lab helps Indonesian businesses reach 250,000+ Indonesians across Qatar — halal-compliant digital strategies built for the Gulf&apos;s growing market.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                  Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                  Free Consultation <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="#services" className="btn-ghost inline-flex items-center gap-2">
-                  Lihat Layanan
+                  View Services
                 </Link>
               </div>
             </AnimateOnScroll>
@@ -155,10 +155,10 @@ export default function QatarPage() {
             <AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { num: "15+", label: "Klien Aktif di Qatar" },
-                  { num: "91%", label: "Tingkat Kepuasan Klien" },
+                  { num: "15+", label: "Active Clients in Qatar" },
+                  { num: "91%", label: "Client Satisfaction Rate" },
                   { num: "3.8x", label: "Average ROAS" },
-                  { num: "250k+", label: "WNI di Qatar" },
+                  { num: "250k+", label: "Indonesians in Qatar" },
                 ].map((s) => (
                   <div key={s.num}>
                     <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">{s.num}</div>
@@ -175,10 +175,10 @@ export default function QatarPage() {
             <AnimateOnScroll>
               <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                  Layanan Kami di <span className="text-gradient">Qatar</span>
+                  Our Services in <span className="text-gradient">Qatar</span>
                 </h2>
                 <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto">
-                  Strategi digital marketing halal-compliant untuk bisnis Indonesia yang melayani komunitas WNI di Qatar
+                  Halal-compliant digital marketing strategies for Indonesian businesses serving the community in Qatar
                 </p>
               </div>
             </AnimateOnScroll>
@@ -203,7 +203,7 @@ export default function QatarPage() {
                       <TrendingUp className="w-3.5 h-3.5" /> {service.hasil}
                     </div>
                     <Link href={`/service/${service.slug}`} className="btn-primary text-sm text-center inline-flex items-center justify-center gap-2">
-                      Pelajari Lebih <ArrowRight className="w-3.5 h-3.5" />
+                      Learn More <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </AnimateOnScroll>
@@ -217,18 +217,18 @@ export default function QatarPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <AnimateOnScroll>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                  Mengapa Bisnis Indonesia di Qatar Pilih{" "}
-                  <span className="text-gradient">Nuswa Lab?</span>
+                  Why Indonesian Businesses in Qatar{" "}
+                  <span className="text-gradient">Choose Nuswa Lab</span>
                 </h2>
                 <ul className="space-y-3">
                   {[
-                    "Paham budaya Islam dan nilai-nilai Gulf",
-                    "Seluruh konten halal-compliant dan kulturally tepat",
-                    "Harga 35–45% lebih hemat dari agensi lokal Qatar",
-                    "Spesialis diaspora Indonesia di negara-negara Gulf",
-                    "Account manager dedikasi via WhatsApp",
-                    "Tanpa kontrak lock-in — hasil yang berbicara",
-                    "Tim lengkap: SEO, Paid Ads, Kreatif, Konten, AI",
+                    "Deep understanding of Islamic culture and Gulf values",
+                    "100% halal-compliant content — culturally appropriate every time",
+                    "Pricing 35–45% more affordable than local Qatar agencies",
+                    "Specialists in targeting Indonesian diaspora across Gulf countries",
+                    "Dedicated account manager reachable via WhatsApp",
+                    "No lock-in contracts — results do the talking",
+                    "Full team: SEO, Paid Ads, Creative, Content, AI",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
@@ -240,9 +240,9 @@ export default function QatarPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Pak Irfan Maulana", bisnis: "Restoran Halal Indonesia, Doha", text: "Nuswa Lab berhasil membuat restoran kami dikenal oleh ribuan WNI di Doha. Pesanan online meningkat 350% dan kami kini melayani pengiriman ke seluruh area Qatar." },
-                    { name: "Bu Kartini Sari", bisnis: "Jasa Pengiriman Uang, Qatar", text: "Strategi Meta Ads mereka sangat tepat menyasar TKI di Qatar. Nasabah baru kami meningkat 180% dalam 4 bulan dan biaya akuisisi turun 30%." },
-                    { name: "Pak Fajar Nugraha", bisnis: "Toko Online Produk Indonesia, Doha", text: "Dengan SEO dan konten Nuswa Lab, toko online kami kini muncul saat WNI Qatar mencari produk dari Indonesia. Omzet bulanan naik 3x lipat." },
+                    { name: "Irfan Maulana", bisnis: "Indonesian Halal Restaurant, Doha", text: "Nuswa Lab helped our restaurant get discovered by thousands of Indonesians in Doha. Online orders jumped 350% and we now serve delivery across all of Qatar." },
+                    { name: "Kartini Sari", bisnis: "Remittance Service, Qatar", text: "Their Meta Ads strategy was perfectly targeted at Indonesian workers in Qatar. New customers grew 180% in just 4 months while acquisition costs dropped 30%." },
+                    { name: "Fajar Nugraha", bisnis: "Indonesian Products Store, Doha", text: "With Nuswa Lab's SEO and content work, our online store now appears when Indonesians in Qatar search for products from home. Monthly revenue tripled." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
@@ -259,19 +259,19 @@ export default function QatarPage() {
           </div>
         </section>
 
-        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing di Qatar" />
+        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in Qatar" />
 
         <section className="py-20">
           <div className="container-custom text-center">
             <AnimateOnScroll>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                Siap Besarkan Bisnis Anda <span className="text-gradient">di Qatar?</span>
+                Ready to Grow Your Business <span className="text-gradient">in Qatar?</span>
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-8 max-w-xl mx-auto">
-                Dapatkan audit strategi gratis dari Nuswa Lab. Tanpa komitmen, hanya kejelasan tentang cara terbaik menjangkau komunitas Indonesia di Qatar.
+                Get a free strategy audit from Nuswa Lab. No commitment — just clarity on the best way to reach the Indonesian community in Qatar.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                Free Consultation <ArrowRight className="w-4 h-4" />
               </Link>
             </AnimateOnScroll>
           </div>

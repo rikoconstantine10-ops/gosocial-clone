@@ -11,81 +11,81 @@ import {
 
 export const metadata: Metadata = {
   title: "Digital Marketing Agency South Korea | SEO, Google Ads & Social Media — Nuswa Lab",
-  description: "Nuswa Lab helps Indonesian businesses in South Korea grow digitally — SEO, Google Ads, Meta Ads, Social Media, and AI Automation. Bilingual ID/KR support. Free audit.",
-  keywords: ["digital marketing agency south korea", "jasa digital marketing korea", "seo korea", "google ads korea", "social media management korea"],
+  description: "Nuswa Lab delivers premium digital marketing for businesses in South Korea — SEO, Google Ads, Meta Ads, Social Media, and AI Automation. Cost-effective vs local Korean agencies. Free audit.",
+  keywords: ["digital marketing agency south korea", "seo korea", "google ads korea", "social media management korea", "digital marketing services seoul"],
   alternates: { canonical: "https://nuswalab.com/country/south-korea" },
 };
 
 const SERVICES = [
   {
     Icon: Search, title: "SEO South Korea", slug: "jasa-seo", harga: "From ₩1,500,000/mo",
-    desc: "Rank on Google Korea and Naver — bilingual SEO strategy targeting Indonesian diaspora and local Korean consumers for your business in Korea.",
+    desc: "Rank on Google Korea and Naver — bilingual SEO strategy in Korean and English for businesses targeting local Korean consumers and international audiences.",
     hasil: "+185% organic traffic avg. 6 months",
-    fitur: ["Korean & Indonesian keyword research", "Google & Naver optimisation", "High-authority KR link building", "Weekly ranking reports"],
+    fitur: ["Korean & English keyword research", "Google & Naver optimisation", "High-authority KR link building", "Weekly ranking reports"],
   },
   {
     Icon: Megaphone, title: "Google Ads Korea", slug: "digital-campaign", harga: "From ₩1,200,000/mo",
-    desc: "ROI-focused Google Search & Display campaigns for South Korea's tech-savvy market — smart bidding strategies for Korean and Indonesian audiences.",
+    desc: "ROI-focused Google Search & Display campaigns for South Korea's tech-savvy market — smart bidding strategies for Korean and international audiences.",
     hasil: "Average ROAS 3.9x",
     fitur: ["Google Search & Display Ads", "Smart bidding strategies", "Retargeting audiences", "Daily performance reports"],
   },
   {
     Icon: Share2, title: "Social Media Management", slug: "social-media-management", harga: "From ₩1,400,000/mo",
-    desc: "Instagram, KakaoTalk, TikTok, and YouTube management in Korean and Indonesian — connecting your brand to both local and diaspora audiences.",
+    desc: "Instagram, KakaoTalk, TikTok, and YouTube management for Korean and international audiences — high-quality content in English and Korean.",
     hasil: "+175% engagement rate",
-    fitur: ["Multi-platform content creation", "Bilingual KR/ID copywriting", "Optimal posting schedule", "Monthly performance report"],
+    fitur: ["Multi-platform content creation", "English & Korean copywriting", "Optimal posting schedule", "Monthly performance report"],
   },
   {
     Icon: BarChart2, title: "Meta Ads Korea", slug: "digital-campaign", harga: "From ₩1,200,000/mo",
-    desc: "Targeted Facebook and Instagram advertising reaching South Korea's Indonesian community (100,000+) and local Korean consumers for F&B, fashion, and services.",
+    desc: "Targeted Facebook and Instagram advertising reaching South Korea's consumers, expat community, and the Indonesian diaspora (100,000+) for F&B, fashion, and services.",
     hasil: "CPL reduced avg. 28%",
     fitur: ["Meta Ads (Instagram + Facebook)", "Lookalike & custom audiences", "A/B testing creative", "Retargeting & remarketing"],
   },
   {
     Icon: Globe, title: "Website Development", slug: "jasa-pembuatan-website", harga: "From ₩4,500,000",
-    desc: "Professional bilingual websites for Indonesian businesses in Korea — modern, fast, and optimised for Korean aesthetics and global accessibility.",
+    desc: "Professional bilingual websites for businesses in South Korea — modern, fast, and optimised for Korean design aesthetics and global accessibility.",
     hasil: "PageSpeed 95+, conversions up 195%",
     fitur: ["Custom bilingual design", "Mobile responsive", "KakaoTalk & WhatsApp integration", "Domain + hosting setup"],
   },
   {
     Icon: Palette, title: "Branding Korea", slug: "branding", harga: "From ₩3,800,000",
-    desc: "Brand identity that bridges Indonesian authenticity with Korean modern design aesthetics — logo, brand guidelines, and culturally resonant storytelling.",
+    desc: "Brand identity that bridges international standards with Korean modern design sensibility — logo, brand guidelines, and visually compelling storytelling.",
     hasil: "Brand recall 3.1x higher",
     fitur: ["Logo & brand identity", "Brand guideline document", "Social media design kit", "Marketing material templates"],
   },
   {
     Icon: Video, title: "TikTok Ads Korea", slug: "digital-campaign", harga: "From ₩1,400,000/mo",
-    desc: "Creative TikTok advertising campaigns for South Korea's highly engaged young audiences — reaching Indonesian diaspora and Korean consumers alike.",
+    desc: "Creative TikTok advertising campaigns for South Korea's highly engaged young audiences — reaching both local Korean consumers and the international community.",
     hasil: "Avg. CTR 5.5%",
     fitur: ["TikTok In-Feed Ads", "Spark Ads from organic content", "Conversion & ROAS optimisation", "Daily performance reports"],
   },
   {
     Icon: Camera, title: "Content Marketing", slug: "content-marketing", harga: "From ₩1,400,000/mo",
-    desc: "Bilingual SEO content, social posts, and thought leadership for Korean and Indonesian audiences — building authority in the Korean market.",
+    desc: "Bilingual SEO content, social posts, and thought leadership for Korean and international audiences — building authority in one of Asia&apos;s most dynamic markets.",
     hasil: "Content traffic +220%",
-    fitur: ["SEO-friendly blog articles", "Bilingual KR/ID copywriting", "Visual content design", "Content calendar & distribution"],
+    fitur: ["SEO-friendly blog articles", "English & Korean copywriting", "Visual content design", "Content calendar & distribution"],
   },
   {
     Icon: Bot, title: "AI Automation", slug: "ai-automation", harga: "From ₩1,200,000/mo",
-    desc: "WhatsApp and KakaoTalk chatbots, CRM automation, and AI workflows for Indonesian businesses operating in South Korea.",
+    desc: "WhatsApp and KakaoTalk chatbots, CRM automation, and AI workflows for businesses operating in South Korea — scale without scaling headcount.",
     hasil: "Save 40% operational time",
     fitur: ["WhatsApp & KakaoTalk AI Chatbot", "Auto-reply & lead capture", "CRM automation", "Monitoring dashboard"],
   },
 ];
 
 const FAQS = [
-  { q: "Apakah Nuswa Lab bisa bantu bisnis Indonesia di Korea Selatan?", a: "Ya — kami memiliki pengalaman membantu restoran Indonesia, importir produk Indonesia, jasa pendidikan, dan bisnis lainnya yang melayani komunitas diaspora Indonesia di Korea Selatan." },
-  { q: "Apakah konten bisa dibuat dalam bahasa Korea?", a: "Bisa. Tim kami dapat membuat konten bilingual Bahasa Indonesia dan Korea untuk menjangkau 100,000+ diaspora Indonesia maupun konsumen lokal Korea." },
-  { q: "Platform apa yang paling efektif di Korea Selatan?", a: "KakaoTalk adalah messenger dominan di Korea, diikuti Instagram, YouTube, dan TikTok. Untuk diaspora Indonesia, WhatsApp dan Instagram sangat relevan. Kami sesuaikan strategi dengan target Anda." },
-  { q: "Berapa biaya iklan yang direkomendasikan untuk pasar Korea?", a: "Budget minimum yang kami rekomendasikan adalah ₩2,000,000/bulan untuk iklan berbayar di Korea. Ini sudah cukup untuk mendapatkan data awal dan mengoptimalkan kampanye." },
-  { q: "Industri apa yang sudah ditangani di Korea?", a: "Restoran halal, toko produk Indonesia, kursus bahasa Indonesia, jasa visa, travel, dan produk fashion Indonesia. Kami familiar dengan regulasi dan perilaku konsumen Korea." },
+  { q: "Is Nuswa Lab cost-effective compared to Korean agencies?", a: "Yes — our pricing is 35–50% more competitive than most local South Korean digital agencies, while delivering equal or better results for international-facing businesses." },
+  { q: "Can you create content in Korean?", a: "Yes. Our team creates bilingual content in English and Korean, helping you reach local Korean consumers as well as the international and Indonesian community in South Korea." },
+  { q: "Which platforms are most effective in South Korea?", a: "KakaoTalk is the dominant messaging platform in Korea, followed by Instagram, YouTube, and TikTok. We tailor platform strategy based on your specific target audience and business objectives." },
+  { q: "Do you support Indonesian-owned businesses in South Korea?", a: "Absolutely. We have experience helping Indonesian restaurants, import businesses, language schools, and service providers grow in the Korean market — reaching both local Koreans and the 100,000+ Indonesian community." },
+  { q: "What reporting do Korea clients receive?", a: "Weekly performance reports, monthly strategy reviews, and real-time dashboard access — all in English, with clear KPIs and actionable insights at every step." },
 ];
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Nuswa Lab — Digital Marketing Agency South Korea",
-  description: "Digital marketing agency for Indonesian businesses in South Korea — SEO, Google Ads, Meta Ads, Social Media, Website, Branding, and AI Automation.",
+  description: "Premium digital marketing agency for businesses in South Korea — SEO, Google Ads, Meta Ads, Social Media Management, Website, Branding, and AI Automation.",
   url: "https://nuswalab.com/country/south-korea",
   telephone: "+62-851-8130-1622",
   address: { "@type": "PostalAddress", addressLocality: "Seoul", addressCountry: "KR" },
@@ -132,18 +132,18 @@ export default function SouthKoreaPage() {
                 Digital Marketing Agency — South Korea
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                Kembangkan Bisnis Indonesia{" "}
-                <span className="text-gradient">di Korea Selatan</span>
+                Grow Your Business in{" "}
+                <span className="text-gradient">South Korea</span>
               </h1>
               <p className="text-lg text-[var(--color-muted-foreground)] mb-8 max-w-2xl">
-                Nuswa Lab membantu bisnis Indonesia tumbuh di pasar Korea Selatan yang dinamis — strategi digital bilingual yang menjangkau komunitas diaspora dan konsumen lokal Korea.
+                Nuswa Lab brings expert SEO, Google Ads, and Social Media strategy to businesses in South Korea&apos;s fast-moving digital market — at rates that make sense for your growth stage.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                  Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                  Free Audit <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="#services" className="btn-ghost inline-flex items-center gap-2">
-                  Lihat Layanan
+                  View Services
                 </Link>
               </div>
             </AnimateOnScroll>
@@ -155,10 +155,10 @@ export default function SouthKoreaPage() {
             <AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { num: "15+", label: "Klien Aktif di Korea" },
-                  { num: "92%", label: "Tingkat Kepuasan Klien" },
+                  { num: "15+", label: "Active Clients in Korea" },
+                  { num: "92%", label: "Client Satisfaction Rate" },
                   { num: "3.9x", label: "Average ROAS" },
-                  { num: "100k+", label: "Diaspora Indonesia di Korea" },
+                  { num: "100k+", label: "Indonesian Diaspora in Korea" },
                 ].map((s) => (
                   <div key={s.num}>
                     <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">{s.num}</div>
@@ -175,10 +175,10 @@ export default function SouthKoreaPage() {
             <AnimateOnScroll>
               <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                  Layanan Kami di <span className="text-gradient">Korea Selatan</span>
+                  Our Services in <span className="text-gradient">South Korea</span>
                 </h2>
                 <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto">
-                  Digital marketing bilingual untuk bisnis Indonesia yang berkembang di pasar Korea Selatan
+                  Strategic digital marketing for South Korea&apos;s highly connected and tech-forward business environment
                 </p>
               </div>
             </AnimateOnScroll>
@@ -203,7 +203,7 @@ export default function SouthKoreaPage() {
                       <TrendingUp className="w-3.5 h-3.5" /> {service.hasil}
                     </div>
                     <Link href={`/service/${service.slug}`} className="btn-primary text-sm text-center inline-flex items-center justify-center gap-2">
-                      Pelajari Lebih <ArrowRight className="w-3.5 h-3.5" />
+                      Learn More <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </AnimateOnScroll>
@@ -217,18 +217,18 @@ export default function SouthKoreaPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <AnimateOnScroll>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                  Mengapa Bisnis Indonesia di Korea Pilih{" "}
+                  Why Businesses in South Korea Choose{" "}
                   <span className="text-gradient">Nuswa Lab?</span>
                 </h2>
                 <ul className="space-y-3">
                   {[
-                    "Paham dua pasar — Indonesia dan Korea Selatan",
-                    "Konten bilingual Bahasa Indonesia dan Korea",
-                    "Harga 35–50% lebih hemat dari agensi lokal Korea",
-                    "Spesialis diaspora Indonesia di Asia Timur",
-                    "Account manager dedikasi via WhatsApp & KakaoTalk",
-                    "Tanpa kontrak lock-in — hasil yang berbicara",
-                    "Tim lengkap: SEO, Paid Ads, Kreatif, Konten, AI",
+                    "Premium quality at 35–50% lower cost than typical Korean agency rates",
+                    "Bilingual expertise — English and Korean content capability",
+                    "Deep understanding of Korea's digital-first consumer behaviour",
+                    "Specialists in reaching Indonesia's 100,000+ diaspora in Korea",
+                    "Dedicated account manager with direct WhatsApp access",
+                    "No lock-in contracts — results speak for themselves",
+                    "Full-stack team: SEO, Paid Ads, Creative, Content, and AI",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
@@ -240,9 +240,9 @@ export default function SouthKoreaPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Pak Rio Fernanda", bisnis: "Owner Restoran Halal, Seoul", text: "Nuswa Lab berhasil mengangkat restoran halal Indonesia kami ke halaman pertama Google Korea. Pelanggan baru dari komunitas Muslim Korea meningkat drastis dalam 5 bulan." },
-                    { name: "Bu Nia Rahayu", bisnis: "Importir Produk Indonesia, Busan", text: "Meta Ads mereka sangat akurat menarget WNI di seluruh Korea. Omzet toko online kami naik 250% hanya dalam 3 bulan pertama kerja sama." },
-                    { name: "Pak Faisal Iskandar", bisnis: "Kursus Bahasa Indonesia, Seoul", text: "Berkat SEO dan konten marketing dari Nuswa Lab, enrollment kursus kami dari orang Korea yang tertarik belajar bahasa Indonesia meningkat 3x lipat." },
+                    { name: "Rio Fernanda", bisnis: "Halal Restaurant Owner, Seoul", text: "Nuswa Lab helped our halal Indonesian restaurant rank on Google Korea's first page. New customers from the Korean Muslim community and the Indonesian expat base grew dramatically within 5 months." },
+                    { name: "Nia Rahayu", bisnis: "Indonesian Products Importer, Busan", text: "Their Meta Ads are pinpoint accurate in reaching the Indonesian community across South Korea. Our online store revenue grew 250% in just 3 months — outstanding ROI." },
+                    { name: "Faisal Iskandar", bisnis: "Indonesian Language School, Seoul", text: "Thanks to Nuswa Lab's SEO and content marketing, enrolments from Koreans learning Indonesian tripled. They understand both markets and deliver content that genuinely converts." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
@@ -259,19 +259,19 @@ export default function SouthKoreaPage() {
           </div>
         </section>
 
-        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing di Korea Selatan" />
+        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in South Korea" />
 
         <section className="py-20">
           <div className="container-custom text-center">
             <AnimateOnScroll>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                Siap Besarkan Bisnis Anda <span className="text-gradient">di Korea Selatan?</span>
+                Ready to Scale Your <span className="text-gradient">Business in South Korea?</span>
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-8 max-w-xl mx-auto">
-                Dapatkan audit strategi gratis dari Nuswa Lab. Tanpa komitmen, hanya kejelasan tentang jalur pertumbuhan digital Anda di Korea.
+                Get a free strategy audit from Nuswa Lab. No commitment, just clarity on your digital growth path in the Korean market.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                Get Free Audit <ArrowRight className="w-4 h-4" />
               </Link>
             </AnimateOnScroll>
           </div>

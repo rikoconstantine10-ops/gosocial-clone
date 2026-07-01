@@ -74,11 +74,11 @@ const SERVICES = [
 ];
 
 const FAQS = [
-  { q: "Apakah Nuswa Lab bisa bantu bisnis Indonesia di Kuwait?", a: "Ya — Kuwait memiliki 200,000+ WNI yang bekerja terutama di sektor domestik dan layanan. Kami membantu bisnis yang melayani komunitas ini, mulai dari warung makan, jasa remittance, toko online, hingga fashion muslim." },
-  { q: "Apakah semua konten mematuhi nilai Islam?", a: "Ya, seluruh strategi dan konten yang kami buat untuk pasar Kuwait memperhatikan nilai-nilai Islam dan adat Gulf. Tidak ada konten yang bertentangan dengan hukum atau norma Kuwait." },
-  { q: "Apakah ada platform khusus yang populer di kalangan WNI Kuwait?", a: "WhatsApp adalah platform utama untuk komunikasi komunitas Indonesia di Kuwait. Snapchat sangat dominan di Kuwait secara umum, diikuti Instagram dan TikTok. Facebook masih relevan untuk generasi yang lebih tua." },
-  { q: "Berapa minimum budget iklan yang direkomendasikan di Kuwait?", a: "Untuk memulai kampanye paid ads yang efektif di Kuwait, budget minimum yang kami rekomendasikan adalah KWD 500/bulan untuk platform yang dipilih. Ini sudah cukup untuk mendapatkan data dan mengoptimalkan kampanye." },
-  { q: "Apakah Nuswa Lab lebih hemat dari agensi lokal Kuwait?", a: "Sangat signifikan — biaya kami 35–45% lebih rendah dari agensi digital lokal Kuwait, dengan kualitas premium dan pemahaman mendalam tentang komunitas Indonesia di Gulf." },
+  { q: "Can Nuswa Lab help Indonesian businesses in Kuwait?", a: "Yes — Kuwait has 200,000+ Indonesians working primarily in domestic and service sectors. We help businesses serving this community, from food stalls and remittance services to online stores and Muslim fashion brands." },
+  { q: "Is all marketing content compliant with Islamic values?", a: "Yes — every strategy and piece of content we create for the Kuwait market respects Islamic values and Gulf customs. We never produce content that conflicts with local law or cultural norms." },
+  { q: "Which platforms are popular among Indonesians in Kuwait?", a: "WhatsApp is the primary communication platform for the Indonesian community in Kuwait. Snapchat is dominant in Kuwait generally, followed by Instagram and TikTok. Facebook remains relevant for older demographics." },
+  { q: "What is the minimum recommended ad budget for Kuwait?", a: "To run an effective paid ads campaign in Kuwait, we recommend a minimum of KWD 500/month per platform. This is sufficient to gather meaningful data and begin optimising the campaign for better results." },
+  { q: "Is Nuswa Lab more affordable than local Kuwait agencies?", a: "Significantly — our fees are 35–45% lower than local Kuwaiti digital agencies, while delivering premium quality and deep understanding of the Indonesian community in the Gulf." },
 ];
 
 const localBusinessSchema = {
@@ -132,18 +132,18 @@ export default function KuwaitPage() {
                 Digital Marketing Agency — Kuwait
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                Kembangkan Bisnis Indonesia{" "}
-                <span className="text-gradient">di Kuwait</span>
+                Grow Your Business{" "}
+                <span className="text-gradient">in Kuwait</span>
               </h1>
               <p className="text-lg text-[var(--color-muted-foreground)] mb-8 max-w-2xl">
-                Nuswa Lab membantu bisnis Indonesia menjangkau 200,000+ WNI di Kuwait — strategi digital halal-compliant yang efektif untuk pasar Gulf yang menjanjikan.
+                Nuswa Lab helps Indonesian businesses reach 200,000+ Indonesians across Kuwait — halal-compliant digital strategies tailored for the Gulf&apos;s high-income market.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                  Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                  Free Consultation <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="#services" className="btn-ghost inline-flex items-center gap-2">
-                  Lihat Layanan
+                  View Services
                 </Link>
               </div>
             </AnimateOnScroll>
@@ -155,10 +155,10 @@ export default function KuwaitPage() {
             <AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { num: "12+", label: "Klien Aktif di Kuwait" },
-                  { num: "91%", label: "Tingkat Kepuasan Klien" },
+                  { num: "12+", label: "Active Clients in Kuwait" },
+                  { num: "91%", label: "Client Satisfaction Rate" },
                   { num: "3.7x", label: "Average ROAS" },
-                  { num: "200k+", label: "WNI di Kuwait" },
+                  { num: "200k+", label: "Indonesians in Kuwait" },
                 ].map((s) => (
                   <div key={s.num}>
                     <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">{s.num}</div>
@@ -175,10 +175,10 @@ export default function KuwaitPage() {
             <AnimateOnScroll>
               <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                  Layanan Kami di <span className="text-gradient">Kuwait</span>
+                  Our Services in <span className="text-gradient">Kuwait</span>
                 </h2>
                 <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto">
-                  Strategi digital marketing halal-compliant untuk bisnis Indonesia yang melayani komunitas WNI di Kuwait
+                  Halal-compliant digital marketing strategies for Indonesian businesses serving the community in Kuwait
                 </p>
               </div>
             </AnimateOnScroll>
@@ -203,7 +203,7 @@ export default function KuwaitPage() {
                       <TrendingUp className="w-3.5 h-3.5" /> {service.hasil}
                     </div>
                     <Link href={`/service/${service.slug}`} className="btn-primary text-sm text-center inline-flex items-center justify-center gap-2">
-                      Pelajari Lebih <ArrowRight className="w-3.5 h-3.5" />
+                      Learn More <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </AnimateOnScroll>
@@ -217,18 +217,18 @@ export default function KuwaitPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <AnimateOnScroll>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                  Mengapa Bisnis Indonesia di Kuwait Pilih{" "}
-                  <span className="text-gradient">Nuswa Lab?</span>
+                  Why Indonesian Businesses in Kuwait{" "}
+                  <span className="text-gradient">Choose Nuswa Lab</span>
                 </h2>
                 <ul className="space-y-3">
                   {[
-                    "Paham budaya Islam dan nilai-nilai Gulf Kuwait",
-                    "Seluruh konten halal-compliant dan sesuai norma setempat",
-                    "Harga 35–45% lebih hemat dari agensi lokal Kuwait",
-                    "Spesialis targeting diaspora Indonesia di negara Gulf",
-                    "Account manager dedikasi via WhatsApp",
-                    "Tanpa kontrak lock-in — hasil yang berbicara",
-                    "Tim lengkap: SEO, Paid Ads, Kreatif, Konten, AI",
+                    "Deep understanding of Islamic culture and Kuwait Gulf values",
+                    "100% halal-compliant content — aligned with local norms at all times",
+                    "Pricing 35–45% more affordable than local Kuwait agencies",
+                    "Specialists in targeting Indonesian diaspora across Gulf countries",
+                    "Dedicated account manager reachable via WhatsApp",
+                    "No lock-in contracts — results do the talking",
+                    "Full team: SEO, Paid Ads, Creative, Content, AI",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
@@ -240,9 +240,9 @@ export default function KuwaitPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Pak Hasan Basri", bisnis: "Warung Makan Indonesia, Kuwait City", text: "Nuswa Lab sukses mempromosikan warung kami ke seluruh komunitas WNI Kuwait. Order delivery meningkat 280% dan kami sekarang catering untuk acara komunitas Indonesia tiap bulan." },
-                    { name: "Bu Lilis Handayani", bisnis: "Jasa Remittance, Salmiya", text: "Dengan Meta Ads dari Nuswa Lab, nasabah baru kami meningkat 150% dalam 3 bulan. Mereka benar-benar paham cara menjangkau WNI di Kuwait." },
-                    { name: "Pak Eko Purnomo", bisnis: "Toko Online Fashion Muslim, Kuwait", text: "Konten dan iklan dari Nuswa Lab membuat toko fashion muslim kami dikenal di seluruh komunitas Indonesia Kuwait. Revenue online naik 4x dalam 5 bulan." },
+                    { name: "Hasan Basri", bisnis: "Indonesian Restaurant, Kuwait City", text: "Nuswa Lab successfully promoted our restaurant to the entire Indonesian community in Kuwait. Delivery orders grew 280% and we now cater monthly community events." },
+                    { name: "Lilis Handayani", bisnis: "Remittance Service, Salmiya", text: "With Nuswa Lab's Meta Ads, our new customers grew 150% in just 3 months. They truly understand how to reach Indonesians in Kuwait." },
+                    { name: "Eko Purnomo", bisnis: "Muslim Fashion Store Online, Kuwait", text: "Nuswa Lab's content and ads made our Muslim fashion store known across the entire Indonesian community in Kuwait. Online revenue grew 4x in 5 months." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
@@ -259,19 +259,19 @@ export default function KuwaitPage() {
           </div>
         </section>
 
-        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing di Kuwait" />
+        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in Kuwait" />
 
         <section className="py-20">
           <div className="container-custom text-center">
             <AnimateOnScroll>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                Siap Besarkan Bisnis Anda <span className="text-gradient">di Kuwait?</span>
+                Ready to Grow Your Business <span className="text-gradient">in Kuwait?</span>
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-8 max-w-xl mx-auto">
-                Dapatkan audit strategi gratis dari Nuswa Lab. Tanpa komitmen, hanya kejelasan tentang cara terbaik menjangkau komunitas Indonesia di Kuwait.
+                Get a free strategy audit from Nuswa Lab. No commitment — just clarity on the best way to reach the Indonesian community in Kuwait.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                Free Consultation <ArrowRight className="w-4 h-4" />
               </Link>
             </AnimateOnScroll>
           </div>

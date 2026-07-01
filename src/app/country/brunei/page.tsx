@@ -240,9 +240,9 @@ export default function BruneiPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Haji Mahmud", bisnis: "Owner Toko Runcit, BSB", text: "Kedai kami muncul di halaman 1 Google untuk carian 'toko runcit bandar' dalam masa 5 minggu sahaja. Pelanggan baru meningkat 60% dan kami tidak perlu lagi bergantung pada customer lama sahaja." },
-                    { name: "Siti Nurhaliza", bisnis: "Pemilik Kedai Makanan, Brunei-Muara", text: "Nuswa Lab faham cara orang Brunei gunakan internet dan media sosial. Konten Instagram kami kini mendapat ratusan interaksi setiap post, dan ramai pelanggan baru datang dari sana." },
-                    { name: "Ahmad Firdaus", bisnis: "Ejen Hartanah, Bandar Seri Begawan", text: "Dalam masa 3 bulan, website saya muncul di halaman 1 Google untuk keyword hartanah Brunei. Leads hartanah saya berganda dan closing rate meningkat kerana leads lebih berkualiti." },
+                    { name: "Haji Mahmud", bisnis: "Grocery Store Owner, BSB", text: "Our shop appeared on Page 1 of Google for 'grocery store Bandar' within just 5 weeks. New customers grew 60% and we're no longer relying solely on regulars." },
+                    { name: "Siti Nurhaliza", bisnis: "Restaurant Owner, Brunei-Muara", text: "Nuswa Lab truly understands how Bruneians use the internet and social media. Our Instagram posts now get hundreds of interactions each, and many new customers come from there." },
+                    { name: "Ahmad Firdaus", bisnis: "Property Agent, Bandar Seri Begawan", text: "Within 3 months my website reached Page 1 on Google for Brunei property keywords. Property leads doubled and my closing rate improved because the leads were much higher quality." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>

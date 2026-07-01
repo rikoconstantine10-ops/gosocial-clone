@@ -11,81 +11,81 @@ import {
 
 export const metadata: Metadata = {
   title: "Digital Marketing Agency Netherlands | SEO, Google Ads & Social Media — Nuswa Lab",
-  description: "Nuswa Lab delivers premium digital marketing for Indonesian businesses in the Netherlands — SEO, Google Ads, Meta Ads, Social Media, and AI Automation. Serving the 450k+ Dutch-Indonesian community. Free audit.",
-  keywords: ["digital marketing agency netherlands", "jasa digital marketing belanda", "seo netherlands", "google ads netherlands", "social media management nederland"],
+  description: "Nuswa Lab delivers premium digital marketing for businesses in the Netherlands — SEO, Google Ads, Meta Ads, Social Media, and AI Automation. Serving Dutch-Indonesian community and local NL businesses. Free audit.",
+  keywords: ["digital marketing agency netherlands", "seo netherlands", "google ads netherlands", "social media management nederland", "digital marketing services amsterdam"],
   alternates: { canonical: "https://nuswalab.com/country/netherlands" },
 };
 
 const SERVICES = [
   {
     Icon: Search, title: "SEO Netherlands", slug: "jasa-seo", harga: "From €1,100/mo",
-    desc: "Rank on Google Netherlands — bilingual SEO in Dutch and Indonesian targeting the 450,000+ Dutch-Indonesian community and broader Dutch market.",
+    desc: "Rank on Google Netherlands — premium SEO in Dutch and English targeting the Netherlands&apos; affluent consumer base, including the 450,000+ Dutch-Indonesian community.",
     hasil: "+205% organic traffic avg. 6 months",
-    fitur: ["Dutch & Indonesian keyword research", "Google My Business optimisation", "High-authority NL link building", "Weekly ranking reports"],
+    fitur: ["Dutch & English keyword research", "Google My Business optimisation", "High-authority NL link building", "Weekly ranking reports"],
   },
   {
     Icon: Megaphone, title: "Google Ads Netherlands", slug: "digital-campaign", harga: "From €850/mo",
-    desc: "ROI-focused Google Search & Display campaigns for the Netherlands' affluent and digitally advanced market — reaching Dutch-Indonesians and local Dutch consumers.",
+    desc: "ROI-driven Google Search & Display campaigns for the Netherlands' digitally sophisticated market — reaching Dutch-Indonesian consumers and the broader Dutch audience.",
     hasil: "Average ROAS 4.2x",
     fitur: ["Google Search & Display Ads", "Smart bidding strategies", "Retargeting audiences", "Daily performance reports"],
   },
   {
     Icon: Share2, title: "Social Media Management", slug: "social-media-management", harga: "From €1,000/mo",
-    desc: "Instagram, Facebook, LinkedIn, and TikTok management for Dutch and Indonesian-Dutch audiences — bilingual content that bridges two cultures.",
+    desc: "Instagram, Facebook, LinkedIn, and TikTok management for Dutch and Dutch-Indonesian audiences — bilingual content in English and Dutch that bridges two cultures.",
     hasil: "+160% engagement rate",
-    fitur: ["Multi-platform content creation", "Dutch & Indonesian copywriting", "Optimal posting schedule", "Monthly performance report"],
+    fitur: ["Multi-platform content creation", "Dutch & English copywriting", "Optimal posting schedule", "Monthly performance report"],
   },
   {
     Icon: BarChart2, title: "Meta Ads Netherlands", slug: "digital-campaign", harga: "From €850/mo",
-    desc: "Facebook and Instagram advertising reaching the Netherlands' 450,000+ Dutch-Indonesian community — one of the most affluent Indonesian diaspora groups in Europe.",
+    desc: "Facebook and Instagram advertising reaching the Netherlands&apos; 450,000+ Dutch-Indonesian community — one of the most affluent and culturally distinct diaspora groups in Europe.",
     hasil: "CPL reduced avg. 29%",
     fitur: ["Meta Ads (Instagram + Facebook)", "Lookalike & custom audiences", "A/B testing creative", "Retargeting & remarketing"],
   },
   {
     Icon: Globe, title: "Website Development", slug: "jasa-pembuatan-website", harga: "From €3,200",
-    desc: "World-class bilingual websites for Indonesian businesses in the Netherlands — GDPR-compliant, fast, and conversion-optimised for Dutch-Indonesian audiences.",
+    desc: "World-class bilingual websites for businesses in the Netherlands — GDPR-compliant, fast, and conversion-optimised for Dutch and Dutch-Indonesian audiences.",
     hasil: "PageSpeed 95+, conversions up 210%",
     fitur: ["Custom bilingual design", "GDPR compliant", "WhatsApp & maps integration", "Domain + hosting setup"],
   },
   {
     Icon: Palette, title: "Branding Netherlands", slug: "branding", harga: "From €2,800",
-    desc: "Sophisticated brand identity blending Indonesian warmth with Dutch minimalism — logo, brand guidelines, and visual identity for the European market.",
+    desc: "Sophisticated brand identity for the Dutch market — blending Indonesian warmth with Dutch minimalist design principles for a unique, premium positioning.",
     hasil: "Brand recall 3.4x higher",
     fitur: ["Logo & brand identity", "Brand guideline document", "Social media design kit", "Marketing material templates"],
   },
   {
     Icon: Video, title: "TikTok Ads Netherlands", slug: "digital-campaign", harga: "From €1,000/mo",
-    desc: "TikTok advertising for the Netherlands' Dutch-Indonesian youth and young professionals — culturally resonant creative with strong engagement.",
+    desc: "TikTok advertising for the Netherlands&apos; young Dutch-Indonesian professionals and broader Dutch youth market — culturally resonant creative with strong engagement.",
     hasil: "Avg. CTR 5.1%",
     fitur: ["TikTok In-Feed Ads", "Spark Ads from organic content", "Conversion & ROAS optimisation", "Daily performance reports"],
   },
   {
     Icon: Camera, title: "Content Marketing", slug: "content-marketing", harga: "From €1,000/mo",
-    desc: "Bilingual SEO content in Dutch and Indonesian — thought leadership, community stories, and brand narratives for the Dutch-Indonesian market.",
+    desc: "Bilingual SEO content in Dutch and English — thought leadership, community storytelling, and brand narratives for the Netherlands&apos; Indonesian-Dutch market.",
     hasil: "Content traffic +245%",
-    fitur: ["SEO-friendly blog articles", "Dutch & Indonesian copywriting", "Visual content design", "Content calendar & distribution"],
+    fitur: ["SEO-friendly blog articles", "Dutch & English copywriting", "Visual content design", "Content calendar & distribution"],
   },
   {
     Icon: Bot, title: "AI Automation", slug: "ai-automation", harga: "From €850/mo",
-    desc: "WhatsApp chatbots, CRM automation, and AI workflows for Indonesian businesses in the Netherlands — GDPR-compliant and optimised for European operations.",
+    desc: "WhatsApp chatbots, CRM automation, and AI workflows for businesses in the Netherlands — GDPR-compliant and optimised for European market operations.",
     hasil: "Save 43% operational time",
     fitur: ["WhatsApp AI Chatbot (GDPR-safe)", "Auto-reply & lead capture", "CRM automation", "Monitoring dashboard"],
   },
 ];
 
 const FAQS = [
-  { q: "Apakah Nuswa Lab bisa bantu bisnis Indonesia di Belanda?", a: "Ya — Belanda memiliki 450,000+ komunitas Dutch-Indonesian (Indo), salah satu diaspora Indonesia terbesar dan paling mapan di Eropa. Kami spesialis membantu bisnis kuliner, budaya, dan jasa yang melayani komunitas ini." },
-  { q: "Apakah ada kepatuhan GDPR yang perlu diperhatikan?", a: "Ya, kami memastikan semua kampanye dan website yang kami bangun untuk klien Eropa sesuai regulasi GDPR. Ini termasuk cookie consent, data handling, dan iklan yang compliant." },
-  { q: "Apakah konten bisa dibuat dalam bahasa Belanda?", a: "Bisa. Tim kami dapat membuat konten dalam Bahasa Belanda dan Indonesia untuk menjangkau komunitas Dutch-Indonesian yang banyak menggunakan kedua bahasa sehari-hari." },
-  { q: "Apakah Nuswa Lab lebih hemat dari agensi lokal Belanda?", a: "Sangat signifikan — biaya kami 40–55% lebih rendah dari agensi digital lokal Belanda, dengan kualitas premium dan pemahaman khusus tentang audiens Indonesia-Belanda." },
-  { q: "Industri apa yang bisa ditangani untuk pasar Belanda?", a: "Restoran Indonesia, catering, toko produk Indonesia, travel Indonesia, kursus bahasa, batik dan kerajinan, serta jasa profesional yang melayani komunitas Dutch-Indonesian di seluruh Belanda." },
+  { q: "Is Nuswa Lab cost-effective compared to Dutch agencies?", a: "Significantly — our pricing is 40–55% more competitive than local Dutch digital agencies, with premium quality and specialist expertise in reaching both the broader Dutch market and the Dutch-Indonesian community." },
+  { q: "Are your campaigns GDPR compliant for the Dutch market?", a: "Yes, all campaigns, websites, and data handling for our Dutch clients are fully GDPR compliant — including cookie consent, data processing agreements, and privacy-first ad targeting." },
+  { q: "Who is the Dutch-Indonesian community?", a: "The Netherlands is home to approximately 450,000 people of Indonesian descent (often called 'Indo'), making it one of the largest and most affluent Indonesian diaspora communities in Europe. They represent a significant market for Indonesian food, culture, and heritage products." },
+  { q: "Can you create content in Dutch?", a: "Yes. Our team creates bilingual content in Dutch and English, helping businesses reach the broader Dutch market as well as the Dutch-Indonesian community that often communicates in both languages." },
+  { q: "What industries do you serve in the Netherlands?", a: "Indonesian restaurants, catering, Indonesian product retailers, travel agencies, language schools, batik and crafts, and professional services targeting the Dutch-Indonesian community across Amsterdam, Rotterdam, The Hague, and beyond." },
 ];
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Nuswa Lab — Digital Marketing Agency Netherlands",
-  description: "Digital marketing agency for Indonesian businesses in the Netherlands — SEO, Google Ads, Meta Ads, Social Media, Website, Branding, and AI Automation.",
+  description: "Premium digital marketing agency for businesses in the Netherlands — SEO, Google Ads, Meta Ads, Social Media, Website, Branding, and AI Automation.",
   url: "https://nuswalab.com/country/netherlands",
   telephone: "+62-851-8130-1622",
   address: { "@type": "PostalAddress", addressLocality: "Amsterdam", addressCountry: "NL" },
@@ -132,18 +132,18 @@ export default function NetherlandsPage() {
                 Digital Marketing Agency — Netherlands
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                Raih Komunitas Dutch-Indonesian{" "}
-                <span className="text-gradient">di Belanda</span>
+                Premium Digital Marketing for{" "}
+                <span className="text-gradient">the Netherlands</span>
               </h1>
               <p className="text-lg text-[var(--color-muted-foreground)] mb-8 max-w-2xl">
-                Belanda memiliki 450,000+ komunitas Dutch-Indonesian yang mapan dan berdaya beli tinggi. Nuswa Lab membantu bisnis Anda menjangkau mereka dengan strategi digital yang tepat.
+                Nuswa Lab helps businesses in the Netherlands reach local Dutch consumers and the 450,000+ Dutch-Indonesian community — with premium quality at rates 40–55% below typical Dutch agency prices.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                  Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                  Free Audit <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link href="#services" className="btn-ghost inline-flex items-center gap-2">
-                  Lihat Layanan
+                  View Services
                 </Link>
               </div>
             </AnimateOnScroll>
@@ -155,10 +155,10 @@ export default function NetherlandsPage() {
             <AnimateOnScroll>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 {[
-                  { num: "18+", label: "Klien Aktif di Belanda" },
-                  { num: "93%", label: "Tingkat Kepuasan Klien" },
+                  { num: "18+", label: "Active Clients in Netherlands" },
+                  { num: "93%", label: "Client Satisfaction Rate" },
                   { num: "4.2x", label: "Average ROAS" },
-                  { num: "450k+", label: "Dutch-Indonesian di Belanda" },
+                  { num: "450k+", label: "Dutch-Indonesian Community" },
                 ].map((s) => (
                   <div key={s.num}>
                     <div className="text-3xl lg:text-4xl font-bold text-gradient mb-1">{s.num}</div>
@@ -175,10 +175,10 @@ export default function NetherlandsPage() {
             <AnimateOnScroll>
               <div className="text-center mb-12">
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                  Layanan Kami di <span className="text-gradient">Belanda</span>
+                  Our Services in the <span className="text-gradient">Netherlands</span>
                 </h2>
                 <p className="text-[var(--color-muted-foreground)] max-w-2xl mx-auto">
-                  Digital marketing bilingual untuk bisnis Indonesia yang melayani komunitas Dutch-Indonesian di Eropa
+                  GDPR-compliant digital marketing for Dutch businesses and Indonesian-Dutch entrepreneurs across the Netherlands
                 </p>
               </div>
             </AnimateOnScroll>
@@ -203,7 +203,7 @@ export default function NetherlandsPage() {
                       <TrendingUp className="w-3.5 h-3.5" /> {service.hasil}
                     </div>
                     <Link href={`/service/${service.slug}`} className="btn-primary text-sm text-center inline-flex items-center justify-center gap-2">
-                      Pelajari Lebih <ArrowRight className="w-3.5 h-3.5" />
+                      Learn More <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </AnimateOnScroll>
@@ -217,18 +217,18 @@ export default function NetherlandsPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <AnimateOnScroll>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ fontFamily: "var(--font-display)" }}>
-                  Mengapa Bisnis Indonesia di Belanda Pilih{" "}
+                  Why Businesses in the Netherlands Choose{" "}
                   <span className="text-gradient">Nuswa Lab?</span>
                 </h2>
                 <ul className="space-y-3">
                   {[
-                    "Memahami ikatan historis dan budaya Indonesia-Belanda",
-                    "Konten bilingual Bahasa Belanda dan Indonesia",
-                    "Harga 40–55% lebih hemat dari agensi lokal Belanda",
-                    "Kampanye GDPR-compliant untuk pasar Eropa",
-                    "Account manager dedikasi via WhatsApp",
-                    "Tanpa kontrak lock-in — hasil yang berbicara",
-                    "Tim lengkap: SEO, Paid Ads, Kreatif, Konten, AI",
+                    "Premium quality at 40–55% lower cost than typical Dutch agency rates",
+                    "Unique expertise in the Dutch-Indonesian market — 450,000+ strong",
+                    "GDPR-compliant campaigns and website delivery as standard",
+                    "Bilingual Dutch and English content capability",
+                    "Dedicated account manager with direct WhatsApp access",
+                    "No lock-in contracts — results speak for themselves",
+                    "Full-stack team: SEO, Paid Ads, Creative, Content, and AI",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <CheckCircle className="w-5 h-5 text-[var(--color-primary)] shrink-0 mt-0.5" />
@@ -240,9 +240,9 @@ export default function NetherlandsPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Bu Yanti de Vries", bisnis: "Restoran Indonesia, Amsterdam", text: "Nuswa Lab membantu restoran kami menjangkau komunitas Indo di seluruh Amsterdam dan sekitarnya. Google Ads kami sekarang menghasilkan reservasi online hingga 50 meja per minggu." },
-                    { name: "Pak Bram Soedjono", bisnis: "Toko Batik Online, Rotterdam", text: "Dengan strategi Meta Ads dari Nuswa Lab, toko batik online kami kini dikenal oleh komunitas Dutch-Indonesian di seluruh Belanda. Penjualan naik 280% dalam 5 bulan." },
-                    { name: "Sandra Hartono", bisnis: "Katering Masakan Indonesia, Den Haag", text: "Mereka benar-benar paham cara berkomunikasi dengan komunitas Indo di Belanda. Konten bilingual mereka sangat relevan dan tingkat engagement kami meningkat 4x lipat." },
+                    { name: "Yanti de Vries", bisnis: "Indonesian Restaurant, Amsterdam", text: "Nuswa Lab's Google Ads and SEO have transformed our restaurant's visibility across Amsterdam. We now receive 50+ online reservations per week from both Dutch and Dutch-Indonesian customers." },
+                    { name: "Bram Soedjono", bisnis: "Online Batik Store, Rotterdam", text: "Their Meta Ads targeting for the Dutch-Indonesian community across the Netherlands is incredibly precise. Our online batik sales grew 280% in 5 months — the ROI is exceptional." },
+                    { name: "Sandra Hartono", bisnis: "Indonesian Catering, The Hague", text: "Nuswa Lab truly understands how to communicate with the Dutch-Indonesian community. Our engagement quadrupled and bookings from both communities increased dramatically within months." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
@@ -259,19 +259,19 @@ export default function NetherlandsPage() {
           </div>
         </section>
 
-        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing di Belanda" />
+        <FAQSection faqs={FAQS} title="FAQ — Digital Marketing in the Netherlands" />
 
         <section className="py-20">
           <div className="container-custom text-center">
             <AnimateOnScroll>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-display)" }}>
-                Siap Besarkan Bisnis Anda <span className="text-gradient">di Belanda?</span>
+                Ready to Scale Your <span className="text-gradient">Business in the Netherlands?</span>
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-8 max-w-xl mx-auto">
-                Dapatkan audit strategi gratis dari Nuswa Lab. Tanpa komitmen, hanya kejelasan tentang cara menjangkau komunitas Dutch-Indonesian di Eropa.
+                Get a free strategy audit from Nuswa Lab. No commitment, just clarity on your digital growth path in the Dutch market.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
-                Konsultasi Gratis <ArrowRight className="w-4 h-4" />
+                Get Free Audit <ArrowRight className="w-4 h-4" />
               </Link>
             </AnimateOnScroll>
           </div>

@@ -240,9 +240,9 @@ export default function SaudiArabiaPage() {
               <AnimateOnScroll delay={200}>
                 <div className="space-y-4">
                   {[
-                    { name: "Haji Abdul Rahman", bisnis: "Owner Toko Oleh-oleh, Makkah", text: "Nuswa Lab built our website and ran Google Ads. Penjualan online meningkat 3x dalam 3 bulan. Mereka benar-benar paham pasar diaspora Indonesia di sini." },
-                    { name: "Bu Fatimah Zahra", bisnis: "Katering Indonesia, Madinah", text: "Konten Instagram kami dibuat dengan sangat baik oleh tim Nuswa Lab. Followers bertambah dari 500 ke 8.000 dalam 4 bulan dan orderan katering naik drastis." },
-                    { name: "Pak Ridwan Al-Farisi", bisnis: "Travel & Umroh Agent, Riyadh", text: "SEO dari Nuswa Lab membuat website kami muncul di halaman 1 Google untuk keyword 'umroh murah riyadh'. Leads meningkat 200% dibanding sebelumnya." },
+                    { name: "Abdul Rahman", bisnis: "Souvenir & Gift Shop, Makkah", text: "Nuswa Lab built our website and ran Google Ads targeting Indonesians in Makkah. Online sales tripled in 3 months — they truly understand the Indonesian diaspora market here." },
+                    { name: "Fatimah Zahra", bisnis: "Indonesian Catering, Madinah", text: "The Instagram content Nuswa Lab created for us was outstanding. Our followers grew from 500 to 8,000 in 4 months and catering orders increased dramatically." },
+                    { name: "Ridwan Al-Farisi", bisnis: "Travel & Umroh Agent, Riyadh", text: "Nuswa Lab's SEO got our website to Page 1 on Google for 'umroh packages Riyadh'. Leads increased 200% compared to before — the ROI has been incredible." },
                   ].map((t) => (
                     <div key={t.name} className="glass rounded-2xl p-5" style={{ boxShadow: "var(--shadow-card)" }}>
                       <div className="flex gap-1 mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />)}</div>
@@ -268,7 +268,7 @@ export default function SaudiArabiaPage() {
                 Grow Your Business in <span className="text-gradient">Saudi Arabia</span>
               </h2>
               <p className="text-[var(--color-muted-foreground)] mb-8 max-w-xl mx-auto">
-                Konsultasi gratis dengan tim Nuswa Lab. Kami memahami tantangan bisnis diaspora Indonesia di Arab Saudi.
+                Get a free consultation with Nuswa Lab. We understand the unique challenges and opportunities for Indonesian businesses in Saudi Arabia.
               </p>
               <Link href="/contact" className="btn-primary inline-flex items-center gap-2">
                 Start Free Consultation <ArrowRight className="w-4 h-4" />
