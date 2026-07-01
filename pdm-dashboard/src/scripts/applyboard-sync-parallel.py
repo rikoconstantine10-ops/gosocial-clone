@@ -127,8 +127,8 @@ SCHOOL_FIELDS = ",".join([
     "decision_time_in_seconds","pgwp_participating","coop_participating",
     "conditional_acceptance","can_work_and_study","slug","video_link",
     "latitude","longitude","program_level_counts","designated_learning_institution_no",
-    "institution_no_type","intakes_of_all_programs","about","logo_url",
-    "official_url","international_students_percentage","student_count"
+    "institution_no_type","intakes_of_all_programs","about","logo","website",
+    "number_of_international_students","total_number_of_students"
 ])
 PROG_FIELDS = "name,level,faculty_name,duration_in_months,tuition_fee,tuition_currency,delivery_method,about,application_fee,cip_code"
 REQ_INCLUDE = "program_requirement,english_program,english_program.program_requirement"
@@ -331,8 +331,9 @@ def map_school(school_data, programs, scholarships, requirements, existing_row):
         "ab_designated_institution_no": attrs.get("designated_learning_institution_no"),
         "ab_institution_no_type": attrs.get("institution_no_type"),
         "ab_about": (attrs.get("about") or "")[:2000],
-        "ab_international_pct": attrs.get("international_students_percentage"),
-        "ab_student_count": attrs.get("student_count"),
+        "ab_website": attrs.get("website"),
+        "ab_international_pct": attrs.get("number_of_international_students"),
+        "ab_student_count": attrs.get("total_number_of_students"),
         "ab_requirements": requirements if requirements else existing_dj.get("ab_requirements", []),
         "ab_living_cost_value": living_cost_value,
         "ab_living_cost_currency": living_cost_currency,
@@ -343,7 +344,7 @@ def map_school(school_data, programs, scholarships, requirements, existing_row):
     return {
         "applyboard_id":        ab_id,
         "institution_type":     attrs.get("institution_type"),
-        "logo_url":             attrs.get("logo_url"),
+        "logo_url":             (attrs.get("logo") or {}).get("url"),
         "applyboard_slug":      attrs.get("slug"),
         "applyboard_synced_at": datetime.utcnow().isoformat(),
         "living_cost_value":    living_cost_value,
