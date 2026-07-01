@@ -5,6 +5,11 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      pat:
+        description: "GitHub PAT with repo scope (for one-time manual trigger only)"
+        required: false
+        default: ""
 
 jobs:
   mirror:
@@ -17,5 +22,10 @@ jobs:
 
       - name: Mirror to nuswalab_backup
         run: |
-          git remote add backup https://x-access-token:${{ secrets.BACKUP_REPO_TOKEN }}@github.com/rikoconstantine10-ops/nuswalab_backup.git
+          # Use input PAT if provided (manual trigger), otherwise use stored secret
+          TOKEN="${{ github.event.inputs.pat }}"
+          if [ -z "$TOKEN" ]; then
+            TOKEN="${{ secrets.BACKUP_REPO_TOKEN }}"
+          fi
+          git remote add backup "https://x-access-token:${TOKEN}@github.com/rikoconstantine10-ops/nuswalab_backup.git"
           git push backup main --force
