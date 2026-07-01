@@ -36,6 +36,30 @@ function deliveryBadge(method) {
   const labels = {'in_class':'Tatap Muka','blended':'Blended','online':'Online'};
   return badges[method] ? ' <span title="'+labels[method]+'" style="font-size:10px">'+badges[method]+'</span>' : '';
 }
+
+function getProgramBiaya(p, dj) {
+  const cur = (currentUniData && currentUniData.living_cost_currency) || '';
+  const tuitionArr = dj.tuition || [];
+  if (tuitionArr.length) {
+    const isPG = ['masters','phd','doctorate','postgrad'].some(l => (p.level||'').toLowerCase().includes(l));
+    const match = tuitionArr.find(t => {
+      const tl = (t.level||t.program||'').toLowerCase();
+      return isPG ? (tl.includes('post')||tl.includes('grad')) : (tl.includes('under')||tl.includes('ug'));
+    }) || tuitionArr[0];
+    if (match && match.fee_amount) {
+      const amt = Number(match.fee_amount);
+      const c = match.fee_currency || cur;
+      const per = (match.fee_period||'').replace('per ','') || 'thn';
+      return isNaN(amt) ? null : c + ' ' + amt.toLocaleString() + '/' + per;
+    }
+  }
+  if (dj.ab_avg_tuition) {
+    const amt = Number(dj.ab_avg_tuition);
+    return isNaN(amt) ? null : cur + ' ' + amt.toLocaleString() + '/thn ≈';
+  }
+  return null;
+}
+
 let currentUser = null;
 let currentRegion = 'all';
 let currentPage = 1;
@@ -323,7 +347,7 @@ function switchTab(tab) {
         <h4 class="font-semibold text-sm text-gray-700">Program Tersedia (${programs.length})</h4>
         <button onclick="toggleAcademicEdit()" id="academicEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 pr-2 font-semibold">Faculty / Area</th><th class="py-1 font-semibold">Durasi</th></tr></thead><tbody>' + programs.map(p => { const fac = p.faculty || cipToFaculty(p.cip_code); const dur = p.duration_months ? (p.duration_months >= 12 ? (p.duration_months/12).toFixed(1)+' thn' : p.duration_months+' bln') : levelToDuration(p.level); return '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + deliveryBadge(p.delivery_method) + '</td><td class="py-1.5 pr-2 text-gray-500">' + (fac||'<span class="text-gray-300">—</span>') + '</td><td class="py-1.5 text-gray-500">' + (dur||'<span class="text-gray-300">—</span>') + '</td></tr>'; }).join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
+      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 pr-2 font-semibold">Faculty / Area</th><th class="py-1 pr-2 font-semibold">Durasi</th><th class="py-1 font-semibold text-right">Biaya</th></tr></thead><tbody>' + programs.map(p => { const fac = p.faculty || cipToFaculty(p.cip_code); const dur = p.duration_months ? (p.duration_months >= 12 ? (p.duration_months/12).toFixed(1)+' thn' : p.duration_months+' bln') : levelToDuration(p.level); const biaya = getProgramBiaya(p, dj); return '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + deliveryBadge(p.delivery_method) + '</td><td class="py-1.5 pr-2 text-gray-500">' + (fac||'<span class="text-gray-300">—</span>') + '</td><td class="py-1.5 pr-2 text-gray-500">' + (dur||'<span class="text-gray-300">—</span>') + '</td><td class="py-1.5 text-gray-500 text-right whitespace-nowrap">' + (biaya||'<span class="text-gray-300">—</span>') + '</td></tr>'; }).join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
       <div id="academicEditPrograms" class="hidden"><div id="programRows">${programs.length ? programs.map(p => academicProgRowHtml(p)).join('') : academicProgRowHtml({})}</div><button onclick="addProgRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Program</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
