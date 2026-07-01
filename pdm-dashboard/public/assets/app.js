@@ -1,6 +1,41 @@
 'use strict';
 const API = '';
 let token = localStorage.getItem('pdm_token');
+
+function cipToFaculty(code) {
+  if (!code) return null;
+  const n = parseInt((code||'').split('.')[0], 10);
+  const map = {1:'Agriculture',3:'Natural Resources',4:'Architecture',5:'Area Studies',
+    9:'Communication',10:'Comm Technology',11:'Computer Science',12:'Culinary Arts',
+    13:'Education',14:'Engineering',15:'Engineering Technology',16:'Languages',
+    19:'Family & Consumer Science',22:'Legal Studies',23:'English Language',24:'Liberal Arts',
+    26:'Biology',27:'Mathematics',29:'Military',30:'Interdisciplinary Studies',31:'Recreation',
+    38:'Philosophy',39:'Theology',40:'Physical Sciences',41:'Science Technology',
+    42:'Psychology',43:'Security & Protective Services',44:'Public Administration',
+    45:'Social Sciences',46:'Construction Trades',47:'Mechanic & Repair',
+    49:'Transportation',50:'Arts & Design',51:'Health Sciences',52:'Business',54:'History'};
+  return map[n] || null;
+}
+
+function levelToDuration(level) {
+  const l = (level||'').toLowerCase();
+  if (l.includes('phd')||l.includes('doctorate')) return '4-5 thn';
+  if (l.includes('master')||l.includes('postgrad')) return '2 thn';
+  if (l.includes('bachelor')||l.includes('honours')) return '3-4 thn';
+  if (l.includes('advanced_diploma')) return '2 thn';
+  if (l.includes('diploma')) return '2 thn';
+  if (l.includes('certificate')) return '1 thn';
+  if (l.includes('foundation')||l.includes('grade_12')) return '1 thn';
+  if (l.includes('english')||l.includes('language')) return '6-12 bln';
+  return null;
+}
+
+function deliveryBadge(method) {
+  if (!method) return '';
+  const badges = {'in_class':'🏫','blended':'🔄','online':'💻'};
+  const labels = {'in_class':'Tatap Muka','blended':'Blended','online':'Online'};
+  return badges[method] ? ' <span title="'+labels[method]+'" style="font-size:10px">'+badges[method]+'</span>' : '';
+}
 let currentUser = null;
 let currentRegion = 'all';
 let currentPage = 1;
@@ -288,7 +323,7 @@ function switchTab(tab) {
         <h4 class="font-semibold text-sm text-gray-700">Program Tersedia (${programs.length})</h4>
         <button onclick="toggleAcademicEdit()" id="academicEditBtn" class="btn btn-secondary" style="padding:4px 12px;font-size:11px">&#9998; Edit</button>
       </div>
-      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 pr-2 font-semibold">Faculty</th><th class="py-1 font-semibold">Durasi</th></tr></thead><tbody>' + programs.map(p => '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + '</td><td class="py-1.5 pr-2 text-gray-400">' + (p.faculty||'—') + '</td><td class="py-1.5 text-gray-400">' + (p.duration_months ? p.duration_months+' bln' : '—') + '</td></tr>').join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
+      <div id="academicViewPrograms">${programs.length ? '<table class="w-full text-xs"><thead><tr class="text-gray-400 text-left"><th class="py-1 pr-3 font-semibold">Nama Program</th><th class="py-1 pr-3 font-semibold">Level</th><th class="py-1 pr-2 font-semibold">Faculty / Area</th><th class="py-1 font-semibold">Durasi</th></tr></thead><tbody>' + programs.map(p => { const fac = p.faculty || cipToFaculty(p.cip_code); const dur = p.duration_months ? (p.duration_months >= 12 ? (p.duration_months/12).toFixed(1)+' thn' : p.duration_months+' bln') : levelToDuration(p.level); return '<tr class="border-t border-gray-50"><td class="py-1.5 pr-3 font-medium text-gray-800">' + (p.name||pLabel(p)||'—') + '</td><td class="py-1.5 pr-3 text-gray-500">' + (p.level||'—') + deliveryBadge(p.delivery_method) + '</td><td class="py-1.5 pr-2 text-gray-500">' + (fac||'<span class="text-gray-300">—</span>') + '</td><td class="py-1.5 text-gray-500">' + (dur||'<span class="text-gray-300">—</span>') + '</td></tr>'; }).join('') + '</tbody></table>' : '<p class="text-xs text-gray-400">Belum ada data program</p>'}</div>
       <div id="academicEditPrograms" class="hidden"><div id="programRows">${programs.length ? programs.map(p => academicProgRowHtml(p)).join('') : academicProgRowHtml({})}</div><button onclick="addProgRow()" class="btn btn-secondary mt-2" style="font-size:11px">+ Tambah Program</button></div>
     </div>
     <div class="grid grid-cols-2 gap-4">
