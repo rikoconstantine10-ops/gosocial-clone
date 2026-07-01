@@ -7,8 +7,8 @@ const intlMiddleware = createMiddleware(routing);
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip lokasi pages — handled as plain routes, not locale-prefixed
-  if (pathname.startsWith("/lokasi")) {
+  // Skip lokasi and country pages — handled as plain routes, not locale-prefixed
+  if (pathname.startsWith("/lokasi") || pathname.startsWith("/country")) {
     return NextResponse.next();
   }
 
