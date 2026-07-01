@@ -164,20 +164,43 @@ def fetch_requirements(sess, programs):
 
     def is_ug(p):
         lvl = (p.get("attributes", {}).get("level") or "").lower()
-        return any(x in lvl for x in ("bachelor", "diploma", "undergraduate", "certificate"))
+        return any(x in lvl for x in ("bachelor", "diploma", "undergraduate", "certificate", "foundation", "grade_12"))
     def is_pg(p):
         lvl = (p.get("attributes", {}).get("level") or "").lower()
         return any(x in lvl for x in ("master", "postgraduate", "mba", "phd", "doctoral"))
 
+    # Sample up to 3 diverse UG programs and 2 PG programs
+    # Diversity: pick from different level types to cover more requirement scenarios
+    ug_types = ["bachelor", "diploma", "certificate", "foundation"]
+    pg_types = ["master", "phd", "mba"]
+    seen_ids = set()
     picks = []
-    ug = next((p for p in programs if is_ug(p)), None)
-    pg = next((p for p in programs if is_pg(p)), None)
-    if ug: picks.append(ug)
-    if pg and pg.get("id") != (ug.get("id") if ug else None): picks.append(pg)
-    if not picks and programs: picks.append(programs[0])
+    for t in ug_types:
+        p = next((x for x in programs if t in (x.get("attributes", {}).get("level") or "").lower() and x.get("id") not in seen_ids), None)
+        if p:
+            picks.append(p)
+            seen_ids.add(p.get("id"))
+        if len([x for x in picks if is_ug(x)]) >= 3:
+            break
+    for t in pg_types:
+        p = next((x for x in programs if t in (x.get("attributes", {}).get("level") or "").lower() and x.get("id") not in seen_ids), None)
+        if p:
+            picks.append(p)
+            seen_ids.add(p.get("id"))
+        if len([x for x in picks if is_pg(x)]) >= 2:
+            break
+    if not picks and programs:
+        picks.append(programs[0])
 
-    all_reqs = []
-    seen = set()
+    # Collect all requirements, keeping strictest (max) values per background level
+    reqs_by_level = {}
+    def _max_val(a, b):
+        """Return the stricter (higher) of two numeric requirement values."""
+        if a is None: return b
+        if b is None: return a
+        try: return max(float(a), float(b))
+        except (TypeError, ValueError): return a
+
     for prog in picks:
         try:
             data = sess.get(f"/api/v2/programs/{prog['id']}?include={REQ_INCLUDE}")
@@ -186,25 +209,38 @@ def fetch_requirements(sess, programs):
                     continue
                 ra = item.get("attributes", {})
                 lvl = ra.get("level", "unknown")
-                if lvl in seen: continue
-                seen.add(lvl)
-                all_reqs.append({
-                    "level": lvl,
-                    "level_text": ra.get("level_text", lvl),
-                    "min_ielts_average": ra.get("min_ielts_average"),
-                    "min_ielts_reading": ra.get("min_ielts_reading"),
-                    "min_ielts_writing": ra.get("min_ielts_writing"),
-                    "min_ielts_listening": ra.get("min_ielts_listening"),
-                    "min_ielts_speaking": ra.get("min_ielts_speaking"),
-                    "min_toefl_total": ra.get("min_toefl_total"),
-                    "min_pte_overall": ra.get("min_pte_overall"),
-                    "min_duolingo_score": ra.get("min_duolingo_score"),
-                    "min_gpa": ra.get("min_gpa"),
-                    "english_score_required": ra.get("english_score_required"),
-                })
+                if lvl not in reqs_by_level:
+                    reqs_by_level[lvl] = {
+                        "level": lvl,
+                        "level_text": ra.get("level_text", lvl),
+                        "min_ielts_average": ra.get("min_ielts_average"),
+                        "min_ielts_reading": ra.get("min_ielts_reading"),
+                        "min_ielts_writing": ra.get("min_ielts_writing"),
+                        "min_ielts_listening": ra.get("min_ielts_listening"),
+                        "min_ielts_speaking": ra.get("min_ielts_speaking"),
+                        "min_toefl_total": ra.get("min_toefl_total"),
+                        "min_pte_overall": ra.get("min_pte_overall"),
+                        "min_duolingo_score": ra.get("min_duolingo_score"),
+                        "min_gpa": ra.get("min_gpa"),
+                        "english_score_required": ra.get("english_score_required"),
+                    }
+                else:
+                    # Keep strictest requirements across sampled programs
+                    ex = reqs_by_level[lvl]
+                    ex["min_ielts_average"]  = _max_val(ex["min_ielts_average"],  ra.get("min_ielts_average"))
+                    ex["min_ielts_reading"]  = _max_val(ex["min_ielts_reading"],   ra.get("min_ielts_reading"))
+                    ex["min_ielts_writing"]  = _max_val(ex["min_ielts_writing"],   ra.get("min_ielts_writing"))
+                    ex["min_ielts_listening"]= _max_val(ex["min_ielts_listening"], ra.get("min_ielts_listening"))
+                    ex["min_ielts_speaking"] = _max_val(ex["min_ielts_speaking"],  ra.get("min_ielts_speaking"))
+                    ex["min_toefl_total"]    = _max_val(ex["min_toefl_total"],     ra.get("min_toefl_total"))
+                    ex["min_pte_overall"]    = _max_val(ex["min_pte_overall"],     ra.get("min_pte_overall"))
+                    ex["min_duolingo_score"] = _max_val(ex["min_duolingo_score"],  ra.get("min_duolingo_score"))
+                    ex["min_gpa"]            = _max_val(ex["min_gpa"],             ra.get("min_gpa"))
+                    if ra.get("english_score_required"):
+                        ex["english_score_required"] = True
         except Exception:
             pass
-    return all_reqs
+    return list(reqs_by_level.values())
 
 
 # ── Mapping ───────────────────────────────────────────────────────────────────
