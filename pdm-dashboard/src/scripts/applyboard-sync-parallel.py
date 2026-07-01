@@ -145,7 +145,7 @@ SCHOOL_FIELDS = ",".join([
     "institution_no_type","intakes_of_all_programs","about","logo","website",
     "number_of_international_students","total_number_of_students"
 ])
-PROG_FIELDS = "name,level,faculty_name,duration_in_months,tuition_fee,tuition_currency,delivery_method,about,application_fee,cip_code"
+PROG_FIELDS = "name,level,faculty_name,min_length,max_length,tuition,length_breakdown,delivery_method,about,application_fee,cip_code"
 REQ_INCLUDE = "program_requirement,english_program,english_program.program_requirement"
 
 def fetch_school_detail(sess, school_id):
@@ -281,13 +281,16 @@ def map_school(school_data, programs, scholarships, requirements, existing_row):
     living_cost_period   = "year"
 
     today = datetime.utcnow().strftime("%Y-%m-%d")
+    school_currency = (attrs.get("currency") or "").upper() or None
     mapped_programs = [{
         "name": (pa := p.get("attributes", {})).get("name"),
         "level": pa.get("level"),
         "faculty": pa.get("faculty_name"),
-        "duration_months": pa.get("duration_in_months"),
-        "tuition_fee": pa.get("tuition_fee"),
-        "tuition_currency": pa.get("tuition_currency"),
+        "min_length": pa.get("min_length"),
+        "max_length": pa.get("max_length"),
+        "duration_text": pa.get("length_breakdown"),
+        "tuition_fee": pa.get("tuition"),
+        "tuition_currency": school_currency,
         "delivery_method": pa.get("delivery_method"),
         "description": (pa.get("about") or "")[:500],
         "application_fee": pa.get("application_fee"),
