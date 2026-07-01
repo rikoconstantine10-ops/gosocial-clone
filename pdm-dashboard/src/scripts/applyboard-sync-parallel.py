@@ -28,6 +28,7 @@ RATE_LIMIT_S   = 0.35   # per-worker delay between requests (5 workers → ~1.75
 SKIP_COUNTRIES = {"MT"}
 NUM_WORKERS    = 5
 DRY_RUN        = "--dry-run" in sys.argv
+FORCE          = "--force" in sys.argv
 LIMIT          = next((int(a.split("=")[1]) for a in sys.argv if a.startswith("--limit=")), None)
 
 # Global locks
@@ -538,7 +539,7 @@ def main():
 
     # Load progress — also seed from DB (in case progress file is stale/empty)
     progress_dict = load_progress()
-    if not DRY_RUN:
+    if not DRY_RUN and not FORCE:
         db_tmp = sqlite3.connect(DB_PATH, check_same_thread=False)
         db_tmp.row_factory = sqlite3.Row
         already_in_db = {str(r[0]) for r in db_tmp.execute(
@@ -547,6 +548,9 @@ def main():
         for sid in already_in_db:
             progress_dict[sid] = True
         print(f"[main] {len(already_in_db)} already in DB → will skip")
+    elif FORCE:
+        progress_dict = {}
+        print("[main] --force: re-syncing all schools (ignoring prior progress)")
 
     todo = [s for s in all_schools if not progress_dict.get(str(s.get("id", "")))]
     skip_count = len(all_schools) - len(todo)
