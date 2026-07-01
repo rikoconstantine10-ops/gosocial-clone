@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
+import { AnimateOnScroll } from "@/components/ui/AnimateOnScroll";
+import { FAQSection } from "@/components/ui/FAQSection";
+import { ArrowRight, MapPin, CheckCircle, Star, TrendingUp, Search, Share2, Megaphone, Globe, Palette, Bot, BarChart2, Video, Camera } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Jasa Digital Marketing Banjarmasin | Agency Terpercaya — Nuswa Lab",
@@ -8,15 +13,41 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://nuswalab.com/lokasi/banjarmasin" },
 };
 
+const SERVICES = [
+  { Icon: Search, title: "SEO Banjarmasin", slug: "jasa-seo", harga: "Mulai Rp 3.500.000/bln", desc: "Dominasi halaman 1 Google untuk keyword bisnis Banjarmasin — perdagangan, ritel, kuliner, properti, dan jasa di Kalsel.", hasil: "+210% traffic organik rata-rata 6 bulan", fitur: ["Keyword research lokal Banjarmasin", "Optimasi Google My Business", "Link building otoritas tinggi", "Laporan ranking mingguan"] },
+  { Icon: Megaphone, title: "Google Ads Banjarmasin", slug: "digital-campaign", harga: "Mulai Rp 2.000.000/bln", desc: "Iklan Google tepat sasaran untuk audiens Banjarmasin dan Kalimantan Selatan. ROI terukur, budget efisien.", hasil: "ROAS rata-rata 3.2x", fitur: ["Google Search & Display Ads", "Keyword research & bidding", "Retargeting audience", "Laporan performa harian"] },
+  { Icon: Share2, title: "Social Media Management", slug: "social-media-management", harga: "Mulai Rp 2.500.000/bln", desc: "Kelola Instagram, TikTok, dan Facebook bisnis Banjarmasin dengan konten yang relevan untuk pasar Kalsel.", hasil: "+150% engagement rate", fitur: ["Konten feed + reels + stories", "Caption copywriting Bahasa Indonesia", "Jadwal posting optimal", "Monthly performance report"] },
+  { Icon: BarChart2, title: "Meta Ads Banjarmasin", slug: "digital-campaign", harga: "Mulai Rp 2.000.000/bln", desc: "Facebook & Instagram ads targeting spesifik area Banjarmasin, Banjarbaru, dan Kalimantan Selatan.", hasil: "CPL turun rata-rata 37%", fitur: ["Meta Ads (Instagram + Facebook)", "Lookalike & custom audience", "A/B testing creative", "Retargeting & remarketing"] },
+  { Icon: Globe, title: "Website Profesional", slug: "jasa-pembuatan-website", harga: "Mulai Rp 5.000.000", desc: "Website company profile, toko online, dan landing page untuk bisnis Banjarmasin yang ingin tampil profesional.", hasil: "PageSpeed 95+, konversi naik 185%", fitur: ["Desain custom sesuai brand", "Mobile responsive", "Integrasi WhatsApp & maps", "Domain + hosting setup"] },
+  { Icon: Palette, title: "Branding Banjarmasin", slug: "branding", harga: "Mulai Rp 4.000.000", desc: "Brand identity kuat untuk bisnis Banjarmasin — logo, panduan visual, dan brand voice yang memorable.", hasil: "Brand recall naik 2.8x", fitur: ["Logo & brand identity", "Brand guideline document", "Desain konten sosmed", "Template marketing material"] },
+  { Icon: Video, title: "TikTok Ads Banjarmasin", slug: "digital-campaign", harga: "Mulai Rp 2.500.000/bln", desc: "Jangkau audiens muda Banjarmasin dan Kalsel via TikTok. Konten kreatif lokal dengan performa konversi tinggi.", hasil: "CTR rata-rata 5.7%", fitur: ["TikTok In-Feed Ads", "Spark Ads dari konten organik", "Optimasi konversi & ROAS", "Laporan performa harian"] },
+  { Icon: Camera, title: "Content Marketing", slug: "content-marketing", harga: "Mulai Rp 2.500.000/bln", desc: "Artikel SEO, copywriting, dan konten sosmed yang relevan dengan pasar Banjarmasin dan Kalimantan Selatan.", hasil: "Traffic konten +240%", fitur: ["Artikel blog SEO-friendly", "Copywriting produk & landing page", "Desain visual konten", "Content calendar & distribusi"] },
+  { Icon: Bot, title: "AI Automation Banjarmasin", slug: "ai-automation", harga: "Mulai Rp 2.000.000/bln", desc: "Chatbot WhatsApp, CRM otomatis, dan workflow automation untuk bisnis Banjarmasin yang ingin efisiensi lebih.", hasil: "Hemat 35% waktu operasional", fitur: ["Chatbot WhatsApp AI", "Auto-reply & lead capture", "CRM automation", "Dashboard monitoring"] },
+];
+
+const FAQS = [
+  { q: "Berapa biaya jasa digital marketing di Banjarmasin?", a: "Harga layanan Nuswa Lab di Banjarmasin mulai dari Rp 1.500.000/bulan untuk layanan dasar hingga Rp 15.000.000/bulan untuk paket SEO enterprise. Semua paket bisa disesuaikan dengan budget Anda." },
+  { q: "Apakah Nuswa Lab melayani area di luar Banjarmasin?", a: "Ya, kami melayani seluruh Kalimantan Selatan termasuk Banjarbaru, Martapura, Rantau, Kandangan, dan Amuntai. Konsultasi bisa dilakukan secara online atau tatap muka." },
+  { q: "Berapa lama hasil SEO bisa terlihat di Banjarmasin?", a: "Untuk keyword lokal Banjarmasin, hasil mulai terlihat dalam 2-3 bulan. Kompetisi keyword di Banjarmasin relatif lebih rendah dibanding kota besar, sehingga hasil bisa lebih cepat." },
+  { q: "Industri apa yang paling banyak dilayani di Banjarmasin?", a: "Klien terbanyak kami di Banjarmasin dari sektor perdagangan/ritel, properti, kuliner, tambang dan industri terkait, jasa profesional, dan klinik kesehatan." },
+  { q: "Apakah ada paket khusus untuk bisnis di Kalimantan Selatan?", a: "Kami menyesuaikan strategi dan harga dengan kondisi pasar lokal Banjarmasin. Dengan kompetisi keyword yang lebih rendah, anggaran yang sama bisa menghasilkan hasil lebih maksimal dibanding di kota besar." },
+];
+
 const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   name: "Nuswa Lab — Digital Marketing Agency Banjarmasin",
   description: "Agency digital marketing terpercaya di Banjarmasin melayani SEO, Google Ads, Meta Ads, Social Media Management, Website, Branding, dan AI Automation.",
   url: "https://nuswalab.com/lokasi/banjarmasin",
-  telephone: "+62-851-8130-1622",
+  telephone: "+6285181301622",
   address: { "@type": "PostalAddress", addressLocality: "Banjarmasin", addressRegion: "Kalimantan Selatan", addressCountry: "ID" },
   areaServed: ["Banjarmasin", "Banjarbaru", "Martapura", "Rantau", "Kandangan", "Amuntai"],
+  priceRange: "Rp 1.500.000 - Rp 15.000.000",
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Layanan Digital Marketing Banjarmasin",
+    itemListElement: SERVICES.map((s, i) => ({ "@type": "Offer", position: i + 1, itemOffered: { "@type": "Service", name: s.title, description: s.desc } })),
+  },
 };
 
 const breadcrumbSchema = {
@@ -29,128 +60,181 @@ const breadcrumbSchema = {
   ],
 };
 
-const services = [
-  { title: "SEO Banjarmasin", href: "/service/jasa-seo", harga: "Mulai Rp 3.500.000/bln", desc: "Dominasi halaman 1 Google untuk keyword bisnis Banjarmasin — perdagangan, ritel, kuliner, properti, dan jasa di Kalsel.", hasil: "+210% traffic organik rata-rata 6 bulan" },
-  { title: "Google Ads Banjarmasin", href: "/service/digital-campaign/google-ads", harga: "Mulai Rp 2.000.000/bln", desc: "Iklan Google tepat sasaran untuk audiens Banjarmasin dan Kalimantan Selatan. ROI terukur, budget efisien.", hasil: "ROAS rata-rata 3.2x" },
-  { title: "Social Media Management", href: "/service/social-media-management", harga: "Mulai Rp 2.500.000/bln", desc: "Kelola Instagram, TikTok, dan Facebook bisnis Banjarmasin dengan konten yang relevan untuk pasar Kalsel.", hasil: "+150% engagement rate" },
-  { title: "Meta Ads Banjarmasin", href: "/service/digital-campaign/meta-ads", harga: "Mulai Rp 2.000.000/bln", desc: "Facebook & Instagram ads targeting spesifik area Banjarmasin, Banjarbaru, dan Kalimantan Selatan.", hasil: "CPL turun rata-rata 37%" },
-  { title: "Website Profesional", href: "/service/jasa-pembuatan-website", harga: "Mulai Rp 5.000.000", desc: "Website company profile, toko online, dan landing page untuk bisnis Banjarmasin yang ingin tampil profesional.", hasil: "PageSpeed 95+, konversi naik 185%" },
-  { title: "Branding Banjarmasin", href: "/service/branding", harga: "Mulai Rp 4.000.000", desc: "Brand identity kuat untuk bisnis Banjarmasin — logo, panduan visual, dan brand voice yang memorable.", hasil: "Brand recall naik 2.8x" },
-  { title: "TikTok Ads Banjarmasin", href: "/service/digital-campaign/tiktok-ads", harga: "Mulai Rp 2.500.000/bln", desc: "Jangkau audiens muda Banjarmasin dan Kalsel via TikTok. Konten kreatif lokal dengan performa konversi tinggi.", hasil: "CTR rata-rata 5.7%" },
-  { title: "Content Marketing", href: "/service/content-marketing", harga: "Mulai Rp 2.500.000/bln", desc: "Artikel SEO, copywriting, dan konten sosmed yang relevan dengan pasar Banjarmasin dan Kalimantan Selatan.", hasil: "Traffic konten +240%" },
-  { title: "AI Automation Banjarmasin", href: "/service/ai-automation", harga: "Mulai Rp 2.000.000/bln", desc: "Chatbot WhatsApp, CRM otomatis, dan workflow automation untuk bisnis Banjarmasin yang ingin efisiensi lebih.", hasil: "Hemat 35% waktu operasional" },
-];
-
-const stats = [
-  { num: "55+", label: "Klien Aktif Kalimantan Selatan" },
-  { num: "94%", label: "Tingkat Kepuasan Klien" },
-  { num: "3.2x", label: "Rata-rata ROAS" },
-  { num: "3 Thn", label: "Pengalaman di Banjarmasin" },
-];
-
-const testimonials = [
-  { name: "H. Mahmud Rizani", bisnis: "Owner Toko Material Banjarmasin", text: "Toko bangunan kami kini muncul di halaman 1 Google untuk berbagai keyword material bangunan. Omzet naik 120% dalam 7 bulan berkat SEO dan Google Ads dari Nuswa Lab.", rating: 5 },
-  { name: "Ibu Siti Aminah", bisnis: "Direktur Klinik Kecantikan Banjarbaru", text: "Booking treatment klinik kami selalu penuh sejak Instagram dikelola Nuswa Lab. Tim sangat kreatif dan responsif dalam menangani pertanyaan klien via DM.", rating: 5 },
-  { name: "Pak Hendra Saputra", bisnis: "Developer Perumahan Banjarmasin Selatan", text: "Website dan Meta Ads dari Nuswa Lab menghasilkan 25+ leads per bulan. Kualitas leadnya sangat baik dan closing rate kami meningkat 3x lipat.", rating: 5 },
-];
-
-const faqs = [
-  { q: "Berapa biaya jasa digital marketing di Banjarmasin?", a: "Harga layanan Nuswa Lab di Banjarmasin mulai dari Rp 1.500.000/bulan untuk layanan dasar hingga Rp 15.000.000/bulan untuk paket SEO enterprise. Semua paket bisa disesuaikan dengan budget Anda." },
-  { q: "Apakah Nuswa Lab melayani area di luar Banjarmasin?", a: "Ya, kami melayani seluruh Kalimantan Selatan termasuk Banjarbaru, Martapura, Rantau, Kandangan, dan Amuntai. Konsultasi bisa dilakukan secara online atau tatap muka." },
-  { q: "Berapa lama hasil SEO bisa terlihat di Banjarmasin?", a: "Untuk keyword lokal Banjarmasin, hasil mulai terlihat dalam 2-3 bulan. Kompetisi keyword di Banjarmasin relatif lebih rendah dibanding kota besar, sehingga hasil bisa lebih cepat." },
-  { q: "Industri apa yang paling banyak dilayani di Banjarmasin?", a: "Klien terbanyak kami di Banjarmasin dari sektor perdagangan/ritel, properti, kuliner, tambang dan industri terkait, jasa profesional, dan klinik kesehatan." },
-  { q: "Apakah ada paket khusus untuk bisnis di Kalimantan Selatan?", a: "Kami menyesuaikan strategi dan harga dengan kondisi pasar lokal Banjarmasin. Dengan kompetisi keyword yang lebih rendah, anggaran yang sama bisa menghasilkan hasil lebih maksimal dibanding di kota besar." },
-];
-
 export default function BanjarmasinPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <main className="min-h-screen bg-white">
-        <section className="bg-gradient-to-br from-[#1a2e1a] to-[#2d4a2d] text-white py-20 px-4">
-          <div className="max-w-5xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm mb-6 text-[#9ab89a]">
-              <Link href="/" className="hover:text-white">Beranda</Link><span>/</span>
-              <Link href="/lokasi" className="hover:text-white">Lokasi</Link><span>/</span>
-              <span className="text-white">Banjarmasin</span>
+      <main className="min-h-screen">
+        <Nav />
+
+        <section className="relative pt-36 pb-16 lg:pt-44 lg:pb-20 overflow-hidden">
+          <div className="orb orb-primary w-[600px] h-[600px] -top-40 -left-32 animate-orb" />
+          <div className="orb orb-violet w-[400px] h-[400px] top-20 -right-20 animate-orb" style={{animationDelay:"-5s"}} />
+          <div className="container-custom">
+            <nav className="flex items-center gap-2 text-sm mb-6" style={{color:"var(--color-muted-foreground)"}}>
+              <Link href="/" className="hover:underline">Beranda</Link>
+              <span>/</span>
+              <Link href="/lokasi" className="hover:underline">Lokasi</Link>
+              <span>/</span>
+              <Link href="/lokasi/banjarmasin" className="hover:underline" style={{color:"var(--color-primary)"}}>Banjarmasin</Link>
             </nav>
             <div className="max-w-3xl">
-              <span className="inline-block px-3 py-1 rounded-full bg-[#5C7A5A] text-xs uppercase tracking-widest mb-4">Digital Marketing Banjarmasin</span>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">Agency Digital Marketing <span className="text-[#9ab89a]">Terpercaya di Banjarmasin</span></h1>
-              <p className="text-lg text-gray-300 mb-6">Nuswa Lab membantu bisnis Banjarmasin dan Kalimantan Selatan tumbuh secara digital. Dari SEO, iklan berbayar, hingga AI automation — strategi yang sesuai pasar Kalsel.</p>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs uppercase tracking-widest mb-6" style={{color:"var(--color-primary)"}}>
+                <MapPin className="w-3.5 h-3.5" />
+                Banjarmasin, Kalimantan Selatan
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6" style={{fontFamily:"var(--font-display)"}}>
+                <span className="text-gradient">Jasa Digital Marketing</span>
+                <br />
+                <span>Banjarmasin Terpercaya</span>
+              </h1>
+              <p className="text-lg leading-relaxed mb-4" style={{color:"var(--color-muted-foreground)"}}>
+                Nuswa Lab hadir di Banjarmasin dengan 9 layanan digital marketing lengkap — dari SEO, social media, iklan berbayar, hingga AI automation untuk bisnis Kalimantan Selatan.
+              </p>
+              <p className="text-base leading-relaxed mb-8" style={{color:"var(--color-muted-foreground)"}}>
+                Dipercaya 55+ bisnis di Banjarmasin dan Kalimantan Selatan. Kompetisi rendah, peluang besar, ROI lebih tinggi.
+              </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/contact" className="bg-[#5C7A5A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#4A6A48] transition-colors">Konsultasi Gratis</Link>
-                <Link href="#layanan" className="border border-white/30 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/10 transition-colors">Lihat Layanan</Link>
+                <Link href="/contact" className="btn-primary">Konsultasi Gratis <ArrowRight className="w-4 h-4" /></Link>
+                <Link href="#layanan" className="btn-ghost">Lihat Semua Layanan</Link>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="bg-[#f0f5f0] py-10 px-4">
-          <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((s) => (
-              <div key={s.num} className="text-center">
-                <div className="text-3xl font-bold text-[#5C7A5A]">{s.num}</div>
-                <div className="text-sm text-gray-600 mt-1">{s.label}</div>
-              </div>
-            ))}
+        <section className="py-10 border-y" style={{borderColor:"var(--color-border)"}}>
+          <div className="container-custom">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              {[
+                {val:"55+",label:"Klien Aktif Kalimantan Selatan"},
+                {val:"9",label:"Layanan Tersedia"},
+                {val:"4.9★",label:"Rating dari klien"},
+                {val:"3.2x",label:"Rata-rata ROAS klien"},
+              ].map(s=>(
+                <div key={s.label}>
+                  <div className="text-3xl font-black text-gradient mb-1" style={{fontFamily:"var(--font-display)"}}>{s.val}</div>
+                  <div className="text-sm" style={{color:"var(--color-muted-foreground)"}}>{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section id="layanan" className="py-20 px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2 text-center">Layanan Digital Marketing di Banjarmasin</h2>
-            <p className="text-gray-600 text-center mb-12">Solusi lengkap untuk bisnis Banjarmasin dan Kalimantan Selatan yang ingin berkembang di era digital</p>
+        <section id="layanan" className="py-20">
+          <div className="container-custom">
+            <AnimateOnScroll>
+              <div className="text-center max-w-2xl mx-auto mb-14">
+                <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>9 Layanan Digital Marketing Banjarmasin</h2>
+                <p style={{color:"var(--color-muted-foreground)"}}>Solusi digital lengkap untuk bisnis perdagangan, properti, dan kuliner Banjarmasin — strategi tepat untuk pasar Kalimantan Selatan.</p>
+              </div>
+            </AnimateOnScroll>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((s) => (
-                <Link key={s.title} href={s.href} className="block bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow group">
-                  <h3 className="font-bold text-gray-900 mb-1 group-hover:text-[#5C7A5A]">{s.title}</h3>
-                  <p className="text-sm font-semibold text-[#5C7A5A] mb-2">{s.harga}</p>
-                  <p className="text-sm text-gray-600 mb-3">{s.desc}</p>
-                  <span className="text-xs bg-[#e8f0e8] text-[#5C7A5A] px-2 py-1 rounded-full">{s.hasil}</span>
+              {SERVICES.map((s, i) => (
+                <AnimateOnScroll key={i} delay={i * 60}>
+                  <div className="glass rounded-2xl p-6 h-full flex flex-col hover:-translate-y-1 transition-all duration-300" style={{boxShadow:"var(--shadow-card)"}}>
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style={{background:"var(--gradient-primary)"}}>
+                        <s.Icon className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-lg mb-2" style={{fontFamily:"var(--font-display)"}}>{s.title}</h3>
+                    <p className="text-sm font-semibold mb-3" style={{color:"var(--color-primary)"}}>{s.harga}</p>
+                    <p className="text-sm leading-relaxed mb-4" style={{color:"var(--color-muted-foreground)"}}>{s.desc}</p>
+                    <ul className="space-y-1.5 mb-4 flex-1">
+                      {s.fitur.map((f,fi)=>(
+                        <li key={fi} className="flex items-center gap-2 text-sm">
+                          <CheckCircle className="w-3.5 h-3.5 flex-shrink-0" style={{color:"var(--color-primary)"}} />
+                          <span style={{color:"oklch(0.35 0.03 265)"}}>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex items-center gap-1.5 text-xs mb-4 p-2.5 rounded-xl" style={{background:"oklch(0.95 0.02 265)"}}>
+                      <TrendingUp className="w-3.5 h-3.5 flex-shrink-0" style={{color:"var(--color-primary)"}} />
+                      <span className="font-medium" style={{color:"oklch(0.35 0.03 265)"}}>{s.hasil}</span>
+                    </div>
+                    <Link href={`/service/${s.slug}`} className="btn-primary text-sm py-2.5 text-center w-full flex items-center justify-center gap-2">
+                      Pelajari & Harga Lengkap <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </AnimateOnScroll>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20" style={{background:"oklch(0.98 0.003 265)"}}>
+          <div className="container-custom">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <AnimateOnScroll>
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-6" style={{fontFamily:"var(--font-display)"}}>
+                    Kenapa Bisnis Banjarmasin Pilih Nuswa Lab?
+                  </h2>
+                  <div className="space-y-4">
+                    {[
+                      "Paham ekosistem perdagangan dan bisnis Kalimantan Selatan",
+                      "Kompetisi keyword rendah = ROI lebih tinggi untuk klien",
+                      "Tim berpengalaman 3+ tahun handle klien Kalsel",
+                      "Koordinasi mudah — meeting online atau tatap muka",
+                      "Semua layanan tersedia dalam satu atap",
+                      "Harga transparan, tidak ada biaya tersembunyi",
+                      "Laporan performa setiap bulan dengan data nyata",
+                    ].map(item=>(
+                      <div key={item} className="flex items-start gap-3">
+                        <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{color:"var(--color-primary)"}} />
+                        <span style={{color:"oklch(0.3 0.03 265)"}}>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </AnimateOnScroll>
+              <AnimateOnScroll delay={200}>
+                <div className="space-y-4">
+                  {[
+                    {name:"H. Mahmud Rizani",bisnis:"Owner Toko Material Banjarmasin",review:"Toko bangunan kami kini muncul di halaman 1 Google untuk berbagai keyword material bangunan. Omzet naik 120% dalam 7 bulan berkat SEO dan Google Ads dari Nuswa Lab.",rating:5},
+                    {name:"Ibu Siti Aminah",bisnis:"Direktur Klinik Kecantikan Banjarbaru",review:"Booking treatment klinik kami selalu penuh sejak Instagram dikelola Nuswa Lab. Tim sangat kreatif dan responsif dalam menangani pertanyaan klien via DM.",rating:5},
+                    {name:"Pak Hendra Saputra",bisnis:"Developer Perumahan Banjarmasin Selatan",review:"Website dan Meta Ads dari Nuswa Lab menghasilkan 25+ leads per bulan. Kualitas leadnya sangat baik dan closing rate kami meningkat 3x lipat.",rating:5},
+                  ].map((t,i)=>(
+                    <div key={i} className="glass rounded-2xl p-5" style={{boxShadow:"var(--shadow-card)"}}>
+                      <div className="flex items-center gap-1 mb-2">
+                        {[...Array(t.rating)].map((_,ri)=>(<Star key={ri} className="w-4 h-4 fill-current text-yellow-400" />))}
+                      </div>
+                      <p className="text-sm italic leading-relaxed mb-3" style={{color:"oklch(0.3 0.03 265)"}}>"{t.review}"</p>
+                      <div>
+                        <div className="font-semibold text-sm">{t.name}</div>
+                        <div className="text-xs" style={{color:"var(--color-muted-foreground)"}}>{t.bisnis}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </AnimateOnScroll>
+            </div>
+          </div>
+        </section>
+
+        <FAQSection faqs={FAQS} title="FAQ — Jasa Digital Marketing Banjarmasin" />
+
+        <section className="py-20">
+          <div className="container-custom text-center max-w-2xl mx-auto">
+            <AnimateOnScroll>
+              <h2 className="text-3xl md:text-4xl font-bold text-gradient mb-4" style={{fontFamily:"var(--font-display)"}}>
+                Kembangkan Bisnis Anda di Banjarmasin Sekarang
+              </h2>
+              <p className="mb-8" style={{color:"var(--color-muted-foreground)"}}>
+                Konsultasi gratis, audit digital tanpa biaya. Tim kami siap bantu bisnis Banjarmasin dan Kalimantan Selatan Anda tumbuh lebih cepat.
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center">
+                <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+                  Konsultasi Gratis <ArrowRight className="w-5 h-5" />
                 </Link>
-              ))}
-            </div>
+                <Link href="/portfolio" className="btn-ghost text-lg px-8 py-4">Lihat Hasil Kerja Kami</Link>
+              </div>
+            </AnimateOnScroll>
           </div>
         </section>
 
-        <section className="bg-[#f0f5f0] py-16 px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Kata Klien Kami di Banjarmasin</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((t) => (
-                <div key={t.name} className="bg-white rounded-2xl p-6 shadow-sm">
-                  <div className="flex gap-1 mb-3">{[...Array(t.rating)].map((_, i) => <span key={i} className="text-yellow-400">★</span>)}</div>
-                  <p className="text-gray-600 text-sm mb-4">&ldquo;{t.text}&rdquo;</p>
-                  <div><div className="font-semibold text-gray-900 text-sm">{t.name}</div><div className="text-xs text-gray-500">{t.bisnis}</div></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 px-4">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">FAQ — Digital Marketing Banjarmasin</h2>
-            <div className="space-y-4">
-              {faqs.map((f) => (
-                <div key={f.q} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
-                  <h3 className="font-semibold text-gray-900 mb-2">{f.q}</h3>
-                  <p className="text-gray-600 text-sm">{f.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-gradient-to-br from-[#1a2e1a] to-[#2d4a2d] text-white py-16 px-4">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-4">Siap Kembangkan Bisnis di Banjarmasin?</h2>
-            <p className="text-gray-300 mb-8">Konsultasi gratis dengan tim Nuswa Lab. Kami pahami pasar Banjarmasin dan Kalimantan Selatan.</p>
-            <Link href="/contact" className="bg-[#5C7A5A] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#4A6A48] transition-colors inline-block">Mulai Konsultasi Gratis</Link>
-          </div>
-        </section>
+        <Footer />
       </main>
     </>
   );
