@@ -26,6 +26,8 @@ const path = require("path");
 const DB_PATH    = "/home/ubuntu/articel generator/data.db";
 const VPS_ROOT   = "/home/ubuntu/nuswalab";
 const API_KEY    = process.env.ANTHROPIC_API_KEY;
+const BASE_URL   = process.env.ANTHROPIC_BASE_URL || "https://ai.sumopod.com";
+const MODEL      = process.env.ANTHROPIC_MODEL    || "claude-opus-4-8";
 const DRY_RUN    = process.env.DRY_RUN === "1";        // DRY_RUN=1 to skip DB + build
 const STATUS     = process.env.ARTICLE_STATUS || "published"; // or "draft" for review queue
 const MAX_DAILY  = parseInt(process.env.MAX_DAILY || "3");    // max articles per day
@@ -176,7 +178,7 @@ INSTRUKSI PENTING:
 Mulai langsung dengan <h1>:`;
 
   const message = await client.messages.create({
-    model:      "claude-haiku-4-5-20251001",
+    model:      MODEL,
     max_tokens: 4096,
     system:     systemPrompt,
     messages:   [{ role: "user", content: userPrompt }],
@@ -215,7 +217,7 @@ async function main() {
 
   if (DRY_RUN) log("⚠ DRY RUN mode — nothing will be written to DB or rebuilt");
 
-  const client = new Anthropic({ apiKey: API_KEY });
+  const client = new Anthropic({ apiKey: API_KEY, baseURL: BASE_URL });
   const db     = DRY_RUN ? null : new Database(DB_PATH);
 
   const candidates = await fetchCandidates();
