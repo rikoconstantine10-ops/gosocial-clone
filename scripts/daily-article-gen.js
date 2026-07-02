@@ -34,7 +34,7 @@ const MAX_DAILY  = parseInt(process.env.MAX_DAILY || "3");    // max articles pe
 
 const RSS_FEEDS = [
   { url: "https://ahrefs.com/blog/feed/",                    category: "SEO" },
-  { url: "https://moz.com/blog/feed",                         category: "SEO" },
+  { url: "https://blog.hubspot.com/marketing/rss.xml",        category: "Digital Marketing" },
   { url: "https://www.searchenginejournal.com/feed/",        category: "Digital Marketing" },
   { url: "https://neilpatel.com/blog/feed/",                 category: "Digital Marketing" },
   { url: "https://sproutsocial.com/insights/feed/",          category: "Social Media Marketing" },
@@ -125,14 +125,21 @@ function injectInternalLinks(html) {
 
 // ─── RSS Fetch ────────────────────────────────────────────────────────────────
 
+function withTimeout(promise, ms) {
+  const timer = new Promise((_, reject) =>
+    setTimeout(() => reject(new Error(`Timed out after ${ms}ms`)), ms)
+  );
+  return Promise.race([promise, timer]);
+}
+
 async function fetchCandidates() {
-  const parser = new Parser({ timeout: 10000 });
+  const parser = new Parser({ timeout: 8000 });
   const candidates = [];
 
   for (const feed of RSS_FEEDS) {
     try {
       log(`Fetching ${feed.url}`);
-      const parsed = await parser.parseURL(feed.url);
+      const parsed = await withTimeout(parser.parseURL(feed.url), 12000);
       for (const item of (parsed.items || []).slice(0, 6)) {
         if (isRelevant(item.title, item.contentSnippet || "")) {
           candidates.push({
