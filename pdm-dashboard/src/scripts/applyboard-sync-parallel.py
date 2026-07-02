@@ -30,6 +30,7 @@ NUM_WORKERS    = 5
 DRY_RUN        = "--dry-run" in sys.argv
 FORCE          = "--force" in sys.argv
 LIMIT          = next((int(a.split("=")[1]) for a in sys.argv if a.startswith("--limit=")), None)
+SCHOOL_ID      = next((int(a.split("=")[1]) for a in sys.argv if a.startswith("--school=")), None)
 
 # Global locks
 db_lock       = threading.Lock()
@@ -543,16 +544,23 @@ def main():
     print(f"ApplyBoard → PDM Parallel Sync  [{NUM_WORKERS} workers]")
     print(f"  Countries: AU, CA, DE, GB, IE, US  (MT excluded)")
     print(f"  DB: {DB_PATH}")
+    if SCHOOL_ID:
+        print(f"  Mode: single-school (AB ID={SCHOOL_ID})")
     print("=" * 70)
 
     # Bootstrap session for school list
     bootstrap = WorkerSession(0)
     bootstrap.login()
 
-    all_schools = get_all_schools(bootstrap)
-    if LIMIT:
-        all_schools = all_schools[:LIMIT]
-        print(f"[main] Limited to {len(all_schools)} schools")
+    if SCHOOL_ID:
+        # Single-school mode: skip fetching school list, just process this one AB ID
+        all_schools = [{"id": str(SCHOOL_ID), "attributes": {"name": f"School#{SCHOOL_ID}", "country_code": ""}}]
+        print(f"[main] Single-school mode: AB ID={SCHOOL_ID}")
+    else:
+        all_schools = get_all_schools(bootstrap)
+        if LIMIT:
+            all_schools = all_schools[:LIMIT]
+            print(f"[main] Limited to {len(all_schools)} schools")
 
     # Load progress — also seed from DB (in case progress file is stale/empty)
     progress_dict = load_progress()
