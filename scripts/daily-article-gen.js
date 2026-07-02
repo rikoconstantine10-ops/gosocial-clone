@@ -34,7 +34,7 @@ const MAX_DAILY  = parseInt(process.env.MAX_DAILY || "3");    // max articles pe
 
 const RSS_FEEDS = [
   { url: "https://ahrefs.com/blog/feed/",                    category: "SEO" },
-  { url: "https://www.semrush.com/blog/feed/",                category: "SEO" },
+  { url: "https://moz.com/blog/feed",                         category: "SEO" },
   { url: "https://www.searchenginejournal.com/feed/",        category: "Digital Marketing" },
   { url: "https://neilpatel.com/blog/feed/",                 category: "Digital Marketing" },
   { url: "https://sproutsocial.com/insights/feed/",          category: "Social Media Marketing" },
@@ -46,6 +46,8 @@ const KEYWORD_FILTER = [
   "content marketing", "meta ads", "facebook ads", "ppc", "link building",
   "keyword research", "organic traffic", "conversion rate", "landing page",
   "email marketing", "influencer", "tiktok ads", "youtube ads",
+  "backlink", "search engine", "website traffic", "social media", "branding",
+  "ecommerce", "e-commerce", "paid ads", "copywriting", "content strategy",
 ];
 
 // Country/city pages for internal linking injection
