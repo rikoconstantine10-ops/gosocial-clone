@@ -313,7 +313,7 @@ async function main() {
   if (inserted.length > 0 && !DRY_RUN) {
     log(`\n🔨 Building site (${inserted.length} new articles)...`);
     try {
-      execSync("npm install && npm run build && pm2 restart nuswalab", {
+      execSync("npm run build && pm2 restart nuswalab", {
         cwd:   VPS_ROOT,
         stdio: "inherit",
       });
