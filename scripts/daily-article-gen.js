@@ -34,10 +34,10 @@ const MAX_DAILY  = parseInt(process.env.MAX_DAILY || "3");    // max articles pe
 
 const RSS_FEEDS = [
   { url: "https://ahrefs.com/blog/feed/",                    category: "SEO" },
-  { url: "https://backlinko.com/feed",                       category: "SEO" },
+  { url: "https://www.semrush.com/blog/feed/",                category: "SEO" },
   { url: "https://www.searchenginejournal.com/feed/",        category: "Digital Marketing" },
   { url: "https://neilpatel.com/blog/feed/",                 category: "Digital Marketing" },
-  { url: "https://www.marketinginteractive.com/feed/",       category: "Regional Marketing" },
+  { url: "https://sproutsocial.com/insights/feed/",          category: "Social Media Marketing" },
 ];
 
 // Only process articles whose title/snippet contains at least one of these
